@@ -1,10 +1,15 @@
-export default function SideBar(){
+//import Image from "next/image";
+import { useState } from "react";
+
+
+export default function SideBar() {
+
+    
+
+
+
     return (
         <>
-            <ul>
-                <li>あ</li>
-                <li>い</li>
-            </ul>
         </>
-    )
+    );
 }
