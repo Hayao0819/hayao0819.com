@@ -8,17 +8,9 @@ export default function StateTest() {
     changeState(!isOpened);
   };
 
-  if (isOpened) {
-    return (
-      <>
-        <p onClick={toggleMenu}>state = true</p>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <p onClick={toggleMenu}>state = false</p>
-      </>
-    );
-  }
+  return (
+    <>
+      <p onClick={toggleMenu}>state = {isOpened ? "true" : "false"}</p>
+    </>
+  );
 }

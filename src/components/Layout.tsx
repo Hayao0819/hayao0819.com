@@ -1,7 +1,11 @@
 import SideBar from "@/components/SideBar";
 import Footer from "@/components/Footer";
 
-export default function Layout({ children }) {
+interface Props {
+  children: React.ReactNode;
+}
+
+export default function Layout({ children }: Props) {
   return (
     <>
       <div className="grid grid-cols-2">
@@ -10,7 +14,7 @@ export default function Layout({ children }) {
         </header>
         <main>{children}</main>
       </div>
-      {Footer}
+      <Footer />
     </>
   );
 }
