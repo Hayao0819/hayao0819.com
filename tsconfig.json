@@ -24,6 +24,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Layout/layout.jsx", "src/pages/_app.tsx", "src/components/SideBar/SideBar.tsx", "src/components/Layout.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Layout/layout.jsx", "src/pages/_app.tsx", "src/components/SideBar.tsx", "src/components/Layout.jsx"],
   "exclude": ["node_modules"]
 }
