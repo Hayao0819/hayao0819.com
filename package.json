@@ -15,7 +15,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "fmt": "prettier --write --check ."
+    "fmt": "prettier --check .",
+    "fix": "pnpm run fmt --write . && eslint --fix ."
   },
   "dependencies": {
     "@types/node": "20.2.5",
