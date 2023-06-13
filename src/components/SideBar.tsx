@@ -2,24 +2,23 @@
 import { useState } from "react";
 
 export default function StateTest() {
-    const [isOpened, changeState] = useState(false);
+  const [isOpened, changeState] = useState(false);
 
-    const toggleMenu = () => {
-        changeState(!isOpened);
-    };
+  const toggleMenu = () => {
+    changeState(!isOpened);
+  };
 
-    if (isOpened) {
-        return (
-            <>
-                <p onClick={toggleMenu}>state = true</p>
-            </>
-        );
-    } else {
-        return (
-            <>
-                <p onClick={toggleMenu}>state = false</p>
-            </>
-        );
-    }
+  if (isOpened) {
+    return (
+      <>
+        <p onClick={toggleMenu}>state = true</p>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <p onClick={toggleMenu}>state = false</p>
+      </>
+    );
+  }
 }
-

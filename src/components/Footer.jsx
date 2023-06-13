@@ -1,8 +1,7 @@
-
 const Footer = (
-    <footer>
-        <p>山田ハヤオ</p>
-    </footer>
-)
+  <footer>
+    <p>山田ハヤオ</p>
+  </footer>
+);
 
-export default Footer
+export default Footer;
