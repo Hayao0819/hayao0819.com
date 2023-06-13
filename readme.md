@@ -9,7 +9,8 @@
 
 In order to run this project, you need latest Node.js installed on your machine with pnpm package manager.
 
-(For Hayao0819):
+**(For Hayao0819):**
+
 In order to make development easier, use volta nodejs version manager which will manage everything for you.
 In order to install volta, use:
 
