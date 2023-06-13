@@ -1,9 +1,10 @@
-import Hello from "../components/Hello";
+import Hello from "@/components/Hello";
+import Layout from "@/components/Layout";
 
 export default function Home() {
     return (
-        <main>
+        <Layout>
             <Hello></Hello>
-        </main>
+        </Layout>
     );
 }

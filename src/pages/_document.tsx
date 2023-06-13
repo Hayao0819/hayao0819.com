@@ -1,27 +1,17 @@
 import { Html, Head } from "next/document";
-import { Main, NextScript } from "next/document";
-import SideBar from "@/components/SideBar/SideBar";
+import { Main, NextScript } from "next/document"
 import Metadata from "../const/meta";
 
 export default function Document() {
     return (
         <Html lang="ja">
             <Head>
-                <Meta />
+                <meta name="description" content={Metadata.description} />
             </Head>
             <body>
-                <SideBar />
                 <Main />
                 <NextScript />
             </body>
         </Html>
-    );
-}
-
-function Meta() {
-    return (
-        <>
-            <meta name="description" content={Metadata.description} />
-        </>
     );
 }
