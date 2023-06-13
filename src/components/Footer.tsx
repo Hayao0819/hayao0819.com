@@ -13,6 +13,6 @@ const Footer = (): JSX.Element => {
       <p>山田ハヤオ</p>
     </footer>
   );
-}
+};
 
 export default Footer;
