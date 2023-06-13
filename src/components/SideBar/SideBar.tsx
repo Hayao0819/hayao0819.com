@@ -1,7 +1,6 @@
 //import Image from "next/image";
 import { useState } from "react";
 
-/*
 export default function StateTest() {
     const [state, changeState] = useState(false);
 
@@ -24,10 +23,4 @@ export default function StateTest() {
         );
     }
 }
-*/
 
-export default function  onClickTest(){
-    return (
-        <button onClick={()=>{ alert("Hey!!") } }>押せ！！</button>
-    )
-}

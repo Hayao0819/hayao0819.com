@@ -7,7 +7,7 @@ export default function Layout({children}){
                 <SideBar />
             </header>
             <main>
-                {{ children }}
+                { children }
             </main>
         </>
     )
