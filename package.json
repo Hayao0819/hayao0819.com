@@ -1,12 +1,21 @@
 {
   "name": "hayao0819.com",
-  "version": "0.1.0",
+  "description": "Hayao0819's personal website",
+  "version": "0.1.1",
   "private": true,
+  "contributors": [
+    {
+      "name": "Yuri Katsuki",
+      "email": "yuri@katsuki.moe",
+      "url": "https://katsuki.moe"
+    }
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "fmt": "prettier --write --check ."
   },
   "dependencies": {
     "@types/node": "20.2.5",
