@@ -1,8 +1,17 @@
-
+/*
 const Footer = (
-    <footer>
-        <p>山田ハヤオ</p>
+    <footer className="">
+        <p className="text-center">山田ハヤオ</p>
     </footer>
-)
+);
 
-export default Footer
+export default Footer;
+*/
+
+export default function Footer() {
+    return (
+        <footer className="">
+            <p className="text-center">山田ハヤオ</p>
+        </footer>
+    );
+}
