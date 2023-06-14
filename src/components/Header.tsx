@@ -29,7 +29,7 @@ function MyIcon() {
                 alt="ハヤオのアイコン"
                 width={150}
                 height={150}
-                className="inline m-4"
+                className="m-4 inline"
             ></Image>
         </div>
     );
@@ -37,9 +37,9 @@ function MyIcon() {
 
 function HeaderForSP() {
     return (
-        <div className="sm:hidden w-screen flex items-center justify-center bg-gray-900 text-white">
+        <div className="flex w-screen items-center justify-center bg-gray-900 text-white sm:hidden">
             <SideBarBtn />
-            <h1 className=" ml-auto mr-auto">{Metadata.title}</h1>
+            <h1 className=" mx-auto">{Metadata.title}</h1>
         </div>
     );
 }
@@ -51,20 +51,37 @@ function SideBarBtn() {
     };
 
     return (
-        <button type="button" className="p-2 m-4 text-sm rounded-lg" onClick={toggleMenu}>
+        <button type="button" className="m-4 rounded-lg p-2 text-sm" onClick={toggleMenu}>
             <span className="sr-only">Open sidebar</span>
             <FontAwesomeIcon icon={faBars} size="xl" />
         </button>
     );
 }
 
+// You can create a representation of props in the form of an interface.
+// This type of approach is called "type-driven development" and this is a very good practice.
 interface Props {
     children: ReactNode;
 }
+//
+// function HeaderForPC({ children }: Props) {
+//     return <SideBar>{children}</SideBar>;
+// }
 
-function HeaderForPC({ children }: Props) {
-    return <SideBar>{children}</SideBar>;
+// Also, you can use this type of direct approach.
+// function HeaderForPC({ children }: { children: ReactNode }) {
+//     return <SideBar>{children}</SideBar>;
+// }
+
+// Remember!
+// Any component receives only one parameter by default which is "props".
+// Without object annotation, it would have looked like that:
+function HeaderForPC(props: Props) {
+    return <SideBar>{props.children}</SideBar>;
 }
+
+// We just store our own parameters inside props and pass it to parent or child components :D
+
 function SideBar({ children }: Props) {
     const [isOpened, setOpened] = useState(true);
 
@@ -93,7 +110,7 @@ function MenuItem({ link, label }: Item) {
         <div className="select-none">
             <Link
                 href={link}
-                className="m-4 px-4 py-2 hover:bg-gray-700 rounded-lg  flex items-center text-sm"
+                className="m-4 flex items-center rounded-lg px-4  py-2 text-sm hover:bg-gray-700"
             >
                 {label}
             </Link>
