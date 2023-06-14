@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { sideBarContext } from "@/hooks/SideBar";
+import { sideBarContext } from "@/context/SideBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
