@@ -4,13 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Metadata from "../const/meta";
 import { sideBarContext } from "@/hooks/SideBar";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Header() {
     return (
         <header>
             <HeaderForPC>
                 <MyIcon />
-                <MenuItem link={new URL("https://google.com")} label="Google" />
+                <MenuItem link="https://google.com" label="Google" />
+                <MenuItem link="/social" label="ソーシャル" />
             </HeaderForPC>
             <HeaderForSP />
         </header>
@@ -71,7 +74,7 @@ function SideBar({ children }: Props) {
         <sideBarContext.Provider value={{ isOpened, setOpened }}>
             <aside
                 id="sidebar"
-                className="h-screen w-64 flex-col bg-gray-900 text-white px-4 hidden sm:block"
+                className="sm:h-screen w-64 flex-col bg-gray-900 text-white px-4 hidden sm:block"
             >
                 <div>{children}</div>
             </aside>
@@ -80,19 +83,19 @@ function SideBar({ children }: Props) {
 }
 
 interface Item {
-    link: URL;
+    link: string;
     label: string;
 }
 
 function MenuItem({ link, label }: Item) {
     return (
         <div className="select-none">
-            <a
-                href={link.toString()}
+            <Link
+                href={link}
                 className="m-4 px-4 py-2 hover:bg-gray-700 rounded-lg  flex items-center text-sm"
             >
                 {label}
-            </a>
+            </Link>
         </div>
     );
 }
