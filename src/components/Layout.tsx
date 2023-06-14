@@ -10,8 +10,8 @@ export default function Layout({ children }: Props) {
     return (
         <div className="sm:flex">
             <Header />
-            <div className="sm:grow sm:flex sm:flex-col">
-                <main className="sm:grow p-4 w-full">{children}</main>
+            <div className="sm:flex sm:grow sm:flex-col">
+                <main className="w-full p-4 sm:grow">{children}</main>
                 <Footer />
             </div>
         </div>

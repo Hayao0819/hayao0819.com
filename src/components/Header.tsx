@@ -92,7 +92,7 @@ function SideBar({ children }: Props) {
         <sideBarContext.Provider value={{ isOpened, setOpened }}>
             <aside
                 id="sidebar"
-                className="sm:h-screen w-64 flex-col bg-gray-900 text-white px-4 hidden sm:block"
+                className="hidden w-64 flex-col bg-gray-900 px-4 text-white sm:block sm:h-screen"
             >
                 <div>{children}</div>
             </aside>
