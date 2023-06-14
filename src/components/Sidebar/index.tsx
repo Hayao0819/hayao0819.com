@@ -26,7 +26,7 @@ function SideBarContents({ children, showSideBar }: SideBarContentsProps): JSX.E
     console.log(showSideBar);
     if (showSideBar) {
         return (
-            <aside id="sidebar" className="hidden flex-col bg-gray-900 px-4 text-white marker:w-64 sm:block sm:h-full sm:min-h-screen">
+            <aside id="sidebar" className="hidden flex-col bg-gray-900 px-4 text-white marker:w-64 sm:float-left sm:block sm:h-full sm:min-h-screen sm:w-64">
                 <div>{children}</div>
             </aside>
         );
