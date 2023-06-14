@@ -19,14 +19,8 @@ export default function Header() {
 function MyIcon() {
     return (
         <div className="text-center">
-            <Image
-                src="/icons/top.jpeg"
-                alt="ハヤオのアイコン"
-                width={150}
-                height={150}
-                className="m-4 inline"
-            ></Image>
-            <h1 className=" mx-auto">{Metadata.title}</h1>
+            <Image src="/icons/top.jpeg" alt="ハヤオのアイコン" width={150} height={150} className="m-4 inline"></Image>
+            <h1 className="">{Metadata.title}</h1>
         </div>
     );
 }
@@ -35,7 +29,7 @@ function HeaderForSP() {
     return (
         <div className="sticky top-0 z-50 flex w-screen items-center justify-center bg-gray-900 text-white sm:hidden">
             <SideBarBtn />
-            <h1 className="">{Metadata.title}</h1>
+            <h1 className=" mx-auto">{Metadata.title}</h1>
         </div>
     );
 }
@@ -97,10 +91,7 @@ function SideBar({ children }: Props) {
         // そもそもProviderとかいう謎のコンポーネントをなんで使わなきゃいけないのだ
         //グローバル変数でuseStateをそのまま使えればいいだけの話だと思う
         <sideBarContext.Provider value={{ isOpened, setOpened }}>
-            <aside
-                id="sidebar"
-                className="hidden w-64 flex-col bg-gray-900 px-4 text-white sm:block sm:h-screen"
-            >
+            <aside id="sidebar" className="hidden w-64 flex-col bg-gray-900 px-4 text-white sm:block sm:h-screen">
                 <div>{children}</div>
             </aside>
         </sideBarContext.Provider>
@@ -115,10 +106,7 @@ interface Item {
 function MenuItem({ link, label }: Item) {
     return (
         <div className="select-none">
-            <Link
-                href={link}
-                className="m-4 flex items-center rounded-lg px-4  py-2 text-sm hover:bg-gray-700"
-            >
+            <Link href={link} className="m-4 flex items-center rounded-lg px-4  py-2 text-sm hover:bg-gray-700">
                 {label}
             </Link>
         </div>
