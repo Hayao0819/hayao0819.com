@@ -3,9 +3,6 @@
         "next/core-web-vitals",
         "plugin:tailwindcss/recommended",
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "prettier",
-        "prettier/@typescript-eslint"
+        "prettier"
     ]
 }

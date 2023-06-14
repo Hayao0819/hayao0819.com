@@ -5,7 +5,7 @@
 // );
 
 // Always use named component export to avoid refreshed loading
-import React from "react";
+import React, { JSX } from "react";
 
 function Footer(): JSX.Element {
     return (
