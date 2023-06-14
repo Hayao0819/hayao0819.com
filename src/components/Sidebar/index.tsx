@@ -13,11 +13,26 @@ export function SideBar({ children }: SidebarProps) {
         // そもそもProviderとかいう謎のコンポーネントをなんで使わなきゃいけないのだ
         //グローバル変数でuseStateをそのまま使えればいいだけの話だと思う
         <sideBarContext.Provider value={{ isOpened, setOpened }}>
-            <aside id="sidebar" className="hidden w-64 flex-col bg-gray-900 px-4 text-white sm:block sm:h-screen">
-                <div>{children}</div>
-            </aside>
+            <SideBarContents showSideBar={isOpened}>{children}</SideBarContents>
         </sideBarContext.Provider>
     );
+}
+
+interface SideBarContentsProps {
+    children: ReactNode;
+    showSideBar: boolean;
+}
+function SideBarContents({ children, showSideBar }: SideBarContentsProps): ReactNode {
+    console.log(showSideBar);
+    if (showSideBar) {
+        return (
+            <aside id="sidebar" className="w-64 flex-col bg-gray-900 px-4 text-white sm:block sm:h-screen">
+                <div>{children}</div>
+            </aside>
+        );
+    } else {
+        return <></>;
+    }
 }
 
 export { Button } from "./Button";
