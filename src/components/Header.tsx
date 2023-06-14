@@ -37,7 +37,7 @@ function MyIcon() {
 
 function HeaderForSP() {
     return (
-        <div className="flex w-screen items-center justify-center bg-gray-900 text-white sm:hidden">
+        <div className="sticky top-0 z-50 flex w-screen items-center justify-center bg-gray-900 text-white sm:hidden">
             <SideBarBtn />
             <h1 className=" mx-auto">{Metadata.title}</h1>
         </div>
