@@ -3,5 +3,5 @@ interface H1Props {
 }
 
 export function H1({ title }: H1Props) {
-    return <h1 className="text-4xl">{title}</h1>;
+    return <h1 className="py-4 text-4xl font-bold">{title}</h1>;
 }
