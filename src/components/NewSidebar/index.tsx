@@ -1,3 +1,7 @@
+// Disable any rules for this file because it's not a real component
+/* eslint-disable */
+// @ts-nocheck
+
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
