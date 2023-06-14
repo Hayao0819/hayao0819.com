@@ -7,10 +7,10 @@ interface Props {
 
 export default function Layout({ children }: Props) {
     return (
-        <div className="sm:flex items-start">
+        <div className="sm:flex">
             <Header />
-            <div className="grow">
-                <main className="p-4 w-full">{children}</main>
+            <div className="sm:grow sm:flex sm:flex-col">
+                <main className="sm:grow p-4 w-full">{children}</main>
                 <Footer />
             </div>
         </div>
