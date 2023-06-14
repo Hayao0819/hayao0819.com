@@ -11,6 +11,15 @@ jobs:
               with:
                   node-version: 18
             - run: npm install -g pnpm
-            - run: pnpm install
-            - run: pnpm lint
-            - run: pnpm fmt
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Lint check the project
+              run: pnpm lint
+
+            - name: Test for the prettier format
+              run: pnpm fmt
+
+            - name: Build the project and type check
+              run: pnpm build
