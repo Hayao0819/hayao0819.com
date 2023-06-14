@@ -1,5 +1,9 @@
 //import Image from "next/image";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
+
+interface Props{
+  children : ReactNode
+}
 
 export default function Header() {
   return (
@@ -26,7 +30,7 @@ function StateText() {
   );
 }
 
-function SideBar({ children }) {
+function SideBar( {children}: Props ) {
   return (
     <header className="text-center">
       <aside className="h-screen w-64 flex-col items-center bg-gray-900 px-4">
@@ -36,6 +40,15 @@ function SideBar({ children }) {
   );
 }
 
-function MenuItem() {
-  return <div className="select-none"></div>;
+interface Item {
+  link: URL
+  label: string
+}
+
+function MenuItem({link, label}: Item) {
+  return(
+    <div className="select-none">
+      <a href={link}></a>
+    </div>
+  );
 }
