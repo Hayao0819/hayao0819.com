@@ -10,7 +10,7 @@ import React from "react";
 
 function Footer (): JSX.Element{
   return (
-    <footer>
+    <footer className="text-center">
       <p>山田ハヤオ</p>
     </footer>
   );
