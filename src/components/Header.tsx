@@ -82,6 +82,9 @@ function SideBar({ children }: Props) {
     const [isOpened, setOpened] = useState(true);
 
     return (
+        // sideBarContextの内容でいい感じに表示内容を分岐させたいけど方法がわからん
+        // そもそもProviderとかいう謎のコンポーネントをなんで使わなきゃいけないのだ
+        //グローバル変数でuseStateをそのまま使えればいいだけの話だと思う
         <sideBarContext.Provider value={{ isOpened, setOpened }}>
             <aside
                 id="sidebar"
