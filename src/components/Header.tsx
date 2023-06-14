@@ -10,12 +10,7 @@ import Link from "next/link";
 export default function Header() {
     return (
         <header>
-            <HeaderForPC>
-                <MyIcon />
-                <MenuItem link="/" label="Top" />
-                <MenuItem link="https://google.com" label="Google" />
-                <MenuItem link="/social" label="ソーシャル" />
-            </HeaderForPC>
+            <HeaderForPC />
             <HeaderForSP />
         </header>
     );
@@ -31,6 +26,7 @@ function MyIcon() {
                 height={150}
                 className="m-4 inline"
             ></Image>
+            <h1 className=" mx-auto">{Metadata.title}</h1>
         </div>
     );
 }
@@ -39,7 +35,7 @@ function HeaderForSP() {
     return (
         <div className="sticky top-0 z-50 flex w-screen items-center justify-center bg-gray-900 text-white sm:hidden">
             <SideBarBtn />
-            <h1 className=" mx-auto">{Metadata.title}</h1>
+            <h1 className="">{Metadata.title}</h1>
         </div>
     );
 }
@@ -76,8 +72,19 @@ interface Props {
 // Remember!
 // Any component receives only one parameter by default which is "props".
 // Without object annotation, it would have looked like that:
-function HeaderForPC(props: Props) {
-    return <SideBar>{props.children}</SideBar>;
+//function HeaderForPC(props: Props) {
+//    return <SideBar>{props.children}</SideBar>;
+//}
+
+function HeaderForPC() {
+    return (
+        <SideBar>
+            <MyIcon />
+            <MenuItem link="/" label="Top" />
+            <MenuItem link="https://google.com" label="Google" />
+            <MenuItem link="/social" label="ソーシャル" />
+        </SideBar>
+    );
 }
 
 // We just store our own parameters inside props and pass it to parent or child components :D
