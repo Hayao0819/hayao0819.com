@@ -1,7 +1,7 @@
 interface Props {
-  title: string;
+    title: string;
 }
 
 export function H2({ title }: Props) {
-  return <h2 className="text-2xl">{title}</h2>;
+    return <h2 className="text-2xl">{title}</h2>;
 }
