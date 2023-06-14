@@ -7,8 +7,8 @@ export default function Layout({ children }) {
             <div>
                 <Header />
             </div>
-            <div className="grow">
-                <main>{children}</main>
+            <div className="flex min-h-screen grow flex-col">
+                <main className="grow p-1">{children}</main>
                 <Footer />
             </div>
         </div>
