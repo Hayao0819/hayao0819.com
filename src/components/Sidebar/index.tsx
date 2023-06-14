@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, JSX } from "react";
 import { sideBarContext } from "@/context/SideBar";
 
 interface SidebarProps {
@@ -22,7 +22,7 @@ interface SideBarContentsProps {
     children: ReactNode;
     showSideBar: boolean;
 }
-function SideBarContents({ children, showSideBar }: SideBarContentsProps): ReactNode {
+function SideBarContents({ children, showSideBar }: SideBarContentsProps): JSX.Element {
     console.log(showSideBar);
     if (showSideBar) {
         return (
