@@ -29,7 +29,7 @@ function HeaderForSP() {
     return (
         <div className="sticky top-0 z-50 flex w-screen items-center justify-center bg-gray-900 text-white sm:hidden">
             <SideBarBtn />
-            <h1 className=" mx-auto">{Metadata.title}</h1>
+            <h1 className="mx-auto text-lg font-semibold">{Metadata.title}</h1>
         </div>
     );
 }

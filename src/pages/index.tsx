@@ -1,21 +1,38 @@
 import Hello from "@/components/Hello";
 import Layout from "@/components/Layout";
 import State from "@/components/State";
-import { H2 } from "@/components/Headlines";
+import { H2, H3 } from "@/components/Headlines";
 
 export default function Home() {
     return (
         <Layout>
-            <H2 title="ホーム" />
-            <p>サンセットがいい感じにシンプルなサイトを作ってたので真似してみました。</p>
-            <p>自分のサイトって何を書けばいいかやっぱりわからないですね...</p>
-            <p>勉強中のぷろぐらま見習い。最近やっと自分のホームページをモダンな感じに更新した。</p>
-            <p>もっぱらコンパイル言語全般が使えない情弱なので、基本はすべてシェルスクリプトでゴリゴリ...</p>
-            <p>シェルと言ってもゆとり世代なのでBash 5。たまにどうしようもないときにPythonを使う。</p>
-            <p>受験が終わって一段落したらC言語とGo言語を触りたいと思っていたりいなかったり。</p>
-            <h2>テスト</h2>
-            <State></State>
-            <Hello></Hello>
+            <div>
+                <H2>ホーム</H2>
+                <p>サンセットがいい感じにシンプルなサイトを作ってたので真似してみました。</p>
+                <p>自分のサイトって何を書けばいいかやっぱりわからないですね...</p>
+                <p>勉強中のぷろぐらま見習い。最近やっと自分のホームページをモダンな感じに更新した。</p>
+                <p>もっぱらコンパイル言語全般が使えない情弱なので、基本はすべてシェルスクリプトでゴリゴリ...</p>
+                <p>シェルと言ってもゆとり世代なのでBash 5。たまにどうしようもないときにPythonを使う。</p>
+                <p>受験が終わって一段落したらC言語とGo言語を触りたいと思っていたりいなかったり。</p>
+
+                <H3>自己紹介</H3>
+                <p>学生です。 <a href="https://fascode.net/">Fascode Network</a>という集団に参加しながらLinuxを勉強中です。</p>
+                <p>最近はGentoo Linuxに手を出してebuildを四苦八苦しながら書いています。</p>
+                <p>使える言語が非常に少なくて実用性がないのが欠点です。これといった専門分野も無いです。</p>
+                <p>知らないところに行ったり、空の写真を撮るのが趣味です。</p>
+                <p>他にもジャンクPC漁りや自作PC、ガジェット、カスタムROM、Root化など色々やりますがどれも中途半端です。</p>
+
+                <H3>年齢</H3>
+                <p>あとで実装します</p>
+
+                
+            </div>
+
+            <div>
+                <H2>テスト</H2>
+                <State></State>
+                <Hello></Hello>
+            </div>
         </Layout>
     );
 }
