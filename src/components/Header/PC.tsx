@@ -6,9 +6,11 @@ export function PC() {
     return (
         <SideBar>
             <My />
-            <MenuItem link="/" label="Top" />
-            <MenuItem link="https://google.com" label="Google" />
-            <MenuItem link="/social" label="ソーシャル" />
+            <MenuItem link="/">Top</MenuItem>
+            <MenuItem link="">Skill</MenuItem>
+            <MenuItem link="/social" >Social</MenuItem>
+            <MenuItem link="">Contact</MenuItem>
+            <MenuItem link="https://old.hayao0819.com">Old Page</MenuItem>
         </SideBar>
     );
 }
