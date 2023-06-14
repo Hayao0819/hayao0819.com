@@ -26,7 +26,7 @@ function SideBarContents({ children, showSideBar }: SideBarContentsProps): React
     console.log(showSideBar);
     if (showSideBar) {
         return (
-            <aside id="sidebar" className="w-64 flex-col bg-gray-900 px-4 text-white sm:block sm:h-screen">
+            <aside id="sidebar" className="w-64 flex-col bg-gray-900 px-4 text-white sm:block sm:h-full">
                 <div>{children}</div>
             </aside>
         );
