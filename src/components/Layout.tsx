@@ -7,10 +7,10 @@ interface Props {
 
 export default function Layout({ children }: Props) {
     return (
-        <div className="flex flex-wrap sm:flex-row min-h-screen">
+        <div className="sm:flex items-start">
             <Header />
             <div>
-                <main className="p-4">{children}</main>
+                <main className="p-4 w-full">{children}</main>
                 <Footer />
             </div>
         </div>
