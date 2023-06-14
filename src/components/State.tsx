@@ -9,9 +9,7 @@ export default function StateText() {
 
     return (
         <>
-            <div onClick={toggleMenu}>
-                state = {isOpened ? "true" : "false"}
-            </div>
+            <div onClick={toggleMenu}>state = {isOpened ? "true" : "false"}</div>
         </>
     );
 }

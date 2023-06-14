@@ -1,18 +1,19 @@
 import Image from "next/image";
-import { ReactNode } from "react";
-
-interface Props {
-    children: ReactNode;
-}
+import { ReactNode, useContext, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import Metadata from "../const/meta";
+import { sideBarContext } from "@/hooks/SideBar";
 
 export default function Header() {
     return (
-        <>
-            <SideBar>
+        <header>
+            <HeaderForPC>
                 <MyIcon />
                 <MenuItem link={new URL("https://google.com")} label="Google" />
-            </SideBar>
-        </>
+            </HeaderForPC>
+            <HeaderForSP />
+        </header>
     );
 }
 
@@ -30,13 +31,48 @@ function MyIcon() {
     );
 }
 
-function SideBar({ children }: Props) {
+function HeaderForSP() {
     return (
-        <header className="">
-            <aside className="h-screen w-64 flex-col bg-gray-900 px-4">
-                <div className="text-white">{children}</div>
+        <div className="sm:hidden w-screen flex items-center justify-center bg-gray-900 text-white">
+            <SideBarBtn />
+            <h1 className=" ml-auto mr-auto">{Metadata.title}</h1>
+        </div>
+    );
+}
+
+function SideBarBtn() {
+    const { isOpened, setOpened } = useContext(sideBarContext);
+    const toggleMenu = () => {
+        setOpened(!isOpened);
+    };
+
+    return (
+        <button type="button" className="p-2 m-4 text-sm rounded-lg" onClick={toggleMenu}>
+            <span className="sr-only">Open sidebar</span>
+            <FontAwesomeIcon icon={faBars} size="xl" />
+        </button>
+    );
+}
+
+interface Props {
+    children: ReactNode;
+}
+
+function HeaderForPC({ children }: Props) {
+    return <SideBar>{children}</SideBar>;
+}
+function SideBar({ children }: Props) {
+    const [isOpened, setOpened] = useState(true);
+
+    return (
+        <sideBarContext.Provider value={{ isOpened, setOpened }}>
+            <aside
+                id="sidebar"
+                className="h-screen w-64 flex-col bg-gray-900 text-white px-4 hidden sm:block"
+            >
+                <div>{children}</div>
             </aside>
-        </header>
+        </sideBarContext.Provider>
     );
 }
 
