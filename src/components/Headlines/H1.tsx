@@ -1,7 +1,7 @@
 interface H1Props {
-    title: string;
+    children: string;
 }
 
-export function H1({ title }: H1Props) {
-    return <h1 className="py-4 text-4xl font-bold">{title}</h1>;
+export function H1({ children }: H1Props) {
+    return <h1 className="py-4 text-4xl font-bold">{children}</h1>;
 }
