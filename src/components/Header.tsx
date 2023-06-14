@@ -12,6 +12,7 @@ export default function Header() {
         <header>
             <HeaderForPC>
                 <MyIcon />
+                <MenuItem link="/" label="Top" />
                 <MenuItem link="https://google.com" label="Google" />
                 <MenuItem link="/social" label="ソーシャル" />
             </HeaderForPC>
