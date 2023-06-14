@@ -73,7 +73,7 @@ interface Props {
 // Any component receives only one parameter by default which is "props".
 // Without object annotation, it would have looked like that:
 function HeaderForPC(props: Props) {
-  return <SideBar>{props.children}</SideBar>;
+    return <SideBar>{props.children}</SideBar>;
 }
 
 // We just store our own parameters inside props and pass it to parent or child components :D
