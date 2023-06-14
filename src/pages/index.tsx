@@ -16,7 +16,9 @@ export default function Home() {
                 <p>受験が終わって一段落したらC言語とGo言語を触りたいと思っていたりいなかったり。</p>
 
                 <H3>自己紹介</H3>
-                <p>学生です。 <a href="https://fascode.net/">Fascode Network</a>という集団に参加しながらLinuxを勉強中です。</p>
+                <p>
+                    学生です。 <a href="https://fascode.net/">Fascode Network</a>という集団に参加しながらLinuxを勉強中です。
+                </p>
                 <p>最近はGentoo Linuxに手を出してebuildを四苦八苦しながら書いています。</p>
                 <p>使える言語が非常に少なくて実用性がないのが欠点です。これといった専門分野も無いです。</p>
                 <p>知らないところに行ったり、空の写真を撮るのが趣味です。</p>
@@ -24,8 +26,6 @@ export default function Home() {
 
                 <H3>年齢</H3>
                 <p>あとで実装します</p>
-
-                
             </div>
 
             <div>

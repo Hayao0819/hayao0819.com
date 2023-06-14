@@ -5,7 +5,6 @@ interface H3Props {
     children: string;
 }
 
-
 export function H3({ children }: H3Props) {
     return (
         <div className="py-4">
