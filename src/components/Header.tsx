@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Metadata from "../const/meta";
 import { sideBarContext } from "@/hooks/SideBar";
-//import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function Header() {
