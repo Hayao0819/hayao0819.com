@@ -8,11 +8,11 @@
 import React from "react";
 
 function Footer(): JSX.Element {
-  return (
-    <footer className="text-center">
-      <p>山田ハヤオ</p>
-    </footer>
-  );
+    return (
+        <footer className="text-center">
+            <p>山田ハヤオ</p>
+        </footer>
+    );
 }
 
 export default Footer;
