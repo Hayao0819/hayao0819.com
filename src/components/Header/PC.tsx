@@ -4,7 +4,7 @@ import { Item as MenuItem } from "../Menu";
 
 export function PC() {
     return (
-        <SideBar>
+        <SideBar isOpened={true}>
             <My />
             <MenuItem link="/">Top</MenuItem>
             <MenuItem link="">Skill</MenuItem>

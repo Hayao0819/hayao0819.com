@@ -1,38 +1,19 @@
-import { ReactNode, useState, JSX } from "react";
-import { sideBarContext } from "@/context/SideBar";
+import { ReactNode } from "react";
+//import sideBarContext from "@/context/SideBar";
 
 interface SidebarProps {
     children: ReactNode;
+    isOpened: boolean;
 }
 
-export function SideBar({ children }: SidebarProps) {
-    const [isOpened, setOpened] = useState(true);
-
+export function SideBar(props: SidebarProps) {
     return (
-        // sideBarContextの内容でいい感じに表示内容を分岐させたいけど方法がわからん
-        // そもそもProviderとかいう謎のコンポーネントをなんで使わなきゃいけないのだ
-        //グローバル変数でuseStateをそのまま使えればいいだけの話だと思う
-        <sideBarContext.Provider value={{ isOpened, setOpened }}>
-            <SideBarContents showSideBar={isOpened}>{children}</SideBarContents>
-        </sideBarContext.Provider>
+        <aside id="sidebar" className={"hidden z-50 flex-col bg-gray-900 px-4 sm:static w-1/2 h-full fixed text-white marker:w-64 sm:float-left sm:block sm:min-h-screen sm:w-64"}>
+            <div>{props.children}</div>
+        </aside>
+        
     );
 }
 
-interface SideBarContentsProps {
-    children: ReactNode;
-    showSideBar: boolean;
-}
-function SideBarContents({ children, showSideBar }: SideBarContentsProps): JSX.Element {
-    console.log(showSideBar);
-    if (showSideBar) {
-        return (
-            <aside id="sidebar" className="hidden flex-col bg-gray-900 px-4 text-white marker:w-64 sm:float-left sm:block sm:h-full sm:min-h-screen sm:w-64">
-                <div>{children}</div>
-            </aside>
-        );
-    } else {
-        return <></>;
-    }
-}
 
 export { Button } from "./Button";
