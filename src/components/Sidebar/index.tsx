@@ -6,26 +6,26 @@ interface SidebarProps {
     isOpened: boolean;
 }
 
-export function SideBar({isOpened}: SidebarProps) {
-    console.log(isOpened)
-    if (isOpened){
-        return <div className="">{SideBarCommon()}</div>;
-    }else{
+export function SideBar({ isOpened }: SidebarProps) {
+    console.log(isOpened);
+    if (isOpened) {
+        // isOpened==trueなら常にそのまま表示
+        return SideBarCommon();
+    } else {
+        // isOpened==falseなら、PCなら表示 スマホなら隠す
         return <div className="hidden sm:block">{SideBarCommon()}</div>;
     }
 }
 
-
-function SideBarCommon(){
+function SideBarCommon() {
     return (
-        <aside id="sidebar" className={"fixed z-50 h-full w-1/2 flex-col bg-gray-900 px-4 text-white marker:w-64 sm:static sm:float-left sm:block sm:min-h-screen sm:w-64"}>
-            <div>{SideBarContents()}</div>
+        <aside id="sidebar" className={"fixed z-50 mt-16 h-full w-1/2 flex-col bg-gray-900 px-4 text-white marker:w-64 sm:static sm:float-left sm:mt-0 sm:block sm:min-h-screen sm:w-64"}>
+            {SideBarContents()}
         </aside>
     );
 }
 
-
-function SideBarContents(){
+function SideBarContents() {
     return (
         <>
             <My />
