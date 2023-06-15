@@ -6,7 +6,7 @@ import { useState } from "react";
 // import { default as NewSideBar } from "@/components/NewSidebar";
 
 export default function Header() {
-    const [isOpened, setOpenedStatus] = useState(true);
+    const [isOpened, setOpenedStatus] = useState(false);
     const toggleMenu = () => {
         setOpenedStatus(!isOpened);
     };
