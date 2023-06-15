@@ -9,7 +9,7 @@ interface Props {
 export default function Layout({ children }: Props) {
     return (
         <div className="flex min-h-screen flex-col">
-            <div className="fixed">
+            <div className="sticky sm:fixed">
                 <Header />
             </div>
 
