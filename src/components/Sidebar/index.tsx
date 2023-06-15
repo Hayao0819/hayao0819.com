@@ -8,12 +8,10 @@ interface SidebarProps {
 
 export function SideBar(props: SidebarProps) {
     return (
-        <aside id="sidebar" className={"hidden z-50 flex-col bg-gray-900 px-4 sm:static w-1/2 h-full fixed text-white marker:w-64 sm:float-left sm:block sm:min-h-screen sm:w-64"}>
+        <aside id="sidebar" className={"fixed z-50 hidden h-full w-1/2 flex-col bg-gray-900 px-4 text-white marker:w-64 sm:static sm:float-left sm:block sm:min-h-screen sm:w-64"}>
             <div>{props.children}</div>
         </aside>
-        
     );
 }
-
 
 export { Button } from "./Button";
