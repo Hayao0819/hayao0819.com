@@ -13,7 +13,9 @@ export default function Layout({ children }: Props) {
                 <Header />
             </div>
 
-            <main className="mt-16 grow p-4 leading-8 sm:ml-64 sm:mt-0">{children}</main>
+            <div className="mt-16 grow p-4 leading-8 sm:ml-64 sm:mt-0">
+                <main>{children}</main>
+            </div>
             <div className="sm:ml-64">
                 <Footer />
             </div>

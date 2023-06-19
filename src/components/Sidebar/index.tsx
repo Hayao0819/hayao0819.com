@@ -1,5 +1,8 @@
 import { My } from "../Icons";
 import { Item as MenuItem } from "../Menu";
+
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+
 //import sideBarContext from "@/context/SideBar";
 
 interface SidebarProps {
@@ -29,10 +32,12 @@ function SideBarContents() {
     return (
         <>
             <My />
-            <MenuItem link="/">Top</MenuItem>
-            <MenuItem link="">Skill</MenuItem>
+            <MenuItem link="/" icon={faHouse}>
+                Home
+            </MenuItem>
+            <MenuItem link="/skill">Skill</MenuItem>
             <MenuItem link="/social">Social</MenuItem>
-            <MenuItem link="">Contact</MenuItem>
+            <MenuItem link="/contact">Contact</MenuItem>
             <MenuItem link="https://old.hayao0819.com">Old Page</MenuItem>
         </>
     );

@@ -88,7 +88,7 @@ export default function Sidebar() {
                                     {/* Sidebar component, swap this element with another sidebar if you like */}
                                     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
                                         <div className="flex h-16 shrink-0 items-center">
-                                            <img className="h-16 mt-5 w-auto rounded" src="/icons/top.jpeg" alt="Your Company" />
+                                            <img className="mt-5 h-16 w-auto rounded" src="/icons/top.jpeg" alt="Your Company" />
                                         </div>
                                         <nav className="flex flex-1 flex-col">
                                             <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -99,8 +99,8 @@ export default function Sidebar() {
                                                                 <a
                                                                     href={item.href}
                                                                     className={classNames(
-                                                                        item.current ? "bg-indigo-700 text-white" : "text-indigo-200 hover:text-white hover:bg-indigo-700",
-                                                                        "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
+                                                                        item.current ? "bg-indigo-700 text-white" : "text-indigo-200 hover:bg-indigo-700 hover:text-white",
+                                                                        "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
                                                                     )}
                                                                 >
                                                                     <item.icon
@@ -121,8 +121,8 @@ export default function Sidebar() {
                                                                 <a
                                                                     href={team.href}
                                                                     className={classNames(
-                                                                        team.current ? "bg-indigo-700 text-white" : "text-indigo-200 hover:text-white hover:bg-indigo-700",
-                                                                        "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
+                                                                        team.current ? "bg-indigo-700 text-white" : "text-indigo-200 hover:bg-indigo-700 hover:text-white",
+                                                                        "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
                                                                     )}
                                                                 >
                                                                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
@@ -157,7 +157,7 @@ export default function Sidebar() {
                     {/* Sidebar component, swap this element with another sidebar if you like */}
                     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
                         <div className="flex h-16 shrink-0 items-center">
-                            <img className="h-16 mt-5 rounded w-auto" src="/icons/top.jpeg" alt="Your Company" />
+                            <img className="mt-5 h-16 w-auto rounded" src="/icons/top.jpeg" alt="Your Company" />
                         </div>
                         <nav className="flex flex-1 flex-col">
                             <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -168,8 +168,8 @@ export default function Sidebar() {
                                                 <a
                                                     href={item.href}
                                                     className={classNames(
-                                                        item.current ? "bg-indigo-700 text-white" : "text-indigo-200 hover:text-white hover:bg-indigo-700",
-                                                        "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
+                                                        item.current ? "bg-indigo-700 text-white" : "text-indigo-200 hover:bg-indigo-700 hover:text-white",
+                                                        "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
                                                     )}
                                                 >
                                                     <item.icon className={classNames(item.current ? "text-white" : "text-indigo-200 group-hover:text-white", "h-6 w-6 shrink-0")} aria-hidden="true" />
@@ -187,8 +187,8 @@ export default function Sidebar() {
                                                 <a
                                                     href={team.href}
                                                     className={classNames(
-                                                        team.current ? "bg-indigo-700 text-white" : "text-indigo-200 hover:text-white hover:bg-indigo-700",
-                                                        "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
+                                                        team.current ? "bg-indigo-700 text-white" : "text-indigo-200 hover:bg-indigo-700 hover:text-white",
+                                                        "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
                                                     )}
                                                 >
                                                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
