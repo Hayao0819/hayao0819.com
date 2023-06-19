@@ -48,23 +48,45 @@ export default function Home() {
 
 function CalculateMyAge(): JSX.Element {
     const currentYear = new Date().getFullYear();
-    const [year, changeYear] = useState(currentYear);
-    let age = year - 2004;
+    const [year, changeYear] = useState(currentYear.toString());
+    const [born, changeBorn] = useState("2004");
+
+    let age = (function (): number {
+        let y = parseInt(year);
+        let b = parseInt(born);
+        if (isNaN(y) || isNaN(b)) {
+            return 0;
+        } else {
+            return y - b;
+        }
+    })();
 
     return (
         <p>
-            山田ハヤオは{" "}
+            山田ハヤオ(
             <input
-                type="number"
+                type="text"
+                name="born"
+                value={born}
+                autoComplete="off"
+                className="m-0 w-16 appearance-none border-none p-0 text-center"
+                onChange={(e) => {
+                    changeBorn(e.target.value);
+                }}
+            />
+            年生まれ)は{" "}
+            <input
+                type="text"
                 name="year"
                 value={year}
-                className=" w-24 p-0 text-right"
+                autoComplete="off"
+                className=" m-0 w-16 appearance-none overflow-hidden border-none p-0 text-center"
                 onChange={(e) => {
-                    changeYear(Math.round(e.target.valueAsNumber));
+                    changeYear(e.target.value);
                 }}
             />{" "}
             年において
-            {Number.isNaN(age) ? <>0歳です。</> : age < 0 ? <>まだ生まれていません。</> : <>{age}歳です。</>}
+            {age < 0 ? <>まだ生まれていません。</> : <>{age}歳です。</>}
         </p>
     );
 }
