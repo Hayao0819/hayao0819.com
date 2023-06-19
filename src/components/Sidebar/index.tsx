@@ -1,7 +1,7 @@
 import { My } from "../Icons";
 import { Item as MenuItem } from "../Menu";
 
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faContactCard, faHouse, faKitchenSet, faMessage } from "@fortawesome/free-solid-svg-icons";
 
 //import sideBarContext from "@/context/SideBar";
 
@@ -22,9 +22,14 @@ export function SideBar({ isOpened }: SidebarProps) {
 
 function SideBarCommon() {
     return (
-        <aside id="sidebar" className={"fixed z-50 mt-16 h-full w-1/2 flex-col bg-gray-900 px-4 text-white marker:w-64 sm:static sm:float-left sm:mt-0 sm:block sm:min-h-screen sm:w-64"}>
-            {SideBarContents()}
-        </aside>
+        <>
+            <aside id="sidebar" className={"fixed z-50 h-full w-1/2 flex-col bg-gray-900 px-4 text-white marker:w-64 sm:static sm:float-left sm:mt-0 sm:block sm:min-h-screen sm:w-64"}>
+                <div className="flex min-h-screen flex-col">
+                    <div className="grow">{SideBarContents()}</div>
+                    <div>{BottomSideBarContents()}</div>
+                </div>
+            </aside>
+        </>
     );
 }
 
@@ -35,9 +40,22 @@ function SideBarContents() {
             <MenuItem link="/" icon={faHouse}>
                 Home
             </MenuItem>
-            <MenuItem link="/skill">Skill</MenuItem>
-            <MenuItem link="/social">Social</MenuItem>
-            <MenuItem link="/contact">Contact</MenuItem>
+            <MenuItem link="/skill" icon={faKitchenSet}>
+                Skill
+            </MenuItem>
+            <MenuItem link="/social" icon={faMessage}>
+                Social
+            </MenuItem>
+            <MenuItem link="/contact" icon={faContactCard}>
+                Contact
+            </MenuItem>
+        </>
+    );
+}
+
+function BottomSideBarContents() {
+    return (
+        <>
             <MenuItem link="https://old.hayao0819.com">Old Page</MenuItem>
         </>
     );

@@ -2,20 +2,26 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
-//import { ReactNode } from "react";
+import { JSX } from "react";
 
 interface ItemProp {
     link: string;
     children: string;
-    icon?: IconDefinition;
+    icon?: IconDefinition | undefined;
 }
 
-export function Item({ link, children, icon }: ItemProp) {
+export function Item({ link, children, icon }: ItemProp): JSX.Element {
+    let iconElement: JSX.Element = <FontAwesomeIcon className="" icon={faCircle} />;
+
+    if (icon != undefined) {
+        iconElement = <FontAwesomeIcon className="" icon={icon} />;
+    }
+
     return (
         <div className="select-none">
             <Link href={link} className="m-4 flex items-center rounded-lg px-4  py-2 text-sm hover:bg-gray-700">
-                {icon != undefined ? <FontAwesomeIcon icon={icon}></FontAwesomeIcon> : <FontAwesomeIcon icon={faCircle}></FontAwesomeIcon>}
-                {children}
+                {iconElement}
+                <span className="ml-2">{children}</span>
             </Link>
         </div>
     );

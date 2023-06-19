@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import State from "@/components/State";
 import { H2, H3 } from "@/components/Headlines";
 import Link from "@/components/Link";
+import { JSX, useState } from "react";
 
 export default function Home() {
     return (
@@ -28,7 +29,7 @@ export default function Home() {
                 <p>他にもジャンクPC漁りや自作PC、ガジェット、カスタムROM、Root化など色々やりますがどれも中途半端です。</p>
 
                 <H3>年齢</H3>
-                <p>あとで実装します</p>
+                {CalculateMyAge()}
 
                 <H3>身体のこと</H3>
                 <p>気管支喘息と不整脈を患っています。気管支喘息は、気管支が狭くなって息が苦しくなる病気(?)です。</p>
@@ -42,5 +43,28 @@ export default function Home() {
                 <Hello></Hello>
             </div>
         </Layout>
+    );
+}
+
+function CalculateMyAge(): JSX.Element {
+    const currentYear = (new Date).getFullYear()
+    const [year, changeYear] = useState( currentYear );
+    let age = year - 2004;
+
+
+    return (
+        <p>
+            山田ハヤオは{" "}
+            <input
+                type="number"
+                name="year"
+                value={year}
+                onChange={(e) => {
+                    changeYear(Math.round(e.target.valueAsNumber));
+                }}
+            />{" "}
+            年において
+            {  Number.isNaN(age) ? <>0歳です。</> : (age < 0 ? <>まだ生まれていません。</>: <>{age}歳です。</>) }
+        </p>
     );
 }
