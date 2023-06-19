@@ -27,3 +27,9 @@ As you finished with installing necessary tools, now you may install dependencie
 pnpm install
 pnpm run dev
 ```
+
+## Todo
+
+-   daisyUI で全体を書き直す
+-   ページを追加する
+-   古いサイトから今のサイトに移行する
