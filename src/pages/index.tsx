@@ -55,7 +55,7 @@ function CalculateMyAge(): JSX.Element {
         let y = parseInt(year);
         let b = parseInt(born);
         if (isNaN(y) || isNaN(b)) {
-            return 0;
+            return -1;
         } else {
             return y - b;
         }

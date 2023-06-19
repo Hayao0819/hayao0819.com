@@ -10,7 +10,6 @@ interface SidebarProps {
 }
 
 export function SideBar({ isOpened }: SidebarProps) {
-    console.log(isOpened);
     if (isOpened) {
         // isOpened==trueなら常にそのまま表示
         return SideBarCommon();
