@@ -47,10 +47,9 @@ export default function Home() {
 }
 
 function CalculateMyAge(): JSX.Element {
-    const currentYear = (new Date).getFullYear()
-    const [year, changeYear] = useState( currentYear );
+    const currentYear = new Date().getFullYear();
+    const [year, changeYear] = useState(currentYear);
     let age = year - 2004;
-
 
     return (
         <p>
@@ -59,12 +58,13 @@ function CalculateMyAge(): JSX.Element {
                 type="number"
                 name="year"
                 value={year}
+                className=" w-24 p-0 text-right"
                 onChange={(e) => {
                     changeYear(Math.round(e.target.valueAsNumber));
                 }}
             />{" "}
             年において
-            {  Number.isNaN(age) ? <>0歳です。</> : (age < 0 ? <>まだ生まれていません。</>: <>{age}歳です。</>) }
+            {Number.isNaN(age) ? <>0歳です。</> : age < 0 ? <>まだ生まれていません。</> : <>{age}歳です。</>}
         </p>
     );
 }
