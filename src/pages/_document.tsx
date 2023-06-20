@@ -8,7 +8,7 @@ export default function Document() {
             <Head>
                 <meta name="description" content={Metadata.description} />
             </Head>
-            <body>
+            <body className="overscroll-y-none">
                 <Main />
                 <NextScript />
             </body>

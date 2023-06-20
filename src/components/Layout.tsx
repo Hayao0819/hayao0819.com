@@ -1,7 +1,10 @@
 import React from "react";
-import Header from "@/components/Header";
+import Header from "./Header";
 import Footer from "@/components/Footer";
-import NewHeader from "./NewHeader";
+import { My } from "./Icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SidebarContents, SidebarBottomContents } from "./SideBarContents";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
     children: React.ReactNode;
@@ -9,32 +12,44 @@ interface Props {
 
 export function Layout({ children }: Props) {
     return (
-        <div className="flex min-h-screen flex-col">
-            <div className="sticky sm:fixed">
-                <Header />
-            </div>
-
-            <div className="mt-16 grow p-4 leading-8 sm:ml-64 sm:mt-0">
-                <main>{children}</main>
-            </div>
-            <div className="sm:ml-64">
-                <Footer />
+        <div className="flex min-h-screen flex-col bg-base-100">
+            <div className="drawer sm:drawer-open">
+                <input id="sidebar" type="checkbox" className="drawer-toggle" />
+                <DrawerContents>{children}</DrawerContents>
+                <DrawerSide />
             </div>
         </div>
     );
 }
 
-export function NewLayout({ children }: Props) {
+export default Layout;
+
+function DrawerSide() {
     return (
-        <div className="flex min-h-screen flex-col">
-            <div className="">
-                <NewHeader></NewHeader>
+        <aside className="drawer-side">
+            <label htmlFor="sidebar" className="drawer-overlay"></label>
+            <div className="flex h-full !bg-gray-900 text-white">
+                <ul className="menu h-full w-64 p-4">
+                    <label htmlFor="sidebar" className="btn-ghost btn-square btn sm:hidden">
+                        <FontAwesomeIcon icon={faXmark} size="xl" />
+                    </label>
+                    <My />
+                    <SidebarContents />
+                    <div className="grow" />
+                    <SidebarBottomContents />
+                </ul>
+                <div className="grow"></div>
             </div>
-
-            <div className="grow p-4 leading-8"><main>{children}</main></div>
-            <div className=""><Footer></Footer></div>
-        </div>
+        </aside>
     );
 }
 
-export default Layout
+function DrawerContents({ children }: Props) {
+    return (
+        <div className="drawer-content flex min-h-screen flex-col items-center justify-center">
+            <Header />
+            <main className="w-full grow p-4 leading-8">{children}</main>
+            <Footer />
+        </div>
+    );
+}
