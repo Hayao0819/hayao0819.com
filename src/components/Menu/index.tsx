@@ -19,7 +19,7 @@ export function Item({ link, children, icon }: ItemProp): JSX.Element {
 
     return (
         <li className="select-none">
-            <Link href={link} className="m-4 flex items-center rounded-lg px-4  py-2 text-sm hover:bg-slate-200">
+            <Link href={link} className="m-4 flex items-center rounded-lg px-4  py-2 text-sm !text-white hover:bg-gray-700">
                 {iconElement}
                 <span className="ml-2">{children}</span>
             </Link>

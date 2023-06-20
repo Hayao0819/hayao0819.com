@@ -11,7 +11,7 @@ function SocialLink(props: { children: string; domain: string; name: string }) {
 
 function TwitterLink({ children }: { children: string }) {
     return (
-        <SocialLink domain="twitter.com/" name="Twitter">
+        <SocialLink domain="twitter.com" name="Twitter">
             {children}
         </SocialLink>
     );

@@ -12,7 +12,7 @@ interface Props {
 
 export function Layout({ children }: Props) {
     return (
-        <div className="flex min-h-screen flex-col">
+        <div className="flex min-h-screen flex-col bg-base-100">
             <div className="drawer sm:drawer-open">
                 <input id="sidebar" type="checkbox" className="drawer-toggle" />
                 <DrawerContents>{children}</DrawerContents>
@@ -28,8 +28,8 @@ function DrawerSide() {
     return (
         <aside className="drawer-side">
             <label htmlFor="sidebar" className="drawer-overlay"></label>
-            <div className="flex h-full">
-                <ul className="menu h-full w-64 bg-gray-900 p-4 text-white">
+            <div className="flex h-full !bg-gray-900 text-white">
+                <ul className="menu h-full w-64 p-4">
                     <label htmlFor="sidebar" className="btn-ghost btn-square btn sm:hidden">
                         <FontAwesomeIcon icon={faXmark} size="xl" />
                     </label>
@@ -46,7 +46,7 @@ function DrawerSide() {
 
 function DrawerContents({ children }: Props) {
     return (
-        <div className="drawer-content flex-col items-center justify-center sm:flex">
+        <div className="drawer-content flex min-h-screen flex-col items-center justify-center">
             <Header />
             <main className="w-full grow p-4 leading-8">{children}</main>
             <Footer />
