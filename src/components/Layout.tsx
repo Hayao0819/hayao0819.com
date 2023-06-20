@@ -2,7 +2,9 @@ import React from "react";
 import Header from "./Header";
 import Footer from "@/components/Footer";
 import { My } from "./Icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SidebarContents, SidebarBottomContents } from "./SideBarContents";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
     children: React.ReactNode;
@@ -28,6 +30,9 @@ function DrawerSide() {
             <label htmlFor="sidebar" className="drawer-overlay"></label>
             <div className="flex h-full">
                 <ul className="menu h-full w-64 bg-gray-900 p-4 text-white">
+                    <label htmlFor="sidebar" className="btn-ghost btn-square btn sm:hidden">
+                        <FontAwesomeIcon icon={faXmark} size="xl" />
+                    </label>
                     <My />
                     <SidebarContents />
                     <div className="grow" />
