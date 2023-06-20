@@ -14,29 +14,8 @@ export function Layout({ children }: Props) {
         <div className="flex min-h-screen flex-col">
             <div className="drawer sm:drawer-open">
                 <input id="sidebar" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex-col items-center justify-center sm:flex">
-                    <HeaderForSP />
-                    <main className="grow p-4 leading-8">{children}</main>
-                    <Footer></Footer>
-                </div>
-                <div className="drawer-side">
-                    <label htmlFor="sidebar" className="drawer-overlay"></label>
-                    <ul className="menu h-full w-80 bg-base-200 p-4 text-base-content">
-                        <My />
-                        <MenuItem link="/" icon={faHouse}>
-                            Home
-                        </MenuItem>
-                        <MenuItem link="/skill" icon={faKitchenSet}>
-                            Skill
-                        </MenuItem>
-                        <MenuItem link="/social" icon={faMessage}>
-                            Social
-                        </MenuItem>
-                        <MenuItem link="/contact" icon={faContactCard}>
-                            Contact
-                        </MenuItem>
-                    </ul>
-                </div>
+                <DrawerContents>{children}</DrawerContents>
+                <DrawerSide />
             </div>
         </div>
     );
@@ -55,6 +34,41 @@ function HeaderForSP() {
                 </label>
             </div>
             <div className="mx-2 flex-1 px-2">Navbar Title</div>
+        </div>
+    );
+}
+
+function DrawerSide() {
+    return (
+        <aside className="drawer-side">
+            <label htmlFor="sidebar" className="drawer-overlay"></label>
+            <ul className="menu h-full w-80 bg-base-200 p-4 text-base-content">
+                <My />
+                <MenuItem link="/" icon={faHouse}>
+                    Home
+                </MenuItem>
+                <MenuItem link="/skill" icon={faKitchenSet}>
+                    Skill
+                </MenuItem>
+                <MenuItem link="/social" icon={faMessage}>
+                    Social
+                </MenuItem>
+                <MenuItem link="/contact" icon={faContactCard}>
+                    Contact
+                </MenuItem>
+            </ul>
+        </aside>
+    );
+}
+
+function DrawerContents({ children }: Props) {
+    return (
+        <div className="drawer-content flex-col items-center justify-center sm:flex">
+            <HeaderForSP />
+            <main className="grow p-4 leading-8">{children}</main>
+            <div className="w-full">
+                <Footer />
+            </div>
         </div>
     );
 }
