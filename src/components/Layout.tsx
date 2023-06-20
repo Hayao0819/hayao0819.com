@@ -26,7 +26,7 @@ function DrawerSide() {
     return (
         <aside className="drawer-side">
             <label htmlFor="sidebar" className="drawer-overlay"></label>
-            <div className="flex sm:h-full">
+            <div className="flex h-full">
                 <ul className="menu h-full w-64 bg-gray-900 p-4 text-white">
                     <My />
                     <SidebarContents />
