@@ -18,10 +18,10 @@ export function Item({ link, children, icon }: ItemProp): JSX.Element {
         iconElement = <FontAwesomeIcon className="" icon={icon} />;
     }
 
-    let classList = "m-4 flex items-center rounded-lg px-4  py-2 text-sm !text-white hover:bg-gray-700"
+    let classList = "m-4 flex items-center rounded-lg px-4  py-2 text-sm !text-white hover:bg-gray-700";
 
-    if (useRouter().asPath == link){
-        classList=classList + " bg-gray-700"
+    if (useRouter().asPath == link) {
+        classList = classList + " bg-gray-700";
     }
 
     return (
