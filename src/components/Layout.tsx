@@ -1,12 +1,13 @@
 import React from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import NewHeader from "./NewHeader";
 
 interface Props {
     children: React.ReactNode;
 }
 
-export default function Layout({ children }: Props) {
+export function Layout({ children }: Props) {
     return (
         <div className="flex min-h-screen flex-col">
             <div className="sticky sm:fixed">
@@ -22,3 +23,18 @@ export default function Layout({ children }: Props) {
         </div>
     );
 }
+
+export function NewLayout({ children }: Props) {
+    return (
+        <div className="flex min-h-screen flex-col">
+            <div className="">
+                <NewHeader></NewHeader>
+            </div>
+
+            <div className="grow p-4 leading-8"><main>{children}</main></div>
+            <div className=""><Footer></Footer></div>
+        </div>
+    );
+}
+
+export default Layout
