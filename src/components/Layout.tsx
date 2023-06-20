@@ -1,10 +1,8 @@
 import React from "react";
+import Header from "./Header";
 import Footer from "@/components/Footer";
-//import { ReactNode } from "react";
 import { My } from "./Icons";
-import { Item as MenuItem } from "./Menu";
-import { faBars, faContactCard, faHouse, faKitchenSet, faMessage } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SidebarContents, SidebarBottomContents } from "./SideBarContents";
 
 interface Props {
     children: React.ReactNode;
@@ -24,38 +22,19 @@ export function Layout({ children }: Props) {
 
 export default Layout;
 
-function HeaderForSP() {
-    return (
-        <div className="navbar static w-full bg-base-300 sm:hidden">
-            <div className="flex-none">
-                <label htmlFor="sidebar" className="btn-ghost btn-square btn">
-                    <FontAwesomeIcon icon={faBars} size="xl" />
-                </label>
-            </div>
-            <div className="mx-2 flex-1 px-2">Navbar Title</div>
-        </div>
-    );
-}
-
 function DrawerSide() {
     return (
         <aside className="drawer-side">
             <label htmlFor="sidebar" className="drawer-overlay"></label>
-            <ul className="menu h-full w-80 bg-base-200 p-4 text-base-content">
-                <My />
-                <MenuItem link="/" icon={faHouse}>
-                    Home
-                </MenuItem>
-                <MenuItem link="/skill" icon={faKitchenSet}>
-                    Skill
-                </MenuItem>
-                <MenuItem link="/social" icon={faMessage}>
-                    Social
-                </MenuItem>
-                <MenuItem link="/contact" icon={faContactCard}>
-                    Contact
-                </MenuItem>
-            </ul>
+            <div className="flex sm:h-full">
+                <ul className="menu h-full w-64 bg-gray-900 p-4 text-white">
+                    <My />
+                    <SidebarContents />
+                    <div className="grow" />
+                    <SidebarBottomContents />
+                </ul>
+                <div className="grow"></div>
+            </div>
         </aside>
     );
 }
@@ -63,8 +42,8 @@ function DrawerSide() {
 function DrawerContents({ children }: Props) {
     return (
         <div className="drawer-content flex-col items-center justify-center sm:flex">
-            <HeaderForSP />
-            <main className="grow p-4 leading-8">{children}</main>
+            <Header />
+            <main className="w-full grow p-4 leading-8">{children}</main>
             <Footer />
         </div>
     );
