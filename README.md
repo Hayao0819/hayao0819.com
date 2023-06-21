@@ -30,6 +30,5 @@ pnpm run dev
 
 ## Todo
 
--   react-daisyui で書き直す
 -   ページを追加する
 -   古いサイトから今のサイトに移行する
