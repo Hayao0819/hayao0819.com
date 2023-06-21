@@ -13,8 +13,8 @@ interface Props {
 export function Layout({ children }: Props) {
     return (
         <div className="flex min-h-screen flex-col bg-base-100">
-            <div className="drawer sm:drawer-open">
-                <input id="sidebar" type="checkbox" className="drawer-toggle" />
+            <div className="daisy-drawer sm:daisy-drawer-open">
+                <input id="sidebar" type="checkbox" className="daisy-drawer-toggle" />
                 <DrawerContents>{children}</DrawerContents>
                 <DrawerSide />
             </div>
@@ -26,11 +26,11 @@ export default Layout;
 
 function DrawerSide() {
     return (
-        <aside className="drawer-side">
-            <label htmlFor="sidebar" className="drawer-overlay"></label>
+        <aside className="daisy-drawer-side">
+            <label htmlFor="sidebar" className="daisy-drawer-overlay"></label>
             <div className="flex h-full !bg-gray-900 text-white">
-                <ul className="menu h-full w-64 p-4">
-                    <label htmlFor="sidebar" className="btn-ghost btn-square btn sm:hidden">
+                <ul className="daisy-menu h-full w-64 p-4">
+                    <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn sm:hidden">
                         <FontAwesomeIcon icon={faXmark} size="xl" />
                     </label>
                     <My />
@@ -46,7 +46,7 @@ function DrawerSide() {
 
 function DrawerContents({ children }: Props) {
     return (
-        <div className="drawer-content flex min-h-screen flex-col items-center justify-center">
+        <div className="daisy-drawer-content flex min-h-screen flex-col items-center justify-center">
             <Header />
             <main className="w-full grow p-4 leading-8">{children}</main>
             <Footer />

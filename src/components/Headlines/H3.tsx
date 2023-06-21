@@ -1,11 +1,8 @@
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { HeadlineProps } from "./props";
 
-interface H3Props {
-    children: string;
-}
-
-export function H3({ children }: H3Props) {
+export function H3({ children }: HeadlineProps) {
     return (
         <div className="py-4">
             <FontAwesomeIcon icon={faCaretRight} size="xl" />

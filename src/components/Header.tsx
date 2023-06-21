@@ -12,9 +12,9 @@ export default function Header() {
 
 function HeaderForSP() {
     return (
-        <div className="navbar justify-center bg-gray-900 text-white sm:hidden">
+        <div className="daisy-navbar justify-center bg-gray-900 text-white sm:hidden">
             <div className="">
-                <label htmlFor="sidebar" className="btn-ghost btn-square btn">
+                <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn">
                     <FontAwesomeIcon icon={faBars} size="xl" />
                 </label>
             </div>

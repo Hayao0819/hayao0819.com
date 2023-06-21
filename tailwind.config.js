@@ -2,13 +2,21 @@
 module.exports = {
     content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
     theme: {
+        /*
+        maxWidth: {
+            "1/2": "50%",
+            "1/3": "33.3%",
+        },
+        */
         extend: {},
     },
     daisyui: {
         themes: ["light"],
+        prefix: "daisy-",
     },
     plugins: [
         require("daisyui"),
+        require("tailwindcss-textshadow"),
         function ({ addVariant }) {
             addVariant("child", "& > *");
         },
