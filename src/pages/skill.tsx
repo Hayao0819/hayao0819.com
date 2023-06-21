@@ -1,11 +1,42 @@
 import { H2 } from "@/components/Headlines";
 import Layout from "@/components/Layout";
+import { ReactNode } from "react";
+import { SiGnubash, SiGo, SiLinux } from "@icons-pack/react-simple-icons";
 
 export default function Skill() {
     return (
         <Layout>
             <H2>スキル</H2>
-            <p>何もできません</p>
+            <div className="flex flex-wrap items-start">
+                <SkillCard name="Golang" icon={SiGo}>
+                    <p>何もわからん</p>
+                </SkillCard>
+                <SkillCard name="Bash" icon={SiGnubash}>
+                    <p>何もわからん</p>
+                </SkillCard>
+                <SkillCard name="Linux" icon={SiLinux}>
+                    <p>何もわからん</p>
+                </SkillCard>
+            </div>
         </Layout>
+    );
+}
+
+interface SkillProps {
+    children?: ReactNode;
+    name: string;
+    icon: any; //ライブラリのせいでAnyになっている
+}
+function SkillCard(props: SkillProps) {
+    return (
+        <div tabIndex={0} className="collapse-plus collapse m-2 w-auto flex-wrap border border-base-300 bg-base-200">
+            <div className="collapse-title w-52 min-w-fit text-xl font-medium">
+                <span className="child:mr-1 child:inline">
+                    <props.icon />{" "}
+                </span>
+                {props.name}
+            </div>
+            <div className="collapse-content">{props.children}</div>
+        </div>
     );
 }

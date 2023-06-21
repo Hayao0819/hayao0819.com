@@ -7,5 +7,10 @@ module.exports = {
     daisyui: {
         themes: ["light"],
     },
-    plugins: [require("daisyui")],
+    plugins: [
+        require("daisyui"),
+        function ({ addVariant }) {
+            addVariant("child", "& > *");
+        },
+    ],
 };
