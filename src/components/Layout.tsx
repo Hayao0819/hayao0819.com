@@ -5,6 +5,7 @@ import { My } from "./Icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SidebarContents, SidebarBottomContents } from "./SideBarContents";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import Metadata from "@/const/meta";
 
 interface Props {
     children: React.ReactNode;
@@ -30,10 +31,15 @@ function DrawerSide() {
             <label htmlFor="sidebar" className="daisy-drawer-overlay"></label>
             <div className="flex h-full !bg-gray-900 text-white">
                 <ul className="daisy-menu h-full w-64 p-4">
+                    {/* スマホ用の閉じるボタン */}
                     <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn sm:hidden">
                         <FontAwesomeIcon icon={faXmark} size="xl" />
                     </label>
-                    <My />
+
+                    <div className="text-center">
+                        <My />
+                        <h1 className="block">{Metadata.title}</h1>
+                    </div>
                     <SidebarContents />
                     <div className="grow" />
                     <SidebarBottomContents />

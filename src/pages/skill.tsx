@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import { H2, H3 } from "@/components/Headlines";
 import { ReactNode } from "react";
-import { SiGnubash, SiGo, SiLinux } from "@icons-pack/react-simple-icons";
+import { SiC, SiGnubash, SiGo, SiLinux, SiPython, SiTypescript } from "@icons-pack/react-simple-icons";
 import Link from "@/components/Link";
 import { H4 } from "@/components/Headlines/H4";
 
@@ -19,8 +19,16 @@ export default function SkillPage() {
                     <p>歴は短いんですが結構好きです。</p>
                     <H4>つくったもの</H4>
                     <ul>
-                        <li>lico</li>
-                        <li>go-distro</li>
+                        <li>
+                            <Link href="https://github.com/Hayao0819/lico">Hayao0819/lico</Link>
+                            <br />
+                            ドットファイル管理ツール
+                        </li>
+                        <li>
+                            <Link href="https://github.com/Hayao0819/go-distro">Hayao0819/go-distro</Link>
+                            <br />
+                            ディストリビューション・OS判定ツール
+                        </li>
                     </ul>
                 </SkillCard>
 
@@ -32,6 +40,20 @@ export default function SkillPage() {
                             <Link href="https://github.com/Hayao0819/nm-vpngate">Hayao0819/nm-vpngate</Link> NetworkManagerでVPNGateに自動接続できます
                         </li>
                     </ul>
+                </SkillCard>
+
+                <SkillCard icon={SiPython} title="Python">
+                    <p>癖があって好きではないけど、書かないといけないときもある</p>
+                </SkillCard>
+
+                <SkillCard icon={SiTypescript} title="HTML/JavaScript/TypeScript">
+                    <p>手書きHTMLばっかり書いていましたが、最近React+Next.jsに入門しました。</p>
+                </SkillCard>
+
+                <SkillCard icon={SiC} title="C/C++">
+                    <p>
+                        現在勉強中です。<b>マジで</b>何も書けません。
+                    </p>
                 </SkillCard>
             </Skills>
         </Layout>

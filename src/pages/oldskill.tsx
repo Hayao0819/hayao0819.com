@@ -29,7 +29,7 @@ interface SkillProps {
 }
 function SkillCard(props: SkillProps) {
     return (
-        <div tabIndex={0} className="daisy-collapse-plus daisy-collapse m-2 w-auto flex-wrap border border-base-300 bg-base-200">
+        <div tabIndex={0} className="daisy-collapse daisy-collapse-plus m-2 w-auto flex-wrap border border-base-300 bg-base-200">
             <div className="daisy-collapse-title w-52 min-w-fit text-xl font-medium">
                 <span className="child:mr-1 child:inline">
                     <props.icon />{" "}
