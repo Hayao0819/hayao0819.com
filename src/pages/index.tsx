@@ -1,11 +1,12 @@
-import Layout from "@/components/Layout";
 import { H2, H3 } from "@/components/Headlines";
 import { My } from "@/components/Icons";
 import { ReactNode } from "react";
+//import Head from "next/head";
+import Layout from "@/components/Layout";
 
 export default function Home() {
     return (
-        <Layout>
+        <Layout title="トップページ">
             <Cards>
                 <Card head="Bio">
                     <div className="flex flex-col justify-center lg:flex-row lg:justify-normal">

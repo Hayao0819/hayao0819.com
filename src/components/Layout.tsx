@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "@/components/Footer";
 import { My } from "./Icons";
@@ -6,20 +6,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SidebarContents, SidebarBottomContents } from "./SideBarContents";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Metadata from "@/const/meta";
+import Head from "next/head";
 
-interface Props {
-    children: React.ReactNode;
+interface LayoutProps {
+    children: ReactNode;
+    title?: string;
 }
 
-export function Layout({ children }: Props) {
+export function Layout({ children, title }: LayoutProps) {
     return (
-        <div className="flex min-h-screen flex-col bg-base-100">
-            <div className="daisy-drawer sm:daisy-drawer-open">
-                <input id="sidebar" type="checkbox" className="daisy-drawer-toggle" />
-                <DrawerContents>{children}</DrawerContents>
-                <DrawerSide />
+        <>
+            <Head>{title == undefined ? <></> : <title>{title}</title>}</Head>
+            <div className="flex min-h-screen flex-col bg-base-100">
+                <div className="daisy-drawer sm:daisy-drawer-open">
+                    <input id="sidebar" type="checkbox" className="daisy-drawer-toggle" />
+                    <DrawerContents>{children}</DrawerContents>
+                    <DrawerSide />
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
@@ -50,7 +55,7 @@ function DrawerSide() {
     );
 }
 
-function DrawerContents({ children }: Props) {
+function DrawerContents({ children }: { children: ReactNode }) {
     return (
         <div className="daisy-drawer-content flex min-h-screen flex-col items-center justify-center">
             <Header />
