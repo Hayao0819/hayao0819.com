@@ -16,9 +16,11 @@ export default function Home() {
                         </div>
 
                         <table className="text-center lg:m-4 lg:text-left">
-                            <BioLine head="名前:" text="山田ハヤオ" />
-                            <BioLine head="趣味:" text="自作PC・開発・アニメ鑑賞" />
-                            <BioLine head="所属:" text="Fascode Network" />
+                            <tbody>
+                                <BioLine head="名前:" text="山田ハヤオ" />
+                                <BioLine head="趣味:" text="自作PC・開発・アニメ鑑賞" />
+                                <BioLine head="所属:" text="Fascode Network" />
+                            </tbody>
                         </table>
                     </div>
                 </Card>
@@ -44,41 +46,45 @@ export default function Home() {
                 <Card head="環境">
                     <H3>メインPC-1</H3>
                     <table className="daisy-table">
-                        <tr>
-                            <td>CPU</td>
-                            <td>Ryzen 9 7900X 4.7Ghz 12C24T</td>
-                        </tr>
-                        <tr>
-                            <td>GPU</td>
-                            <td>AMD Radeon Vega 56</td>
-                        </tr>
-                        <tr>
-                            <td>RAM</td>
-                            <td>DDR5-5600 16GB x2</td>
-                        </tr>
-                        <tr>
-                            <td>OS</td>
-                            <td>Arch Linux + Windows 11</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>CPU</td>
+                                <td>Ryzen 9 7900X 4.7Ghz 12C24T</td>
+                            </tr>
+                            <tr>
+                                <td>GPU</td>
+                                <td>AMD Radeon Vega 56</td>
+                            </tr>
+                            <tr>
+                                <td>RAM</td>
+                                <td>DDR5-5600 16GB x2</td>
+                            </tr>
+                            <tr>
+                                <td>OS</td>
+                                <td>Arch Linux + Windows 11</td>
+                            </tr>
+                        </tbody>
                     </table>
                     <H3>メインPC-2</H3>
                     <table className="daisy-table">
-                        <tr>
-                            <td>CPU</td>
-                            <td>Xeon E3-1275 3.4Ghz 4C8T</td>
-                        </tr>
-                        <tr>
-                            <td>GPU</td>
-                            <td>NVIDIA GTX 960</td>
-                        </tr>
-                        <tr>
-                            <td>RAM</td>
-                            <td>DDR3-1666 4GB x4</td>
-                        </tr>
-                        <tr>
-                            <td>OS</td>
-                            <td>Arch Linux</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>CPU</td>
+                                <td>Xeon E3-1275 3.4Ghz 4C8T</td>
+                            </tr>
+                            <tr>
+                                <td>GPU</td>
+                                <td>NVIDIA GTX 960</td>
+                            </tr>
+                            <tr>
+                                <td>RAM</td>
+                                <td>DDR3-1666 4GB x4</td>
+                            </tr>
+                            <tr>
+                                <td>OS</td>
+                                <td>Arch Linux</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </Card>
             </Cards>
