@@ -39,6 +39,9 @@ dependencies:
   typescript:
     specifier: 5.1.3
     version: 5.1.3
+  use-konami:
+    specifier: ^1.0.1
+    version: 1.0.1(react@18.2.0)
 
 devDependencies:
   '@types/react':
@@ -3076,6 +3079,14 @@ packages:
     dependencies:
       punycode: 2.3.0
     dev: true
+
+  /use-konami@1.0.1(react@18.2.0):
+    resolution: {integrity: sha512-oqLN0zMKnzCc2eHoPlTq63eZrigCTGPSizUHiqB0tmZE1FDD8ieP0U670YmEIodsUvt2eT0JHLzs603uj30+TA==}
+    peerDependencies:
+      react: '>=16.13'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}

@@ -23,7 +23,7 @@ export function SidebarContents() {
 export function SidebarBottomContents() {
     return (
         <>
-            <MenuItem link="https://old.hayao0819.com">Old Page</MenuItem>
+            <MenuItem link="/history">Old Page</MenuItem>
         </>
     );
 }
