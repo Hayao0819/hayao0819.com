@@ -1,5 +1,5 @@
-import { H2 } from "./Headlines";
-import Link from "./Link";
+import { H2 } from "../components/Headlines";
+import Link from "../components/Link";
 
 export default function History() {
     return (
