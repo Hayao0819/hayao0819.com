@@ -1,5 +1,4 @@
 import Hello from "@/components/Hello";
-import Layout from "@/components/Layout";
 import State from "@/components/State";
 import { H2, H3 } from "@/components/Headlines";
 import Link from "@/components/Link";
@@ -7,7 +6,7 @@ import { JSX, useState } from "react";
 
 export default function Detail() {
     return (
-        <Layout>
+        <>
             <div>
                 <H2>詳細</H2>
                 <p>
@@ -42,7 +41,7 @@ export default function Detail() {
                 <State></State>
                 <Hello></Hello>
             </div>
-        </Layout>
+        </>
     );
 }
 

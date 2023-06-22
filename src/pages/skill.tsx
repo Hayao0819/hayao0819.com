@@ -1,4 +1,3 @@
-import Layout from "@/components/Layout";
 import { H2, H3 } from "@/components/Headlines";
 import { ReactNode } from "react";
 import { SiC, SiGnubash, SiGo, SiLinux, SiPython, SiTypescript } from "@icons-pack/react-simple-icons";
@@ -7,7 +6,7 @@ import { H4 } from "@/components/Headlines/H4";
 
 export default function SkillPage() {
     return (
-        <Layout>
+        <>
             <H2>Skill</H2>
             <Skills>
                 <SkillCard icon={SiLinux} title="Linux">
@@ -56,7 +55,7 @@ export default function SkillPage() {
                     </p>
                 </SkillCard>
             </Skills>
-        </Layout>
+        </>
     );
 }
 

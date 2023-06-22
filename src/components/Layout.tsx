@@ -6,17 +6,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SidebarContents, SidebarBottomContents } from "./SideBarContents";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Metadata from "@/const/meta";
-import Head from "next/head";
+//import Head from "next/head";
 
 interface LayoutProps {
     children: ReactNode;
-    title?: string;
 }
 
-export function Layout({ children, title }: LayoutProps) {
+export function Layout({ children }: LayoutProps) {
     return (
         <>
-            <Head>{title == undefined ? <></> : <title>{title}</title>}</Head>
             <div className="flex min-h-screen flex-col bg-base-100">
                 <div className="daisy-drawer sm:daisy-drawer-open">
                     <input id="sidebar" type="checkbox" className="daisy-drawer-toggle" />

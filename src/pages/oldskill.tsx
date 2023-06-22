@@ -1,11 +1,10 @@
 import { H2 } from "@/components/Headlines";
-import Layout from "@/components/Layout";
 import { ReactNode } from "react";
 import { SiGnubash, SiGo, SiLinux } from "@icons-pack/react-simple-icons";
 
 export default function Skill() {
     return (
-        <Layout>
+        <>
             <H2>スキル</H2>
             <div className="flex flex-wrap items-start">
                 <SkillCard name="Golang" icon={SiGo}>
@@ -18,7 +17,7 @@ export default function Skill() {
                     <p>何もわからん</p>
                 </SkillCard>
             </div>
-        </Layout>
+        </>
     );
 }
 

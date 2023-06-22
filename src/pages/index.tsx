@@ -2,11 +2,12 @@ import { H2, H3 } from "@/components/Headlines";
 import { My } from "@/components/Icons";
 import { ReactNode } from "react";
 //import Head from "next/head";
-import Layout from "@/components/Layout";
+//import Title from "@/components/Title";
 
 export default function Home() {
     return (
-        <Layout title="トップページ">
+        <>
+            {/*<Title title="トップ" />*/}
             <Cards>
                 <Card head="Bio">
                     <div className="flex flex-col justify-center lg:flex-row lg:justify-normal">
@@ -81,7 +82,7 @@ export default function Home() {
                     </table>
                 </Card>
             </Cards>
-        </Layout>
+        </>
     );
 }
 
