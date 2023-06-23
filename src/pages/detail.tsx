@@ -34,6 +34,29 @@ export default function Detail() {
                 <p>気管支喘息と不整脈を患っています。気管支喘息は、気管支が狭くなって息が苦しくなる病気(?)です。</p>
                 <p>ハヤオとリアルで会ってるときに倒れたら救急車を呼んでください。かばんの中に発作時の吸入器が入ってます。</p>
                 <p>他にもアトピー性皮膚炎とか遠視（視力0.2）とか色々と...みんなも健康には気をつけようね。</p>
+
+                <H3>環境</H3>
+                <H3>メインPC-1</H3>
+                <PCEnvTable
+                    spec={[
+                        { key: "MB", value: "X670E Steel Legend" },
+                        { key: "CPU", value: "Ryzen 9 7900X 4.7Ghz 12C24T" },
+                        { key: "GPU", value: "AMD Radeon Vega 56" },
+                        { key: "RAM", value: "DDR5-5600 16GB x2" },
+                        { key: "OS", value: "Arch Linux + Windows 11 Pro" },
+                    ]}
+                />
+                <H3>メインPC-2</H3>
+                <p>クズゴミさんありがとうございました。</p>
+                <PCEnvTable
+                    spec={[
+                        { key: "MB", value: "Z77M-D3H" },
+                        { key: "CPU", value: "Intel Xeon E3-1275 3.4Ghz" },
+                        { key: "GPU", value: "NVIDIA GTX 960 Ti" },
+                        { key: "RAM", value: "DDR3-1666 4GB x4" },
+                        { key: "OS", value: "Arch Linux" },
+                    ]}
+                />
             </div>
 
             <div>
@@ -87,5 +110,30 @@ function CalculateMyAge(): JSX.Element {
             年において
             {age < 0 ? <>まだ生まれていません。</> : <>{age}歳です。</>}
         </p>
+    );
+}
+
+interface PCEnvProps {
+    spec: {
+        key: string;
+        value: string;
+    }[];
+}
+function PCEnvTable({ spec }: PCEnvProps) {
+    console.log(spec);
+    return (
+        <table className="daisy-table">
+            <tbody>
+                {spec.map((line, index) => {
+                    console.log(line);
+                    return (
+                        <tr key={index}>
+                            <td className="w-28">{line.key}</td>
+                            <td>{line.value}</td>
+                        </tr>
+                    );
+                })}
+            </tbody>
+        </table>
     );
 }
