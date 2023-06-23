@@ -1,3 +1,6 @@
 {
-    "extends": ["next/core-web-vitals", "plugin:tailwindcss/recommended", "eslint:recommended", "prettier"]
+    "extends": ["next/core-web-vitals", "plugin:tailwindcss/recommended", "eslint:recommended", "plugin:mdx/recommended", "prettier"],
+    "settings": {
+        "mdx/code-blocks": true
+    }
 }

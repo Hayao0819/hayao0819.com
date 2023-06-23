@@ -13,6 +13,9 @@ export function SidebarContents() {
             <MenuItem link="/social" icon={faMessage}>
                 Social
             </MenuItem>
+            <MenuItem link="/something" icon={faContactCard}>
+                Something
+            </MenuItem>
             <MenuItem link="/contact" icon={faContactCard}>
                 Contact
             </MenuItem>
