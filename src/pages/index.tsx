@@ -45,47 +45,26 @@ export default function Home() {
 
                 <Card head="環境">
                     <H3>メインPC-1</H3>
-                    <table className="daisy-table">
-                        <tbody>
-                            <tr>
-                                <td>CPU</td>
-                                <td>Ryzen 9 7900X 4.7Ghz 12C24T</td>
-                            </tr>
-                            <tr>
-                                <td>GPU</td>
-                                <td>AMD Radeon Vega 56</td>
-                            </tr>
-                            <tr>
-                                <td>RAM</td>
-                                <td>DDR5-5600 16GB x2</td>
-                            </tr>
-                            <tr>
-                                <td>OS</td>
-                                <td>Arch Linux + Windows 11</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <PCEnvTable
+                        spec={[
+                            { key: "MB", value: "X670E Steel Legend" },
+                            { key: "CPU", value: "Ryzen 9 7900X 4.7Ghz 12C24T" },
+                            { key: "GPU", value: "AMD Radeon Vega 56" },
+                            { key: "RAM", value: "DDR5-5600 16GB x2" },
+                            { key: "OS", value: "Arch Linux + Windows 11 Pro" },
+                        ]}
+                    />
                     <H3>メインPC-2</H3>
-                    <table className="daisy-table">
-                        <tbody>
-                            <tr>
-                                <td>CPU</td>
-                                <td>Xeon E3-1275 3.4Ghz 4C8T</td>
-                            </tr>
-                            <tr>
-                                <td>GPU</td>
-                                <td>NVIDIA GTX 960</td>
-                            </tr>
-                            <tr>
-                                <td>RAM</td>
-                                <td>DDR3-1666 4GB x4</td>
-                            </tr>
-                            <tr>
-                                <td>OS</td>
-                                <td>Arch Linux</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <p>クズゴミさんありがとうございました。</p>
+                    <PCEnvTable
+                        spec={[
+                            { key: "MB", value: "Z77M-D3H" },
+                            { key: "CPU", value: "Intel Xeon E3-1275 3.4Ghz" },
+                            { key: "GPU", value: "NVIDIA GTX 960 Ti" },
+                            { key: "RAM", value: "DDR3-1666 4GB x4" },
+                            { key: "OS", value: "Arch Linux" },
+                        ]}
+                    />
                 </Card>
             </Cards>
         </>
@@ -115,5 +94,30 @@ function Card({ children, head }: { children: ReactNode; head: string }) {
                 {children}
             </div>
         </div>
+    );
+}
+
+interface PCEnvProps {
+    spec: {
+        key: string;
+        value: string;
+    }[];
+}
+function PCEnvTable({ spec }: PCEnvProps) {
+    console.log(spec);
+    return (
+        <table className="daisy-table">
+            <tbody>
+                {spec.map((line, index) => {
+                    console.log(line);
+                    return (
+                        <tr key={index}>
+                            <td className="w-28">{line.key}</td>
+                            <td>{line.value}</td>
+                        </tr>
+                    );
+                })}
+            </tbody>
+        </table>
     );
 }
