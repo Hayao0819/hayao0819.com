@@ -10,7 +10,7 @@ export default function Home() {
         <>
             <Title title="トップ" />
             <Cards>
-                <Card head="Bio">
+                <Card head="プロフィール">
                     <div className="flex flex-col justify-center lg:flex-row lg:justify-normal">
                         <div className="text-center lg:text-left">
                             <My />

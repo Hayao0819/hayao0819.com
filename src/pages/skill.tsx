@@ -41,7 +41,9 @@ export default function SkillPage() {
                     <p>癖があって好きではないけど、書かないといけないときもある</p>
                     <p>この苦手さは克服し無いといけないとおもっている。</p>
                     <H4>作ったもの</H4>
-                    <p><Link href="https://github.com/Hayao0819/Hayao-Tools/blob/master/archnews/archnews.py">archnews.py: Arch LinuxのニュースをGUIで表示します</Link></p>
+                    <p>
+                        <Link href="https://github.com/Hayao0819/Hayao-Tools/blob/master/archnews/archnews.py">archnews.py: Arch LinuxのニュースをGUIで表示します</Link>
+                    </p>
                 </SkillCard>
 
                 <SkillCard icon={SiTypescript} title="HTML/JavaScript/TypeScript/(S)CSS">
@@ -54,7 +56,7 @@ export default function SkillPage() {
                     </p>
                 </SkillCard>
             </Skills>
-            <H3> Library /Framework</H3 >
+            <H3> Library /Framework</H3>
             <Skills>
                 <SkillCard icon={SiReact} title="React.js">
                     <p>このウェブサイトで初めて書きました。これから色々勉強していきます。</p>
@@ -67,7 +69,7 @@ export default function SkillPage() {
                 <SkillCard icon={SiTailwindcss} title="Tailwind CSS">
                     <p>細かいカスタマイズなどは勉強中です。Reactと組み合わせると最高ですねこれ。</p>
                 </SkillCard>
-            </Skills >
+            </Skills>
             <H3>Tool</H3>
 
             <Skills>
@@ -85,8 +87,6 @@ export default function SkillPage() {
                     <p>イメージやコンテナの管理がよくわかっていません。すぐにたくさん溜まってしまう。</p>
                     <p>M1なMacBookでもっとお手軽に使えるようになって欲しい。</p>
                 </SkillCard>
-
-
             </Skills>
         </>
     );
