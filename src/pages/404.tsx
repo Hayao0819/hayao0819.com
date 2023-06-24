@@ -1,5 +1,5 @@
 import { H2 } from "@/components/Headlines";
-import Image from "next/image";
+import GifImage from "@/components/PartyParrot";
 import { ReactNode, useState } from "react";
 //import { useState } from "react";
 import useKonami from "use-konami";
@@ -25,10 +25,6 @@ function PartyParrot({ children }: { children: ReactNode }) {
             changeKonami(!konami);
         },
     });
-
-    const GifImage = () => {
-        return <Image src="/emoji/partyparrot.gif" alt="PartyParrot" width={32} height={32} />;
-    };
 
     if (konami) {
         return (
