@@ -13,29 +13,24 @@ export default function Detail() {
                     <Link href="https://sunset0916.net/">サンセット</Link>がいい感じにシンプルなサイトを作ってたので真似してみました。
                 </p>
                 <p>自分のサイトって何を書けばいいかやっぱりわからないですね...</p>
-                <p>勉強中のぷろぐらま見習い。最近やっと自分のホームページをモダンな感じに更新した。</p>
-                <p>もっぱらコンパイル言語全般が使えない情弱なので、基本はすべてシェルスクリプトでゴリゴリ...</p>
-                <p>シェルと言ってもゆとり世代なのでBash 5。たまにどうしようもないときにPythonを使う。</p>
-                <p>受験が終わって一段落したらC言語とGo言語を触りたいと思っていたりいなかったり。</p>
 
                 <H3>自己紹介</H3>
                 <p>
-                    学生です。 <Link href="https://fascode.net/">Fascode Network</Link>という集団に参加しながらLinuxを勉強中です。
+                    某大学の学生です。 <Link href="https://fascode.net/">Fascode Network</Link>という集団に参加しながらLinuxを勉強中です。
                 </p>
-                <p>最近はGentoo Linuxに手を出してebuildを四苦八苦しながら書いています。</p>
-                <p>使える言語が非常に少なくて実用性がないのが欠点です。これといった専門分野も無いです。</p>
-                <p>知らないところに行ったり、空の写真を撮るのが趣味です。</p>
-                <p>他にもジャンクPC漁りや自作PC、ガジェット、カスタムROM、Root化など色々やりますがどれも中途半端です。</p>
+                <p>知らないところに行ったり、空の写真を撮るのが趣味です。低レイヤーやネットワークに興味がありますが何もわかりません。</p>
+                <p>Arch Linuxが大好きなのですが、Gentoo LinuxやNixOSに手を出して強くなりたいとおもってます。</p>
+                <p>他にもジャンクPC漁りや自作PC、ガジェット、カスタムROM、Root化など色々やります。</p>
 
                 <H3>年齢</H3>
-                {CalculateMyAge()}
+                <CalculateMyAge />
 
                 <H3>身体のこと</H3>
                 <p>気管支喘息と不整脈を患っています。気管支喘息は、気管支が狭くなって息が苦しくなる病気(?)です。</p>
                 <p>ハヤオとリアルで会ってるときに倒れたら救急車を呼んでください。かばんの中に発作時の吸入器が入ってます。</p>
                 <p>他にもアトピー性皮膚炎とか遠視（視力0.2）とか色々と...みんなも健康には気をつけようね。</p>
 
-                <H3>環境</H3>
+                <H2>環境</H2>
                 <H3>メインPC-1</H3>
                 <PCEnvTable
                     spec={[
@@ -51,10 +46,29 @@ export default function Detail() {
                 <PCEnvTable
                     spec={[
                         { key: "MB", value: "Z77M-D3H" },
-                        { key: "CPU", value: "Intel Xeon E3-1275 3.4Ghz" },
+                        { key: "CPU", value: "Intel Xeon E3-1275 3.4Ghz 4C8T" },
                         { key: "GPU", value: "NVIDIA GTX 960 Ti" },
                         { key: "RAM", value: "DDR3-1666 4GB x4" },
                         { key: "OS", value: "Arch Linux" },
+                    ]}
+                />
+                <H3>NAS</H3>
+                <PCEnvTable
+                    spec={[
+                        { key: "Model", value: "Synology DS220+" },
+                        { key: "RAM", value: "2GB" },
+                        { key: "HDD", value: "WD HDD 8TB x2" },
+                    ]}
+                />
+
+                <H3>Server</H3>
+                <PCEnvTable
+                    spec={[
+                        { key: "CPU", value: "Xeon E3-1220 3.4Ghz 4C4T" },
+                        { key: "RAM", value: "DDR3-1666 4GB x2" },
+                        { key: "HDD", value: "4TB + 2TB" },
+                        { key: "SSD", value: "128GB" },
+                        { key: "OS", value: "Manjaro" },
                     ]}
                 />
             </div>
