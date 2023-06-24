@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import Link from "@/components/Link";
 import NextLink from "next/link";
 import Title from "@/components/Title";
+import GyaguList from "@/components/GyaguList";
 
 export default function Home() {
     return (
@@ -58,7 +59,13 @@ export default function Home() {
                         <li>Vlangに僅かな修正</li>
                     </ul>
                 </Card>
+
+                <Card head="ギャグ">
+                    <GyaguList />
+                </Card>
             </Cards>
+
+            <p className="text-center">これより下に内容は無いようです。</p>
         </>
     );
 }
