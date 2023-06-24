@@ -14,6 +14,7 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
+        "product": "next build && next start",
         "lint": "next lint",
         "fmt": "prettier --check .",
         "fix": "pnpm run fmt --write . && eslint --fix ."
