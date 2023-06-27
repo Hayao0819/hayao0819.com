@@ -1,12 +1,33 @@
 import { H2 } from "@/components/Headlines";
 import { My } from "@/components/Icons";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import Link from "@/components/Link";
 import NextLink from "next/link";
 import Title from "@/components/Title";
 import GyaguList from "@/components/GyaguList";
+import { useRouter } from "next/router";
+import { getHashFlag } from "@/libs/hashflag";
 
 export default function Home() {
+    const router = useRouter();
+    useEffect(() => {
+        const checkHashFlag = () => {
+            const hashflag = getHashFlag(router.asPath);
+            if (hashflag) {
+                switch (hashflag.toLowerCase()) {
+                    case "gyagu":
+                        router.replace("/gyagu");
+                }
+            }
+        };
+
+        if (typeof window == "object") {
+            window.addEventListener("hashchange", checkHashFlag);
+        }
+
+        checkHashFlag()
+    });
+
     return (
         <>
             <Title title="トップ" />
