@@ -4,10 +4,12 @@ import { ReactNode, useState } from "react";
 //import { useState } from "react";
 import useKonami from "use-konami";
 import React from "react";
+import Title from "@/components/Title";
 
 export default function NotFound() {
     return (
         <>
+            <Title title="404"/>
             <PartyParrot>
                 <H2>404 Not Found</H2>
             </PartyParrot>

@@ -3,10 +3,12 @@ import { ReactNode } from "react";
 import { SiC, SiGnubash, SiGo, SiLinux, SiPython, SiTypescript, SiTailwindcss, SiReact, SiNextdotjs, SiVisualstudiocode, SiGitkraken, SiDocker } from "@icons-pack/react-simple-icons";
 import Link from "@/components/Link";
 import { H4 } from "@/components/Headlines/H4";
+import Title from "@/components/Title";
 
 export default function SkillPage() {
     return (
         <>
+            <Title title="Skill" />
             <H2>Skill</H2>
             <H3>Languages</H3>
             <Skills>

@@ -1,10 +1,12 @@
 import { H2,H3 } from "@/components/Headlines";
 import GyaguList from "@/components/GyaguList";
 import Link from "@/components/Link";
+import Title from "@/components/Title";
 
 export default function GyaguPage() {
     return (
         <>
+            <Title title="ギャグ"/>
             <H2>ギャグ</H2>
 
             <div className="daisy-alert">
