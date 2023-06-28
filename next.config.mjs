@@ -28,10 +28,14 @@ const nextConfig = {
                 permanent: true,
             },
             {
-                source: "/blog/hogehoge",
-                destination: "https://old.hayao0819.com/blog",
+                source: '/blog',
+                destination: 'https://old.hayao0819.com/blog',
                 permanent: true,
             },
+            {
+                source: '/blog/:path*',
+                destination: 'https://old.hayao0819.com/blog/:path*'
+            }
         ];
     },
 };
