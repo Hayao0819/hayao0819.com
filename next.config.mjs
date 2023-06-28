@@ -32,6 +32,11 @@ const nextConfig = {
                 destination: "https://twitter.com/hayao0819",
                 permanent: true,
             },
+            {
+                source: "/blog",
+                destination: "https://old.hayao0819.com/blog",
+                permanent: true
+            }
         ];
     },
 };

@@ -85,8 +85,6 @@ export default function Home() {
                     <GyaguList />
                 </Card>
             </Cards>
-
-            <p className="text-center">これより下に内容は無いようです。</p>
         </>
     );
 }
