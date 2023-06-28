@@ -1,9 +1,8 @@
-import Head from "next/head";
+import Head from "./Head";
+
 
 export default function Title({ title }: { title: string }) {
     return (
-        <Head>
-            <title>{"はやおのページ | " + title}</title>
-        </Head>
+        <Head title={title}/>
     );
 }
