@@ -32,7 +32,7 @@ const nextConfig = {
                 permanent: true,
             },
             {
-                source: "/blog",
+                source: "/blog/hogehoge",
                 destination: "https://old.hayao0819.com/blog",
                 permanent: true
             }
