@@ -24,7 +24,6 @@ const nextConfig = {
     // Configure pageExtensions to include md and mdx
     pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
 
-    // https://hayao0819.com/twitter => https://twitter.com/hayao0819
     async redirects() {
         return [
             {
