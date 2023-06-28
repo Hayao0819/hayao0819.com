@@ -9,7 +9,7 @@ import Title from "@/components/Title";
 export default function NotFound() {
     return (
         <>
-            <Title title="404"/>
+            <Title title="404" />
             <PartyParrot>
                 <H2>404 Not Found</H2>
             </PartyParrot>

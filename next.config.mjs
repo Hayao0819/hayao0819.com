@@ -34,8 +34,8 @@ const nextConfig = {
             {
                 source: "/blog/hogehoge",
                 destination: "https://old.hayao0819.com/blog",
-                permanent: true
-            }
+                permanent: true,
+            },
         ];
     },
 };

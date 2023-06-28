@@ -6,10 +6,10 @@ import { H2, H3 } from "@/components/Headlines";
 import { ReactNode, useState } from "react";
 //import { H4 } from "@/components/Headlines/H4";
 
-export function MDX({ children }: {children: ReactNode}) {
+export function MDX({ children }: { children: ReactNode }) {
     // https://mdxjs.com/advanced/components#mdxprovider
 
-    const [components, ] = useState({
+    const [components] = useState({
         h2: (props: any) => {
             return <H2 {...props} />;
         },

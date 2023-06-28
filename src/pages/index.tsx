@@ -25,7 +25,7 @@ export default function Home() {
             window.addEventListener("hashchange", checkHashFlag);
         }
 
-        checkHashFlag()
+        checkHashFlag();
     });
 
     return (

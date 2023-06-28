@@ -1,22 +1,22 @@
 import NextHead from "next/head";
 import Metadata from "@/const/meta";
 
-interface HeadProps{
-    title?: string,
-    description?: string,
-    image?: string,
+interface HeadProps {
+    title?: string;
+    description?: string;
+    image?: string;
 }
 export default function Head(props: HeadProps) {
     // デフォルト値を設定して適用
     const defaults: HeadProps = {
         title: "",
         description: Metadata.description,
-        image: ""
-    }
-    props = {...defaults, ...props}
+        image: "",
+    };
+    props = { ...defaults, ...props };
 
     // titleを加工
-    props.title= props.title + " | " + Metadata.title
+    props.title = props.title + " | " + Metadata.title;
 
     return (
         <NextHead>
