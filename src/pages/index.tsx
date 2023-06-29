@@ -34,7 +34,7 @@ export default function Home() {
             <Cards>
                 <Card head="プロフィール">
                     <div className="flex flex-col justify-center lg:flex-row lg:justify-normal">
-                        <div className="text-center lg:text-left">
+                        <div className="hidden text-center lg:text-left">
                             <My />
                         </div>
 
@@ -100,7 +100,7 @@ function Cards({ children }: { children: ReactNode }) {
 
 function Card({ children, head }: { children: ReactNode; head: string }) {
     return (
-        <div className="daisy-card grow  lg:w-1/2">
+        <div className="daisy-card grow lg:w-1/2">
             <div className="daisy-card-body p-2">
                 <div className="daisy-card-title">
                     <H2>{head}</H2>
