@@ -32,8 +32,8 @@ function DrawerSide() {
     return (
         <aside className="daisy-drawer-side">
             <label htmlFor="sidebar" className="daisy-drawer-overlay"></label>
-            <div className="flex h-full">
-                <ul className="daisy-menu h-full w-64 p-4">
+            <div className="flex min-h-full overflow-scroll">
+                <ul className="daisy-menu min-h-full w-64 p-4">
                     {/* スマホ用の閉じるボタン */}
                     <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn sm:hidden">
                         <FontAwesomeIcon icon={faXmark} size="xl" />
