@@ -37,6 +37,11 @@ const nextConfig = {
                 destination: "https://old.hayao0819.com/blog/:path*",
                 permanent: true,
             },
+            {
+                source: "/detail",
+                destination: "/me",
+                permanent: true,
+            }
         ];
     },
 };

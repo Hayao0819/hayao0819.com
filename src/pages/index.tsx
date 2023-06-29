@@ -4,7 +4,7 @@ import { ReactNode, useEffect } from "react";
 import Link from "@/components/Link";
 import NextLink from "next/link";
 import Title from "@/components/Title";
-import GyaguList from "@/components/GyaguList";
+//import GyaguList from "@/components/GyaguList";
 import { useRouter } from "next/router";
 import { getHashFlag } from "@/libs/hashflag";
 
@@ -79,10 +79,6 @@ export default function Home() {
                         <li>Gnome Desktop Iconの日本語化</li>
                         <li>Vlangに僅かな修正</li>
                     </ul>
-                </Card>
-
-                <Card head="ギャグ">
-                    <GyaguList />
                 </Card>
             </Cards>
         </>

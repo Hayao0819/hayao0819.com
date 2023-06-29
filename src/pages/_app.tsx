@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import { MDXProvider } from "@mdx-js/react";
 import { H2, H3 } from "@/components/Headlines";
 import { ReactNode, useState } from "react";
+import Link from "@/components/Link";
 //import { H4 } from "@/components/Headlines/H4";
 
 export function MDX({ children }: { children: ReactNode }) {
@@ -16,6 +17,12 @@ export function MDX({ children }: { children: ReactNode }) {
         h3: (props: any) => {
             return <H3 {...props} />;
         },
+        a: (props: any) => {
+            return <Link href={props.href}>{props.children}</Link>;
+        },
+        ul: (props: any)=>{
+            return (<ul className="list-disc" {...props} />);
+        }
     });
 
     return <MDXProvider components={components}>{children}</MDXProvider>;

@@ -1,19 +1,16 @@
-import { H2, H3 } from "@/components/Headlines";
-import Link from "@/components/Link";
-
-<H2>Lico</H2>
+## Lico
 
 **Lico** は Dotfiles をいい感じに管理できるようにするための簡単なツールです。
 
-<H3>使い方</H3>
+### 使い方
 
 GitHub を参照してください。
 
-<H3>個人的な話</H3>
+### 個人的な話
 
 Lico は Golang で初めて書いたツールなんですよね。
 
-その時ちょうど<Link href="http://www.dyama.net">某氏</Link>にまちカドまぞくを布教されたんですよ。
+その時ちょうど[某氏](http://www.dyama.net)にまちカドまぞくを布教されたんですよ。
 
 それでなんかアニメキャラの名前をプロジェクト名にするやつを一回やってみたいなってことで今回この名前になりました。
 
