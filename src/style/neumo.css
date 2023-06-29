@@ -3,9 +3,29 @@
 @tailwind utilities;
 
 @layer utilities {
+    /* https://neumorphism.io/#f8fafc */
+
     .neumo-float-shadow {
         border-radius: 50px;
-        /*background: #e0e0e0;*/
-        box-shadow: 5px 5px 15px #cacaca, -5px -5px 15px #f6f6f6;
+        background: #f8fafc;
+        box-shadow: 5px 5px 10px #dfe1e3, -5px -5px 10px #ffffff;
+    }
+
+    .neumo-sink-shadow {
+        border-radius: 50px;
+        background: #f8fafc;
+        box-shadow: inset 5px 5px 10px #dfe1e3, inset -5px -5px 10px #ffffff;
+    }
+
+    .neumo-pulled-shadow {
+        border-radius: 50px;
+        background: linear-gradient(145deg, #dfe1e3, #ffffff);
+        box-shadow: 5px 5px 10px #dfe1e3, -5px -5px 10px #ffffff;
+    }
+
+    .neumo-pushed-shadow {
+        border-radius: 50px;
+        background: #f8fafc;
+        box-shadow: inset 5px 5px 10px #dfe1e3, inset -5px -5px 10px #ffffff;
     }
 }
