@@ -15,7 +15,7 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
     return (
         <>
-            <div className="flex min-h-screen flex-col bg-base-100">
+            <div className="flex min-h-screen flex-col bg-transparent">
                 <div className="daisy-drawer sm:daisy-drawer-open">
                     <input id="sidebar" type="checkbox" className="daisy-drawer-toggle" />
                     <DrawerContents>{children}</DrawerContents>
