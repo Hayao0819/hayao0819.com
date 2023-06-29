@@ -41,7 +41,7 @@ const nextConfig = {
                 source: "/detail",
                 destination: "/me",
                 permanent: true,
-            }
+            },
         ];
     },
 };

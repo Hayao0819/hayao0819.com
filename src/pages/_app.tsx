@@ -20,9 +20,9 @@ export function MDX({ children }: { children: ReactNode }) {
         a: (props: any) => {
             return <Link href={props.href}>{props.children}</Link>;
         },
-        ul: (props: any)=>{
-            return (<ul className="list-disc" {...props} />);
-        }
+        ul: (props: any) => {
+            return <ul className="list-disc" {...props} />;
+        },
     });
 
     return <MDXProvider components={components}>{children}</MDXProvider>;
