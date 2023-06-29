@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import "../style/global.css";
+import "../style/neumo.css";
 import Layout from "@/components/Layout";
 import { MDXProvider } from "@mdx-js/react";
 import { H2, H3 } from "@/components/Headlines";

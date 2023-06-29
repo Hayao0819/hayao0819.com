@@ -32,7 +32,7 @@ function DrawerSide() {
     return (
         <aside className="daisy-drawer-side">
             <label htmlFor="sidebar" className="daisy-drawer-overlay"></label>
-            <div className="flex h-full !bg-gray-900 text-white">
+            <div className="flex h-full">
                 <ul className="daisy-menu h-full w-64 p-4">
                     {/* スマホ用の閉じるボタン */}
                     <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn sm:hidden">

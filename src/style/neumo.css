@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .neumo-float-shadow {
+        border-radius: 50px;
+        /*background: #e0e0e0;*/
+        box-shadow: 5px 5px 15px #cacaca, -5px -5px 15px #f6f6f6;
+    }
+}

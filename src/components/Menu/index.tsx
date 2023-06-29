@@ -19,13 +19,13 @@ export function Item({ link, children, icon }: ItemProp): JSX.Element {
         iconElement = <FontAwesomeIcon className="" icon={icon} />;
     }
 
-    const defaultClassList = "m-4 flex items-center rounded-lg px-4  py-2 text-sm !text-white hover:bg-gray-700";
+    const defaultClassList = "m-4 flex items-center rounded-lg px-4 !bg-transparent py-2 text-sm";
     const router = useRouter();
     const [classState, setClass] = useState(defaultClassList);
 
     useEffect(() => {
         if (removeHashFlag(router.asPath) == link) {
-            setClass(defaultClassList + " !bg-gray-700");
+            setClass(defaultClassList + " !neumo-float-shadow");
         } else {
             setClass(defaultClassList);
         }
