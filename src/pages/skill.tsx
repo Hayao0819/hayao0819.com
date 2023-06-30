@@ -4,6 +4,8 @@ import { SiC, SiGnubash, SiGo, SiLinux, SiPython, SiTypescript, SiTailwindcss, S
 import Link from "@/components/Link";
 import { H4 } from "@/components/Headlines/H4";
 import Title from "@/components/Title";
+import Image from "next/image";
+import { JSX } from "react";
 
 export default function SkillPage() {
     return (
@@ -28,7 +30,7 @@ export default function SkillPage() {
                     </ul>
                 </SkillCard>
 
-                <SkillCard icon={SiGnubash} title="Bash">
+                <SkillCard icon={<SiGnubash />} title="Bash">
                     <p>簡単なコマンドラインツールを書くことができます</p>
                     <H4>つくったもの</H4>
                     <table>
@@ -45,7 +47,7 @@ export default function SkillPage() {
                     </table>
                 </SkillCard>
 
-                <SkillCard icon={SiPython} title="Python">
+                <SkillCard icon={<SiPython />} title="Python">
                     <p>癖があって好きではないけど、書かないといけないときもある</p>
                     <p>この苦手さは克服し無いといけないとおもっている。</p>
                     <H4>作ったもの</H4>
@@ -54,56 +56,54 @@ export default function SkillPage() {
                     </p>
                 </SkillCard>
 
-                <SkillCard icon={SiTypescript} title="HTML/JS/TS/(S)CSS">
+                <SkillCard icon={<SiTypescript />} title="HTML/JS/TS/(S)CSS">
                     <p>手書きHTMLばっかり書いていましたが、最近React+Next.jsに入門しました。</p>
                 </SkillCard>
 
-                <SkillCard icon={SiC} title="C/C++">
+                <SkillCard icon={<Image src="/icons/vlang.png" width={24} height={24} alt="Vlang" />} title="Vlang">
+                    <p>None</p>
+                </SkillCard>
+
+                <SkillCard icon={<SiC />} title="C/C++">
                     <p>
                         現在勉強中です。<b>マジで</b>何も書けません。
                     </p>
                 </SkillCard>
             </Skills>
             <Skills title="Library /Framework">
-                <SkillCard icon={SiReact} title="React.js">
+                <SkillCard icon={<SiReact />} title="React.js">
                     <p>このウェブサイトで初めて書きました。これから色々勉強していきます。</p>
                 </SkillCard>
 
-                <SkillCard icon={SiNextdotjs} title="Next.js">
+                <SkillCard icon={<SiNextdotjs />} title="Next.js">
                     <p>このウェブサイトで初めて使いました。ルーティング周りが非常に楽なので今後も使っていきたいです。</p>
                 </SkillCard>
 
-                <SkillCard icon={SiTailwindcss} title="Tailwind CSS">
+                <SkillCard icon={<SiTailwindcss />} title="Tailwind CSS">
                     <p>細かいカスタマイズなどは勉強中です。Reactと組み合わせると最高ですねこれ。</p>
                 </SkillCard>
             </Skills>
             <Skills title="Tool">
-                <SkillCard icon={SiLinux} title="Linux">
+                <SkillCard icon={<SiLinux />} title="Linux">
                     <H4>好きなディストリビューション</H4>
                     <p>Arch Linuxが好きです。Gentoo LinuxはPortageが複雑すぎて挫折しました。</p>
                 </SkillCard>
-                <SkillCard icon={SiVisualstudiocode} title="VSCode">
+                <SkillCard icon={<SiVisualstudiocode />} title="VSCode">
                     最強無敵のエディターです。
                 </SkillCard>
-                <SkillCard icon={SiGitkraken} title="GitKraken">
+                <SkillCard icon={<SiGitkraken />} title="GitKraken">
                     Gitの操作は基本的にこれを使っています。視覚的に非常にわかりやすい。
                 </SkillCard>
-                <SkillCard icon={SiDocker} title="Docker">
+                <SkillCard icon={<SiDocker />} title="Docker">
                     <p>イメージやコンテナの管理がよくわかっていません。すぐにたくさん溜まってしまう。</p>
                     <p>M1なMacBookでもっとお手軽に使えるようになって欲しい。</p>
                 </SkillCard>
-                <SkillCard icon={SiNginx} title="Nginx">
+                <SkillCard icon={<SiNginx />} title="Nginx">
                     んぎっくす
                 </SkillCard>
             </Skills>
         </>
     );
-}
-
-interface SkillProps {
-    children: ReactNode;
-    title: string;
-    icon: any;
 }
 
 function Skills({ children, title }: { children: ReactNode; title: string }) {
@@ -117,12 +117,22 @@ function Skills({ children, title }: { children: ReactNode; title: string }) {
     );
 }
 
+interface SkillProps {
+    children: ReactNode;
+    title: string;
+    icon: JSX.Element;
+}
+
 function SkillCard(props: SkillProps) {
+    const Icon = () => {
+        return props.icon;
+    };
+
     return (
         <div className="daisy-card m-4 w-full bg-transparent text-sm shadow-lg sm:max-w-sm">
             <div className="daisy-card-body p-4">
                 <div className="flex child:min-w-fit">
-                    <props.icon />
+                    <Icon />
                     <span className="daisy-card-title ml-2 child:py-0">
                         <H3>{props.title}</H3>
                     </span>
