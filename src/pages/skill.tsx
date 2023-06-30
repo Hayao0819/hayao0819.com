@@ -135,7 +135,6 @@ function SkillCard(props: SkillProps) {
                 <div className="flex child:min-w-fit">
                     {props.icon}
                     <span className="daisy-card-title ml-2 child:py-0">
-                        
                         <H3>{props.title}</H3>
                     </span>
                 </div>

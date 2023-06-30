@@ -35,6 +35,7 @@ DMでNext.jsやReact.jsの使い方について教えてくださっさ[Laddge](
 以下のプロジェクトへの全てのContributerのお陰でこのウェブサイトが存在しています。
 
 ### フレームワーク・ライブラリ
+
 [React.js](https://react.dev/)
 
 [Next.js](https://nextjs.org/)
@@ -44,11 +45,13 @@ DMでNext.jsやReact.jsの使い方について教えてくださっさ[Laddge](
 [daisyUI](https://daisyui.com/)
 
 ### デプロイ
+
 [Vercel](https://vercel.com/)
 
 [Cloudflare](https://www.cloudflare.com/)
 
 ### 開発
+
 [Pnpm](https://pnpm.io/)
 
 [Volta](https://volta.sh/)
