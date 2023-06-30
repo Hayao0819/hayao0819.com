@@ -19,13 +19,13 @@ export function Item({ link, children, icon }: ItemProp): JSX.Element {
         iconElement = <FontAwesomeIcon className="" icon={icon} />;
     }
 
-    const defaultClassList = "m-4 flex items-center rounded-lg px-4 !bg-transparent py-4 text-sm";
+    const defaultClassList = "m-4 flex items-center rounded-lg px-4 !bg-transparent py-4 text-sm dark:text-white";
     const router = useRouter();
     const [classState, setClass] = useState(defaultClassList);
 
     useEffect(() => {
         if (removeHashFlag(router.asPath) == link) {
-            setClass(defaultClassList + " !neumo-pushed-shadow");
+            setClass(defaultClassList + " dark:!neumo-sink-dark-shadow !neumo-sink-light-shadow");
         } else {
             setClass(defaultClassList);
         }

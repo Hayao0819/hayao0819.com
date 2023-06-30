@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import Header from "./Header";
 import Footer from "@/components/Footer";
 import { My } from "./Icons";
@@ -13,16 +13,24 @@ interface LayoutProps {
 }
 
 export function Layout({ children }: LayoutProps) {
+    // よくわからないけどここでstateを使うといい感じにリンクがクリックされたときにメニューが閉じる
+    const [isDrawerOpened] = useState(false);
+    const SwitchSidebarCheckbox = () => {
+        if (isDrawerOpened) {
+            return <input id="sidebar" type="checkbox" className="daisy-drawer-toggle" checked />;
+        } else {
+            return <input id="sidebar" type="checkbox" className="daisy-drawer-toggle" />;
+        }
+    };
+
     return (
-        <>
-            <div className="flex min-h-screen flex-col bg-transparent">
-                <div className="daisy-drawer sm:daisy-drawer-open">
-                    <input id="sidebar" type="checkbox" className="daisy-drawer-toggle" />
-                    <DrawerContents>{children}</DrawerContents>
-                    <DrawerSide />
-                </div>
+        <div className="flex min-h-screen flex-col bg-transparent">
+            <div className="daisy-drawer sm:daisy-drawer-open">
+                <SwitchSidebarCheckbox />
+                <DrawerContents>{children}</DrawerContents>
+                <DrawerSide />
             </div>
-        </>
+        </div>
     );
 }
 
@@ -32,8 +40,8 @@ function DrawerSide() {
     return (
         <aside className="daisy-drawer-side">
             <label htmlFor="sidebar" className="daisy-drawer-overlay"></label>
-            <div className="flex min-h-full overflow-scroll">
-                <ul className="daisy-menu min-h-full w-64 p-4">
+            <div className="hidden-scrollbar flex min-h-full overflow-scroll">
+                <ul className="daisy-menu min-h-full w-64 bg-slate-50 p-4 dark:bg-neutral-600">
                     {/* スマホ用の閉じるボタン */}
                     <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn sm:hidden">
                         <FontAwesomeIcon icon={faXmark} size="xl" />

@@ -5,27 +5,51 @@
 @layer utilities {
     /* https://neumorphism.io/#f8fafc */
 
-    .neumo-float-shadow {
+    .neumo-float-light-shadow {
         border-radius: 50px;
         background: #f8fafc;
         box-shadow: 5px 5px 10px #dfe1e3, -5px -5px 10px #ffffff;
     }
 
-    .neumo-sink-shadow {
+    .neumo-sink-light-shadow {
         border-radius: 50px;
         background: #f8fafc;
         box-shadow: inset 5px 5px 10px #dfe1e3, inset -5px -5px 10px #ffffff;
     }
 
-    .neumo-pulled-shadow {
+    .neumo-pulled-light-shadow {
         border-radius: 50px;
         background: linear-gradient(145deg, #dfe1e3, #ffffff);
         box-shadow: 5px 5px 10px #dfe1e3, -5px -5px 10px #ffffff;
     }
 
-    .neumo-pushed-shadow {
+    .neumo-pushed-light-shadow {
         border-radius: 50px;
         background: #f8fafc;
         box-shadow: inset 5px 5px 10px #dfe1e3, inset -5px -5px 10px #ffffff;
+    }
+
+    .neumo-float-dark-shadow {
+        border-radius: 50px;
+        background: #525252;
+        box-shadow: 10px 10px 20px #3e3e3e, -10px -10px 20px #676767;
+    }
+
+    .neumo-sink-dark-shadow {
+        border-radius: 50px;
+        background: #525252;
+        box-shadow: inset 10px 10px 20px #3e3e3e, inset -10px -10px 20px #676767;
+    }
+
+    .neumo-pulled-dark-shadow {
+        border-radius: 50px;
+        background: linear-gradient(145deg, #585858, #4a4a4a);
+        box-shadow: 10px 10px 20px #3e3e3e, -10px -10px 20px #676767;
+    }
+
+    .neumo-pushed-dark-shadow {
+        border-radius: 50px;
+        background: linear-gradient(145deg, #4a4a4a, #585858);
+        box-shadow: 10px 10px 20px #3e3e3e, -10px -10px 20px #676767;
     }
 }

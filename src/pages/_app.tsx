@@ -6,6 +6,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { H2, H3 } from "@/components/Headlines";
 import { ReactNode, useState } from "react";
 import Link from "@/components/Link";
+import { ThemeProvider } from "next-themes";
 //import { H4 } from "@/components/Headlines/H4";
 
 export function MDX({ children }: { children: ReactNode }) {
@@ -32,9 +33,11 @@ export function MDX({ children }: { children: ReactNode }) {
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
         <Layout>
-            <MDX>
-                <Component {...pageProps} />
-            </MDX>
+            <ThemeProvider attribute="class" defaultTheme="light">
+                <MDX>
+                    <Component {...pageProps} />
+                </MDX>
+            </ThemeProvider>
         </Layout>
     );
 }
