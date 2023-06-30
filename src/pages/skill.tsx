@@ -5,7 +5,7 @@ import Link from "@/components/Link";
 import { H4 } from "@/components/Headlines/H4";
 import Title from "@/components/Title";
 import Image from "next/image";
-import { JSX } from "react";
+//import { JSX } from "react";
 
 export default function SkillPage() {
     return (
@@ -13,7 +13,7 @@ export default function SkillPage() {
             <Title title="Skill" />
             <H2>Skill</H2>
             <Skills title="Languages">
-                <SkillCard icon={SiGo} title="Golang">
+                <SkillCard icon={<SiGo />} title="Golang">
                     <p>歴は短いんですが結構好きです。</p>
                     <H4>つくったもの</H4>
                     <ul>
@@ -60,7 +60,7 @@ export default function SkillPage() {
                     <p>手書きHTMLばっかり書いていましたが、最近React+Next.jsに入門しました。</p>
                 </SkillCard>
 
-                <SkillCard icon={<Image src="/icons/vlang.png" width={24} height={24} alt="Vlang" />} title="Vlang">
+                <SkillCard icon={<Image src="/icons/vlang.png" width={24} height={24} alt="Vlang" className="object-contain grayscale" />} title="Vlang">
                     <p>None</p>
                 </SkillCard>
 
@@ -120,19 +120,20 @@ function Skills({ children, title }: { children: ReactNode; title: string }) {
 interface SkillProps {
     children: ReactNode;
     title: string;
-    icon: JSX.Element;
+    icon: ReactNode;
 }
 
 function SkillCard(props: SkillProps) {
+    /*
     const Icon = () => {
         return props.icon;
-    };
+    };*/
 
     return (
         <div className="daisy-card m-4 w-full bg-transparent text-sm shadow-lg sm:max-w-sm">
             <div className="daisy-card-body p-4">
                 <div className="flex child:min-w-fit">
-                    <Icon />
+                    {props.icon}
                     <span className="daisy-card-title ml-2 child:py-0">
                         <H3>{props.title}</H3>
                     </span>
