@@ -7,26 +7,24 @@
 
     .neumo-float-light-shadow {
         border-radius: 50px;
-        background: #f8fafc;
-        box-shadow: 5px 5px 10px #dfe1e3, -5px -5px 10px #ffffff;
-    }
-
-    .neumo-sink-light-shadow {
-        border-radius: 50px;
-        background: #f8fafc;
-        box-shadow: inset 5px 5px 10px #dfe1e3, inset -5px -5px 10px #ffffff;
-    }
-
-    .neumo-pulled-light-shadow {
-        border-radius: 50px;
-        background: linear-gradient(145deg, #dfe1e3, #ffffff);
-        box-shadow: 5px 5px 10px #dfe1e3, -5px -5px 10px #ffffff;
+        background: #f1f5f9;
+        box-shadow: 20px 20px 60px #cdd0d4, -20px -20px 60px #ffffff;
     }
 
     .neumo-pushed-light-shadow {
         border-radius: 50px;
-        background: #f8fafc;
-        box-shadow: inset 5px 5px 10px #dfe1e3, inset -5px -5px 10px #ffffff;
+        background: linear-gradient(145deg, #d9dde0, #ffffff);
+        box-shadow: 20px 20px 60px #cdd0d4, -20px -20px 60px #ffffff;
+    }
+    .neumo-pulled-light-shadow {
+        border-radius: 50px;
+        background: linear-gradient(145deg, #ffffff, #d9dde0);
+        box-shadow: 20px 20px 60px #cdd0d4, -20px -20px 60px #ffffff;
+    }
+    .neumo-sink-light-shadow {
+        border-radius: 50px;
+        background: #f1f5f9;
+        box-shadow: inset 20px 20px 60px #cdd0d4, inset -20px -20px 60px #ffffff;
     }
 
     .neumo-float-dark-shadow {
