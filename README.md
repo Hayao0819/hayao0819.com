@@ -28,7 +28,3 @@ pnpm install
 pnpm run dev
 ```
 
-## Todo
-
--   ページを追加する
--   古いサイトから今のサイトに移行する
