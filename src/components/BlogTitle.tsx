@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 
 const BlogTitle = ({children}: {children: ReactNode}) => {
     return (
-        <div className="w-full bg-primary">
+        <div className="w-full border-2">
             <h2>{children}</h2>
         </div>
     );
