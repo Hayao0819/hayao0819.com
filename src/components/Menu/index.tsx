@@ -19,21 +19,22 @@ export function Item({ link, children, icon }: ItemProp): JSX.Element {
         iconElement = <FontAwesomeIcon className="" icon={icon} />;
     }
 
-    const defaultClassList = "m-4 flex items-center rounded-lg px-4 !bg-transparent py-4 text-sm dark:text-white";
+    const additionalClassList = "";
     const router = useRouter();
-    const [classState, setClass] = useState(defaultClassList);
+    const [classState, setClass] = useState(additionalClassList);
+    const [isHovered, setHover] = useState(false)
 
     useEffect(() => {
-        if (removeHashFlag(router.asPath) == link) {
-            setClass(defaultClassList + " neumo-sink");
+        if (removeHashFlag(router.asPath) == link || isHovered) {
+            setClass("neumo-sink");
         } else {
-            setClass(defaultClassList);
+            setClass("neumo-float");
         }
-    }, [link, router.asPath]);
+    }, [link, router.asPath, isHovered]);
 
     return (
         <li className="select-none">
-            <Link href={link} className={classState}>
+            <Link href={link} className={"m-4 flex items-center rounded-lg !bg-transparent px-4 py-4 text-sm dark:text-white " + classState } onMouseOver={()=>{setHover(true)}} onMouseOut={()=>{setHover(false)}}>
                 {iconElement}
                 <span className="ml-2">{children}</span>
             </Link>
