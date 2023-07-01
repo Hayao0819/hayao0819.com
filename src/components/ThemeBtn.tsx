@@ -22,3 +22,18 @@ export default function ThemeButton() {
         </button>
     );
 }
+
+export function ThemeSwitch(){
+    const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
+    return (
+        <div className="daisy-form-control">
+            <label className="daisy-label cursor-pointer" onChange={() => setTheme(theme === "dark" ? "light" : "dark")}>
+                {/*<span className="daisy-label-text">Remember me</span>*/}
+
+                {mounted && <>{theme === "dark" ? <input type="checkbox" className="daisy-toggle" checked /> : <input type="checkbox" className="daisy-toggle" />}</>}
+            </label>
+        </div>
+    );
+}
