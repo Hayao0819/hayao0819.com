@@ -27,4 +27,3 @@ As you finished with installing necessary tools, now you may install dependencie
 pnpm install
 pnpm run dev
 ```
-
