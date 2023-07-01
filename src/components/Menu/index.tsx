@@ -25,7 +25,7 @@ export function Item({ link, children, icon }: ItemProp): JSX.Element {
 
     useEffect(() => {
         if (removeHashFlag(router.asPath) == link) {
-            setClass(defaultClassList + " dark:!neumo-sink-dark-shadow !neumo-sink-light-shadow");
+            setClass(defaultClassList + " neumo-sink");
         } else {
             setClass(defaultClassList);
         }

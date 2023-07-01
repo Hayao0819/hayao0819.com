@@ -12,7 +12,7 @@ export default function Header() {
 
 function HeaderForSP() {
     return (
-        <div className="neumo-float-light-shadow dark:neumo-float-dark-shadow daisy-navbar justify-center bg-slate-50  p-4 dark:bg-neutral-600 dark:text-white sm:hidden">
+        <div className="neumo-float daisy-navbar justify-center p-4 sm:hidden">
             <div className="">
                 <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn">
                     <FontAwesomeIcon icon={faBars} size="xl" />

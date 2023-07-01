@@ -7,6 +7,7 @@ import { SidebarContents, SidebarBottomContents } from "./SideBarContents";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Metadata from "@/const/meta";
 //import Head from "next/head";
+import BaseColor from "./BaseColor";
 
 interface LayoutProps {
     children: ReactNode;
@@ -24,7 +25,7 @@ export function Layout({ children }: LayoutProps) {
     };
 
     return (
-        <div className="flex min-h-screen flex-col bg-transparent">
+        <div className="flex min-h-screen flex-col">
             <div className="daisy-drawer sm:daisy-drawer-open">
                 <SwitchSidebarCheckbox />
                 <DrawerContents>{children}</DrawerContents>
@@ -41,20 +42,22 @@ function DrawerSide() {
         <aside className="daisy-drawer-side">
             <label htmlFor="sidebar" className="daisy-drawer-overlay"></label>
             <div className="hidden-scrollbar flex min-h-full overflow-scroll">
-                <ul className="daisy-menu min-h-full w-64 bg-slate-50 p-4 dark:bg-neutral-600">
-                    {/* スマホ用の閉じるボタン */}
-                    <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn sm:hidden">
-                        <FontAwesomeIcon icon={faXmark} size="xl" />
-                    </label>
+                <BaseColor>
+                    <ul className="daisy-menu min-h-full w-64  p-4">
+                        {/* スマホ用の閉じるボタン */}
+                        <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn sm:hidden">
+                            <FontAwesomeIcon icon={faXmark} size="xl" />
+                        </label>
 
-                    <div className="text-center">
-                        <My />
-                        <h1 className="block">{Metadata.title}</h1>
-                    </div>
-                    <SidebarContents />
-                    <div className="grow" />
-                    <SidebarBottomContents />
-                </ul>
+                        <div className="text-center">
+                            <My />
+                            <h1 className="block">{Metadata.title}</h1>
+                        </div>
+                        <SidebarContents />
+                        <div className="grow" />
+                        <SidebarBottomContents />
+                    </ul>
+                </BaseColor>
                 <div className="grow"></div>
             </div>
         </aside>
