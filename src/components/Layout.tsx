@@ -1,6 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import { DrawerContents, DrawerSide } from "./Drawer";
 //import Head from "next/head";
+//import BaseColor from "./BaseColor";
 
 interface LayoutProps {
     children: ReactNode;
@@ -18,7 +19,7 @@ export function Layout({ children }: LayoutProps) {
     };
 
     return (
-        <div className="flex min-h-screen flex-col bg-transparent">
+        <div className="flex min-h-screen flex-col">
             <div className="daisy-drawer sm:daisy-drawer-open">
                 <SwitchSidebarCheckbox />
                 <DrawerContents>{children}</DrawerContents>
@@ -29,4 +30,3 @@ export function Layout({ children }: LayoutProps) {
 }
 
 export default Layout;
-

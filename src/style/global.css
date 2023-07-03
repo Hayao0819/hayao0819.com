@@ -6,7 +6,7 @@ ul {
     padding-inline: 2em;
 }
 
-@layer utilities {
+@layer components {
     .hidden-scrollbar {
         -ms-overflow-style: none; /* IE, Edge 対応 */
         scrollbar-width: none; /* Firefox 対応 */
@@ -14,5 +14,9 @@ ul {
     .hidden-scrollbar::-webkit-scrollbar {
         /* Chrome, Safari 対応 */
         display: none;
+    }
+
+    .bg-dark {
+        background-color: #0f1829;
     }
 }
