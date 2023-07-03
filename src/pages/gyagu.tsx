@@ -29,6 +29,12 @@ export default function GyaguPage() {
                 <li>
                     <Link href="https://lunachi.me/gyagu/index.html">るなち</Link>
                 </li>
+                <li>
+                    <Link href="https://l1n4r1.art/gyagu/">L1n4r1Art</Link>
+                </li>
+                <li>
+                    <Link href="https://cffn.pw/r/gyagu">かふぇいんぱわぁ</Link>
+                </li>
             </ul>
 
             <H3>ギャグが足りている方へ</H3>
