@@ -4,6 +4,10 @@ import PartyParrot from "./PartyParrot";
 export default function GyaguList() {
     return (
         <ul className="list-decimal">
+            <Gyagu>院試書かれた印紙。</Gyagu>
+            <Gyagu>首位のSyuilo</Gyagu>
+            <Gyagu>カニのカニバリズム</Gyagu>
+            <Gyagu>カニのカーニバル</Gyagu>
             <div className="daisy-tooltip" data-tip="提供: リア友">
                 <Gyagu>つめあつめ</Gyagu>
             </div>
@@ -19,8 +23,8 @@ export default function GyaguList() {
             </Gyagu>
             <Gyagu>以下活かしたイカ🦑</Gyagu>
             <Gyagu>慶應をKO</Gyagu>
-            <Gyagu>会場！</Gyagu>
-            <Gyagu>
+            <Gyagu>会場を海上で開場！</Gyagu>
+            <Gyagu tweet="シンクに向かってrsync">
                 シンクに向かって<code>rsync</code>
             </Gyagu>
         </ul>

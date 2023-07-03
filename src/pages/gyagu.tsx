@@ -6,17 +6,9 @@ import Title from "@/components/Title";
 export default function GyaguPage() {
     return (
         <>
+            <p>ギャグが不足しています。助けてください。</p>
             <Title title="ギャグ" />
             <H2>ギャグ</H2>
-
-            <div className="daisy-alert">
-                <div>
-                    <s>
-                        <p className="my-5">ギャグを貼ってくれている方へ: 技術的に自動リダイレクトができなかったので、リンクをこのページに変更してくださると助かります。</p>
-                    </s>
-                    <p>実装できました。</p>
-                </div>
-            </div>
 
             <div className="pt-2">
                 <GyaguList />
