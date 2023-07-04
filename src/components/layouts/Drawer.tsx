@@ -1,6 +1,6 @@
 import Header from "./Header";
-import Footer from "@/components/Footer";
-import { My } from "./Icons";
+import Footer from "@/components/layouts/Footer";
+import { My } from "../elements/Icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SidebarContents, SidebarBottomContents } from "./SideBarContents";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";

@@ -1,7 +1,7 @@
-import { H2, H3 } from "@/components/Headlines";
-import GyaguList from "@/components/GyaguList";
-import Link from "@/components/Link";
-import Title from "@/components/Title";
+import { H2, H3 } from "@/components/elements/Headlines";
+import GyaguList from "@/components/elements/GyaguList";
+import Link from "@/components/elements/Link";
+import Title from "@/components/elements/Title";
 
 export default function GyaguPage() {
     return (

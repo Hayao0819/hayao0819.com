@@ -1,5 +1,5 @@
-import { H2 } from "@/components/Headlines";
-import Link from "@/components/Link";
+import { H2 } from "@/components/elements/Headlines";
+import Link from "@/components/elements/Link";
 //import { ReactNode } from "react";
 
 function SocialLink(props: { children: string; domain: string; name: string }) {

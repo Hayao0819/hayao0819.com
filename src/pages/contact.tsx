@@ -1,5 +1,5 @@
-import { H2 } from "@/components/Headlines";
-import Title from "@/components/Title";
+import { H2 } from "@/components/elements/Headlines";
+import Title from "@/components/elements/Title";
 
 export default function Contact() {
     return (

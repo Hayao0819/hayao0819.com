@@ -1,9 +1,9 @@
-import { H2 } from "@/components/Headlines";
-import { My } from "@/components/Icons";
+import { H2 } from "@/components/elements/Headlines";
+import { My } from "@/components/elements/Icons";
 import { ReactNode, useEffect } from "react";
-import Link from "@/components/Link";
+import Link from "@/components/elements/Link";
 import NextLink from "next/link";
-import Title from "@/components/Title";
+import Title from "@/components/elements/Title";
 //import GyaguList from "@/components/GyaguList";
 import { useRouter } from "next/router";
 import { getHashFlag } from "@/libs/hashflag";

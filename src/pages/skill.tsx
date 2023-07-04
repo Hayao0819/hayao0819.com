@@ -1,9 +1,9 @@
-import { H2, H3 } from "@/components/Headlines";
+import { H2, H3 } from "@/components/elements/Headlines";
 import { ReactNode } from "react";
 import { SiC, SiGnubash, SiGo, SiLinux, SiPython, SiTypescript, SiTailwindcss, SiReact, SiNextdotjs, SiVisualstudiocode, SiGitkraken, SiDocker, SiNginx } from "@icons-pack/react-simple-icons";
-import Link from "@/components/Link";
-import { H4 } from "@/components/Headlines/H4";
-import Title from "@/components/Title";
+import Link from "@/components/elements/Link";
+import { H4 } from "@/components/elements/Headlines/H4";
+import Title from "@/components/elements/Title";
 import Image from "next/image";
 //import { JSX } from "react";
 

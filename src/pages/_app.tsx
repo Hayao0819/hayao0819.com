@@ -1,11 +1,11 @@
 import type { AppProps } from "next/app";
 import "../style/global.css";
 import "../style/neumo.css";
-import Layout from "@/components/Layout";
+import Layout from "@/components/layouts/Layout";
 import { MDXProvider } from "@mdx-js/react";
-import { H2, H3 } from "@/components/Headlines";
+import { H2, H3 } from "@/components/elements/Headlines";
 import { ReactNode, useState } from "react";
-import Link from "@/components/Link";
+import Link from "@/components/elements/Link";
 import { ThemeProvider } from "next-themes";
 //import { H4 } from "@/components/Headlines/H4";
 

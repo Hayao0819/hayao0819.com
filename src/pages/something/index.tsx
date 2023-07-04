@@ -1,6 +1,6 @@
-import { H2, H3 } from "@/components/Headlines";
-import Link from "@/components/Link";
-import Title from "@/components/Title";
+import { H2, H3 } from "@/components/elements/Headlines";
+import Link from "@/components/elements/Link";
+import Title from "@/components/elements/Title";
 
 export default function Something() {
     return (

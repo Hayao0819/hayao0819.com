@@ -1,6 +1,6 @@
-import { H2, H3 } from "@/components/Headlines";
+import { H2, H3 } from "@/components/elements/Headlines";
 
-import ThemeButton from "@/components/ThemeBtn";
+import ThemeButton from "@/components/elements/ThemeBtn";
 
 export default function Test() {
     return (

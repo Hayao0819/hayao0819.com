@@ -1,4 +1,4 @@
-import { H2 } from "@/components/Headlines";
+import { H2 } from "@/components/elements/Headlines";
 import { ReactNode } from "react";
 import { SiGnubash, SiGo, SiLinux } from "@icons-pack/react-simple-icons";
 

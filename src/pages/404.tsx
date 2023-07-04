@@ -1,10 +1,10 @@
-import { H2 } from "@/components/Headlines";
-import GifImage from "@/components/PartyParrot";
+import { H2 } from "@/components/elements/Headlines";
+import GifImage from "@/components/elements/PartyParrot";
 import { ReactNode, useState } from "react";
 //import { useState } from "react";
 import useKonami from "use-konami";
 import React from "react";
-import Title from "@/components/Title";
+import Title from "@/components/elements/Title";
 
 export default function NotFound() {
     return (
