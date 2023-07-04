@@ -32,10 +32,7 @@ export default function GyaguList() {
 }
 
 function Gyagu({ children, tweet }: { children: ReactNode | string; tweet?: string }) {
-    const runTweet = (text: string | undefined) => {
-        if (text == undefined) {
-            return;
-        }
+    const openTweet = (text: string) => {
         window.open("https://twitter.com/intent/tweet?text=ハヤオのサイトからギャグ↓" + encodeURIComponent("\n\n" + text), "_blank");
     };
 
@@ -45,13 +42,20 @@ function Gyagu({ children, tweet }: { children: ReactNode | string; tweet?: stri
         }
     }
 
+    let onClickFunc: ()=>void 
+    let gyaguText: string
+
+    if (tweet==undefined){
+        onClickFunc=()=>{
+            alert("このギャグはツイートできません。ハヤオにエラーを報告してください。")
+        }
+    }else{
+        gyaguText=tweet
+        onClickFunc=()=>openTweet(gyaguText)
+    }
+
     return (
-        <li
-            role="button"
-            onClick={() => {
-                runTweet(tweet);
-            }}
-        >
+        <li role="button" onClick={onClickFunc}>
             {children}
         </li>
     );
