@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import { DrawerContents, DrawerSide } from "./Drawer";
+import BaseColor from "./BaseColor";
 //import Head from "next/head";
 //import BaseColor from "./BaseColor";
 
@@ -19,13 +20,15 @@ export function Layout({ children }: LayoutProps) {
     };
 
     return (
-        <div className="flex min-h-screen flex-col">
-            <div className="daisy-drawer sm:daisy-drawer-open">
-                <SwitchSidebarCheckbox />
-                <DrawerContents>{children}</DrawerContents>
-                <DrawerSide />
+        <BaseColor>
+            <div className="flex min-h-screen flex-col">
+                <div className="daisy-drawer sm:daisy-drawer-open">
+                    <SwitchSidebarCheckbox />
+                    <DrawerContents>{children}</DrawerContents>
+                    <DrawerSide />
+                </div>
             </div>
-        </div>
+        </BaseColor>
     );
 }
 

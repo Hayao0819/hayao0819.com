@@ -1,7 +1,7 @@
 import { Html, Head } from "next/document";
 import { Main, NextScript } from "next/document";
 import Metadata from "../const/meta";
-import BaseColor from "@/components/layouts/BaseColor";
+//import BaseColor from "@/components/layouts/BaseColor";
 
 export default function Document() {
     return (
@@ -10,10 +10,8 @@ export default function Document() {
                 <meta name="description" content={Metadata.description} />
             </Head>
             <body className="overscroll-y-none">
-                <BaseColor>
-                    <Main />
-                    <NextScript />
-                </BaseColor>
+                <Main />
+                <NextScript />
             </body>
         </Html>
     );

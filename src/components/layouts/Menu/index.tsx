@@ -27,8 +27,9 @@ export function Item({ link, children, icon }: ItemProp): JSX.Element {
     useEffect(() => {
         if (removeHashFlag(router.asPath) == link || isHovered) {
             setClass("neumo-sink");
-        } else {
-            setClass("neumo-float");
+        }else {
+            //setClass("neumo-float");
+            setClass("")
         }
     }, [link, router.asPath, isHovered]);
 

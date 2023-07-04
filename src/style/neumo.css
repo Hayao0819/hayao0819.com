@@ -3,52 +3,68 @@
 @tailwind utilities;
 
 @layer utilities {
-    /* https://neumorphism.io/#f8fafc */
+    /* https://neumorphism.io/#f8fafc*/
+    /*
+    size=300px
+    radius=50px
+    distance=5px
+    Intensity=0.13
+    Blue=10px
+    */
 
     .neumo-float-light-shadow {
         border-radius: 50px;
         background: #f1f5f9;
-        box-shadow: 20px 20px 60px #cdd0d4, -20px -20px 60px #ffffff;
+        box-shadow: 5px 5px 10px #d2d5d9, -5px -5px 10px #ffffff;
     }
 
     .neumo-pushed-light-shadow {
         border-radius: 50px;
         background: linear-gradient(145deg, #d9dde0, #ffffff);
-        box-shadow: 20px 20px 60px #cdd0d4, -20px -20px 60px #ffffff;
+        box-shadow: 5px 5px 10px #d2d5d9, -5px -5px 10px #ffffff;
     }
     .neumo-pulled-light-shadow {
         border-radius: 50px;
         background: linear-gradient(145deg, #ffffff, #d9dde0);
-        box-shadow: 20px 20px 60px #cdd0d4, -20px -20px 60px #ffffff;
+        box-shadow: 5px 5px 10px #d2d5d9, -5px -5px 10px #ffffff;
     }
     .neumo-sink-light-shadow {
         border-radius: 50px;
         background: #f1f5f9;
-        box-shadow: inset 20px 20px 60px #cdd0d4, inset -20px -20px 60px #ffffff;
+        box-shadow: inset 5px 5px 10px #d2d5d9, inset -5px -5px 10px #ffffff;
     }
+
+    /*https://neumorphism.io/#f1f5f9*/
+    /*
+    size=300px
+    radius=50px
+    distance=5px
+    intensity=0.5px
+    blue=20px
+    */
 
     .neumo-float-dark-shadow {
         border-radius: 50px;
         background: #0f1829;
-        box-shadow: 20px 20px 60px #0d1423, -20px -20px 60px #111c2f;
+        box-shadow: 5px 5px 10px #080c15, -5px -5px 10px #17243e;
     }
 
     .neumo-pushed-dark-shadow {
         border-radius: 50px;
         background: linear-gradient(145deg, #0e1625, #101a2c);
-        box-shadow: 20px 20px 60px #0d1423, -20px -20px 60px #111c2f;
+        box-shadow: 5px 5px 10px #080c15, -5px -5px 10px #17243e;
     }
 
     .neumo-pulled-dark-shadow {
         border-radius: 50px;
         background: linear-gradient(145deg, #101a2c, #0e1625);
-        box-shadow: 20px 20px 60px #0d1423, -20px -20px 60px #111c2f;
+        box-shadow: 5px 5px 10px #080c15, -5px -5px 10px #17243e;
     }
 
     .neumo-sink-dark-shadow {
         border-radius: 50px;
         background: #0f1829;
-        box-shadow: inset 20px 20px 60px #0d1423, inset -20px -20px 60px #111c2f;
+        box-shadow: inset 5px 5px 10px #080c15, inset -5px -5px 10px #17243e;
     }
 }
 
