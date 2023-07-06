@@ -1,6 +1,8 @@
-import Header from "./Header";
-import Footer from "@/components/layouts/Footer";
 import { ReactNode } from "react";
+
+import Footer from "@/components/layouts/Footer";
+
+import Header from "./Header";
 
 export default function DrawerContents({ children }: { children: ReactNode }) {
     return (

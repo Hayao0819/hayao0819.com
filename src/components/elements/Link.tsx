@@ -1,6 +1,6 @@
 import NextLink from "next/link";
-import { Url } from "url";
 import { JSX } from "react";
+import { Url } from "url";
 
 interface LinkProps {
     href: string | Url;

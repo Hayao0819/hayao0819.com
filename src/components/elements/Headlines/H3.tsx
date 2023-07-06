@@ -1,5 +1,6 @@
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { HeadlineProps } from "./props";
 
 export function H3({ children }: HeadlineProps) {

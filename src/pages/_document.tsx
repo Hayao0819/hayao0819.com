@@ -1,5 +1,6 @@
-import { Html, Head } from "next/document";
+import { Head, Html } from "next/document";
 import { Main, NextScript } from "next/document";
+
 import Metadata from "../const/meta";
 //import BaseColor from "@/components/layouts/BaseColor";
 

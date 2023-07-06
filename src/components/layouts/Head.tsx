@@ -1,4 +1,5 @@
 import NextHead from "next/head";
+
 import Metadata from "@/const/meta";
 
 interface HeadProps {

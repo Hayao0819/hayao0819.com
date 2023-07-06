@@ -1,11 +1,12 @@
-import { H2 } from "@/components/elements/Headlines";
-import { My } from "@/components/elements/Icons";
-import { ReactNode, useEffect } from "react";
-import Link from "@/components/elements/Link";
 import NextLink from "next/link";
-import Title from "@/components/elements/Title";
 //import GyaguList from "@/components/GyaguList";
 import { useRouter } from "next/router";
+import { ReactNode, useEffect } from "react";
+
+import { H2 } from "@/components/elements/Headlines";
+import { My } from "@/components/elements/Icons";
+import Link from "@/components/elements/Link";
+import Title from "@/components/elements/Title";
 import { getHashFlag } from "@/libs/hashflag";
 
 export default function Home() {

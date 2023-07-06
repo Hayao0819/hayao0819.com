@@ -1,9 +1,11 @@
-import { My } from "../elements/Icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SidebarContents, SidebarBottomContents } from "./SideBarContents";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import Metadata from "@/const/meta";
+
+import { My } from "../elements/Icons";
 import BaseColor from "./BaseColor";
+import { SidebarBottomContents, SidebarContents } from "./SideBarContents";
 
 export default function DrawerSide() {
     return (
@@ -31,4 +33,3 @@ export default function DrawerSide() {
         </aside>
     );
 }
-

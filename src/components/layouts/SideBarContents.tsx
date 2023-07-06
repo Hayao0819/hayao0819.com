@@ -1,5 +1,6 @@
-import { Item as MenuItem } from "./Menu";
 import { faContactCard, faFaceSmile, faHouse, faKitchenSet, faMessage, faOtter } from "@fortawesome/free-solid-svg-icons";
+
+import { Item as MenuItem } from "./Menu";
 
 export function SidebarContents() {
     return (

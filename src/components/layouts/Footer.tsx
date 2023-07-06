@@ -1,5 +1,5 @@
-import React, { JSX } from "react";
 import NextLink from "next/link";
+import React, { JSX } from "react";
 
 export default function Footer(): JSX.Element {
     // スマホで常に下部に固定するいい感じのスタイルを設定したい
@@ -11,4 +11,3 @@ export default function Footer(): JSX.Element {
         </footer>
     );
 }
-

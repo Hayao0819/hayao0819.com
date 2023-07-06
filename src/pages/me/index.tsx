@@ -1,8 +1,9 @@
-import Hello from "@/components/elements/Hello";
-import State from "@/components/elements/State";
-import { H2, H3 } from "@/components/elements/Headlines";
-import Link from "@/components/elements/Link";
 import { JSX, useState } from "react";
+
+import { H2, H3 } from "@/components/elements/Headlines";
+import Hello from "@/components/elements/Hello";
+import Link from "@/components/elements/Link";
+import State from "@/components/elements/State";
 
 export default function Detail() {
     return (

@@ -1,12 +1,14 @@
-import type { AppProps } from "next/app";
 import "../style/global.css";
 import "../style/neumo.css";
-import Layout from "@/components/layouts/Layout";
+
 import { MDXProvider } from "@mdx-js/react";
-import { H2, H3 } from "@/components/elements/Headlines";
-import { ReactNode, useState } from "react";
-import Link from "@/components/elements/Link";
+import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
+import { ReactNode, useState } from "react";
+
+import { H2, H3 } from "@/components/elements/Headlines";
+import Link from "@/components/elements/Link";
+import Layout from "@/components/layouts/Layout";
 //import { H4 } from "@/components/Headlines/H4";
 
 export function MDX({ children }: { children: ReactNode }) {

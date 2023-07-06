@@ -1,9 +1,10 @@
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import { JSX, useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { JSX, useEffect, useState } from "react";
+
 import { removeHashFlag } from "@/libs/hashflag";
 
 interface ItemProp {
@@ -22,20 +23,29 @@ export function Item({ link, children, icon }: ItemProp): JSX.Element {
     const additionalClassList = "";
     const router = useRouter();
     const [classState, setClass] = useState(additionalClassList);
-    const [isHovered, setHover] = useState(false)
+    const [isHovered, setHover] = useState(false);
 
     useEffect(() => {
         if (removeHashFlag(router.asPath) == link || isHovered) {
             setClass("neumo-sink");
-        }else {
+        } else {
             //setClass("neumo-float");
-            setClass("")
+            setClass("");
         }
     }, [link, router.asPath, isHovered]);
 
     return (
         <li className="select-none">
-            <Link href={link} className={"m-4 flex items-center rounded-lg !bg-transparent px-4 py-4 text-sm dark:text-white " + classState } onMouseOver={()=>{setHover(true)}} onMouseOut={()=>{setHover(false)}}>
+            <Link
+                href={link}
+                className={"m-4 flex items-center rounded-lg !bg-transparent px-4 py-4 text-sm dark:text-white " + classState}
+                onMouseOver={() => {
+                    setHover(true);
+                }}
+                onMouseOut={() => {
+                    setHover(false);
+                }}
+            >
                 {iconElement}
                 <span className="ml-2">{children}</span>
             </Link>

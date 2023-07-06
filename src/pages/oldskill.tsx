@@ -1,6 +1,7 @@
-import { H2 } from "@/components/elements/Headlines";
-import { ReactNode } from "react";
 import { SiGnubash, SiGo, SiLinux } from "@icons-pack/react-simple-icons";
+import { ReactNode } from "react";
+
+import { H2 } from "@/components/elements/Headlines";
 
 export default function Skill() {
     return (

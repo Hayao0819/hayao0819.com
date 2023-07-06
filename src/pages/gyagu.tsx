@@ -1,5 +1,5 @@
-import { H2, H3 } from "@/components/elements/Headlines";
 import GyaguList from "@/components/elements/GyaguList";
+import { H2, H3 } from "@/components/elements/Headlines";
 import Link from "@/components/elements/Link";
 import Title from "@/components/elements/Title";
 

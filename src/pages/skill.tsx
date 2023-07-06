@@ -1,10 +1,11 @@
-import { H2, H3 } from "@/components/elements/Headlines";
-import { ReactNode } from "react";
-import { SiC, SiGnubash, SiGo, SiLinux, SiPython, SiTypescript, SiTailwindcss, SiReact, SiNextdotjs, SiVisualstudiocode, SiGitkraken, SiDocker, SiNginx } from "@icons-pack/react-simple-icons";
-import Link from "@/components/elements/Link";
-import { H4 } from "@/components/elements/Headlines/H4";
-import Title from "@/components/elements/Title";
+import { SiC, SiDocker, SiGitkraken, SiGnubash, SiGo, SiLinux, SiNextdotjs, SiNginx, SiPython, SiReact, SiTailwindcss, SiTypescript, SiVisualstudiocode } from "@icons-pack/react-simple-icons";
 import Image from "next/image";
+import { ReactNode } from "react";
+
+import { H2, H3 } from "@/components/elements/Headlines";
+import { H4 } from "@/components/elements/Headlines/H4";
+import Link from "@/components/elements/Link";
+import Title from "@/components/elements/Title";
 //import { JSX } from "react";
 
 export default function SkillPage() {
