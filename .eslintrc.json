@@ -2,5 +2,11 @@
     "extends": ["next/core-web-vitals", "plugin:tailwindcss/recommended", "eslint:recommended", "plugin:mdx/recommended", "prettier"],
     "settings": {
         "mdx/code-blocks": true
+    },
+    "plugins": ["simple-import-sort"],
+
+    "rules": {
+        "simple-import-sort/imports": "warn",
+        "simple-import-sort/exports": "warn"
     }
 }
