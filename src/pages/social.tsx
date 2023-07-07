@@ -1,5 +1,6 @@
 import { H2 } from "@/components/elements/Headlines";
 import Link from "@/components/elements/Link";
+import Layout from "@/components/layouts/Layout";
 //import { ReactNode } from "react";
 
 function SocialLink(props: { children: string; domain: string; name: string }) {
@@ -18,7 +19,7 @@ function TwitterLink({ children }: { children: string }) {
 
 export default function Social() {
     return (
-        <>
+        <Layout>
             <H2>SNSのリンクとかなんとか</H2>
             <p>気が向いたらかっちょいい感じに書き直します</p>
             <ul className="list-disc">
@@ -39,6 +40,6 @@ export default function Social() {
                     </SocialLink>
                 </li>
             </ul>
-        </>
+        </Layout>
     );
 }

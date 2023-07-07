@@ -4,7 +4,7 @@ module.exports = {
     trailingComma: "all",
     semi: true,
     endOfLine: "lf",
-    printWidth: 200,
+    printWidth: 130,
     htmlWhitespaceSensitivity: "ignore",
     plugins: [require("prettier-plugin-tailwindcss"), require("prettier-plugin-md-nocjsp")],
 

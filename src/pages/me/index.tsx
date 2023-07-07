@@ -11,15 +11,19 @@ export default function Detail() {
             <div>
                 <H2>詳細</H2>
                 <p>
-                    <Link href="https://sunset0916.net/">サンセット</Link>がいい感じにシンプルなサイトを作ってたので真似してみました。
+                    <Link href="https://sunset0916.net/">サンセット</Link>
+                    がいい感じにシンプルなサイトを作ってたので真似してみました。
                 </p>
                 <p>自分のサイトって何を書けばいいかやっぱりわからないですね...</p>
 
                 <H3>自己紹介</H3>
                 <p>
-                    某大学の学生です。 <Link href="https://fascode.net/">Fascode Network</Link>という集団に参加しながらLinuxを勉強中です。
+                    某大学の学生です。 <Link href="https://fascode.net/">Fascode Network</Link>
+                    という集団に参加しながらLinuxを勉強中です。
                 </p>
-                <p>知らないところに行ったり、空の写真を撮るのが趣味です。低レイヤーやネットワークに興味がありますが何もわかりません。</p>
+                <p>
+                    知らないところに行ったり、空の写真を撮るのが趣味です。低レイヤーやネットワークに興味がありますが何もわかりません。
+                </p>
                 <p>Arch Linuxが大好きなのですが、Gentoo LinuxやNixOSに手を出して強くなりたいとおもってます。</p>
                 <p>他にもジャンクPC漁りや自作PC、ガジェット、カスタムROM、Root化など色々やります。</p>
 
@@ -88,9 +92,9 @@ function CalculateMyAge(): JSX.Element {
     const [year, changeYear] = useState(currentYear.toString());
     const [born, changeBorn] = useState("2004");
 
-    let age = (function (): number {
-        let y = parseInt(year);
-        let b = parseInt(born);
+    const age = (function (): number {
+        const y = parseInt(year);
+        const b = parseInt(born);
         if (isNaN(y) || isNaN(b)) {
             return -1;
         } else {

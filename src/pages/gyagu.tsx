@@ -2,10 +2,11 @@ import GyaguList from "@/components/elements/GyaguList";
 import { H2, H3 } from "@/components/elements/Headlines";
 import Link from "@/components/elements/Link";
 import Title from "@/components/elements/Title";
+import Layout from "@/components/layouts/Layout";
 
 export default function GyaguPage() {
     return (
-        <>
+        <Layout>
             <p>ギャグが不足しています。助けてください。</p>
             <Title title="ギャグ" />
             <H2>ギャグ</H2>
@@ -45,6 +46,6 @@ export default function GyaguPage() {
             <b>連絡してくれれば載せるかもしれません</b>
 
             <p className="text-center">これより下に内容は無いようです。</p>
-        </>
+        </Layout>
     );
 }

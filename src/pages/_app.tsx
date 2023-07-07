@@ -8,7 +8,7 @@ import { ReactNode, useState } from "react";
 
 import { H2, H3 } from "@/components/elements/Headlines";
 import Link from "@/components/elements/Link";
-import Layout from "@/components/layouts/Layout";
+//import Layout from "@/components/layouts/Layout";
 //import { H4 } from "@/components/Headlines/H4";
 
 export function MDX({ children }: { children: ReactNode }) {
@@ -34,12 +34,10 @@ export function MDX({ children }: { children: ReactNode }) {
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <Layout>
-            <ThemeProvider attribute="class" defaultTheme="light">
-                <MDX>
-                    <Component {...pageProps} />
-                </MDX>
-            </ThemeProvider>
-        </Layout>
+        <ThemeProvider attribute="class" defaultTheme="light">
+            <MDX>
+                <Component {...pageProps} />
+            </MDX>
+        </ThemeProvider>
     );
 }

@@ -1,9 +1,10 @@
 import { H2, H3 } from "@/components/elements/Headlines";
 import ThemeButton from "@/components/elements/ThemeBtn";
+import Layout from "@/components/layouts/Layout";
 
 export default function Test() {
     return (
-        <div className="">
+        <Layout>
             <H2>テスト</H2>
             <p>このページではNextJSの勉強を兼ねた色々な実験をしています。</p>
 
@@ -12,6 +13,6 @@ export default function Test() {
                 ダークテーマを作ってみたけど現状クソださ→
                 <ThemeButton />
             </p>
-        </div>
+        </Layout>
     );
 }
