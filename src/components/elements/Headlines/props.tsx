@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface HeadlineProps {
-    children: string;
+    children?: React.ReactNode;
 }

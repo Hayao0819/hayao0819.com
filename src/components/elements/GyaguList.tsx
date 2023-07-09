@@ -42,16 +42,16 @@ function Gyagu({ children, tweet }: { children: ReactNode | string; tweet?: stri
         }
     }
 
-    let onClickFunc: ()=>void 
-    let gyaguText: string
+    let onClickFunc: () => void;
+    let gyaguText: string;
 
-    if (tweet==undefined){
-        onClickFunc=()=>{
-            alert("このギャグはツイートできません。ハヤオにエラーを報告してください。")
-        }
-    }else{
-        gyaguText=tweet
-        onClickFunc=()=>openTweet(gyaguText)
+    if (tweet == undefined) {
+        onClickFunc = () => {
+            alert("このギャグはツイートできません。ハヤオにエラーを報告してください。");
+        };
+    } else {
+        gyaguText = tweet;
+        onClickFunc = () => openTweet(gyaguText);
     }
 
     return (
