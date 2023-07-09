@@ -6,11 +6,11 @@
 
 I would like to express my deepest gratitude to all those who helped me in building this site.
 
-### Yuri Katsuki
+### Sokhibjon Orzikulov
 
-[Yuri Katsuki](https://twitter.com/yurionterminal)様には、初期のレイアウト作成や設定ファイルのテンプレートの作成、Next.js やReact.js を用いたコーディングに関して多くの助言をいただきました。
+[Sokhibjon Orzikulov](https://t.me/s/orzklvb)様には、初期のレイアウト作成や設定ファイルのテンプレートの作成、Next.js やReact.js を用いたコーディングに関して多くの助言をいただきました。
 
-First, Yuri Katsuki gave me a lot of advice on the initial layout, the templates for the configuration files, and the coding in Next.js and React.js .
+First, Sokhibjon Orzikulov gave me a lot of advice on the initial layout, the templates for the configuration files, and the coding in Next.js and React.js .
 
 また、サイトのホスティングに関して CloufFlare や Vercel についても助言を多くいただきました。本当にありがとうございます。
 
