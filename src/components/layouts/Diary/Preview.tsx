@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { DiaryPreview as DiaryPreviewType } from "@/types/diaries";
 
 export default function DiaryPreview({ diaryPreview }: { diaryPreview: DiaryPreviewType }) {

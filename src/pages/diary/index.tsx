@@ -1,11 +1,11 @@
 import fs from "fs";
-import path from "path";
 import { InferGetStaticPropsType } from "next";
 import { serialize } from "next-mdx-remote/serialize";
+import path from "path";
 
+import BlogLayout from "@/components/layouts/Diary/Layout";
+import DiaryPreview from "@/components/layouts/Diary/Preview";
 import { DiaryPreview as DiaryPreviewType } from "@/types/diaries";
-import BlogLayout from "@/components/layouts/blog/BlogLayout";
-import DiaryPreview from "@/components/layouts/DiaryPreview";
 
 export default function DiaryIndex({ diaryPreviews }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
