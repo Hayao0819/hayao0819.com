@@ -1,16 +1,22 @@
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SiGithub, SiInstagram, SiTwitter } from "@icons-pack/react-simple-icons";
 import NextLink from "next/link";
 //import GyaguList from "@/components/GyaguList";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect } from "react";
 
+/*
 import { H2 } from "@/components/elements/Headlines";
+
 import { My } from "@/components/elements/Icons";
 import Link from "@/components/elements/Link";
+*/
 import Title from "@/components/elements/Title";
 import Layout from "@/components/layouts/Layout";
 import { getHashFlag } from "@/libs/hashflag";
 
-export default function Home() {
+export default function Home():ReactNode {
     const router = useRouter();
     useEffect(() => {
         const checkHashFlag = () => {
@@ -33,42 +39,36 @@ export default function Home() {
     return (
         <Layout>
             <Title title="トップ" />
-            <Cards>
-                <Card head="プロフィール">
-                    <div className="flex flex-col justify-center lg:flex-row lg:justify-normal">
-                        <div className="hidden text-center lg:text-left">
-                            <My />
+
+            <div className="hidden-scrollbar h-full snap-y snap-mandatory overflow-scroll text-center">
+                <div className="flex h-full snap-center items-center justify-center">
+                    <div className="max-w-md child:m-2">
+                        <h1 className="text-5xl font-bold">山田ハヤオ</h1>
+
+                        <div className="flex text-center child:child:mx-auto child:grow">
+                            <NextLink href="https://twitter.com/Hayao0819">
+                                <SiTwitter />
+                            </NextLink>
+
+                            <NextLink href="https://instagram.com/Hayao0819">
+                                <SiInstagram />
+                            </NextLink>
+                            <NextLink href="https://github.com/Hayao0819">
+                                <SiGithub />
+                            </NextLink>
                         </div>
 
-                        <table className="text-center lg:m-4 lg:text-left">
-                            <tbody>
-                                <BioLine head="名前">山田ハヤオ</BioLine>
-                                <BioLine head="趣味">自作PC・開発・アニメ鑑賞</BioLine>
-                                <BioLine head="所属">Fascode Network</BioLine>
-                                <BioLine head="詳細">
-                                    <Link href="/detail">こちら</Link>で自分語りしています
-                                </BioLine>
-                            </tbody>
-                        </table>
+                        <p className="py-6">カスなおたく</p>
+                        <FontAwesomeIcon icon={faChevronDown} />
                     </div>
-                </Card>
+                </div>
+                <div className="h-full snap-end">いい感じのコンテンツを準備したい</div>
+            </div>
+        </Layout>
+    );
+}
 
-                <Card head="目標">
-                    <p>今のITでは一部の大企業の独占や寡占が酷く、日本のソフトウェア産業は停滞気味です。</p>
-                    <p>
-                        OSSでこの状況を打開して、自分やその周辺の生活を自分の技術力で
-                        <NextLink href="https://watasuke.net/portfolio/?lang=ja&page_transition=true&animation=true">
-                            人間のやることを減らしたい
-                        </NextLink>
-                        です。
-                    </p>
-                    <p>個人的な趣味ですが、日本でデスクトップ用途でのLinuxが普及すればいいなと思います。</p>
-                </Card>
-
-                <Card head="経歴">
-                    <p>遊んでいます。</p>
-                </Card>
-
+/*
                 <Card head="好きなコンテンツ">
                     <ul>
                         <li>まちカドまぞく</li>
@@ -85,11 +85,22 @@ export default function Home() {
                         <li>Vlangに僅かな修正</li>
                     </ul>
                 </Card>
-            </Cards>
-        </Layout>
-    );
-}
 
+
+                <Card head="目標">
+                    <p>今のITでは一部の大企業の独占や寡占が酷く、日本のソフトウェア産業は停滞気味です。</p>
+                    <p>
+                        OSSでこの状況を打開して、自分やその周辺の生活を自分の技術力で
+                        <NextLink href="https://watasuke.net/portfolio/?lang=ja&page_transition=true&animation=true">
+                            人間のやることを減らしたい
+                        </NextLink>
+                        です。
+                    </p>
+                    <p>個人的な趣味ですが、日本でデスクトップ用途でのLinuxが普及すればいいなと思います。</p>
+                </Card>
+*/
+
+/*
 function BioLine({ head, children }: { head: string; children: ReactNode }) {
     return (
         <tr className="w-full">
@@ -115,3 +126,4 @@ function Card({ children, head }: { children: ReactNode; head: string }) {
         </div>
     );
 }
+*/
