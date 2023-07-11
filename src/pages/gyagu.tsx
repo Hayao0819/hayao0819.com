@@ -7,10 +7,9 @@ import Layout from "@/components/layouts/Layout";
 export default function GyaguPage() {
     return (
         <Layout>
-            <p>ギャグが不足しています。助けてください。</p>
             <Title title="ギャグ" />
             <H2>ギャグ</H2>
-
+            <p>ギャグが不足しています。助けてください。</p>
             <div className="pt-2">
                 <GyaguList />
             </div>
