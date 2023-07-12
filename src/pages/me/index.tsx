@@ -139,12 +139,12 @@ interface PCEnvProps {
     }[];
 }
 function PCEnvTable({ spec }: PCEnvProps) {
-    console.log(spec);
+    //console.log(spec);
     return (
         <table className="daisy-table">
             <tbody>
                 {spec.map((line, index) => {
-                    console.log(line);
+                    //console.log(line);
                     return (
                         <tr key={index}>
                             <td className="w-28">{line.key}</td>

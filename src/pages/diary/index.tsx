@@ -3,13 +3,13 @@ import { InferGetStaticPropsType } from "next";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 
-import BlogLayout from "@/components/layouts/Diary/Layout";
+import Layout from "@/components/layouts/Diary/Layout";
 import DiaryPreview from "@/components/layouts/Diary/Preview";
 import { DiaryPreview as DiaryPreviewType } from "@/types/diaries";
 
 export default function DiaryIndex({ diaryPreviews }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
-        <BlogLayout>
+        <Layout>
             {diaryPreviews.map((diaryPreview, i) => {
                 return (
                     <div key={i}>
@@ -17,7 +17,7 @@ export default function DiaryIndex({ diaryPreviews }: InferGetStaticPropsType<ty
                     </div>
                 );
             })}
-        </BlogLayout>
+        </Layout>
     );
 }
 
