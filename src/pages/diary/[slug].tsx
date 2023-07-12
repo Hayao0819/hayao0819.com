@@ -2,7 +2,10 @@
 import fs from "fs";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import Head from "next/head";
+/*
 import Link from "next/link";
+import { useRouter } from "next/router";
+*/
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import React from "react";
@@ -10,9 +13,7 @@ import React from "react";
 import { H1 } from "@/components/elements/Headlines/H1";
 import { H2 } from "@/components/elements/Headlines/H2";
 import { P } from "@/components/elements/Paragraph";
-import { useRouter } from "next/router";
 import BlogLayout from "@/components/layouts/Diary/Layout";
-
 
 export default function PostPage({ source }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
@@ -48,21 +49,20 @@ export async function getStaticProps(
     const filePath = `diaries/${slug}.mdx`;
 
     // 存在チェック
-    let isExist: Boolean = true
-    try{
-        fs.statSync(filePath)
-    }catch(e){
-        isExist=false
+    let isExist = true;
+    try {
+        fs.statSync(filePath);
+    } catch (e) {
+        isExist = false;
     }
-    if (!isExist){
+    if (!isExist) {
         //なぜか動かない
         //useRouter().replace("/404")
     }
 
-
     // retrieve the MDX blog post file associated
     // with the specified slug parameter
-    let diaryFile: Buffer = fs.readFileSync(filePath);
+    const diaryFile: Buffer = fs.readFileSync(filePath);
     // read the MDX serialized content along with the frontmatter
     // from the .mdx blog post file
     const mdxSource = await serialize(diaryFile, { parseFrontmatter: true });

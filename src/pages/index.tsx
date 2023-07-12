@@ -16,7 +16,7 @@ import Title from "@/components/elements/Title";
 import Layout from "@/components/layouts/Layout";
 import { getHashFlag } from "@/libs/hashflag";
 
-export default function Home():ReactNode {
+export default function Home(): ReactNode {
     const router = useRouter();
     useEffect(() => {
         const checkHashFlag = () => {

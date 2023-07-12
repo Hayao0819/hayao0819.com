@@ -15,15 +15,19 @@ export function MDX({ children }: { children: ReactNode }) {
     // https://mdxjs.com/advanced/components#mdxprovider
 
     const [components] = useState({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         h2: (props: any) => {
             return <H2 {...props} />;
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         h3: (props: any) => {
             return <H3 {...props} />;
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         a: (props: any) => {
             return <Link href={props.href}>{props.children}</Link>;
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ul: (props: any) => {
             return <ul className="list-disc" {...props} />;
         },

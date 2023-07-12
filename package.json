@@ -16,8 +16,7 @@
         "start": "next start",
         "product": "next build && next start",
         "lint": "next lint",
-        "fmt": "prettier --check .",
-        "fix": "pnpm run fmt --write . && eslint --fix ."
+        "fix": "prettier --write . && eslint --fix ."
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.4.0",
