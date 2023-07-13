@@ -5,6 +5,7 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useRef } from "react";
 
+//import { RefObject } from "react";
 import { H2 } from "@/components/elements/Headlines";
 import Title from "@/components/elements/Title";
 import Layout from "@/components/layouts/Layout";
@@ -56,13 +57,7 @@ export default function Home(): ReactNode {
                         </div>
 
                         <p className="py-6">カスなおたく</p>
-                        <FontAwesomeIcon
-                            role="button"
-                            icon={faChevronDown}
-                            onClick={() => {
-                                targetRef?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-                            }}
-                        />
+                        <ScrollButton scrollTo={targetRef.current} />
                     </div>
                 </div>
                 <Section>
@@ -83,13 +78,7 @@ export default function Home(): ReactNode {
                         <li>Gnome Desktop Iconの日本語化</li>
                         <li>Vlangに僅かな修正</li>
                     </ul>
-                    <FontAwesomeIcon
-                        role="button"
-                        icon={faChevronDown}
-                        onClick={() => {
-                            detailRef?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-                        }}
-                    />
+                    <ScrollButton scrollTo={detailRef.current} />
                 </Section>
                 <Section>
                     <div ref={detailRef}></div>
@@ -105,6 +94,22 @@ export default function Home(): ReactNode {
 
 function Section({ children }: { children: ReactNode }) {
     return <div className="h-full snap-start text-center child:mx-auto">{children}</div>;
+}
+
+function ScrollButton({ scrollTo }: { scrollTo: HTMLDivElement|null}) {
+    return (
+        <div
+            className=""
+            role="button"
+            onClick={() => {
+                if (scrollTo) {
+                    scrollTo.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            }}
+        >
+            <FontAwesomeIcon icon={faChevronDown} />
+        </div>
+    );
 }
 
 /*
