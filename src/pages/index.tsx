@@ -6,9 +6,8 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect } from "react";
 
-/*
 import { H2 } from "@/components/elements/Headlines";
-
+/*
 import { My } from "@/components/elements/Icons";
 import Link from "@/components/elements/Link";
 */
@@ -62,10 +61,37 @@ export default function Home(): ReactNode {
                         <FontAwesomeIcon icon={faChevronDown} />
                     </div>
                 </div>
-                <div className="h-full snap-end">いい感じのコンテンツを準備したい</div>
+                <Section>
+                    <H2>目標</H2>
+                    <p>今のITでは一部の大企業の独占や寡占が酷く、日本のソフトウェア産業は停滞気味です。</p>
+                    <p>
+                        OSSでこの状況を打開して、自分やその周辺の生活を自分の技術力で
+                        <NextLink href="https://watasuke.net/portfolio/?lang=ja&page_transition=true&animation=true">
+                            人間のやることを減らしたい
+                        </NextLink>
+                        です。
+                    </p>
+                    <p>個人的な趣味ですが、日本でデスクトップ用途でのLinuxが普及すればいいなと思います。</p>
+                    <H2>貢献</H2>
+                    <ul>
+                        <li>Xfce4 Docklike Pluginの日本語化</li>
+                        <li>Gnome Desktop Iconの日本語化</li>
+                        <li>Vlangに僅かな修正</li>
+                    </ul>
+                </Section>
+                <Section>
+                    <H2>より詳しく</H2>
+                    <NextLink href="/me">
+                        <button className="daisy-btn">詳細</button>
+                    </NextLink>
+                </Section>
             </div>
         </Layout>
     );
+}
+
+function Section({ children }: { children: ReactNode }) {
+    return <div className="h-full snap-start text-center child:mx-auto">{children}</div>;
 }
 
 /*

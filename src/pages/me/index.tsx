@@ -4,10 +4,11 @@ import { H2, H3 } from "@/components/elements/Headlines";
 import Hello from "@/components/elements/Hello";
 import Link from "@/components/elements/Link";
 import State from "@/components/elements/State";
+import Layout from "@/components/layouts/Layout";
 
 export default function Detail() {
     return (
-        <>
+        <Layout>
             <div>
                 <H2>詳細</H2>
                 <p>
@@ -83,7 +84,7 @@ export default function Detail() {
                 <State></State>
                 <Hello></Hello>
             </div>
-        </>
+        </Layout>
     );
 }
 
