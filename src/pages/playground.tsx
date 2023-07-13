@@ -1,5 +1,3 @@
-import "../style/details.css";
-
 import { H2, H3 } from "@/components/elements/Headlines";
 import Link from "@/components/elements/Link";
 import ThemeButton from "@/components/elements/ThemeBtn";
