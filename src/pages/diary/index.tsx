@@ -10,13 +10,15 @@ import { DiaryPreview as DiaryPreviewType } from "@/types/diaries";
 export default function DiaryIndex({ diaryPreviews }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <Layout>
-            {diaryPreviews.map((diaryPreview, i) => {
-                return (
-                    <div key={i}>
-                        <DiaryPreview diaryPreview={diaryPreview} />
-                    </div>
-                );
-            })}
+            <div className="flex flex-wrap items-stretch">
+                {diaryPreviews.map((diaryPreview, i) => {
+                    return (
+                        <div key={i} className="flex w-1/2">
+                            <DiaryPreview diaryPreview={diaryPreview} />
+                        </div>
+                    );
+                })}
+            </div>
         </Layout>
     );
 }

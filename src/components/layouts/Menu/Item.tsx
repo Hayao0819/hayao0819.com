@@ -24,7 +24,7 @@ export function Item({ link, children, icon }: ItemProp):ReactNode {
     const [classState, setClass] = useState(additionalClassList);
     const [isHovered, setHover] = useState(false);
     const isCurrent = useCurrentURL([link]);
-    console.log(isCurrent)
+    //console.log(isCurrent)
 
     useEffect(() => {
         if (isCurrent || isHovered) {

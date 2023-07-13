@@ -8,7 +8,7 @@ import { useCurrentURL } from "./util";
 
 interface ItemGroupProp {
     title: string;
-    children: ReactElement<ItemProp>[];
+    children: ReactElement<ItemProp>[] | ReactElement<ItemProp>;
     //children: ReactNode[];
     icon?: IconDefinition | undefined;
 }
@@ -21,9 +21,18 @@ export function ItemGroup({ children, icon, title }: ItemGroupProp): ReactNode {
 
     const [isOpened, changeOpen] = useState<boolean | undefined>(undefined);
 
-    const childrenLinks: string[] = children.map((e) => {
-        return e.props.link;
-    });
+    let childrenLinks: string[];
+    if (children) {
+        if (Array.isArray(children)) {
+            childrenLinks = children.map((e) => {
+                return e.props.link;
+            });
+        }else{
+            childrenLinks=[children.props.link]
+        }
+    } else {
+        childrenLinks = [];
+    }
 
     const currentURL = useCurrentURL(childrenLinks);
 
