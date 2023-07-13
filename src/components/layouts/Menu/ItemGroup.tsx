@@ -27,8 +27,8 @@ export function ItemGroup({ children, icon, title }: ItemGroupProp): ReactNode {
             childrenLinks = children.map((e) => {
                 return e.props.link;
             });
-        }else{
-            childrenLinks=[children.props.link]
+        } else {
+            childrenLinks = [children.props.link];
         }
     } else {
         childrenLinks = [];

@@ -2,7 +2,7 @@ import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import {JSX, ReactNode, useEffect, useState } from "react";
+import { JSX, ReactNode, useEffect, useState } from "react";
 
 import { useCurrentURL } from "./util";
 //import { removeHashFlag } from "@/libs/hashflag";
@@ -13,7 +13,7 @@ export interface ItemProp {
     icon?: IconDefinition | undefined;
 }
 
-export function Item({ link, children, icon }: ItemProp):ReactNode {
+export function Item({ link, children, icon }: ItemProp): ReactNode {
     let iconElement: JSX.Element = <FontAwesomeIcon className="" icon={faCircle} />;
 
     if (icon != undefined) {

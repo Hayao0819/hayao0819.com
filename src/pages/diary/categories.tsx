@@ -9,15 +9,15 @@ import { DiaryPreview as DiaryPreviewType } from "@/types/diaries";
 
 export default function DiaryIndex({ diaryPreviews }: InferGetStaticPropsType<typeof getStaticProps>) {
     const categories: string[] = [];
-    diaryPreviews.forEach(p=>{
-        if (p.categories){
-            if (Array.isArray(p.categories)){
-                categories.push(...p.categories)
-            }else{
-                categories.push(p.categories)
+    diaryPreviews.forEach((p) => {
+        if (p.categories) {
+            if (Array.isArray(p.categories)) {
+                categories.push(...p.categories);
+            } else {
+                categories.push(p.categories);
             }
         }
-    })
+    });
 
     return (
         <Layout>
