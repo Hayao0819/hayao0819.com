@@ -17,7 +17,7 @@ export default function Test() {
 
             <H3>ブログ</H3>
             <p>
-                <Link href="/diary">新しいブログ</Link>をこのサイトのソース内で作ろうとしています。
+                <Link href="/diary/posts">新しいブログ</Link>をこのサイトのソース内で作ろうとしています。
             </p>
             <p>
                 <Link href="/diary/categories">カテゴリ一覧</Link>を実装してみました。
