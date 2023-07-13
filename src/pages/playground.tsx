@@ -19,6 +19,9 @@ export default function Test() {
             <p>
                 <Link href="/diary">新しいブログ</Link>をこのサイトのソース内で作ろうとしています。
             </p>
+            <p>
+                <Link href="/diary/categories">カテゴリ一覧</Link>を実装してみました。
+            </p>
         </Layout>
     );
 }
