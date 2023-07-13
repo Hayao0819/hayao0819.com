@@ -1,4 +1,4 @@
-import { faBook, faFaceSmile, faHouse, faKitchenSet, faOtter } from "@fortawesome/free-solid-svg-icons";
+import { faFaceSmile, faHouse, faKitchenSet, faOtter } from "@fortawesome/free-solid-svg-icons";
 
 //import { faContactCard, faMessage } from "@fortawesome/free-solid-svg-icons";
 import { Item as MenuItem } from "./Menu";
@@ -10,6 +10,7 @@ export function SidebarContents() {
             <MenuItem link="/" icon={faHouse}>
                 Home
             </MenuItem>
+            {/*}
             <MenuItemGroup title="Diary">
                 <MenuItem link="/diary" icon={faBook}>
                     Articles
@@ -18,6 +19,7 @@ export function SidebarContents() {
                     Categories
                 </MenuItem>
             </MenuItemGroup>
+    */}
             <MenuItemGroup title="Me">
                 <MenuItem link="/skill" icon={faKitchenSet}>
                     Skill
