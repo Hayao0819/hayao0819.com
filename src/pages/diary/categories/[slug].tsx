@@ -1,31 +1,33 @@
+// pages/[slug].ts
 import fs from "fs";
-import { InferGetStaticPropsType } from "next";
+import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
+//import Head from "next/head";
+/*
+import Link from "next/link";
+import { useRouter } from "next/router";
+*/
+//import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
+import React from "react";
 
-import Layout from "@/components/layouts/Diary/Layout";
-//import DiaryPreview from "@/components/layouts/Diary/Preview";
+/*
+import { H1 } from "@/components/elements/Headlines/H1";
+import { H2 } from "@/components/elements/Headlines/H2";
+import { P } from "@/components/elements/Paragraph";
+*/
+import DiaryPreview from "@/components/layouts/Diary/Preview";
+import Layout from "@/components/layouts/Layout";
 import { DiaryPreview as DiaryPreviewType } from "@/types/diaries";
 
 export default function DiaryIndex({ diaryPreviews }: InferGetStaticPropsType<typeof getStaticProps>) {
-    const categories: string[] = [];
-    diaryPreviews.forEach((p) => {
-        if (p.categories) {
-            if (Array.isArray(p.categories)) {
-                categories.push(...p.categories);
-            } else {
-                categories.push(p.categories);
-            }
-        }
-    });
-
     return (
         <Layout>
             <div className="flex flex-wrap items-stretch">
-                {categories.map((category, i) => {
+                {diaryPreviews.map((diaryPreview, i) => {
                     return (
                         <div key={i} className="flex w-1/2">
-                            <p>{category}</p>
+                            <DiaryPreview diaryPreview={diaryPreview} />
                         </div>
                     );
                 })}
@@ -33,8 +35,16 @@ export default function DiaryIndex({ diaryPreviews }: InferGetStaticPropsType<ty
         </Layout>
     );
 }
+export async function getStaticPaths() {
+    return { paths: [], fallback: "blocking" };
+}
 
-export async function getStaticProps() {
+export async function getStaticProps(
+    ctx: GetStaticPropsContext<{
+        slug: string;
+    }>,
+) {
+    const { slug } = ctx.params!;
     // get all MDX files
     const postFilePaths = fs.readdirSync("diaries").filter((postFilePath) => {
         return path.extname(postFilePath).toLowerCase() === ".mdx";
@@ -52,11 +62,13 @@ export async function getStaticProps() {
             parseFrontmatter: true,
         });
 
+        if ((serializedPost.frontmatter.categories as string[]).includes(slug) || (serializedPost.frontmatter.categories as string) == slug ){
         diaryPreviews.push({
             ...serializedPost.frontmatter,
             // add the slug to the frontmatter info
             slug: diaryFilePath.replace(".mdx", ""),
         } as DiaryPreviewType);
+    }
     }
 
     return {
