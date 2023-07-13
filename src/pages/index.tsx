@@ -2,15 +2,10 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SiGithub, SiInstagram, SiTwitter } from "@icons-pack/react-simple-icons";
 import NextLink from "next/link";
-//import GyaguList from "@/components/GyaguList";
 import { useRouter } from "next/router";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 
 import { H2 } from "@/components/elements/Headlines";
-/*
-import { My } from "@/components/elements/Icons";
-import Link from "@/components/elements/Link";
-*/
 import Title from "@/components/elements/Title";
 import Layout from "@/components/layouts/Layout";
 import { getHashFlag } from "@/libs/hashflag";
@@ -35,6 +30,9 @@ export default function Home(): ReactNode {
         checkHashFlag();
     });
 
+    const targetRef = useRef<HTMLDivElement>(null);
+    const detailRef = useRef<HTMLDivElement>(null);
+
     return (
         <Layout>
             <Title title="トップ" />
@@ -58,10 +56,17 @@ export default function Home(): ReactNode {
                         </div>
 
                         <p className="py-6">カスなおたく</p>
-                        <FontAwesomeIcon icon={faChevronDown} />
+                        <FontAwesomeIcon
+                            role="button"
+                            icon={faChevronDown}
+                            onClick={() => {
+                                targetRef?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                            }}
+                        />
                     </div>
                 </div>
                 <Section>
+                    <div ref={targetRef}></div>
                     <H2>目標</H2>
                     <p>今のITでは一部の大企業の独占や寡占が酷く、日本のソフトウェア産業は停滞気味です。</p>
                     <p>
@@ -78,8 +83,16 @@ export default function Home(): ReactNode {
                         <li>Gnome Desktop Iconの日本語化</li>
                         <li>Vlangに僅かな修正</li>
                     </ul>
+                    <FontAwesomeIcon
+                        role="button"
+                        icon={faChevronDown}
+                        onClick={() => {
+                            detailRef?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }}
+                    />
                 </Section>
                 <Section>
+                    <div ref={detailRef}></div>
                     <H2>より詳しく</H2>
                     <NextLink href="/me">
                         <button className="daisy-btn">詳細</button>
