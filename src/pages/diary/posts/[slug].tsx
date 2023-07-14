@@ -58,6 +58,11 @@ export async function getStaticProps(
     if (!isExist) {
         //なぜか動かない
         //useRouter().replace("/404")
+
+      // それでは!!!
+      return {
+        notFound: true,
+      }
     }
 
     // retrieve the MDX blog post file associated
