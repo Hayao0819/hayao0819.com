@@ -48,7 +48,7 @@ export function ItemGroup({ children, icon, title }: ItemGroupProp): ReactNode {
         <details role="button" open={isOpened}>
             <summary className="m-4 flex items-center rounded-lg !bg-transparent p-4 text-sm before:content-none dark:text-white">
                 {iconElement}
-                <span className="ml-2">{title}</span>
+                <span className="ml-2 select-none">{title}</span>
             </summary>
             <ul className="child:ml-4">{children}</ul>
         </details>

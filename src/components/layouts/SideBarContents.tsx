@@ -10,14 +10,6 @@ export function SidebarContents() {
             <MenuItem link="/" icon={faHouse}>
                 Home
             </MenuItem>
-
-            <MenuItemGroup title="Diary">
-                <MenuItem link="/diary" icon={faBook}>
-                    Articles
-                </MenuItem>
-                <MenuItem link="/diary/categories">Categories</MenuItem>
-            </MenuItemGroup>
-
             <MenuItemGroup title="Me">
                 <MenuItem link="/skill" icon={faKitchenSet}>
                     Skill
@@ -26,9 +18,17 @@ export function SidebarContents() {
                     Something
                 </MenuItem>
             </MenuItemGroup>
+
             <MenuItem link="/gyagu" icon={faFaceSmile}>
                 Gyagu
             </MenuItem>
+
+            <MenuItemGroup title="Diary">
+                <MenuItem link="/diary" icon={faBook}>
+                    Articles
+                </MenuItem>
+                <MenuItem link="/diary/categories">Categories</MenuItem>
+            </MenuItemGroup>
             {/*<MenuItem link="/contact" icon={faContactCard}>
                 Contact
     </MenuItem>*/}
