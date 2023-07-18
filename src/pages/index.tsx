@@ -96,8 +96,8 @@ function Section({ children }: { children: ReactNode }) {
     return <div className="h-full snap-start text-center child:mx-auto">{children}</div>;
 }
 
-function ScrollButton({ scrollTo }: { scrollTo: HTMLDivElement|null}) {
-    return (
+function ScrollButton({ scrollTo }: { scrollTo: HTMLDivElement | null }) {
+    const btn = (
         <div
             className=""
             role="button"
@@ -110,6 +110,8 @@ function ScrollButton({ scrollTo }: { scrollTo: HTMLDivElement|null}) {
             <FontAwesomeIcon icon={faChevronDown} />
         </div>
     );
+
+    return btn;
 }
 
 /*

@@ -10,26 +10,35 @@ import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import React from "react";
 
+//import { BlogTitle } from "@/components/elements/Headlines/H2";
+//import { H2 } from "@/components/elements/Headlines/H2";
+/*
 import { H1 } from "@/components/elements/Headlines/H1";
-import { H2 } from "@/components/elements/Headlines/H2";
-import { P } from "@/components/elements/Paragraph";
+
+import { P } from "@/components/elements/Paragraph";*/
 import BlogLayout from "@/components/layouts/Diary/Layout";
+import MarkdownElements from "@/libs/mdx";
 
 export default function PostPage({ source }: InferGetStaticPropsType<typeof getStaticProps>) {
+    const AdditionalElements = {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        //h2: (props: any) => {
+        //    return <BlogTitle {...props} />;
+        //},
+    };
+
+    const elements = { ...MarkdownElements, ...AdditionalElements };
+
     return (
         <div>
             <Head>
                 <title>{source.frontmatter.title as string}</title>
             </Head>
-            <BlogLayout>
+            <BlogLayout source={source}>
                 <MDXRemote
                     {...source}
                     // specifying the custom MDX components
-                    components={{
-                        h1: H1,
-                        h2: H2,
-                        p: P,
-                    }}
+                    components={elements}
                 />
             </BlogLayout>
         </div>
@@ -56,13 +65,9 @@ export async function getStaticProps(
         isExist = false;
     }
     if (!isExist) {
-        //なぜか動かない
-        //useRouter().replace("/404")
-
-      // それでは!!!
-      return {
-        notFound: true,
-      }
+        return {
+            notFound: true,
+        };
     }
 
     // retrieve the MDX blog post file associated
@@ -71,6 +76,7 @@ export async function getStaticProps(
     // read the MDX serialized content along with the frontmatter
     // from the .mdx blog post file
     const mdxSource = await serialize(diaryFile, { parseFrontmatter: true });
+
     return {
         props: {
             source: mdxSource,

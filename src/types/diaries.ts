@@ -3,4 +3,5 @@ export type DiaryPreview = {
     description: string;
     slug: string;
     categories: string[];
+    date: string
 };

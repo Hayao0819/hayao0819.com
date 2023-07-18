@@ -3,8 +3,8 @@ import { InferGetStaticPropsType } from "next";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 
-import Layout from "@/components/layouts/Diary/Layout";
 import DiaryPreview from "@/components/layouts/Diary/Preview";
+import Layout from "@/components/layouts/Layout";
 import { DiaryPreview as DiaryPreviewType } from "@/types/diaries";
 
 export default function DiaryIndex({ diaryPreviews }: InferGetStaticPropsType<typeof getStaticProps>) {
