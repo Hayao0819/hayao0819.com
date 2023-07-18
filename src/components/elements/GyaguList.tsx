@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+
 import PartyParrot from "./PartyParrot";
 
 export default function GyaguList() {
@@ -33,7 +34,10 @@ export default function GyaguList() {
 
 function Gyagu({ children, tweet }: { children: ReactNode | string; tweet?: string }) {
     const openTweet = (text: string) => {
-        window.open("https://twitter.com/intent/tweet?text=ハヤオのサイトからギャグ↓" + encodeURIComponent("\n\n" + text), "_blank");
+        window.open(
+            "https://twitter.com/intent/tweet?text=ハヤオのサイトからギャグ↓" + encodeURIComponent("\n\n" + text),
+            "_blank",
+        );
     };
 
     if (tweet == undefined) {

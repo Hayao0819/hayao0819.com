@@ -1,15 +1,31 @@
-import { H2, H3 } from "@/components/elements/Headlines";
-import { ReactNode } from "react";
-import { SiC, SiGnubash, SiGo, SiLinux, SiPython, SiTypescript, SiTailwindcss, SiReact, SiNextdotjs, SiVisualstudiocode, SiGitkraken, SiDocker, SiNginx } from "@icons-pack/react-simple-icons";
-import Link from "@/components/elements/Link";
-import { H4 } from "@/components/elements/Headlines/H4";
-import Title from "@/components/elements/Title";
+import {
+    SiC,
+    SiDocker,
+    SiGitkraken,
+    SiGnubash,
+    SiGo,
+    SiLinux,
+    SiNextdotjs,
+    SiNginx,
+    SiPython,
+    SiReact,
+    SiTailwindcss,
+    SiTypescript,
+    SiVisualstudiocode,
+} from "@icons-pack/react-simple-icons";
 import Image from "next/image";
+import { ReactNode } from "react";
+
+import { H2, H3 } from "@/components/elements/Headlines";
+import { H4 } from "@/components/elements/Headlines/H4";
+import Link from "@/components/elements/Link";
+import Title from "@/components/elements/Title";
+import Layout from "@/components/layouts/Layout";
 //import { JSX } from "react";
 
 export default function SkillPage() {
     return (
-        <>
+        <Layout>
             <Title title="Skill" />
             <H2>Skill</H2>
             <Skills title="Languages">
@@ -52,7 +68,9 @@ export default function SkillPage() {
                     <p>この苦手さは克服し無いといけないとおもっている。</p>
                     <H4>作ったもの</H4>
                     <p>
-                        <Link href="https://github.com/Hayao0819/Hayao-Tools/blob/master/archnews/archnews.py">archnews.py: Arch LinuxのニュースをGUIで表示します</Link>
+                        <Link href="https://github.com/Hayao0819/Hayao-Tools/blob/master/archnews/archnews.py">
+                            archnews.py: Arch LinuxのニュースをGUIで表示します
+                        </Link>
                     </p>
                 </SkillCard>
 
@@ -60,7 +78,12 @@ export default function SkillPage() {
                     <p>手書きHTMLばっかり書いていましたが、最近React+Next.jsに入門しました。</p>
                 </SkillCard>
 
-                <SkillCard icon={<Image src="/icons/vlang.png" width={24} height={24} alt="Vlang" className="object-contain grayscale" />} title="Vlang">
+                <SkillCard
+                    icon={
+                        <Image src="/icons/vlang.png" width={24} height={24} alt="Vlang" className="object-contain grayscale" />
+                    }
+                    title="Vlang"
+                >
                     <p>None</p>
                 </SkillCard>
 
@@ -102,7 +125,7 @@ export default function SkillPage() {
                     んぎっくす
                 </SkillCard>
             </Skills>
-        </>
+        </Layout>
     );
 }
 

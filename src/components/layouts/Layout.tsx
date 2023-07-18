@@ -1,6 +1,9 @@
 import React, { ReactNode, useState } from "react";
-import { DrawerContents, DrawerSide } from "./Drawer";
+
 import BaseColor from "./BaseColor";
+import DrawerSide from "./Drawer";
+//import { DrawerContents, DrawerSide } from "./Drawer";
+import DrawerContents from "./MainContents";
 //import Head from "next/head";
 //import BaseColor from "./BaseColor";
 
