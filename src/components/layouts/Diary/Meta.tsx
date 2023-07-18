@@ -1,15 +1,16 @@
-//import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
-/*
+
 export default function BlogMeta({ source }: { source: MDXRemoteSerializeResult }) {
-    const date = new Date(source.frontmatter.date as string);
+    const date:Date = new Date(source.frontmatter.date as Date);
+
+    
     
     return (
         <div className="border-y-white">
             <ul className="flex">
-                <li>{date.getFullYear()} {date.getMonth()}/{date.getDay()}</li>
+                {isNaN(date.getDate()) ? <></> : <li>{date.getFullYear()}/{date.getMonth()}/{date.getDay()}</li>}
             </ul>
         </div>
     );
 }
-*/
