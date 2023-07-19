@@ -41,6 +41,9 @@ export async function getStaticProps() {
             parseFrontmatter: true,
         });
 
+        if ((serializedPost.frontmatter.hide as boolean) || (serializedPost.frontmatter.hide as string) == "true") {
+            continue;
+        }
         diaryPreviews.push({
             ...serializedPost.frontmatter,
             // add the slug to the frontmatter info

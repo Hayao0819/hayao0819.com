@@ -1,6 +1,7 @@
 // pages/[slug].ts
 import fs from "fs";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
+import NextLink from "next/link";
 //import Head from "next/head";
 /*
 import Link from "next/link";
@@ -11,6 +12,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import React from "react";
 
+import Btn from "@/components/elements/Btn";
 /*
 import { H1 } from "@/components/elements/Headlines/H1";
 import { H2 } from "@/components/elements/Headlines/H2";
@@ -31,6 +33,11 @@ export default function DiaryIndex({ diaryPreviews }: InferGetStaticPropsType<ty
                         </div>
                     );
                 })}
+            </div>
+            <div className="text-center">
+                <NextLink href="/diary/categories">
+                    <Btn>カテゴリ一覧に戻る</Btn>
+                </NextLink>
             </div>
         </Layout>
     );
@@ -62,13 +69,20 @@ export async function getStaticProps(
             parseFrontmatter: true,
         });
 
-        if ((serializedPost.frontmatter.categories as string[]).includes(slug) || (serializedPost.frontmatter.categories as string) == slug ){
-        diaryPreviews.push({
-            ...serializedPost.frontmatter,
-            // add the slug to the frontmatter info
-            slug: diaryFilePath.replace(".mdx", ""),
-        } as DiaryPreviewType);
-    }
+        if ((serializedPost.frontmatter.hide as boolean) || (serializedPost.frontmatter.hide as string) == "true") {
+            continue;
+        }
+
+        if (
+            (serializedPost.frontmatter.categories as string[]).includes(slug) ||
+            (serializedPost.frontmatter.categories as string) == slug
+        ) {
+            diaryPreviews.push({
+                ...serializedPost.frontmatter,
+                // add the slug to the frontmatter info
+                slug: diaryFilePath.replace(".mdx", ""),
+            } as DiaryPreviewType);
+        }
     }
 
     return {

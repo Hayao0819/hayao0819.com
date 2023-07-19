@@ -24,7 +24,7 @@ export function SidebarContents() {
             </MenuItem>
 
             <MenuItemGroup title="Diary">
-                <MenuItem link="/diary" icon={faBook}>
+                <MenuItem link="/diary/posts" icon={faBook}>
                     Articles
                 </MenuItem>
                 <MenuItem link="/diary/categories">Categories</MenuItem>
