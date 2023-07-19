@@ -1,15 +1,43 @@
+import NextLink from "next/link";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
-
 export default function BlogMeta({ source }: { source: MDXRemoteSerializeResult }) {
-    const date:Date = new Date(source.frontmatter.date as Date);
+    const date: Date = new Date(source.frontmatter.date as Date);
+    let categories: string[] = [];
 
-    
-    
+    if (Array.isArray(source.frontmatter.categories as string[])) {
+        categories = [...(source.frontmatter.categories as string[])];
+    } else {
+        categories = [source.frontmatter.categories as string];
+    }
+
     return (
-        <div className="border-y-white">
-            <ul className="flex">
-                {isNaN(date.getDate()) ? <></> : <li>{date.getFullYear()}/{date.getMonth()}/{date.getDay()}</li>}
+        <div className="neumo-float m-2 mx-auto w-1/2 p-2">
+            <ul className="flex child:mx-1">
+                {/* 日付 */}
+                {isNaN(date.getDate()) ? (
+                    <></>
+                ) : (
+                    <li>
+                        Date: {date.getFullYear()}/{date.getMonth()}/{date.getDay()}
+                    </li>
+                )}
+
+                {/* カテゴリ */}
+                {
+                    <li className="flex">
+                        Categories: {}
+                        <ul className="flex child:ml-2">
+                            {categories.map((c) => {
+                                return (
+                                    <li key={c}>
+                                        <NextLink href={"/diary/categories/"+c}>{c}</NextLink>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </li>
+                }
             </ul>
         </div>
     );

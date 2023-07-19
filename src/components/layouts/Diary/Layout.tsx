@@ -9,7 +9,9 @@ import BlogMeta from "./Meta";
 export default function BlogLayout({ children, source }: { children: ReactNode; source: MDXRemoteSerializeResult }) {
     return (
         <Layout>
-            <H2>{source.frontmatter.title as string}</H2>
+            <span className="child:mx-auto">
+                <H2>{source.frontmatter.title as string}</H2>
+            </span>
             <BlogMeta source={source} />
             {children}
         </Layout>
