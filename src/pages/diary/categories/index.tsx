@@ -3,7 +3,9 @@ import { InferGetStaticPropsType } from "next";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 
-import Layout from "@/components/layouts/Diary/Layout";
+//import Btn from "@/components/elements/Btn";
+import Link from "@/components/elements/Link";
+import Layout from "@/components/layouts/Layout";
 //import DiaryPreview from "@/components/layouts/Diary/Preview";
 import { DiaryPreview as DiaryPreviewType } from "@/types/diaries";
 
@@ -12,9 +14,16 @@ export default function DiaryIndex({ diaryPreviews }: InferGetStaticPropsType<ty
     diaryPreviews.forEach((p) => {
         if (p.categories) {
             if (Array.isArray(p.categories)) {
-                categories.push(...p.categories);
+                for (const c of p.categories) {
+                    if (!categories.includes(c)) {
+                        categories.push(c);
+                    }
+                }
+                //categories.push(...p.categories);
             } else {
-                categories.push(p.categories);
+                if (!categories.includes(p.categories)) {
+                    categories.push(p.categories);
+                }
             }
         }
     });
@@ -23,7 +32,11 @@ export default function DiaryIndex({ diaryPreviews }: InferGetStaticPropsType<ty
         <Layout>
             <ul className="list-disc">
                 {categories.map((category, i) => {
-                    return <li key={i}>{category}</li>;
+                    return (
+                        <li key={i}>
+                            <Link href={"/diary/categories/" + category}>{category}</Link>
+                        </li>
+                    );
                 })}
             </ul>
         </Layout>

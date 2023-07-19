@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import Btn from "@/components/elements/Btn";
 import { DiaryPreview as DiaryPreviewType } from "@/types/diaries";
 
 export default function DiaryPreview({ diaryPreview }: { diaryPreview: DiaryPreviewType }) {
@@ -9,7 +10,7 @@ export default function DiaryPreview({ diaryPreview }: { diaryPreview: DiaryPrev
                 <h2 className="text-2xl font-bold">{diaryPreview.title}</h2>
                 <p>{diaryPreview.description}</p>
                 <div className="text-right">
-                    <button className="neumo-float daisy-btn bg-transparent hover:bg-transparent">Read more...</button>
+                    <Btn>Read more...</Btn>
                 </div>
             </Link>
         </div>

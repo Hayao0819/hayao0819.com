@@ -5,6 +5,7 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useRef } from "react";
 
+import Btn from "@/components/elements/Btn";
 //import { RefObject } from "react";
 import { H2 } from "@/components/elements/Headlines";
 import Title from "@/components/elements/Title";
@@ -84,7 +85,7 @@ export default function Home(): ReactNode {
                     <div ref={detailRef}></div>
                     <H2>より詳しく</H2>
                     <NextLink href="/me">
-                        <button className="daisy-btn">詳細</button>
+                        <Btn>ハヤオについての詳細</Btn>
                     </NextLink>
                 </Section>
             </div>
