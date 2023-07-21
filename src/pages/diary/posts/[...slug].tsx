@@ -56,7 +56,7 @@ export async function getStaticProps(
         `diaries/${slug}/index.md`,
     ];
     let filePath: string = "";
-    console.log(filePathes);
+    //console.log(filePathes);
 
     // 存在チェック
     for (const file of filePathes) {
