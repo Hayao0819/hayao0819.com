@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"strings"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -29,12 +30,20 @@ func NewBlogFrontMatter(title string, desc string) *BlogFrontMatter {
 		Title:       title,
 		Description: desc,
 		Date:        time.Now(),
-		Categories: Categories,
+		Categories:  Categories,
 	}
 }
 
 func (f *BlogFrontMatter) GetYaml() ([]byte, error) {
 	return yaml.Marshal(*f)
+}
+
+func (f *BlogFrontMatter)MakeTemplate()([]byte, error){
+	yamlData, err := f.GetYaml()
+	if err !=nil{
+		return []byte{}, err
+	}
+	return []byte("---\n" + strings.TrimSpace(string(yamlData))+"\n---\n"), nil
 }
 
 func newPostCmd() *cobra.Command {
@@ -48,10 +57,12 @@ func newPostCmd() *cobra.Command {
 				fm.Description = args[1]
 			}
 
-			yamlData, _ := fm.GetYaml()
-			cmd.Println("---")
-			cmd.Println(string(yamlData))
-			cmd.Println("---")
+			//cmd.Println()
+			tp, err := fm.MakeTemplate()
+			if err !=nil{
+				return err
+			}
+			cmd.Println(string(tp))
 
 			return nil
 		},
