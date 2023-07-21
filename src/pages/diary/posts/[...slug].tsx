@@ -2,20 +2,10 @@
 import fs from "fs";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-/*
-import Link from "next/link";
-import { useRouter } from "next/router";
-*/
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import React from "react";
 
-//import { BlogTitle } from "@/components/elements/Headlines/H2";
-//import { H2 } from "@/components/elements/Headlines/H2";
-/*
-import { H1 } from "@/components/elements/Headlines/H1";
-
-import { P } from "@/components/elements/Paragraph";*/
 import BlogLayout from "@/components/layouts/Diary/Layout";
 import MarkdownElements from "@/libs/mdx";
 
@@ -51,20 +41,26 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(
     ctx: GetStaticPropsContext<{
-        slug: string;
+        slug: string | string[];
     }>,
 ) {
-    const { slug } = ctx.params!;
-    const filePath = `diaries/${slug}.mdx`;
+    let slug = ctx.params!.slug;
+    if (Array.isArray(slug)) {
+        slug = slug.join("/");
+    }
+
+    const filePathes: string[] = [`diaries/${slug}.mdx`, `diaries/${slug}/index.mdx`, `diaries/${slug}.md`, `diaries/${slug}/index.md`];
+    let filePath: string = "";
+    console.log(filePathes);
 
     // 存在チェック
-    let isExist = true;
-    try {
-        fs.statSync(filePath);
-    } catch (e) {
-        isExist = false;
+    for (const file of filePathes) {
+        if (fs.existsSync(file)) {
+            filePath = file;
+            break;
+        }
     }
-    if (!isExist) {
+    if (!filePath) {
         return {
             notFound: true,
         };
