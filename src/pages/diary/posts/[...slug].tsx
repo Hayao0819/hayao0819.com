@@ -49,7 +49,12 @@ export async function getStaticProps(
         slug = slug.join("/");
     }
 
-    const filePathes: string[] = [`diaries/${slug}.mdx`, `diaries/${slug}/index.mdx`, `diaries/${slug}.md`, `diaries/${slug}/index.md`];
+    const filePathes: string[] = [
+        `diaries/${slug}.mdx`,
+        `diaries/${slug}/index.mdx`,
+        `diaries/${slug}.md`,
+        `diaries/${slug}/index.md`,
+    ];
     let filePath: string = "";
     console.log(filePathes);
 

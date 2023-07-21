@@ -47,7 +47,7 @@ export async function getStaticProps() {
             ...serializedPost.frontmatter,
             // add the slug to the frontmatter info
             //slug: diaryFilePath.replace("index.mdx", "").replace(".mdx", "").replace("diaries/", ""),
-            slug: MDXPathToURL(diaryFilePath)
+            slug: MDXPathToURL(diaryFilePath),
         } as DiaryPreviewType);
     }
 

@@ -7,9 +7,9 @@ export function useCurrentURL(url: string[]): boolean {
 
     //return removeHashFlag(router.asPath) == url;
     //console.log(url);
-    const currentURL=removeHashFlag(router.asPath)
+    const currentURL = removeHashFlag(router.asPath);
     for (const u of url) {
-        if ( currentURL == u || (currentURL.startsWith(u) && u != "/")) {
+        if (currentURL == u || (currentURL.startsWith(u) && u != "/")) {
             return true;
         }
     }

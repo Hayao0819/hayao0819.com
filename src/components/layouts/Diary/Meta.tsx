@@ -31,7 +31,7 @@ export default function BlogMeta({ source }: { source: MDXRemoteSerializeResult 
                             {categories.map((c) => {
                                 return (
                                     <li key={c}>
-                                        <NextLink href={"/diary/categories/"+c}>{c}</NextLink>
+                                        <NextLink href={"/diary/categories/" + c}>{c}</NextLink>
                                     </li>
                                 );
                             })}
