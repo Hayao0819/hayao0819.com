@@ -18,5 +18,5 @@ export const GetListDirFiles = (dir: string): string[] => {
 };
 
 export const MDXPathToURL = (path: string): string => {
-    return path.replace("index.mdx", "").replace(".mdx", "").replace("diaries/", "");
+    return path.replace("index.mdx", "").replace("index.md", "").replace(".mdx", "").replace(".md", "").replace("diaries/", "");
 };
