@@ -41,11 +41,6 @@ const nextConfig = {
                 source: "/detail",
                 destination: "/me",
                 permanent: true,
-            },
-            {
-                source: "/tatebou",
-                destination: "https://old.hayao0819.com/tatebou/",
-                permanent: false
             }
         ];
     },
