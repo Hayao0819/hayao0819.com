@@ -19,7 +19,7 @@ export default function TatebouLayout({ children }: { children: ReactNode }) {
                         <MenuContents />
                     </NavBar>
 
-                    <main>{children}</main>
+                    <main className="mx-auto w-1/2 py-12 child:leading-10">{children}</main>
                     <TatebouFooter />
                 </div>
                 <DrawerSide>
@@ -49,9 +49,7 @@ function NavBar({ children }: { children: ReactNode }) {
             </div>
             <div className="mx-2 px-2 text-xl">{Meta.title}</div>
             <div className="hidden md:flex">
-                <ul className="daisy-menu daisy-menu-horizontal">
-                    {children}
-                </ul>
+                <ul className="daisy-menu daisy-menu-horizontal">{children}</ul>
             </div>
         </div>
     );
@@ -63,8 +61,8 @@ function MenuContents() {
             <MenuItem name="作者" link="/" />
             <MenuItem name="本家様" link="https://1lil.li/" />
             <MenuItem name="ドメイン所有者" link="https://yamad.me/" />
-            <MenuItem name="ソースコード" link="https://google.com" />
-            <MenuItem name="バグ報告" link="https://google.com" />
+            <MenuItem name="ソースコード" link="https://github.com/Hayao0819/hayao0819.com/tree/dev/src/pages/tatebou" />
+            <MenuItem name="バグ報告" link="https://github.com/Hayao0819/hayao0819.com/issues" />
         </>
     );
 }
