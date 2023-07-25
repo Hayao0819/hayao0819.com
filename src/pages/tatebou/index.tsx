@@ -67,18 +67,16 @@ export default function Tatebou() {
                 <button className="!daisy-btn-info !daisy-btn-active" onClick={SendPOSTToTatebou}>
                     作成
                 </button>
-                <button
-                    className="!daisy-btn-neutral !daisy-btn-active"
-                    onClick={() => {
-                        mtx.openModal("historyModal");
-                        console.log("open history")
-                    }}
-                >
+                <button className="!daisy-btn-neutral !daisy-btn-active" onClick={() => mtx.openModal("history-modal")}>
                     履歴
                 </button>
                 <button className="!daisy-btn-error !daisy-btn-active">クリア</button>
             </div>
 
+            <Modal name="history-modal">
+                <p>テスト</p>
+            </Modal>
+            
             <div className="daisy-form-control w-full">
                 <label className="daisy-label">
                     <span className="daisy-label-text">結果</span>
@@ -91,10 +89,6 @@ export default function Tatebou() {
                     readOnly
                 />
             </div>
-
-            <Modal name="historyModal">
-                <p>テスト</p>
-            </Modal>
 
             <div>
                 <p>結果をテスト</p>
