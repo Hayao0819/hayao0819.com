@@ -3,15 +3,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NextLink from "next/link";
 import { ReactNode } from "react";
 
+//import TatebouHeader from "./Header";
+import { modalContext, useModal } from "@/components/elements/ModalContext";
 import Meta from "@/const/tatebou";
 
 import TatebouFooter from "./Footer";
 
-//import TatebouHeader from "./Header";
-
 export default function TatebouLayout({ children }: { children: ReactNode }) {
+    const mtx = useModal();
+    //console.log(mtx.openModal)
     return (
-        <>
+        <modalContext.Provider value={mtx}>
             <div className="daisy-drawer">
                 <input id="drawer-checkbox" type="checkbox" className="daisy-drawer-toggle" />
                 <div className="daisy-drawer-content flex h-screen flex-col">
@@ -26,7 +28,7 @@ export default function TatebouLayout({ children }: { children: ReactNode }) {
                     <MenuContents />
                 </DrawerSide>
             </div>
-        </>
+        </modalContext.Provider>
     );
 }
 
