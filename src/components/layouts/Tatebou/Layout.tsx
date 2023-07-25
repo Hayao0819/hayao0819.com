@@ -14,12 +14,12 @@ export default function TatebouLayout({ children }: { children: ReactNode }) {
         <>
             <div className="daisy-drawer">
                 <input id="drawer-checkbox" type="checkbox" className="daisy-drawer-toggle" />
-                <div className="daisy-drawer-content flex flex-col">
+                <div className="daisy-drawer-content flex h-screen flex-col">
                     <NavBar>
                         <MenuContents />
                     </NavBar>
 
-                    <main className="mx-auto w-1/2 py-12 child:leading-10">{children}</main>
+                    <main className="mx-auto w-4/5 grow py-12 child:leading-10 md:w-3/5">{children}</main>
                     <TatebouFooter />
                 </div>
                 <DrawerSide>
