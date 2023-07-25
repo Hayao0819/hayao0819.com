@@ -6,7 +6,7 @@ export function Modal({ children, name }: { children: ReactNode; name: string })
     const [modalClass, setModalClass] = useState("");
     const mtx = useContext(modalContext);
     useEffect(() => {
-        console.log("render");
+        console.log(mtx.currentModal);
         if (name == mtx.currentModal) {
             setModalClass("daisy-modal-open");
         } else {
@@ -24,7 +24,7 @@ export function Modal({ children, name }: { children: ReactNode; name: string })
                     method="dialog"
                     className="daisy-modal-backdrop"
                     onClick={() => {
-                        //mtx.openModal("");
+                        mtx.openModal("");
                     }}
                 >
                     <button>close</button>

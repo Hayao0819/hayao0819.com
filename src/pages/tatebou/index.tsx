@@ -1,16 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import Link from "@/components/elements/Link";
 import { Modal } from "@/components/elements/Modal";
-import { useModal } from "@/components/elements/ModalContext";
+import { modalContext } from "@/components/elements/ModalContext";
 //import { modalContext, useModal } from "@/components/elements/ModalContext";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
 
 export default function Tatebou() {
     const [fetchedData, setFetchedData] = useState("");
     const [inputURL, setInputURL] = useState("");
-
-    const mtx = useModal();
     const SendPOSTToTatebou = () => {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", `https://1lil.li/p/`, true);
@@ -34,6 +32,7 @@ export default function Tatebou() {
         xhr.send(send_text);
     };
 
+    const mtx = useContext(modalContext);
     return (
         <TatebouLayout>
             <div>
@@ -72,7 +71,7 @@ export default function Tatebou() {
                     className="!daisy-btn-neutral !daisy-btn-active"
                     onClick={() => {
                         mtx.openModal("historyModal");
-                        console.log(mtx)
+                        console.log("open history")
                     }}
                 >
                     履歴
