@@ -3,7 +3,7 @@ import { ReactNode, useContext } from "react";
 import { Modal } from "@/components/elements/Modal";
 import { modalContext, useModal } from "@/components/elements/ModalContext";
 
-export default function Modal1() {
+export default function Modal2() {
     const mtx = useContext(modalContext);
     return (
         <Layout>
