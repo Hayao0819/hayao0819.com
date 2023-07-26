@@ -1,15 +1,20 @@
-import { useContext } from "react";
+import { ReactNode, useContext } from "react";
 
 import { Modal } from "@/components/elements/Modal";
 import { modalContext, useModal } from "@/components/elements/ModalContext";
 
 export default function Modal1() {
-    const mtx = useModal();
+    
     return (
-        <modalContext.Provider value={mtx}>
+        <Layout>
             <Content />
-        </modalContext.Provider>
+        </Layout>
     );
+}
+
+function Layout({ children }: { children: ReactNode }) {
+    const mtx = useModal();
+    return <modalContext.Provider value={mtx}>{children}</modalContext.Provider>;
 }
 
 function Content() {
@@ -20,7 +25,7 @@ function Content() {
                 Open
             </button>
             <Modal name="example-modal">
-                <p>Test my modal</p>
+                <p>Test my moda</p>
             </Modal>
         </>
     );
