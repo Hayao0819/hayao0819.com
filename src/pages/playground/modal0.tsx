@@ -2,10 +2,10 @@ import { useState } from "react";
 
 import { Modal } from "@/components/elements/Modal";
 
-// Manage modal without useContext 
+// Manage modal without useContext
 export default function Modal0() {
     // Todo: use useContext and remove current in Modal
-    const [openModal, setOpenModal] = useState(false)
+    const [openModal, setOpenModal] = useState(false);
 
     return (
         <>

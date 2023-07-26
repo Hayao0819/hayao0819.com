@@ -4,18 +4,18 @@ import NextLink from "next/link";
 import { ReactNode } from "react";
 
 //import TatebouHeader from "./Header";
-import { modalContext, useModal } from "@/components/elements/NewModalContext";
+import { ModalProvider } from "@/components/elements/NewModalContext";
 import Meta from "@/const/tatebou";
 
 import TatebouFooter from "./Footer";
 
 export default function TatebouLayout({ children }: { children: ReactNode }) {
-    const mtx = useModal();
+    //const mtx = useModal();
     //console.log(mtx.openModal)
     return (
-        <modalContext.Provider value={mtx}>
+        <ModalProvider>
             <Drawer>{children}</Drawer>
-        </modalContext.Provider>
+        </ModalProvider>
     );
 }
 

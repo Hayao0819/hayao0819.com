@@ -21,7 +21,6 @@ export default function TatebouHeader() {
             menuRef.current.addEventListener("resize", () => {
                 if (menuRef.current) {
                     menuRef.current.classList.add("transition-none");
-                    
                 }
             });
         }
@@ -45,7 +44,7 @@ export default function TatebouHeader() {
                 <div
                     ref={menuRef}
                     onClick={toggleMenu}
-                    className={menuHeightClass + " h-0 overflow-hidden delay-150 duration-300 lg:block lg:!h-16 transition-all"}
+                    className={menuHeightClass + " h-0 overflow-hidden transition-all delay-150 duration-300 lg:block lg:!h-16"}
                 >
                     <MenuBar>
                         <MenuContents />
