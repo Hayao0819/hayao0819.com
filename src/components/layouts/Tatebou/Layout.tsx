@@ -12,11 +12,7 @@ import TatebouFooter from "./Footer";
 export default function TatebouLayout({ children }: { children: ReactNode }) {
     //const mtx = useModal();
     //console.log(mtx.openModal)
-    return (
-        <ModalProvider>
-            <Drawer>{children}</Drawer>
-        </ModalProvider>
-    );
+    return <Drawer>{children}</Drawer>;
 }
 
 function Drawer({ children }: { children: ReactNode }) {
@@ -40,7 +36,7 @@ function Drawer({ children }: { children: ReactNode }) {
 
 function DrawerSide({ children }: { children: ReactNode }) {
     return (
-        <div className="daisy-drawer-side">
+        <div className="daisy-drawer-side md:hidden">
             <label htmlFor="drawer-checkbox" className="daisy-drawer-overlay"></label>
             <ul className="daisy-menu h-full w-80 bg-base-200 p-4">{children}</ul>
         </div>

@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
 type ModalContext = {
     currentModal: string;
@@ -16,7 +16,6 @@ export function useModal(): ModalContext {
     const [currentModal, changeCurrentModal] = useState("");
     const openModal = (name: string) => {
         changeCurrentModal(name);
-        console.log("Modal opened: " + name);
     };
     return {
         currentModal,
@@ -26,8 +25,5 @@ export function useModal(): ModalContext {
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
     const mtx = useModal();
-    useEffect(() => {
-        console.log(mtx.currentModal);
-    }, [mtx.currentModal]);
     return <modalContext.Provider value={mtx}>{children}</modalContext.Provider>;
 };

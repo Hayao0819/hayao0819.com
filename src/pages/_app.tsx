@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import { ReactNode, useState } from "react";
 
 import MarkdownElements from "@/libs/mdx";
+import { ModalProvider } from "@/components/elements/NewModalContext";
 
 /*
 import { H3 } from "@/components/elements/Headlines";
@@ -26,10 +27,12 @@ export function MDX({ children }: { children: ReactNode }) {
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <ThemeProvider attribute="class" defaultTheme="light">
-            <MDX>
-                <Component {...pageProps} />
-            </MDX>
-        </ThemeProvider>
+        <ModalProvider>
+            <ThemeProvider attribute="class" defaultTheme="light">
+                <MDX>
+                    <Component {...pageProps} />
+                </MDX>
+            </ThemeProvider>
+        </ModalProvider>
     );
 }
