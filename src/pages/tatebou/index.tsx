@@ -100,7 +100,7 @@ function ModalWrap() {
     const mtx = useContext(modalContext);
     return (
         <>
-            <button className="!daisy-btn-neutral !daisy-btn-active" onClick={() => mtx.openModal("history-modal")}>
+            <button className="daisy-btn" onClick={() => mtx.openModal("history-modal")}>
                 テスト
             </button>
             <Modal name="history-modal">
