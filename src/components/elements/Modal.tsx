@@ -1,36 +1,40 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
 
-//import { modalContext } from "./OldModalContext";
+import { modalContext } from "./ModalContext";
 
-export function Modal({
-    children,
-    open,
-    changeFunc,
-}: {
-    children: ReactNode;
-    open: boolean;
-    changeFunc: (status: boolean) => void;
-}) {
+export function Modal({ children, name, title }: { children: ReactNode; name: string; title?: string }) {
     const [modalClass, setModalClass] = useState("");
+    const mtx = useContext(modalContext);
     useEffect(() => {
-        if (open) {
+        console.log(mtx.currentModal);
+        if (name == mtx.currentModal) {
             setModalClass("daisy-modal-open");
         } else {
             setModalClass("");
         }
-    }, [setModalClass, open]);
+    }, [name, mtx.currentModal]);
+
+    const [titleElement, setTitleElement] = useState<ReactNode>();
+    useEffect(() => {
+        if (title) {
+            setTitleElement(<h3 className="text-lg font-bold">{title}</h3>);
+        } else {
+            setTitleElement(<></>);
+        }
+    }, [title]);
 
     return (
         <>
             <dialog className={"daisy-modal " + modalClass}>
                 <form method="dialog" className="daisy-modal-box">
+                    {titleElement}
                     {children}
                 </form>
                 <form
                     method="dialog"
                     className="daisy-modal-backdrop"
                     onClick={() => {
-                        changeFunc(false);
+                        mtx.openModal("");
                     }}
                 >
                     <button>close</button>

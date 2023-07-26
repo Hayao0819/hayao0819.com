@@ -1,18 +1,24 @@
-import { ReactNode, useContext, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
-import { modalContext } from "./NewModalContext";
+//import { modalContext } from "./OldModalContext";
 
-export function Modal({ children, name }: { children: ReactNode; name: string }) {
+export function Modal({
+    children,
+    open,
+    changeFunc,
+}: {
+    children: ReactNode;
+    open: boolean;
+    changeFunc: (status: boolean) => void;
+}) {
     const [modalClass, setModalClass] = useState("");
-    const mtx = useContext(modalContext);
     useEffect(() => {
-        console.log(mtx.currentModal);
-        if (name == mtx.currentModal) {
+        if (open) {
             setModalClass("daisy-modal-open");
         } else {
             setModalClass("");
         }
-    }, [name, mtx.currentModal]);
+    }, [setModalClass, open]);
 
     return (
         <>
@@ -24,7 +30,7 @@ export function Modal({ children, name }: { children: ReactNode; name: string })
                     method="dialog"
                     className="daisy-modal-backdrop"
                     onClick={() => {
-                        mtx.openModal("");
+                        changeFunc(false);
                     }}
                 >
                     <button>close</button>

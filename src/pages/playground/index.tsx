@@ -2,14 +2,15 @@
 
 import { H2, H3 } from "@/components/elements/Headlines";
 import Link from "@/components/elements/Link";
-import { Modal } from "@/components/elements/NewModal";
+import { Modal } from "@/components/elements/Modal";
 //import { useModal } from "@/components/elements/ModalContext";
-import { modalContext, useModal } from "@/components/elements/NewModalContext";
+import { modalContext} from "@/components/elements/ModalContext";
 import ThemeButton from "@/components/elements/ThemeBtn";
 import Layout from "@/components/layouts/Layout";
+import { useContext } from "react";
 
 export default function Test() {
-    const mtx = useModal();
+    const mtx = useContext(modalContext)
     return (
         <Layout>
             <H2>砂場</H2>
@@ -30,21 +31,18 @@ export default function Test() {
             </p>
 
             <H3>Modal Test</H3>
-
-            <modalContext.Provider value={mtx}>
-                <button
-                    className="daisy-btn"
-                    onClick={() => {
-                        mtx.openModal("test-modal");
-                        console.log("open test");
-                    }}
-                >
-                    開く
-                </button>
-                <Modal name="test-modal">
-                    <p>ほげほげー</p>
-                </Modal>
-            </modalContext.Provider>
+            <p>自前のモーダルコンポーネントの使い方</p>
+            <button
+                className="daisy-btn"
+                onClick={() => {
+                    mtx.openModal("test-modal");
+                }}
+            >
+                開く
+            </button>
+            <Modal name="test-modal" title="モーダル">
+                <p>ほげほげー</p>
+            </Modal>
         </Layout>
     );
 }

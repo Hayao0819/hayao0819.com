@@ -1,8 +1,8 @@
 import { useContext, useRef, useState } from "react";
 
 import Link from "@/components/elements/Link";
-import { Modal } from "@/components/elements/NewModal";
-import { modalContext } from "@/components/elements/NewModalContext";
+import { Modal } from "@/components/elements/Modal";
+import { modalContext } from "@/components/elements/ModalContext";
 //import { modalContext, useModal } from "@/components/elements/ModalContext";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -57,9 +57,9 @@ export default function Tatebou() {
     };
 
     // 未実装
-    const openNotImplementedModal = ()=>{
+    const openNotImplementedModal = () => {
         mtx.openModal("not-implemented");
-    }
+    };
 
     return (
         <TatebouLayout>
@@ -93,7 +93,14 @@ export default function Tatebou() {
                 <button className="!daisy-btn-neutral !daisy-btn-active" onClick={() => mtx.openModal("history-modal")}>
                     履歴
                 </button>
-                <button className="!daisy-btn-error !daisy-btn-active" onClick={()=>{setInputURL("")}}>クリア</button>
+                <button
+                    className="!daisy-btn-error !daisy-btn-active"
+                    onClick={() => {
+                        setInputURL("");
+                    }}
+                >
+                    クリア
+                </button>
             </div>
 
             <div className="daisy-form-control w-full">
@@ -112,13 +119,17 @@ export default function Tatebou() {
             <div>
                 <p>結果をテスト</p>
                 <div className="flex gap-2 child:daisy-btn-sm child:daisy-btn  child:!text-white">
-                    <button className="!daisy-btn-primary !daisy-btn-active" onClick={openNotImplementedModal}>コピー</button>
-                    <button className="!daisy-btn-secondary !daisy-btn-active" onClick={openNotImplementedModal}>テスト</button>
+                    <button className="!daisy-btn-primary !daisy-btn-active" onClick={openNotImplementedModal}>
+                        コピー
+                    </button>
+                    <button className="!daisy-btn-secondary !daisy-btn-active" onClick={openNotImplementedModal}>
+                        テスト
+                    </button>
                 </div>
             </div>
 
             {/* アラート */}
-            <div className={"flex rounded-md bg-red-200 p-2 m-2 " + alertClass}>
+            <div className={"m-2 flex rounded-md bg-red-200 p-2 " + alertClass}>
                 <div className="grow">{alertText}</div>
 
                 <div onClick={closeAlert} role="button" className="mx-2">
@@ -149,7 +160,7 @@ function TatebouModals() {
                 <p>テスト</p>
             </Modal>
 
-            <Modal name="not-implemented">
+            <Modal name="not-implemented" title="未実装">
                 <p>ごめんね、まだ実装していないんだ</p>
             </Modal>
         </>
