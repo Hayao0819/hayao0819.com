@@ -1,7 +1,7 @@
 import { ReactNode, useContext } from "react";
 
-import { Modal } from "@/components/elements/Modal";
-import { modalContext, useModal } from "@/components/elements/ModalContext";
+import { Modal } from "@/components/elements/NewModal";
+import { modalContext, useModal } from "@/components/elements/NewModalContext";
 
 export default function Modal2() {
     const mtx = useContext(modalContext);
@@ -21,4 +21,3 @@ function Layout({ children }: { children: ReactNode }) {
     const mtx = useModal();
     return <modalContext.Provider value={mtx}>{children}</modalContext.Provider>;
 }
-

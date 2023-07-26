@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 
 import Link from "@/components/elements/Link";
-import { Modal } from "@/components/elements/Modal";
-import { modalContext } from "@/components/elements/ModalContext";
+import { Modal } from "@/components/elements/NewModal";
+import { modalContext } from "@/components/elements/NewModalContext";
 //import { modalContext, useModal } from "@/components/elements/ModalContext";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
 

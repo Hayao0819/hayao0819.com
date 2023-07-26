@@ -1,11 +1,10 @@
 //import { useContext } from "react";
 
-
 import { H2, H3 } from "@/components/elements/Headlines";
 import Link from "@/components/elements/Link";
-import { Modal } from "@/components/elements/Modal";
+import { Modal } from "@/components/elements/NewModal";
 //import { useModal } from "@/components/elements/ModalContext";
-import { modalContext, useModal } from "@/components/elements/ModalContext";
+import { modalContext, useModal } from "@/components/elements/NewModalContext";
 import ThemeButton from "@/components/elements/ThemeBtn";
 import Layout from "@/components/layouts/Layout";
 
