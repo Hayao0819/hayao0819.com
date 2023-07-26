@@ -32,7 +32,6 @@ export default function Tatebou() {
         xhr.send(send_text);
     };
 
-    const mtx = useContext(modalContext);
     return (
         <TatebouLayout>
             <div>
@@ -67,16 +66,12 @@ export default function Tatebou() {
                 <button className="!daisy-btn-info !daisy-btn-active" onClick={SendPOSTToTatebou}>
                     作成
                 </button>
-                <button className="!daisy-btn-neutral !daisy-btn-active" onClick={() => mtx.openModal("history-modal")}>
-                    履歴
-                </button>
+                <button className="!daisy-btn-neutral !daisy-btn-active">履歴</button>
                 <button className="!daisy-btn-error !daisy-btn-active">クリア</button>
             </div>
 
-            <Modal name="history-modal">
-                <p>テスト</p>
-            </Modal>
-            
+            <ModalWrap />
+
             <div className="daisy-form-control w-full">
                 <label className="daisy-label">
                     <span className="daisy-label-text">結果</span>
@@ -98,5 +93,19 @@ export default function Tatebou() {
                 </div>
             </div>
         </TatebouLayout>
+    );
+}
+
+function ModalWrap() {
+    const mtx = useContext(modalContext);
+    return (
+        <>
+            <button className="!daisy-btn-neutral !daisy-btn-active" onClick={() => mtx.openModal("history-modal")}>
+                テスト
+            </button>
+            <Modal name="history-modal">
+                <p>テスト</p>
+            </Modal>
+        </>
     );
 }
