@@ -3,12 +3,11 @@ import fs from "fs";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import { MDXRemote } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
 import { join } from "path";
 import React from "react";
 
 import BlogLayout from "@/components/layouts/Diary/Layout";
-import { DiariesDir } from "@/libs/blog";
+import { DiariesDir, serializeMarkdown } from "@/libs/blog";
 import MarkdownElements from "@/libs/mdx";
 
 export default function PostPage({ source }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -75,13 +74,8 @@ export async function getStaticProps(
         };
     }
 
-    // retrieve the MDX blog post file associated
-    // with the specified slug parameter
-    const diaryFile: Buffer = fs.readFileSync(filePath);
-    // read the MDX serialized content along with the frontmatter
-    // from the .mdx blog post file
-    const mdxSource = await serialize(diaryFile, { parseFrontmatter: true });
-
+    //const mdxSource = await serialize(diaryFile, { parseFrontmatter: true });
+    const mdxSource = await serializeMarkdown(filePath);
     return {
         props: {
             source: mdxSource,
