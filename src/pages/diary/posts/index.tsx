@@ -27,6 +27,7 @@ export default function DiaryIndex({ diaryPreviews }: InferGetStaticPropsType<ty
 export async function getStaticProps() {
     // get all MDX files
     const postFilePaths = GetListDirFiles("diaries");
+    console.log(postFilePaths)
 
     const diaryPreviews: DiaryPreviewType[] = [];
 
