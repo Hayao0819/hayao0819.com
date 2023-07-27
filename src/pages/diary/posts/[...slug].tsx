@@ -4,6 +4,7 @@ import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
+import { join } from "path";
 import React from "react";
 
 import BlogLayout from "@/components/layouts/Diary/Layout";
@@ -65,9 +66,10 @@ export async function getStaticProps(
             break;
         }
     }
+    filePath = join(process.cwd(), ...filePath.split("/"));
     if (!filePath) {
-        console.log("Slug: "+slug)
-        console.log("Not found: "+filePathes.join(" "))
+        console.log("Slug: " + slug);
+        console.log("Not found: " + filePathes.join(" "));
         return {
             notFound: true,
         };
