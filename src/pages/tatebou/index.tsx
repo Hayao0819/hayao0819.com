@@ -1,6 +1,6 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useState } from "react";
+import { ReactNode, useContext, useState } from "react";
 
 import Link from "@/components/elements/Link";
 import { Modal } from "@/components/elements/Modal";
@@ -9,6 +9,7 @@ import { modalContext } from "@/components/elements/ModalContext";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
 
 export default function Tatebou() {
+    // リクエスト送信
     const [fetchedData, setFetchedData] = useState("");
     const [inputURL, setInputURL] = useState("");
     const SendPOSTToTatebou = () => {
@@ -22,6 +23,11 @@ export default function Tatebou() {
                     //output.value = xhr.responseText;
                     setFetchedData(xhr.responseText);
                     //history.add(new Date().toLocaleString(), inputURL, xhr.responseText);
+                    appendHistories({
+                        original: url,
+                        short: xhr.responseText,
+                        date: new Date(),
+                    });
                     return;
                 }
 
@@ -59,6 +65,14 @@ export default function Tatebou() {
     // 未実装
     const openNotImplementedModal = () => {
         mtx.openModal("not-implemented");
+    };
+
+    // 履歴
+    const [currentHistories, SetCurrentHistories] = useState<History[]>([]);
+    const appendHistories = (h: History) => {
+        const newArray = [...currentHistories, h];
+        SetCurrentHistories(newArray);
+        localStorage.setItem("history", JSON.stringify(newArray));
     };
 
     return (
@@ -137,10 +151,21 @@ export default function Tatebou() {
                 </div>
             </div>
 
+            {/* 履歴モーダル */}
+            <Modal name="history-modal" title="履歴">
+                <HistoryTable histories={currentHistories} />
+            </Modal>
+
             <TatebouModals />
         </TatebouLayout>
     );
 }
+
+type History = {
+    date: Date;
+    original: string;
+    short: string;
+};
 
 function Intro() {
     return (
@@ -156,13 +181,44 @@ function Intro() {
 function TatebouModals() {
     return (
         <>
-            <Modal name="history-modal">
-                <p>テスト</p>
-            </Modal>
-
             <Modal name="not-implemented" title="未実装">
                 <p>ごめんね、まだ実装していないんだ</p>
             </Modal>
         </>
+    );
+}
+
+function HistoryTable({ histories }: { histories: History[] }): ReactNode {
+    return (
+        <table>
+            <thead className={histories.length == 0 ? "hidden" : ""}>
+                <tr>
+                    <th>元URL</th>
+                    <th>短縮URL</th>
+                    <th>作成日時</th>
+                </tr>
+            </thead>
+
+            <tbody className="">
+                {histories.map((h) => {
+                    return <HistoryItem history={h} key={h.date.getTime()} />;
+                })}
+            </tbody>
+        </table>
+    );
+}
+
+function HistoryItem({ history }: { history: History }) {
+    if (!history) return <></>;
+    return (
+        <tr className="child:px-3">
+            <td>
+                <Link href={history.original}>{history!.original}</Link>
+            </td>
+            <td>
+                <Link href={history.short}>{history.short}</Link>
+            </td>
+            <td>{history.date.toLocaleDateString()}</td>
+        </tr>
     );
 }

@@ -28,7 +28,7 @@ export function Modal({ children, name, title }: { children: ReactNode; name: st
     return (
         <>
             <dialog className={"daisy-modal " + modalClass}>
-                <form method="dialog" className="daisy-modal-box">
+                <form method="dialog" className="daisy-modal-box min-w-fit">
                     <div className="flex">
                         <span className="grow">{titleElement}</span>
                         <FontAwesomeIcon icon={faXmark} onClick={() => mtx.openModal("")} role="button" />
