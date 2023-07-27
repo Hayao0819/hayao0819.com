@@ -43,7 +43,6 @@ export default function Tatebou() {
     );
 }
 
-
 function Intro() {
     return (
         <div>
@@ -89,9 +88,21 @@ function ActionBtns() {
     const { openAlert } = useAlert();
     const SendPOSTToTatebou = () => {
         const runRequest = (url: string) => {
+            /*
+            fetch("https://1lil.li/p/", {
+                method: "POST",
+                body: `l=${url}`,
+            }).then((response) => {
+                if (!response.ok) return;
+                return response.text().then((text) => {
+                    setFetchedData(text);
+                });
+            });
+            */
+
+            
             const xhr = new XMLHttpRequest();
             xhr.open("POST", `https://1lil.li/p/`, true);
-            const send_text = `l=${url}`;
             xhr.onreadystatechange = function () {
                 //console.log(xhr.status)
                 if (xhr.readyState === 4 && xhr.status === 201) {
@@ -113,7 +124,7 @@ function ActionBtns() {
                 }
             };
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send(send_text);
+            xhr.send(`l=${url}`);
         };
 
         if (inputURL) {
@@ -196,15 +207,18 @@ function TestTools() {
                 <button className="!daisy-btn-primary !daisy-btn-active" onClick={openNotImplementedModal}>
                     コピー
                 </button>
-                <button className="!daisy-btn-secondary !daisy-btn-active" onClick={()=>{
-                    if (!fetchedData)return
-                    mtx.openModal("will-move");
-                    setTimeout(() => {
-                        mtx.openModal("");
-                        //router.push(fetchedData)
-                        window.open(fetchedData, "_blank")
-                    }, 3000);
-                }}>
+                <button
+                    className="!daisy-btn-secondary !daisy-btn-active"
+                    onClick={() => {
+                        if (!fetchedData) return;
+                        mtx.openModal("will-move");
+                        setTimeout(() => {
+                            mtx.openModal("");
+                            //router.push(fetchedData)
+                            window.open(fetchedData, "_blank");
+                        }, 3000);
+                    }}
+                >
                     テスト
                 </button>
             </div>
@@ -232,7 +246,6 @@ function TatebouModals() {
         </>
     );
 }
-
 
 type History = {
     date: string;
