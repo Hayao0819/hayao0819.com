@@ -8,6 +8,7 @@ import Link from "@/components/elements/Link";
 import { Modal } from "@/components/elements/Modal";
 import { modalContext } from "@/components/elements/ModalContext";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
+//import { useRouter } from "next/router";
 
 const inputAtom = atom<string>("");
 const fetchedAtom = atom<string>("");
@@ -186,6 +187,8 @@ function TestTools() {
     const openNotImplementedModal = () => {
         mtx.openModal("not-implemented");
     };
+    const [fetchedData] = useAtom(fetchedAtom);
+    //const router = useRouter()
     return (
         <div>
             <p>結果をテスト</p>
@@ -193,10 +196,24 @@ function TestTools() {
                 <button className="!daisy-btn-primary !daisy-btn-active" onClick={openNotImplementedModal}>
                     コピー
                 </button>
-                <button className="!daisy-btn-secondary !daisy-btn-active" onClick={openNotImplementedModal}>
+                <button className="!daisy-btn-secondary !daisy-btn-active" onClick={()=>{
+                    if (!fetchedData)return
+                    mtx.openModal("will-move");
+                    setTimeout(() => {
+                        mtx.openModal("");
+                        //router.push(fetchedData)
+                        window.open(fetchedData, "_blank")
+                    }, 3000);
+                }}>
                     テスト
                 </button>
             </div>
+
+            <Modal name="will-move">
+                <p>
+                    3秒後に<code>{fetchedData}</code>に移動します。
+                </p>
+            </Modal>
         </div>
     );
 }
