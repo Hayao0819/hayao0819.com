@@ -50,14 +50,13 @@ export async function getStaticProps(
         slug = slug.join("/");
     }
 
-    const filePathes: string[] = [
-        `diaries/${slug}.mdx`,
-        `diaries/${slug}/index.mdx`,
-        `diaries/${slug}.md`,
-        `diaries/${slug}/index.md`,
-    ];
+    let filePathes: string[] = [`${slug}.mdx`, `${slug}/index.mdx`, `${slug}.md`, `${slug}/index.md`];
     let filePath: string = "";
     //console.log(filePathes);
+
+    filePathes = filePathes.map((p) => {
+        return join(process.cwd(),"diaries", ...p.split("/"));
+    });
 
     // 存在チェック
     for (const file of filePathes) {
@@ -66,7 +65,7 @@ export async function getStaticProps(
             break;
         }
     }
-    filePath = join(process.cwd(), ...filePath.split("/"));
+
     if (!filePath) {
         console.log("Slug: " + slug);
         console.log("Not found: " + filePathes.join(" "));
