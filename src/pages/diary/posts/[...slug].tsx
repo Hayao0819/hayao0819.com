@@ -8,6 +8,7 @@ import { join } from "path";
 import React from "react";
 
 import BlogLayout from "@/components/layouts/Diary/Layout";
+import { DiariesDir } from "@/libs/blog";
 import MarkdownElements from "@/libs/mdx";
 
 export default function PostPage({ source }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -55,7 +56,7 @@ export async function getStaticProps(
     //console.log(filePathes);
 
     filePathes = filePathes.map((p) => {
-        return join(process.cwd(),"diaries", ...p.split("/"));
+        return join(DiariesDir, ...p.split("/"));
     });
 
     // 存在チェック

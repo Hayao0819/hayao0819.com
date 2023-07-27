@@ -1,5 +1,8 @@
 import fs from "fs";
-import path from "path";
+import { serialize } from "next-mdx-remote/serialize";
+import path, { join } from "path";
+
+import { DiaryPreview as DiaryPreviewType } from "@/types/diaries";
 
 export const GetListDirFiles = (dir: string): string[] => {
     return fs
@@ -20,3 +23,41 @@ export const GetListDirFiles = (dir: string): string[] => {
 export const MDXPathToURL = (path: string): string => {
     return path.replace("index.mdx", "").replace("index.md", "").replace(".mdx", "").replace(".md", "").replace("diaries/", "");
 };
+
+export const DiariesDir = join(process.cwd(), "diaries");
+
+export async function getAllPosts() {
+    // get all MDX files
+    const postFilePaths = GetListDirFiles("diaries");
+
+    const diaryPreviews: DiaryPreviewType[] = [];
+
+    // read the frontmatter for each file
+    for (const diaryFilePath of postFilePaths) {
+        const diaryFile = fs.readFileSync(`${diaryFilePath}`, "utf8");
+
+        // serialize the MDX content to a React-compatible format
+        // and parse the frontmatter
+        const serializedPost = await serialize(diaryFile, {
+            parseFrontmatter: true,
+        });
+
+        if ((serializedPost.frontmatter.hide as boolean) || (serializedPost.frontmatter.hide as string) == "true") {
+            continue;
+        }
+        diaryPreviews.push({
+            ...serializedPost.frontmatter,
+            // add the slug to the frontmatter info
+            //slug: diaryFilePath.replace("index.mdx", "").replace(".mdx", "").replace("diaries/", ""),
+            slug: MDXPathToURL(diaryFilePath),
+        } as DiaryPreviewType);
+    }
+
+    return {
+        props: {
+            diaryPreviews: diaryPreviews,
+        },
+        // enable ISR
+        revalidate: 60,
+    };
+}
