@@ -1,12 +1,12 @@
-import { useContext, useRef, useState } from "react";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext, useState } from "react";
 
 import Link from "@/components/elements/Link";
 import { Modal } from "@/components/elements/Modal";
 import { modalContext } from "@/components/elements/ModalContext";
 //import { modalContext, useModal } from "@/components/elements/ModalContext";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 export default function Tatebou() {
     const [fetchedData, setFetchedData] = useState("");

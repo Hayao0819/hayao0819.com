@@ -4,7 +4,7 @@ import NextLink from "next/link";
 import { ReactNode } from "react";
 
 //import TatebouHeader from "./Header";
-import { ModalProvider } from "@/components/elements/ModalContext";
+//import { ModalProvider } from "@/components/elements/ModalContext";
 import Meta from "@/const/tatebou";
 
 import TatebouFooter from "./Footer";

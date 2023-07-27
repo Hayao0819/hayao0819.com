@@ -1,16 +1,17 @@
 //import { useContext } from "react";
 
+import { useContext } from "react";
+
 import { H2, H3 } from "@/components/elements/Headlines";
 import Link from "@/components/elements/Link";
 import { Modal } from "@/components/elements/Modal";
 //import { useModal } from "@/components/elements/ModalContext";
-import { modalContext} from "@/components/elements/ModalContext";
+import { modalContext } from "@/components/elements/ModalContext";
 import ThemeButton from "@/components/elements/ThemeBtn";
 import Layout from "@/components/layouts/Layout";
-import { useContext } from "react";
 
 export default function Test() {
-    const mtx = useContext(modalContext)
+    const mtx = useContext(modalContext);
     return (
         <Layout>
             <H2>砂場</H2>

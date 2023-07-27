@@ -6,8 +6,8 @@ import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 import { ReactNode, useState } from "react";
 
-import MarkdownElements from "@/libs/mdx";
 import { ModalProvider } from "@/components/elements/ModalContext";
+import MarkdownElements from "@/libs/mdx";
 
 /*
 import { H3 } from "@/components/elements/Headlines";
