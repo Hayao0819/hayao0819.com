@@ -1,3 +1,5 @@
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactNode, useContext, useEffect, useState } from "react";
 
 import { modalContext } from "./ModalContext";
@@ -27,8 +29,11 @@ export function Modal({ children, name, title }: { children: ReactNode; name: st
         <>
             <dialog className={"daisy-modal " + modalClass}>
                 <form method="dialog" className="daisy-modal-box">
-                    {titleElement}
-                    {children}
+                    <div className="flex">
+                        <span className="grow">{titleElement}</span>
+                        <FontAwesomeIcon icon={faXmark} onClick={() => mtx.openModal("")} role="button" />
+                    </div>
+                    <div>{children}</div>
                 </form>
                 <form
                     method="dialog"
