@@ -4,7 +4,17 @@ import { ReactNode, useContext, useEffect, useState } from "react";
 
 import { modalContext } from "./ModalContext";
 
-export function Modal({ children, name, title }: { children: ReactNode; name: string; title?: string }) {
+export function Modal({
+    children,
+    name,
+    title,
+    backdrop,
+}: {
+    children: ReactNode;
+    name: string;
+    title?: string;
+    backdrop?: boolean;
+}) {
     const [modalClass, setModalClass] = useState("");
     const mtx = useContext(modalContext);
     useEffect(() => {
@@ -39,7 +49,9 @@ export function Modal({ children, name, title }: { children: ReactNode; name: st
                     method="dialog"
                     className="daisy-modal-backdrop"
                     onClick={() => {
-                        mtx.openModal("");
+                        if (backdrop != false) {
+                            mtx.openModal("");
+                        }
                     }}
                 >
                     <button>close</button>

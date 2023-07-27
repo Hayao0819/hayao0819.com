@@ -1,17 +1,17 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { atom, useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 import React, { ReactNode, useContext } from "react";
 
 import Link from "@/components/elements/Link";
 import { Modal } from "@/components/elements/Modal";
 import { modalContext } from "@/components/elements/ModalContext";
-//import { modalContext, useModal } from "@/components/elements/ModalContext";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
 
 const inputAtom = atom<string>("");
 const fetchedAtom = atom<string>("");
-const historyAtom = atom<History[]>([]);
+const historyAtom = atomWithStorage<History[]>("history", []);
 const alertAtom = atom<{ className: string; text: string }>({
     className: "hidden",
     text: "",
@@ -42,11 +42,6 @@ export default function Tatebou() {
     );
 }
 
-type History = {
-    date: Date;
-    original: string;
-    short: string;
-};
 
 function Intro() {
     return (
@@ -105,7 +100,7 @@ function ActionBtns() {
                     appendHistory({
                         original: url,
                         short: xhr.responseText,
-                        date: new Date(),
+                        date: new Date().toISOString(),
                     });
                     return;
                 }
@@ -210,7 +205,7 @@ function TatebouModals() {
     const [currentHistories] = useAtom(historyAtom);
     return (
         <>
-            <Modal name="not-implemented" title="未実装">
+            <Modal name="not-implemented" title="未実装" backdrop={false}>
                 <p>ごめんね、まだ実装していないんだ</p>
             </Modal>
 
@@ -220,6 +215,13 @@ function TatebouModals() {
         </>
     );
 }
+
+
+type History = {
+    date: string;
+    original: string;
+    short: string;
+};
 
 function HistoryTable({ histories }: { histories: History[] }): ReactNode {
     return (
@@ -234,7 +236,7 @@ function HistoryTable({ histories }: { histories: History[] }): ReactNode {
 
             <tbody className="">
                 {histories.map((h) => {
-                    return <HistoryItem history={h} key={h.date.getTime()} />;
+                    return <HistoryItem history={h} key={new Date(h.date).getTime()} />;
                 })}
             </tbody>
         </table>
@@ -251,7 +253,7 @@ function HistoryItem({ history }: { history: History }) {
             <td>
                 <Link href={history.short}>{history.short}</Link>
             </td>
-            <td>{history.date.toLocaleDateString()}</td>
+            <td>{new Date(history.date).toLocaleDateString()}</td>
         </tr>
     );
 }
