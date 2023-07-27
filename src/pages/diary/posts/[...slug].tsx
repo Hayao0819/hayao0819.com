@@ -9,6 +9,8 @@ import React from "react";
 import BlogLayout from "@/components/layouts/Diary/Layout";
 import MarkdownElements from "@/libs/mdx";
 
+export const dynamic = "force-dynamic";
+
 export default function PostPage({ source }: InferGetStaticPropsType<typeof getStaticProps>) {
     const AdditionalElements = {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
