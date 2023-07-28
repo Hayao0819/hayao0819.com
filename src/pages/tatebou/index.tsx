@@ -8,7 +8,8 @@ import Link from "@/components/elements/Link";
 import { Modal } from "@/components/elements/Modal";
 import { modalContext } from "@/components/elements/ModalContext";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
-//import { useRouter } from "next/router";
+
+import History from "../history";
 
 const inputAtom = atom<string>("");
 const fetchedAtom = atom<string>("");
@@ -82,49 +83,100 @@ function OriginalURLInput() {
 }
 
 function ActionBtns() {
+    return (
+        <div className="flex gap-2 child:daisy-btn-sm child:daisy-btn  child:!text-white">
+            <CreateBtn />
+            <HistoryBtn />
+            <ResetBtn />
+        </div>
+    );
+}
+
+function HistoryBtn() {
     const mtx = useContext(modalContext);
+    return (
+        <button className="!daisy-btn-neutral !daisy-btn-active" onClick={() => mtx.openModal("history-modal")}>
+            履歴
+        </button>
+    );
+}
+
+function ResetBtn() {
+    const [, setInputURL] = useAtom(inputAtom);
+    return (
+        <button
+            className="!daisy-btn-error !daisy-btn-active"
+            onClick={() => {
+                setInputURL("");
+            }}
+        >
+            クリア
+        </button>
+    );
+}
+
+function CreateBtn() {
+    // インプット
     const [, setFetchedData] = useAtom(fetchedAtom);
-    const [inputURL, setInputURL] = useAtom(inputAtom);
+    const [inputURL] = useAtom(inputAtom);
+
+    // Components
     const { openAlert } = useAlert();
+
+    // 履歴
+    const [currentHistories, SetCurrentHistories] = useAtom(historyAtom);
+    const appendHistory = (newHistory: History) => {
+        let newArray = [...currentHistories, newHistory];
+        if (
+            // 現在の履歴と新しい項目でoriginalが一致する場合
+            currentHistories
+                .map<string>((h) => {
+                    return h.original;
+                })
+                .includes(newHistory.original)
+        ) {
+            // 古い履歴を削除して新しい項目を作成
+            newArray = [
+                ...newArray.filter((h) => {
+                    return h.original != newHistory.original;
+                }),
+                newHistory,
+            ];
+        }
+
+        SetCurrentHistories(newArray);
+        localStorage.setItem("history", JSON.stringify(newArray));
+    };
+
     const SendPOSTToTatebou = () => {
         const runRequest = (url: string) => {
-            /*
             fetch("https://1lil.li/p/", {
                 method: "POST",
-                body: `l=${url}`,
-            }).then((response) => {
-                if (!response.ok) return;
-                return response.text().then((text) => {
-                    setFetchedData(text);
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ l: url }),
+            })
+                .then((res) => {
+                    if (!res.ok) {
+                        res.text().then((text) => {
+                            console.log("APIエラー");
+                            openAlert(text);
+                        });
+                    } else {
+                        res.text().then((text) => {
+                            setFetchedData(text);
+                            appendHistory({
+                                original: url,
+                                short: text,
+                                date: new Date().toISOString(),
+                            });
+                        });
+                    }
+                })
+                .catch((err) => {
+                    openAlert(err);
                 });
-            });
-            */
-
-            
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", `https://1lil.li/p/`, true);
-            xhr.onreadystatechange = function () {
-                //console.log(xhr.status)
-                if (xhr.readyState === 4 && xhr.status === 201) {
-                    //output.value = xhr.responseText;
-                    setFetchedData(xhr.responseText);
-                    //history.add(new Date().toLocaleString(), inputURL, xhr.responseText);
-                    appendHistory({
-                        original: url,
-                        short: xhr.responseText,
-                        date: new Date().toISOString(),
-                    });
-                    return;
-                }
-
-                if (xhr.readyState === 4 && xhr.status === 400) {
-                    //this.showAlert("正しいURLを入力してください");
-                    console.log("何かがだめみたいです");
-                    return;
-                }
-            };
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send(`l=${url}`);
         };
 
         if (inputURL) {
@@ -134,30 +186,10 @@ function ActionBtns() {
         }
     };
 
-    const [currentHistories, SetCurrentHistories] = useAtom(historyAtom);
-    const appendHistory = (h: History) => {
-        const newArray = [...currentHistories, h];
-        SetCurrentHistories(newArray);
-        localStorage.setItem("history", JSON.stringify(newArray));
-    };
-
     return (
-        <div className="flex gap-2 child:daisy-btn-sm child:daisy-btn  child:!text-white">
-            <button className="!daisy-btn-info !daisy-btn-active" onClick={SendPOSTToTatebou}>
-                作成
-            </button>
-            <button className="!daisy-btn-neutral !daisy-btn-active" onClick={() => mtx.openModal("history-modal")}>
-                履歴
-            </button>
-            <button
-                className="!daisy-btn-error !daisy-btn-active"
-                onClick={() => {
-                    setInputURL("");
-                }}
-            >
-                クリア
-            </button>
-        </div>
+        <button className="!daisy-btn-info !daisy-btn-active" onClick={SendPOSTToTatebou}>
+            作成
+        </button>
     );
 }
 
