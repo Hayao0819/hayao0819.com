@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 import { ReactNode, useState } from "react";
 
+import { ModalProvider } from "@/components/elements/ModalContext";
 import MarkdownElements from "@/libs/mdx";
 
 /*
@@ -26,10 +27,12 @@ export function MDX({ children }: { children: ReactNode }) {
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <ThemeProvider attribute="class" defaultTheme="light">
-            <MDX>
-                <Component {...pageProps} />
-            </MDX>
-        </ThemeProvider>
+        <ModalProvider>
+            <ThemeProvider attribute="class" defaultTheme="light">
+                <MDX>
+                    <Component {...pageProps} />
+                </MDX>
+            </ThemeProvider>
+        </ModalProvider>
     );
 }

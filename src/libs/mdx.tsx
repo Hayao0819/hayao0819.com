@@ -2,7 +2,7 @@ import { H2, H3 } from "@/components/elements/Headlines";
 //import { BlogTitle, H2 } from "@/components/elements/Headlines/H2";
 import Link from "@/components/elements/Link";
 
-export default function MarkdownElements(){
+export default function MarkdownElements() {
     return {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         h2: (props: any) => {

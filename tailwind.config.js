@@ -17,6 +17,7 @@ module.exports = {
     plugins: [
         require("daisyui"),
         require("tailwindcss-textshadow"),
+        require("@tailwindcss/typography"),
         function ({ addVariant }) {
             addVariant("child", "& > *");
         },

@@ -1,9 +1,17 @@
+//import { useContext } from "react";
+
+import { useContext } from "react";
+
 import { H2, H3 } from "@/components/elements/Headlines";
 import Link from "@/components/elements/Link";
+import { Modal } from "@/components/elements/Modal";
+//import { useModal } from "@/components/elements/ModalContext";
+import { modalContext } from "@/components/elements/ModalContext";
 import ThemeButton from "@/components/elements/ThemeBtn";
 import Layout from "@/components/layouts/Layout";
 
 export default function Test() {
+    const mtx = useContext(modalContext);
     return (
         <Layout>
             <H2>砂場</H2>
@@ -22,6 +30,20 @@ export default function Test() {
             <p>
                 <Link href="/diary/categories">カテゴリ一覧</Link>を実装してみました。
             </p>
+
+            <H3>Modal Test</H3>
+            <p>自前のモーダルコンポーネントの使い方</p>
+            <button
+                className="daisy-btn"
+                onClick={() => {
+                    mtx.openModal("test-modal");
+                }}
+            >
+                開く
+            </button>
+            <Modal name="test-modal" title="モーダル">
+                <p>ほげほげー</p>
+            </Modal>
         </Layout>
     );
 }
