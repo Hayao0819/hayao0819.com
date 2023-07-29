@@ -263,6 +263,9 @@ function TestTools() {
     };*/
     const [fetchedData] = useAtom(fetchedAtom);
     const { openAlert } = useAlert();
+    const plzMakeURL = () => {
+        openAlert("まず短縮URLを作成してください");
+    };
     return (
         <div>
             <p>結果をテスト</p>
@@ -270,6 +273,10 @@ function TestTools() {
                 <button
                     className="!daisy-btn-primary !daisy-btn-active"
                     onClick={() => {
+                        if (!fetchedData) {
+                            plzMakeURL();
+                            return;
+                        }
                         navigator.clipboard.writeText(fetchedData);
                         openAlert("クリップボードにコピーしました", "Success");
                     }}
@@ -280,7 +287,7 @@ function TestTools() {
                     className="!daisy-btn-secondary !daisy-btn-active"
                     onClick={() => {
                         if (!fetchedData) {
-                            openAlert("URLを入力してください");
+                            plzMakeURL();
                             return;
                         }
                         mtx.openModal("will-move");
@@ -289,6 +296,7 @@ function TestTools() {
                             //router.push(fetchedData)
                             window.open(fetchedData, "_blank");
                         }, 3000);
+                        openAlert("作成されたリンクに移動しました", "Success");
                     }}
                 >
                     テスト
