@@ -231,7 +231,7 @@ function TestTools() {
         mtx.openModal("not-implemented");
     };
     const [fetchedData] = useAtom(fetchedAtom);
-    //const router = useRouter()
+    const {openAlert}=useAlert()
     return (
         <div>
             <p>結果をテスト</p>
@@ -242,7 +242,10 @@ function TestTools() {
                 <button
                     className="!daisy-btn-secondary !daisy-btn-active"
                     onClick={() => {
-                        if (!fetchedData) return;
+                        if (!fetchedData) {
+                            openAlert("URLを入力してください");
+                            return
+                        };
                         mtx.openModal("will-move");
                         setTimeout(() => {
                             mtx.openModal("");
@@ -268,7 +271,7 @@ function TatebouModals() {
     const [currentHistories] = useAtom(historyAtom);
     return (
         <>
-            <Modal name="not-implemented" title="未実装" backdrop={false}>
+            <Modal name="not-implemented" title="未実装" backdrop>
                 <p>ごめんね、まだ実装していないんだ</p>
             </Modal>
 
