@@ -41,7 +41,7 @@ export function Modal({
                 <form method="dialog" className="daisy-modal-box min-w-fit">
                     <div className="flex">
                         <span className="grow">{titleElement}</span>
-                        <FontAwesomeIcon icon={faXmark} onClick={() => mtx.openModal("")} role="button" />
+                        <FontAwesomeIcon icon={faXmark} onClick={mtx.closeModal} role="button" />
                     </div>
                     <div>{children}</div>
                 </form>
@@ -50,7 +50,7 @@ export function Modal({
                     className="daisy-modal-backdrop"
                     onClick={() => {
                         if (backdrop != false) {
-                            mtx.openModal("");
+                            mtx.closeModal();
                         }
                     }}
                 >
