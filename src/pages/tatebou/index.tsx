@@ -220,7 +220,7 @@ function Result() {
 
 function Alert(): React.ReactNode {
     const { alertInfo, closeAlert } = useAlert();
-    const [alertClass, setAlertClass] = useState("bg-red-200");
+    const [alertClass, setAlertClass] = useState("hidden");
     useEffect(() => {
         if (alertInfo.isHidden) {
             setAlertClass("hidden");
