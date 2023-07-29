@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import Link from "@/components/elements/Link";
 import { Modal } from "@/components/elements/Modal";
 import { modalContext } from "@/components/elements/ModalContext";
-import Alert, { useAlert } from "@/components/layouts/Alert";
+import Alert, { useAlert } from "@/components/elements/Alert";
 import { historyAtom, HistoryTable } from "@/components/layouts/Tatebou/History";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
 
