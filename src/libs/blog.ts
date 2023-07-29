@@ -26,15 +26,15 @@ export const MDXPathToURL = (path: string): string => {
 
 export const DiariesDir = join(process.cwd(), "diaries");
 
-export const serializeMarkdown = async (path: fs.PathOrFileDescriptor)=>{
-        const diaryFile = fs.readFileSync(path, "utf8");
+export const serializeMarkdown = async (path: fs.PathOrFileDescriptor) => {
+    const diaryFile = fs.readFileSync(path, "utf8");
 
-        // serialize the MDX content to a React-compatible format
-        // and parse the frontmatter
-        return await serialize(diaryFile, {
-            parseFrontmatter: true,
-        });
-}
+    // serialize the MDX content to a React-compatible format
+    // and parse the frontmatter
+    return await serialize(diaryFile, {
+        parseFrontmatter: true,
+    });
+};
 
 export async function getAllPosts() {
     // get all MDX files
@@ -44,7 +44,7 @@ export async function getAllPosts() {
 
     // read the frontmatter for each file
     for (const diaryFilePath of postFilePaths) {
-        const serializedPost = await serializeMarkdown(diaryFilePath)
+        const serializedPost = await serializeMarkdown(diaryFilePath);
 
         if ((serializedPost.frontmatter.hide as boolean) || (serializedPost.frontmatter.hide as string) == "true") {
             continue;

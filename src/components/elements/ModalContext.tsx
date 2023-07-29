@@ -3,14 +3,14 @@ import { createContext, ReactNode, useState } from "react";
 type ModalContext = {
     currentModal: string;
     openModal: (modalID: string) => void;
-    closeModal: ()=>void
+    closeModal: () => void;
 };
 
 // global context to share current modal
 export const modalContext = createContext<ModalContext>({
     currentModal: "",
     openModal: () => {},
-    closeModal:()=>{}
+    closeModal: () => {},
 });
 
 // custom hook for modalContext
@@ -19,13 +19,13 @@ export function useModal(): ModalContext {
     const openModal = (name: string) => {
         changeCurrentModal(name);
     };
-    const closeModal = ()=>{
-        changeCurrentModal("")
-    }
+    const closeModal = () => {
+        changeCurrentModal("");
+    };
     return {
         currentModal,
         openModal,
-        closeModal
+        closeModal,
     };
 }
 
