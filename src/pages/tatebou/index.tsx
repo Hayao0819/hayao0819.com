@@ -1,41 +1,15 @@
-import { faClose } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { atom, useAtom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
-import React, { ReactNode, useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 import Link from "@/components/elements/Link";
 import { Modal } from "@/components/elements/Modal";
 import { modalContext } from "@/components/elements/ModalContext";
+import Alert, { useAlert } from "@/components/layouts/Alert";
+import { historyAtom, HistoryTable } from "@/components/layouts/Tatebou/History";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
-
-import History from "../history";
 
 const inputAtom = atom<string>("");
 const fetchedAtom = atom<string>("");
-const historyAtom = atomWithStorage<History[]>("history", []);
-const alertAtom = atom<{ isHidden: boolean; text: string; type: AlertType }>({
-    isHidden: true,
-    text: "",
-    type: "None",
-});
-
-type AlertType = "Info" | "Success" | "Warn" | "Error" | "None";
-
-const useAlert = () => {
-    const [alertInfo, setAlertInfo] = useAtom(alertAtom);
-    const openAlert = (text: string, type?: AlertType) => {
-        if (type) {
-            setAlertInfo({ text: text, isHidden: false, type: type });
-        } else {
-            setAlertInfo({ text: text, isHidden: false, type: "Error" });
-        }
-    };
-    const closeAlert = () => {
-        setAlertInfo({ ...alertInfo, isHidden: true, type: "None" });
-    };
-    return { openAlert, closeAlert, alertInfo };
-};
 
 export default function Tatebou() {
     return (
@@ -131,29 +105,7 @@ function CreateBtn() {
     const { openAlert } = useAlert();
 
     // 履歴
-    const [currentHistories, SetCurrentHistories] = useAtom(historyAtom);
-    const appendHistory = (newHistory: History) => {
-        let newArray = [...currentHistories, newHistory];
-        if (
-            // 現在の履歴と新しい項目でoriginalが一致する場合
-            currentHistories
-                .map<string>((h) => {
-                    return h.original;
-                })
-                .includes(newHistory.original)
-        ) {
-            // 古い履歴を削除して新しい項目を作成
-            newArray = [
-                ...newArray.filter((h) => {
-                    return h.original != newHistory.original;
-                }),
-                newHistory,
-            ];
-        }
-
-        SetCurrentHistories(newArray);
-        localStorage.setItem("history", JSON.stringify(newArray));
-    };
+    const [currentHistories] = useAtom(historyAtom);
 
     const SendPOSTToTatebou = () => {
         const runRequest = (url: string) => {
@@ -173,7 +125,7 @@ function CreateBtn() {
                     } else {
                         res.text().then((text) => {
                             setFetchedData(text);
-                            appendHistory({
+                            currentHistories.appendHistory({
                                 original: url,
                                 short: text,
                                 date: new Date().toISOString(),
@@ -214,44 +166,6 @@ function Result() {
                 className="daisy-input-bordered daisy-input w-full"
                 readOnly
             />
-        </div>
-    );
-}
-
-function Alert(): React.ReactNode {
-    const { alertInfo, closeAlert } = useAlert();
-    const [alertClass, setAlertClass] = useState("hidden");
-    useEffect(() => {
-        if (alertInfo.isHidden) {
-            setAlertClass("hidden");
-        } else {
-            console.log(alertInfo.type);
-            switch (alertInfo.type) {
-                case "Error":
-                    setAlertClass("bg-red-200");
-                    break;
-                case "Info":
-                    setAlertClass("bg-sky-200");
-                    break;
-                case "Warn":
-                    setAlertClass("bg-yellow-200");
-                    break;
-                case "Success":
-                    setAlertClass("bg-green-200");
-                    break;
-                case "None":
-                    setAlertClass("bg-slate-200");
-                    break;
-            }
-        }
-    }, [alertInfo.isHidden, alertInfo.type]);
-    return (
-        <div className={"m-2 flex rounded-md p-2 " + alertClass}>
-            <div className="grow">{alertInfo.text}</div>
-
-            <div onClick={closeAlert} role="button" className="mx-2">
-                <FontAwesomeIcon icon={faClose} />
-            </div>
         </div>
     );
 }
@@ -313,7 +227,6 @@ function TestTools() {
 }
 
 function TatebouModals() {
-    const [currentHistories] = useAtom(historyAtom);
     return (
         <>
             <Modal name="not-implemented" title="未実装" backdrop>
@@ -321,49 +234,8 @@ function TatebouModals() {
             </Modal>
 
             <Modal name="history-modal" title="履歴">
-                <HistoryTable histories={currentHistories} />
+                <HistoryTable />
             </Modal>
         </>
-    );
-}
-
-type History = {
-    date: string;
-    original: string;
-    short: string;
-};
-
-function HistoryTable({ histories }: { histories: History[] }): ReactNode {
-    return (
-        <table>
-            <thead className={histories.length == 0 ? "hidden" : ""}>
-                <tr>
-                    <th>元URL</th>
-                    <th>短縮URL</th>
-                    <th>作成日時</th>
-                </tr>
-            </thead>
-
-            <tbody className="">
-                {histories.map((h) => {
-                    return <HistoryItem history={h} key={new Date(h.date).getTime()} />;
-                })}
-            </tbody>
-        </table>
-    );
-}
-
-function HistoryItem({ history }: { history: History }) {
-    if (!history) return <></>;
-    return (
-        <tr className="child:px-3">
-            <td>
-                <Link href={history.original}>{history!.original}</Link>
-            </td>
-            <td>
-                <Link href={history.short}>{history.short}</Link>
-            </td>
-            <td>{new Date(history.date).toLocaleDateString()}</td>
-        </tr>
     );
 }
