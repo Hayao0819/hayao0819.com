@@ -2,7 +2,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { atom, useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
-import React, { ReactNode, useContext } from "react";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 
 import Link from "@/components/elements/Link";
 import { Modal } from "@/components/elements/Modal";
@@ -14,18 +14,25 @@ import History from "../history";
 const inputAtom = atom<string>("");
 const fetchedAtom = atom<string>("");
 const historyAtom = atomWithStorage<History[]>("history", []);
-const alertAtom = atom<{ className: string; text: string }>({
-    className: "hidden",
+const alertAtom = atom<{ isHidden: boolean; text: string; type: AlertType }>({
+    isHidden: true,
     text: "",
+    type: "None",
 });
+
+type AlertType = "Info" | "Success" | "Warn" | "Error" | "None";
 
 const useAlert = () => {
     const [alertInfo, setAlertInfo] = useAtom(alertAtom);
-    const openAlert = (text: string) => {
-        setAlertInfo({ text: text, className: "" });
+    const openAlert = (text: string, type?: AlertType) => {
+        if (type) {
+            setAlertInfo({ text: text, isHidden: false, type: type });
+        } else {
+            setAlertInfo({ text: text, isHidden: false, type: "Error" });
+        }
     };
     const closeAlert = () => {
-        setAlertInfo({ ...alertInfo, className: "hidden" });
+        setAlertInfo({ ...alertInfo, isHidden: true, type: "None" });
     };
     return { openAlert, closeAlert, alertInfo };
 };
@@ -161,7 +168,7 @@ function CreateBtn() {
                     if (!res.ok) {
                         res.text().then((text) => {
                             console.log("APIエラー");
-                            openAlert(text);
+                            openAlert(text, "Error");
                         });
                     } else {
                         res.text().then((text) => {
@@ -175,7 +182,7 @@ function CreateBtn() {
                     }
                 })
                 .catch((err) => {
-                    openAlert(err);
+                    openAlert(err, "Error");
                 });
         };
 
@@ -213,9 +220,33 @@ function Result() {
 
 function Alert(): React.ReactNode {
     const { alertInfo, closeAlert } = useAlert();
-
+    const [alertClass, setAlertClass] = useState("bg-red-200");
+    useEffect(() => {
+        if (alertInfo.isHidden) {
+            setAlertClass("hidden");
+        } else {
+            console.log(alertInfo.type);
+            switch (alertInfo.type) {
+                case "Error":
+                    setAlertClass("bg-red-200");
+                    break;
+                case "Info":
+                    setAlertClass("bg-sky-200");
+                    break;
+                case "Warn":
+                    setAlertClass("bg-yellow-200");
+                    break;
+                case "Success":
+                    setAlertClass("bg-green-200");
+                    break;
+                case "None":
+                    setAlertClass("bg-slate-200");
+                    break;
+            }
+        }
+    }, [alertInfo.isHidden, alertInfo.type]);
     return (
-        <div className={"m-2 flex rounded-md bg-red-200 p-2 " + alertInfo.className}>
+        <div className={"m-2 flex rounded-md p-2 " + alertClass}>
             <div className="grow">{alertInfo.text}</div>
 
             <div onClick={closeAlert} role="button" className="mx-2">
@@ -227,16 +258,22 @@ function Alert(): React.ReactNode {
 
 function TestTools() {
     const mtx = useContext(modalContext);
-    const openNotImplementedModal = () => {
+    /*const openNotImplementedModal = () => {
         mtx.openModal("not-implemented");
-    };
+    };*/
     const [fetchedData] = useAtom(fetchedAtom);
-    const {openAlert}=useAlert()
+    const { openAlert } = useAlert();
     return (
         <div>
             <p>結果をテスト</p>
             <div className="flex gap-2 child:daisy-btn-sm child:daisy-btn  child:!text-white">
-                <button className="!daisy-btn-primary !daisy-btn-active" onClick={openNotImplementedModal}>
+                <button
+                    className="!daisy-btn-primary !daisy-btn-active"
+                    onClick={() => {
+                        navigator.clipboard.writeText(fetchedData);
+                        openAlert("クリップボードにコピーしました", "Success");
+                    }}
+                >
                     コピー
                 </button>
                 <button
@@ -244,11 +281,11 @@ function TestTools() {
                     onClick={() => {
                         if (!fetchedData) {
                             openAlert("URLを入力してください");
-                            return
-                        };
+                            return;
+                        }
                         mtx.openModal("will-move");
                         setTimeout(() => {
-                            mtx.openModal("");
+                            mtx.closeModal();
                             //router.push(fetchedData)
                             window.open(fetchedData, "_blank");
                         }, 3000);
