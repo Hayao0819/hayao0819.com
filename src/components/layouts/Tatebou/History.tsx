@@ -42,9 +42,12 @@ export const historyAtom = atomWithStorage<Histories>("history", new Histories()
 
 export const HistoryTable = () => {
     const [currentHistories] = useAtom(historyAtom);
+    if (!currentHistories.list){
+        currentHistories.list=[]
+    }
     return (
         <table>
-            <thead className={currentHistories.list.length == 0 ? "hidden" : ""}>
+            <thead className={(currentHistories.list.length) == 0 ? "hidden" : ""}>
                 <tr>
                     <th>元URL</th>
                     <th>短縮URL</th>

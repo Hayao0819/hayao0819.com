@@ -67,8 +67,6 @@ export async function getStaticProps(
     }
 
     if (!filePath) {
-        console.log("Slug: " + slug);
-        console.log("Not found: " + filePathes.join(" "));
         return {
             notFound: true,
         };

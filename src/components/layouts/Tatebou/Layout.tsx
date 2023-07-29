@@ -3,16 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NextLink from "next/link";
 import { ReactNode } from "react";
 
-//import TatebouHeader from "./Header";
-//import { ModalProvider } from "@/components/elements/ModalContext";
 import Meta from "@/const/tatebou";
 
 import Head from "../Head";
 import TatebouFooter from "./Footer";
 
 export default function TatebouLayout({ children }: { children: ReactNode }) {
-    //const mtx = useModal();
-    //console.log(mtx.openModal)
+
     return (
         <>
             <Head title="迫真縦棒短縮URL" description="縦な短縮URLを作成するサービスです" />

@@ -18,7 +18,6 @@ export function Modal({
     const [modalClass, setModalClass] = useState("");
     const mtx = useContext(modalContext);
     useEffect(() => {
-        console.log(mtx.currentModal);
         if (name == mtx.currentModal) {
             setModalClass("daisy-modal-open");
         } else {
