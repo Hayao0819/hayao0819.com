@@ -13,20 +13,12 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
     // よくわからないけどここでstateを使うといい感じにリンクがクリックされたときにメニューが閉じる
-    const [isDrawerOpened] = useState(false);
-    const SwitchSidebarCheckbox = () => {
-        if (isDrawerOpened) {
-            return <input id="sidebar" type="checkbox" className="daisy-drawer-toggle" checked />;
-        } else {
-            return <input id="sidebar" type="checkbox" className="daisy-drawer-toggle" />;
-        }
-    };
-
+    const [isDrawerOpened, changeDrawerOpened] = useState(false);
     return (
         <BaseColor>
             <div className="flex min-h-screen flex-col">
                 <div className="daisy-drawer sm:daisy-drawer-open">
-                    <SwitchSidebarCheckbox />
+                    <input id="sidebar" type="checkbox" className="daisy-drawer-toggle" checked={isDrawerOpened} onClick={()=>changeDrawerOpened(!isDrawerOpened)} readOnly />
                     <DrawerContents>{children}</DrawerContents>
                     <DrawerSide />
                 </div>
