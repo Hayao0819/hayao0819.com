@@ -3,13 +3,13 @@ import { atomWithStorage } from "jotai/utils";
 
 import Link from "@/components/elements/Link";
 
-export type History = {
+type History = {
     date: string;
     original: string;
     short: string;
 };
 
-export class Histories {
+class Histories {
     list: History[];
     constructor() {
         this.list = [];
@@ -61,7 +61,7 @@ export const HistoryTable = () => {
     );
 };
 
-export function HistoryItem({ history }: { history: History }) {
+function HistoryItem({ history }: { history: History }) {
     if (!history) return <></>;
     return (
         <tr className="child:px-3">
