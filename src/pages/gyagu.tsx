@@ -10,13 +10,13 @@ export default function GyaguPage() {
             <Title title="ギャグ" />
             <H2>ギャグ</H2>
             <p>ギャグが不足しています。助けてください。</p>
-            <div className="pt-2">
+            <div className="m-4 pt-2">
                 <GyaguList />
             </div>
 
             <H3>ギャグが足りない人へ</H3>
             <p>友達のサイトもうるサイトwww</p>
-            <ul className="list-disc">
+            <ul className="">
                 <li>
                     <Link href="https://sunset0916.net/gyagu/">サンセットのウェブサイト</Link>
                 </li>

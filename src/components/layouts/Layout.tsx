@@ -17,7 +17,7 @@ export function Layout({ children }: LayoutProps) {
     return (
         <BaseColor>
             <div className="flex min-h-screen flex-col">
-                <div className="daisy-drawer sm:daisy-drawer-open">
+                <div className="daisy-drawer md:daisy-drawer-open">
                     <input id="sidebar" type="checkbox" className="daisy-drawer-toggle" checked={isDrawerOpened} onClick={()=>changeDrawerOpened(!isDrawerOpened)} readOnly />
                     <DrawerContents>{children}</DrawerContents>
                     <DrawerSide />
