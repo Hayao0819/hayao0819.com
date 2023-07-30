@@ -7,6 +7,7 @@ import { Modal } from "@/components/elements/Modal";
 import { modalContext } from "@/components/elements/ModalContext";
 import { historyAtom, HistoryTable } from "@/components/layouts/Tatebou/History";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
+import { formatURL } from "@/libs/tatebou";
 
 const inputAtom = atom<string>("");
 const fetchedAtom = atom<string>("");
@@ -99,7 +100,7 @@ function ResetBtn() {
 function CreateBtn() {
     // インプット
     const [, setFetchedData] = useAtom(fetchedAtom);
-    const [inputURL] = useAtom(inputAtom);
+    const [inputURL, setInputURL] = useAtom(inputAtom);
 
     // Components
     const { openAlert } = useAlert();
@@ -139,7 +140,9 @@ function CreateBtn() {
         };
 
         if (inputURL) {
-            runRequest(inputURL);
+            const url = formatURL(inputURL)
+            setInputURL(url)
+            runRequest(url);
         } else {
             openAlert("URLを入力してください");
         }
@@ -209,8 +212,9 @@ function TestTools() {
                             mtx.closeModal();
                             //router.push(fetchedData)
                             window.open(fetchedData, "_blank");
+                            openAlert("作成されたリンクに移動しました", "Success");
                         }, 3000);
-                        openAlert("作成されたリンクに移動しました", "Success");
+                        
                     }}
                 >
                     テスト
