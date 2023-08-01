@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { JSX, ReactNode, useEffect, useState } from "react";
 
+//import { bgColorClass } from "../BaseColor";
 import { useCurrentURL } from "./util";
 //import { removeHashFlag } from "@/libs/hashflag";
 
@@ -27,7 +28,8 @@ export function Item({ link, children, icon }: ItemProp): ReactNode {
 
     useEffect(() => {
         if (isCurrent || isHovered) {
-            setClass("neumo-sink");
+            //setClass("neumo-sink");
+            setClass("text-base-100 bg-primary rounded-r-full ");
         } else {
             //setClass("neumo-float");
             setClass("");
@@ -35,12 +37,10 @@ export function Item({ link, children, icon }: ItemProp): ReactNode {
     }, [isHovered, isCurrent]);
 
     return (
-        <li className="select-none">
+        <li className={"select-none  " + classState}>
             <Link
                 href={link}
-                className={
-                    "m-4 flex  items-center gap-0 rounded-lg !bg-transparent px-4 py-4 text-sm dark:text-white " + classState
-                }
+                className="flex items-center gap-0 rounded-lg !bg-transparent p-0 text-sm dark:text-white "
                 onMouseOver={() => {
                     setHover(true);
                 }}

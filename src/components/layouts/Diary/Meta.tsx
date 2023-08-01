@@ -12,7 +12,7 @@ export default function BlogMeta({ source }: { source: MDXRemoteSerializeResult 
     }
 
     return (
-        <div className="neumo-float m-2 mx-auto w-full p-2 md:w-2/3">
+        <div className="m-2 mx-auto w-full p-2 md:w-2/3">
             <ul className="flex child:mx-1">
                 {/* 日付 */}
                 {isNaN(date.getDate()) ? (

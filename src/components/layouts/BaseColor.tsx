@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 
+export const bgColorClass = " bg-base-100"
+
 export default function BaseColor({ children }: { children: ReactNode }) {
-    return <div className="dark:bg-dark bg-slate-100 dark:text-slate-100">{children}</div>;
+    return <div className={"dark:text-slate-100 "+bgColorClass}>{children}</div>;
 }
