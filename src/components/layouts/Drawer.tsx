@@ -15,7 +15,7 @@ export default function DrawerSide() {
                 <BaseColor>
                     <ul className="daisy-menu min-h-full w-64  p-4">
                         {/* スマホ用の閉じるボタン */}
-                        <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn sm:hidden">
+                        <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn md:hidden">
                             <FontAwesomeIcon icon={faXmark} size="xl" />
                         </label>
 

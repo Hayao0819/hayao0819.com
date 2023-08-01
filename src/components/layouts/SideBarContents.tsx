@@ -1,7 +1,5 @@
-import { faFaceSmile, faHouse, faKitchenSet, faOtter } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faFaceSmile, faHouse, faKitchenSet, faOtter } from "@fortawesome/free-solid-svg-icons";
 
-//import { faBook } from "@fortawesome/free-solid-svg-icons";
-//import { faContactCard, faMessage } from "@fortawesome/free-solid-svg-icons";
 import { Item as MenuItem } from "./Menu";
 import { ItemGroup as MenuItemGroup } from "./Menu";
 
@@ -24,13 +22,12 @@ export function SidebarContents() {
                 Gyagu
             </MenuItem>
 
-            {/*<MenuItemGroup title="Diary">
+            <MenuItemGroup title="Diary">
                 <MenuItem link="/diary/posts" icon={faBook}>
                     Articles
                 </MenuItem>
                 <MenuItem link="/diary/categories">Categories</MenuItem>
             </MenuItemGroup>
-    */}
             {/*<MenuItem link="/contact" icon={faContactCard}>
                 Contact
     </MenuItem>*/}
