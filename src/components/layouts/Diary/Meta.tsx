@@ -19,14 +19,14 @@ export default function BlogMeta({ source }: { source: MDXRemoteSerializeResult 
                     <></>
                 ) : (
                     <li>
-                        Date: {date.getFullYear()}/{date.getMonth()}/{date.getDay()}
+                        投稿日時: {date.getFullYear()}/{date.getMonth()}/{date.getDay()}
                     </li>
                 )}
 
                 {/* カテゴリ */}
                 {
                     <li className="flex">
-                        Categories: {}
+                        カテゴリー: {}
                         <ul className="flex child:ml-2">
                             {categories.map((c) => {
                                 return (
