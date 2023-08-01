@@ -14,11 +14,23 @@ export default function MarkdownElements() {
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         a: (props: any) => {
-            return <Link href={props.href} newtab={true}>{props.children}</Link>;
+            return (
+                <Link href={props.href} newtab={true}>
+                    {props.children}
+                </Link>
+            );
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ul: (props: any) => {
             return <ul className="list-disc" {...props} />;
+        },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        table: (props: any) => {
+            return (
+                <div className="overflow-x-scroll">
+                    <table className="daisy-table daisy-table-sm whitespace-nowrap  md:daisy-table-md" {...props} />
+                </div>
+            );
         },
     };
 }
