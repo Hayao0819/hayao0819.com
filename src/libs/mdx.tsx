@@ -14,11 +14,7 @@ export default function MarkdownElements() {
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         a: (props: any) => {
-            return (
-                <Link href={props.href} legacyBehavior>
-                    <a target="_blank">{props.children}</a>
-                </Link>
-            );
+            return <Link href={props.href} newtab={true}>{props.children}</Link>;
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ul: (props: any) => {
