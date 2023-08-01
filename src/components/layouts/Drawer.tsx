@@ -11,7 +11,7 @@ export default function DrawerSide() {
     return (
         <aside className="daisy-drawer-side">
             <label htmlFor="sidebar" className="daisy-drawer-overlay"></label>
-            <div className="hidden-scrollbar flex min-h-full overflow-scroll">
+            <div className="hidden-scrollbar mr-4 flex min-h-full overflow-scroll">
                 <ul className="daisy-menu min-h-full w-64 p-0 shadow-inner">
                     {/* スマホ用の閉じるボタン */}
                     <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn md:hidden">

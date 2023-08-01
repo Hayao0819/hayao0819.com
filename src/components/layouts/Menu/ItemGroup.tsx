@@ -3,7 +3,7 @@ import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 
-import { ItemProp } from "./Item";
+import { ItemCommonClass, ItemProp } from "./Item";
 import { useCurrentURL } from "./util";
 
 interface ItemGroupProp {
@@ -46,13 +46,16 @@ export function ItemGroup({ children, icon, title }: ItemGroupProp): ReactNode {
 
     return (
         <details role="button" open={isOpened}>
-            <summary className="flex items-center rounded-lg !bg-transparent text-sm before:content-none dark:text-white">
+            <summary
+                className={
+                    "flex items-center rounded-lg !bg-transparent text-sm before:content-none dark:text-white " +
+                    ItemCommonClass.join(" ")
+                }
+            >
                 {iconElement}
                 <span className="ml-2 select-none">{title}</span>
             </summary>
-            <ul className="child:box-border child:border-l-2 child:border-neutral-content">
-                {children}
-            </ul>
+            <ul className="child:ml-4 child:box-border  child:border-l-2 child:border-neutral-content">{children}</ul>
         </details>
     );
 }
