@@ -14,7 +14,7 @@ export interface ItemProp {
     icon?: IconDefinition | undefined;
 }
 
-export const ItemCommonClass:string[] = ["p-2", "select-none", "my-5", "pl-6"]
+export const ItemCommonClass: string[] = ["p-2", "select-none", "my-5", "pl-6"];
 
 export function Item({ link, children, icon }: ItemProp): ReactNode {
     let iconElement: JSX.Element = <FontAwesomeIcon className="" icon={faCircle} />;
@@ -23,7 +23,7 @@ export function Item({ link, children, icon }: ItemProp): ReactNode {
         iconElement = <FontAwesomeIcon className="" icon={icon} />;
     }
 
-    const additionalClassList:string[] = [];
+    const additionalClassList: string[] = [];
     const [classState, setClass] = useState<string[]>(additionalClassList);
     const [isHovered, setHover] = useState(false);
     const isCurrent = useCurrentURL([link]);
@@ -31,7 +31,7 @@ export function Item({ link, children, icon }: ItemProp): ReactNode {
     useEffect(() => {
         if (isCurrent || isHovered) {
             //setClass("neumo-sink");
-            setClass(["text-base-100", "bg-primary", "rounded-r-full"]);
+            setClass(["!text-base-100", "!bg-base-content", "rounded-r-full"]);
         } else {
             //setClass("neumo-float");
             setClass([]);
@@ -48,7 +48,10 @@ export function Item({ link, children, icon }: ItemProp): ReactNode {
                 setHover(false);
             }}
         >
-            <Link href={link} className="flex items-center gap-0 rounded-lg !bg-transparent p-0 text-sm dark:text-white ">
+            <Link
+                href={link}
+                className="flex items-center gap-0 rounded-lg !bg-transparent p-0 text-sm !text-inherit hover:!text-inherit active:!text-inherit "
+            >
                 {iconElement}
                 <span className="ml-2">{children}</span>
             </Link>
