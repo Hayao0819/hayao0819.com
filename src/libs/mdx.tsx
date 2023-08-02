@@ -1,18 +1,20 @@
 import { H2, H3 } from "@/components/elements/Headlines";
+import { ImageWithoutNextImg } from "@/components/elements/Image";
 //import { BlogTitle, H2 } from "@/components/elements/Headlines/H2";
 import Link from "@/components/elements/Link";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export default function MarkdownElements() {
     return {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        
         h2: (props: any) => {
             return <H2 {...props} />;
         },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        
         h3: (props: any) => {
             return <H3 {...props} />;
         },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        
         a: (props: any) => {
             return (
                 <Link href={props.href} newtab={true}>
@@ -20,11 +22,11 @@ export default function MarkdownElements() {
                 </Link>
             );
         },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        
         ul: (props: any) => {
             return <ul className="list-disc" {...props} />;
         },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        
         table: (props: any) => {
             return (
                 <div className="overflow-x-scroll">
@@ -32,5 +34,11 @@ export default function MarkdownElements() {
                 </div>
             );
         },
+
+        img: (props:any) =>{
+            return (
+                <ImageWithoutNextImg {...props} />
+            )
+        }
     };
 }

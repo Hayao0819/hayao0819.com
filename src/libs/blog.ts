@@ -1,3 +1,4 @@
+import rehypePrism from "@mapbox/rehype-prism";
 import fs from "fs";
 import { serialize } from "next-mdx-remote/serialize";
 import path, { join } from "path";
@@ -34,7 +35,7 @@ export const serializeMarkdown = async (path: fs.PathOrFileDescriptor) => {
     // and parse the frontmatter
     return await serialize(diaryFile, {
         parseFrontmatter: true,
-        mdxOptions: { remarkPlugins: [remarkGfm] },
+        mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypePrism] },
     });
 };
 
