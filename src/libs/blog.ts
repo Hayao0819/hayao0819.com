@@ -35,7 +35,7 @@ export const serializeMarkdown = async (path: fs.PathOrFileDescriptor) => {
     // and parse the frontmatter
     return await serialize(diaryFile, {
         parseFrontmatter: true,
-        mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypePrism] },
+        mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypePrism, {}] },
     });
 };
 

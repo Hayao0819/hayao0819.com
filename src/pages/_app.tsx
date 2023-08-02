@@ -1,5 +1,6 @@
 import "../style/global.css";
 import "../style/neumo.css";
+import "@/style/prism-atom-dark.css";
 
 import { MDXProvider } from "@mdx-js/react";
 import type { AppProps } from "next/app";
