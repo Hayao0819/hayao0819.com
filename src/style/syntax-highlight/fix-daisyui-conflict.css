@@ -1,0 +1,5 @@
+/* Fix conflict with daisyUI */
+[data-rehype-pretty-code-fragment] [data-theme]{
+    background-color: transparent;
+}
+

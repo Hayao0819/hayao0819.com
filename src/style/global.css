@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./syntax-highlight/index.css";
 
 ul {
     padding-inline: 2em;
