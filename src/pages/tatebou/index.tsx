@@ -131,6 +131,7 @@ function CreateBtn() {
                                 short: text,
                                 date: new Date().toISOString(),
                             });
+                            //console.log(currentHistories.list)
                         });
                     }
                 })

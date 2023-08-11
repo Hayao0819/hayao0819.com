@@ -14,7 +14,7 @@ class Histories {
     constructor() {
         this.list = [];
     }
-    appendHistory = (newHistory: History) => {
+    appendHistory(newHistory: History) {
         let newArray = [...this.list, newHistory];
         if (
             // 現在の履歴と新しい項目でoriginalが一致する場合
@@ -35,32 +35,37 @@ class Histories {
 
         this.list = newArray;
         localStorage.setItem("history", JSON.stringify(newArray));
-    };
+    }
 }
 
 export const historyAtom = atomWithStorage<Histories>("history", new Histories());
 
 export const HistoryTable = () => {
     const [currentHistories] = useAtom(historyAtom);
-    if (!currentHistories.list){
-        currentHistories.list=[]
+    if (!currentHistories.list) {
+        currentHistories.list = [];
     }
     return (
-        <table>
-            <thead className={(currentHistories.list.length) == 0 ? "hidden" : ""}>
-                <tr>
-                    <th>元URL</th>
-                    <th>短縮URL</th>
-                    <th>作成日時</th>
-                </tr>
-            </thead>
+        <>
+            <table>
+                <thead className={currentHistories.list.length == 0 ? "hidden" : ""}>
+                    <tr>
+                        <th>元URL</th>
+                        <th>短縮URL</th>
+                        <th>作成日時</th>
+                    </tr>
+                </thead>
 
-            <tbody className="">
-                {currentHistories.list.map((h) => {
-                    return <HistoryItem history={h} key={new Date(h.date).getTime()} />;
-                })}
-            </tbody>
-        </table>
+                <tbody className="">
+                    {currentHistories.list.map((h) => {
+                        return <HistoryItem history={h} key={new Date(h.date).getTime()} />;
+                    })}
+                </tbody>
+            </table>
+            <div>
+                <button className={"daisy-btn-active daisy-btn " + (currentHistories.list.length == 0 ? "hidden":"") }>ダウンロード</button>
+            </div>
+        </>
     );
 };
 
