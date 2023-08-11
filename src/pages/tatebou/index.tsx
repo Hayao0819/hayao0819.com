@@ -5,7 +5,7 @@ import Alert, { useAlert } from "@/components/elements/Alert";
 import Link from "@/components/elements/Link";
 import { Modal } from "@/components/elements/Modal";
 import { modalContext } from "@/components/elements/ModalContext";
-import { historyAtom, HistoryTable } from "@/components/layouts/Tatebou/History";
+import { appendHistory, History, historyAtom, HistoryTable } from "@/components/layouts/Tatebou/History";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
 import { formatURL } from "@/libs/tatebou";
 
@@ -106,7 +106,7 @@ function CreateBtn() {
     const { openAlert } = useAlert();
 
     // 履歴
-    const [currentHistories] = useAtom(historyAtom);
+    const [histories, setHistories] = useAtom(historyAtom);
 
     const SendPOSTToTatebou = () => {
         const runRequest = (url: string) => {
@@ -126,12 +126,12 @@ function CreateBtn() {
                     } else {
                         res.text().then((text) => {
                             setFetchedData(text);
-                            currentHistories.appendHistory({
+                            const newHistory:History = {
                                 original: url,
                                 short: text,
                                 date: new Date().toISOString(),
-                            });
-                            //console.log(currentHistories.list)
+                            };
+                            setHistories(appendHistory(histories, newHistory))
                         });
                     }
                 })
