@@ -6,6 +6,7 @@ import Link from "@/components/elements/Link";
 import { Modal } from "@/components/elements/Modal";
 import { modalContext } from "@/components/elements/ModalContext";
 import { appendHistory, History, historyAtom, HistoryTable } from "@/components/layouts/Tatebou/History";
+import HistoryModals from "@/components/layouts/Tatebou/HistoryModals";
 import TatebouLayout from "@/components/layouts/Tatebou/Layout";
 import { formatURL } from "@/libs/tatebou";
 
@@ -77,7 +78,7 @@ function ActionBtns() {
 function HistoryBtn() {
     const mtx = useContext(modalContext);
     return (
-        <button className="!daisy-btn-neutral !daisy-btn-active" onClick={() => mtx.openModal("history-modal")}>
+        <button className="!daisy-btn-neutral !daisy-btn-active" onClick={() => mtx.openModal("history")}>
             履歴
         </button>
     );
@@ -126,12 +127,12 @@ function CreateBtn() {
                     } else {
                         res.text().then((text) => {
                             setFetchedData(text);
-                            const newHistory:History = {
+                            const newHistory: History = {
                                 original: url,
                                 short: text,
                                 date: new Date().toISOString(),
                             };
-                            setHistories(appendHistory(histories, newHistory))
+                            setHistories(appendHistory(histories, newHistory));
                         });
                     }
                 })
@@ -141,8 +142,8 @@ function CreateBtn() {
         };
 
         if (inputURL) {
-            const url = formatURL(inputURL)
-            setInputURL(url)
+            const url = formatURL(inputURL);
+            setInputURL(url);
             runRequest(url);
         } else {
             openAlert("URLを入力してください");
@@ -215,7 +216,6 @@ function TestTools() {
                             window.open(fetchedData, "_blank");
                             openAlert("作成されたリンクに移動しました", "Success");
                         }, 3000);
-                        
                     }}
                 >
                     テスト
@@ -238,9 +238,11 @@ function TatebouModals() {
                 <p>ごめんね、まだ実装していないんだ</p>
             </Modal>
 
-            <Modal name="history-modal" title="履歴">
+            <Modal name="history" title="履歴">
                 <HistoryTable />
             </Modal>
+
+            <HistoryModals />
         </>
     );
 }

@@ -1,7 +1,9 @@
 import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
+import { useContext } from "react";
 
 import Link from "@/components/elements/Link";
+import { modalContext } from "@/components/elements/ModalContext";
 
 export type History = {
     date: string;
@@ -59,7 +61,8 @@ export const HistoryTable = () => {
                     })}
                 </tbody>
             </table>
-            <div className="hidden"> {/* 開発途中なので隠す */}
+            <div className="">
+                {/* 開発途中なので隠す */}
                 <div className={currentHistories.length == 0 ? "hidden" : "my-2 flex gap-2 child:daisy-btn-sm"}>
                     <DownloadBtn />
                     <ClearTableBtn />
@@ -69,12 +72,24 @@ export const HistoryTable = () => {
     );
 };
 
-function DownloadBtn(){
+function DownloadBtn() {
     return <button className="daisy-btn-active daisy-btn">ダウンロード</button>;
 }
 
-function ClearTableBtn(){
-    return <button className="daisy-btn-error daisy-btn-active daisy-btn">削除</button>;
+function ClearTableBtn() {
+    const mtx = useContext(modalContext);
+    return (
+        <>
+            <button
+                className="daisy-btn-error daisy-btn-active daisy-btn"
+                onClick={() => {
+                    mtx.openModal("history-clear-confirm");
+                }}
+            >
+                削除
+            </button>
+        </>
+    );
 }
 
 function HistoryItem({ history }: { history: History }) {
