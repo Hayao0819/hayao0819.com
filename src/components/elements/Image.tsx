@@ -1,11 +1,11 @@
 import NextImage, { ImageProps } from "next/image";
-import { ImgHTMLAttributes } from "react";
+import { ImgHTMLAttributes, useContext } from "react";
 
 import { Modal } from "./Modal";
-import { useModal } from "./ModalContext";
+import { modalContext } from "./ModalContext";
 
 export function Image(props: ImageProps) {
-    const mtx = useModal();
+    const mtx = useContext(modalContext);
     return (
         <>
             <NextImage {...props} alt={props.alt} onClick={() => mtx.openModal("image-popup-modal")}></NextImage>
@@ -18,7 +18,7 @@ export function Image(props: ImageProps) {
 
 /* eslint "@next/next/no-img-element":"off" */
 export function ImageWithoutNextImg(props: ImgHTMLAttributes<HTMLImageElement>) {
-    const mtx = useModal();
+    const mtx = useContext(modalContext);
     return (
         <>
             <img {...props} alt={props.alt} onClick={() => mtx.openModal("image-popup-modal")}></img>
