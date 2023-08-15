@@ -30,7 +30,7 @@ function useModal(): ModalContext {
     };
     const backModal = () => {
         const prev = previousModal[previousModal.length - 2];
-        openModal(prev)
+        openModal(prev);
     };
     return {
         currentModal,

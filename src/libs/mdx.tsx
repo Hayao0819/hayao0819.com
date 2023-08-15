@@ -6,15 +6,14 @@ import Link from "@/components/elements/Link";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export default function MarkdownElements() {
     return {
-        
         h2: (props: any) => {
             return <H2 {...props} />;
         },
-        
+
         h3: (props: any) => {
             return <H3 {...props} />;
         },
-        
+
         a: (props: any) => {
             return (
                 <Link href={props.href} newtab={true}>
@@ -22,11 +21,11 @@ export default function MarkdownElements() {
                 </Link>
             );
         },
-        
+
         ul: (props: any) => {
             return <ul className="list-disc" {...props} />;
         },
-        
+
         table: (props: any) => {
             return (
                 <div className="overflow-x-scroll">
@@ -35,10 +34,8 @@ export default function MarkdownElements() {
             );
         },
 
-        img: (props:any) =>{
-            return (
-                <ImageWithoutNextImg {...props} />
-            )
-        }
+        img: (props: any) => {
+            return <ImageWithoutNextImg {...props} />;
+        },
     };
 }

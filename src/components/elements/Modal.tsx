@@ -23,7 +23,7 @@ export function Modal({
         } else {
             setModalClass("");
         }
-        console.log(mtx.currentModal)
+        console.log(mtx.currentModal);
     }, [name, mtx.currentModal]);
 
     const [titleElement, setTitleElement] = useState<ReactNode>();

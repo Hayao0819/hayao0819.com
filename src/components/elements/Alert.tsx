@@ -1,6 +1,6 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { atom,useAtom } from "jotai";
+import { atom, useAtom } from "jotai";
 import { useEffect, useState } from "react";
 
 export const alertAtom = atom<{ isHidden: boolean; text: string; type: AlertType }>({
