@@ -8,7 +8,7 @@ export default function DrawerContents({ children }: { children: ReactNode }) {
     return (
         <div className="daisy-drawer-content flex min-h-screen min-w-full flex-col items-center justify-center">
             <Header />
-            <main className="m-4 w-full grow p-4 leading-8">{children}</main>
+            <main className="mx-4 w-full grow px-4 leading-8">{children}</main>
             <Footer />
         </div>
     );

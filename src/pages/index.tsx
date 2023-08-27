@@ -33,6 +33,7 @@ export default function Home(): ReactNode {
     });
 
     const targetRef = useRef<HTMLDivElement>(null);
+    const hobbyRef = useRef<HTMLDivElement>(null);
     const detailRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -58,9 +59,22 @@ export default function Home(): ReactNode {
                         </div>
 
                         <p className="py-6">カスなおたく</p>
-                        <ScrollButton scrollTo={targetRef.current} />
+                        <ScrollButton scrollTo={hobbyRef.current} />
                     </div>
                 </div>
+                <Section>
+                    <div ref={hobbyRef}></div>
+                    <H2>趣味</H2>
+                    <p>知らない場所に行ったり、空の写真を撮ることです。外出するお金がないときはパソコンをカタカタしています。</p>
+                    <p>ダイビングやBBQ、テニス、紅茶などに中途半端に手を出しています。</p>
+                    <H2>スキル</H2>
+                    <p>低レイヤーやネットワークに興味があります。Arch Linuxが好きです。</p>
+                    <p>中古屋でジャンクを漁ったり、カスタムROMでスマホを改造したりもします。</p>
+                    <Btn>
+                        <NextLink href="/me/skill">スキル一覧へ</NextLink>
+                    </Btn>
+                    <ScrollButton scrollTo={targetRef.current} />
+                </Section>
                 <Section>
                     <div ref={targetRef}></div>
                     <H2>目標</H2>
