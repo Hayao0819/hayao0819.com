@@ -1,4 +1,3 @@
-// pages/[slug].ts
 import fs from "fs";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import Head from "next/head";

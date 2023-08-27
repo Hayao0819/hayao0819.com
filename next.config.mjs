@@ -3,8 +3,6 @@ import MDX from "@next/mdx";
 const withMDX = MDX({
     extension: /\.mdx?$/,
     options: {
-        remarkPlugins: [],
-        rehypePlugins: [],
         providerImportSource: "@mdx-js/react",
     },
 });

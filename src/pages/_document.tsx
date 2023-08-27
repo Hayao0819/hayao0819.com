@@ -10,6 +10,7 @@ export default function Document() {
             <Head>
                 <meta name="description" content={Metadata.description} />
             </Head>
+
             <body className="overscroll-y-none">
                 <Main />
                 <NextScript />

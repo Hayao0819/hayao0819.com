@@ -9,7 +9,6 @@ import Head from "../Head";
 import TatebouFooter from "./Footer";
 
 export default function TatebouLayout({ children }: { children: ReactNode }) {
-
     return (
         <>
             <Head title="迫真縦棒短縮URL" description="縦な短縮URLを作成するサービスです" />
@@ -55,7 +54,9 @@ function NavBar({ children }: { children: ReactNode }) {
                     <FontAwesomeIcon icon={faBars} size="xl" />
                 </label>
             </div>
-            <div className="mx-2 px-2 text-xl">{Meta.title}</div>
+            <div className="mx-2 px-2 text-xl">
+                <NextLink href="/tatebou">{Meta.title}</NextLink>
+            </div>
             <div className="hidden md:flex">
                 <ul className="daisy-menu daisy-menu-horizontal">{children}</ul>
             </div>
@@ -71,6 +72,7 @@ function MenuContents() {
             <MenuItem name="ドメイン所有者" link="https://yamad.me/" />
             <MenuItem name="ソースコード" link="https://github.com/Hayao0819/hayao0819.com/tree/dev/src/pages/tatebou" />
             <MenuItem name="バグ報告" link="https://github.com/Hayao0819/hayao0819.com/issues" />
+            <MenuItem name="About" link="/tatebou/about" />
         </>
     );
 }

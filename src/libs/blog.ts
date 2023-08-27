@@ -1,6 +1,7 @@
 import fs from "fs";
 import { serialize } from "next-mdx-remote/serialize";
 import path, { join } from "path";
+import rehypePrettyCode from "rehype-pretty-code";
 import remarkGfm from "remark-gfm";
 
 import { DiaryPreview as DiaryPreviewType } from "@/types/diaries";
@@ -34,7 +35,10 @@ export const serializeMarkdown = async (path: fs.PathOrFileDescriptor) => {
     // and parse the frontmatter
     return await serialize(diaryFile, {
         parseFrontmatter: true,
-        mdxOptions: { remarkPlugins: [remarkGfm] },
+        mdxOptions: {
+            remarkPlugins: [remarkGfm],
+            rehypePlugins: [[rehypePrettyCode, { theme: "one-dark-pro", keepBackground: true }]],
+        },
     });
 };
 

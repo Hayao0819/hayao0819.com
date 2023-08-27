@@ -8,10 +8,9 @@ export function checkCurrentURL(urlString: string): boolean {
     return url.protocol == "http:" || url.protocol == "https:";
 }
 
-export function formatURL(urlString: string):string{
-    if (urlString.startsWith("http")){
-        return urlString
+export function formatURL(urlString: string): string {
+    if (urlString.startsWith("http")) {
+        return urlString;
     }
-    return "http://" + urlString
-
+    return "http://" + urlString;
 }
