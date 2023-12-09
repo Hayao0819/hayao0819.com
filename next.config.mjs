@@ -4,7 +4,7 @@ const nextConfig = {
     swcMinify: true,
 
     // Output everything to standalone files
-    output: "standalone",
+    output: "export",
 
     // Configure pageExtensions to include md and mdx
     pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],

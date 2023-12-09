@@ -11,7 +11,7 @@ export default function Link({ href, children, newtab }: LinkProps): JSX.Element
     const className = "text-blue-600 underline underline-offset-4 dark:text-sky-400";
     if (newtab) {
         return (
-            <a href={href.toString()} target="_blank" className={className}>
+            <a href={href.toString()} target="_blank" className={className} rel="noreferrer">
                 {children}
             </a>
         );
