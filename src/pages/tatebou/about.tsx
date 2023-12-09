@@ -4,7 +4,7 @@ import TatebouLayout from "@/components/tatebou/Layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
-export function H3({ children }: {children: ReactNode}) {
+export function H3({ children }: { children: ReactNode }) {
     return (
         <div className="py-4">
             <FontAwesomeIcon icon={faCaretRight} size="xl" />
@@ -12,7 +12,6 @@ export function H3({ children }: {children: ReactNode}) {
         </div>
     );
 }
-
 
 export default function Usage(): ReactNode {
     return (
