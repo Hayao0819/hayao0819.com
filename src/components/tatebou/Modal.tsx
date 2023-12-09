@@ -19,7 +19,7 @@ export function Modal({
     const mtx = useContext(modalContext);
     useEffect(() => {
         if (name == mtx.currentModal) {
-            setModalClass("daisy-modal-open");
+            setModalClass("modal-open");
         } else {
             setModalClass("");
         }
@@ -37,8 +37,8 @@ export function Modal({
 
     return (
         <>
-            <dialog className={"daisy-modal " + modalClass}>
-                <form method="dialog" className="daisy-modal-box min-w-fit">
+            <dialog className={"modal " + modalClass}>
+                <form method="dialog" className="modal-box min-w-fit">
                     <div className="flex">
                         <span className="grow">{titleElement}</span>
                         <FontAwesomeIcon icon={faXmark} onClick={mtx.closeModal} role="button" />
@@ -47,7 +47,7 @@ export function Modal({
                 </form>
                 <form
                     method="dialog"
-                    className="daisy-modal-backdrop"
+                    className="modal-backdrop"
                     onClick={() => {
                         if (backdrop != false) {
                             mtx.closeModal();

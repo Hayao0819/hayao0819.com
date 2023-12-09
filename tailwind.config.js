@@ -12,7 +12,6 @@ module.exports = {
     },
     daisyui: {
         themes: ["light"],
-        prefix: "daisy-",
     },
     plugins: [
         require("daisyui"),

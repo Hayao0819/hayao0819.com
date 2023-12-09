@@ -5,8 +5,8 @@ import { ReactNode } from "react";
 
 import Meta from "@/const/tatebou";
 
-import Head from "./Head";
 import TatebouFooter from "./Footer";
+import Head from "./Head";
 
 export default function TatebouLayout({ children }: { children: ReactNode }) {
     return (
@@ -20,9 +20,9 @@ export default function TatebouLayout({ children }: { children: ReactNode }) {
 
 function Drawer({ children }: { children: ReactNode }) {
     return (
-        <div className="daisy-drawer">
-            <input id="drawer-checkbox" type="checkbox" className="daisy-drawer-toggle" />
-            <div className="daisy-drawer-content flex h-screen flex-col">
+        <div className="drawer">
+            <input id="drawer-checkbox" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content flex h-screen flex-col">
                 <NavBar>
                     <MenuContents />
                 </NavBar>
@@ -39,18 +39,18 @@ function Drawer({ children }: { children: ReactNode }) {
 
 function DrawerSide({ children }: { children: ReactNode }) {
     return (
-        <div className="daisy-drawer-side md:hidden">
-            <label htmlFor="drawer-checkbox" className="daisy-drawer-overlay"></label>
-            <ul className="daisy-menu h-full w-80 bg-base-200 p-4">{children}</ul>
+        <div className="drawer-side md:hidden">
+            <label htmlFor="drawer-checkbox" className="drawer-overlay"></label>
+            <ul className="menu h-full w-80 bg-base-200 p-4">{children}</ul>
         </div>
     );
 }
 
 function NavBar({ children }: { children: ReactNode }) {
     return (
-        <div className="daisy-navbar w-full bg-base-200">
+        <div className="navbar w-full bg-base-200">
             <div className="md:hidden">
-                <label htmlFor="drawer-checkbox" className="daisy-btn-ghost daisy-btn-square daisy-btn">
+                <label htmlFor="drawer-checkbox" className="btn btn-square btn-ghost">
                     <FontAwesomeIcon icon={faBars} size="xl" />
                 </label>
             </div>
@@ -58,7 +58,7 @@ function NavBar({ children }: { children: ReactNode }) {
                 <NextLink href="/tatebou">{Meta.title}</NextLink>
             </div>
             <div className="hidden md:flex">
-                <ul className="daisy-menu daisy-menu-horizontal">{children}</ul>
+                <ul className="menu menu-horizontal">{children}</ul>
             </div>
         </div>
     );

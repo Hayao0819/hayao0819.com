@@ -1,12 +1,3 @@
-import MDX from "@next/mdx";
-
-const withMDX = MDX({
-    extension: /\.mdx?$/,
-    options: {
-        providerImportSource: "@mdx-js/react",
-    },
-});
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     // Always prefer swc typescript compiler
@@ -44,5 +35,4 @@ const nextConfig = {
     },
 };
 
-// Always use modules, commonjs is evil!
-export default withMDX(nextConfig);
+export default nextConfig;

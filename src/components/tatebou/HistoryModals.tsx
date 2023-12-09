@@ -15,7 +15,7 @@ export default function HistoryModals() {
                 <p>削除してもいい？</p>
                 <div className="flex">
                     <button
-                        className="daisy-btn-active daisy-btn"
+                        className="btn btn-active"
                         onClick={() => {
                             setHistories([]);
                             mtx.closeModal();
@@ -23,7 +23,7 @@ export default function HistoryModals() {
                     >
                         はい
                     </button>
-                    <button className="daisy-btn-active daisy-btn" onClick={mtx.backModal}>
+                    <button className="btn btn-active" onClick={mtx.backModal}>
                         いいえ
                     </button>
                 </div>

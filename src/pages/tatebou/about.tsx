@@ -1,8 +1,8 @@
+import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactNode } from "react";
 
 import TatebouLayout from "@/components/tatebou/Layout";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 export function H3({ children }: { children: ReactNode }) {
     return (

@@ -56,11 +56,7 @@ export default function TatebouHeader() {
 }
 
 function MenuBar({ children }: { children: ReactNode }): ReactNode {
-    return (
-        <ul className="daisy-menu daisy-menu-horizontal child:px-2 child:text-lg child:text-neutral-500 lg:flex-row">
-            {children}
-        </ul>
-    );
+    return <ul className="menu menu-horizontal child:px-2 child:text-lg child:text-neutral-500 lg:flex-row">{children}</ul>;
 }
 
 function MenuItem({ children }: { children: ReactNode }): ReactNode {

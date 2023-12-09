@@ -1,3 +1,10 @@
+import Layout from "@/components/layouts/Layout";
+
 export default function Home() {
-    return <p>Hello World</p>;
+    return (
+        <Layout>
+            <h1>Home</h1>
+            <p>ここはホームです。</p>
+        </Layout>
+    );
 }

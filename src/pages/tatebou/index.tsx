@@ -2,12 +2,12 @@ import { atom, useAtom } from "jotai";
 import React, { useContext } from "react";
 
 import Alert, { useAlert } from "@/components/tatebou/Alert";
-import Link from "@/components/tatebou/Link";
-import { Modal } from "@/components/tatebou/Modal";
-import { modalContext } from "@/components/tatebou/ModalContext";
 import { appendHistory, History, historyAtom, HistoryTable } from "@/components/tatebou/History";
 import HistoryModals from "@/components/tatebou/HistoryModals";
 import TatebouLayout from "@/components/tatebou/Layout";
+import Link from "@/components/tatebou/Link";
+import { Modal } from "@/components/tatebou/Modal";
+import { modalContext } from "@/components/tatebou/ModalContext";
 import { formatURL } from "@/libs/tatebou";
 
 const inputAtom = atom<string>("");
@@ -42,21 +42,21 @@ function OriginalURLInput() {
     const [inputURL, setInputURL] = useAtom(inputAtom);
     return (
         <div>
-            <div className="daisy-form-control w-full">
-                <label className="daisy-label">
-                    <span className="daisy-label-text">元URL</span>
+            <div className="form-control w-full">
+                <label className="label">
+                    <span className="label-text">元URL</span>
                 </label>
                 <input
                     type="text"
                     placeholder="短縮するURLを入力して下さい"
-                    className="daisy-input-bordered daisy-input w-full"
+                    className="input input-bordered w-full"
                     onChange={(e) => {
                         setInputURL(e.target.value);
                     }}
                     value={inputURL}
                 />
-                <label className="daisy-label">
-                    <span className="daisy-label-text-alt">
+                <label className="label">
+                    <span className="label-text-alt">
                         <code className=" text-sm text-pink-600">http</code>から始まるURLを入力して下さい
                     </span>
                 </label>
@@ -67,7 +67,7 @@ function OriginalURLInput() {
 
 function ActionBtns() {
     return (
-        <div className="flex gap-2 child:daisy-btn-sm child:daisy-btn  child:!text-white">
+        <div className="flex gap-2 child:btn child:btn-sm  child:!text-white">
             <CreateBtn />
             <HistoryBtn />
             <ResetBtn />
@@ -78,7 +78,7 @@ function ActionBtns() {
 function HistoryBtn() {
     const mtx = useContext(modalContext);
     return (
-        <button className="!daisy-btn-neutral !daisy-btn-active" onClick={() => mtx.openModal("history")}>
+        <button className="!btn-neutral !btn-active" onClick={() => mtx.openModal("history")}>
             履歴
         </button>
     );
@@ -88,7 +88,7 @@ function ResetBtn() {
     const [, setInputURL] = useAtom(inputAtom);
     return (
         <button
-            className="!daisy-btn-error !daisy-btn-active"
+            className="!btn-error !btn-active"
             onClick={() => {
                 setInputURL("");
             }}
@@ -151,7 +151,7 @@ function CreateBtn() {
     };
 
     return (
-        <button className="!daisy-btn-info !daisy-btn-active" onClick={SendPOSTToTatebou}>
+        <button className="!btn-info !btn-active" onClick={SendPOSTToTatebou}>
             作成
         </button>
     );
@@ -160,15 +160,15 @@ function CreateBtn() {
 function Result() {
     const [fetchedData] = useAtom(fetchedAtom);
     return (
-        <div className="daisy-form-control w-full">
-            <label className="daisy-label">
-                <span className="daisy-label-text">結果</span>
+        <div className="form-control w-full">
+            <label className="label">
+                <span className="label-text">結果</span>
             </label>
             <input
                 type="text"
                 placeholder="結果がここに出力されます"
                 value={fetchedData}
-                className="daisy-input-bordered daisy-input w-full"
+                className="input input-bordered w-full"
                 readOnly
             />
         </div>
@@ -188,9 +188,9 @@ function TestTools() {
     return (
         <div>
             <p>結果をテスト</p>
-            <div className="flex gap-2 child:daisy-btn-sm child:daisy-btn  child:!text-white">
+            <div className="flex gap-2 child:btn child:btn-sm  child:!text-white">
                 <button
-                    className="!daisy-btn-primary !daisy-btn-active"
+                    className="!btn-primary !btn-active"
                     onClick={() => {
                         if (!fetchedData) {
                             plzMakeURL();
@@ -203,7 +203,7 @@ function TestTools() {
                     コピー
                 </button>
                 <button
-                    className="!daisy-btn-secondary !daisy-btn-active"
+                    className="!btn-secondary !btn-active"
                     onClick={() => {
                         if (!fetchedData) {
                             plzMakeURL();

@@ -63,7 +63,7 @@ export const HistoryTable = () => {
             </table>
             <div className="">
                 {/* 開発途中なので隠す */}
-                <div className={currentHistories.length == 0 ? "hidden" : "my-2 flex gap-2 child:daisy-btn-sm"}>
+                <div className={currentHistories.length == 0 ? "hidden" : "my-2 flex gap-2 child:btn-sm"}>
                     <DownloadBtn />
                     <ClearTableBtn />
                 </div>
@@ -73,7 +73,7 @@ export const HistoryTable = () => {
 };
 
 function DownloadBtn() {
-    return <button className="daisy-btn-active daisy-btn">ダウンロード</button>;
+    return <button className="btn btn-active">ダウンロード</button>;
 }
 
 function ClearTableBtn() {
@@ -81,7 +81,7 @@ function ClearTableBtn() {
     return (
         <>
             <button
-                className="daisy-btn-error daisy-btn-active daisy-btn"
+                className="btn btn-error btn-active"
                 onClick={() => {
                     mtx.openModal("history-clear-confirm");
                 }}
