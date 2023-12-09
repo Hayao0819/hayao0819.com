@@ -12,7 +12,7 @@ module.exports = {
     },
     daisyui: {
         themes: ["light"],
-        prefix: "daisy-",
+        prefix: "daisy-"
     },
     plugins: [
         require("daisyui"),
@@ -20,6 +20,7 @@ module.exports = {
         require("@tailwindcss/typography"),
         function ({ addVariant }) {
             addVariant("child", "& > *");
+            addVariant("child-all", "& *");
         },
     ],
 };

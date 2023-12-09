@@ -2,8 +2,8 @@ import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import { useContext } from "react";
 
-import Link from "@/components/elements/Link";
-import { modalContext } from "@/components/elements/ModalContext";
+import Link from "@/components/tatebou/Link";
+import { modalContext } from "@/components/tatebou/ModalContext";
 
 export type History = {
     date: string;

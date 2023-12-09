@@ -1,13 +1,13 @@
 import { atom, useAtom } from "jotai";
 import React, { useContext } from "react";
 
-import Alert, { useAlert } from "@/components/elements/Alert";
-import Link from "@/components/elements/Link";
-import { Modal } from "@/components/elements/Modal";
-import { modalContext } from "@/components/elements/ModalContext";
-import { appendHistory, History, historyAtom, HistoryTable } from "@/components/layouts/Tatebou/History";
-import HistoryModals from "@/components/layouts/Tatebou/HistoryModals";
-import TatebouLayout from "@/components/layouts/Tatebou/Layout";
+import Alert, { useAlert } from "@/components/tatebou/Alert";
+import Link from "@/components/tatebou/Link";
+import { Modal } from "@/components/tatebou/Modal";
+import { modalContext } from "@/components/tatebou/ModalContext";
+import { appendHistory, History, historyAtom, HistoryTable } from "@/components/tatebou/History";
+import HistoryModals from "@/components/tatebou/HistoryModals";
+import TatebouLayout from "@/components/tatebou/Layout";
 import { formatURL } from "@/libs/tatebou";
 
 const inputAtom = atom<string>("");

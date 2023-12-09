@@ -7,9 +7,7 @@
         "plugin:mdx/recommended",
         "prettier"
     ],
-    "settings": {
-        "mdx/code-blocks": true
-    },
+    
     "plugins": ["simple-import-sort"],
 
     "rules": {

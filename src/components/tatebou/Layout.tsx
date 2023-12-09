@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 
 import Meta from "@/const/tatebou";
 
-import Head from "../Head";
+import Head from "./Head";
 import TatebouFooter from "./Footer";
 
 export default function TatebouLayout({ children }: { children: ReactNode }) {

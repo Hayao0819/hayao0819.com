@@ -1,7 +1,18 @@
 import { ReactNode } from "react";
 
-import { H3 } from "@/components/elements/Headlines";
-import TatebouLayout from "@/components/layouts/Tatebou/Layout";
+import TatebouLayout from "@/components/tatebou/Layout";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
+
+export function H3({ children }: {children: ReactNode}) {
+    return (
+        <div className="py-4">
+            <FontAwesomeIcon icon={faCaretRight} size="xl" />
+            <h3 className="inline pl-2 text-xl">{children}</h3>
+        </div>
+    );
+}
+
 
 export default function Usage(): ReactNode {
     return (

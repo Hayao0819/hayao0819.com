@@ -1,8 +1,8 @@
 import { useAtom } from "jotai";
 import { useContext } from "react";
 
-import { Modal } from "@/components/elements/Modal";
-import { modalContext } from "@/components/elements/ModalContext";
+import { Modal } from "@/components/tatebou/Modal";
+import { modalContext } from "@/components/tatebou/ModalContext";
 
 import { historyAtom } from "./History";
 

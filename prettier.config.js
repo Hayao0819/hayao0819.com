@@ -1,4 +1,5 @@
-module.exports = {
+/** @type {import("prettier").Config} */
+export default {
     tabWidth: 4,
     singleQuote: false,
     trailingComma: "all",
@@ -6,20 +7,5 @@ module.exports = {
     endOfLine: "lf",
     printWidth: 130,
     htmlWhitespaceSensitivity: "ignore",
-    plugins: [require("prettier-plugin-tailwindcss"), require("prettier-plugin-md-nocjsp")],
-
-    overrides: [
-        {
-            files: ["*.md", "README"],
-            options: {
-                parser: "markdown-nocjsp",
-            },
-        },
-        {
-            files: "*.mdx",
-            options: {
-                parser: "mdx-nocjsp",
-            },
-        },
-    ],
+    plugins: ["stylelint-prettier", "prettier-plugin-sh"],
 };
