@@ -11,10 +11,9 @@
         }
     ],
     "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "product": "next build && next start",
+        "dev": "pnpm next dev",
+        "build": "pnpm next build",
+        "start": "pnpm next start",
         "lint": "next lint",
         "fix": "prettier --write . && eslint --fix ."
     },
@@ -70,6 +69,6 @@
         "@types/react-dom": "18.2.4"
     },
     "volta": {
-        "node": "18.16.0"
+        "node": "20.10.0"
     }
 }
