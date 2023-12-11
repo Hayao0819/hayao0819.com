@@ -1,13 +1,19 @@
-import { Button, Menu, Navbar } from "react-daisyui";
+import classNames from "classnames";
+import { ReactNode } from "react";
+import { Button, Footer as DaisyFooter, Menu, Navbar } from "react-daisyui";
 import { FaTwitter } from "react-icons/fa";
 
 interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export default function Layout(props: LayoutProps) {
     return (
-        <div className="bg-base-100">
+        <div className="flex min-h-screen flex-col bg-base-100">
             <Header />
-            <Main {...props} />
+            <div className="flex w-4/5 max-w-7xl grow  justify-center child:m-12">
+                <Main {...props} className={classNames(props.className, "w-4/5")} />
+                <RightSidebar className={classNames(props.className, "w-1/5")} />
+            </div>
+
             <Footer />
         </div>
     );
@@ -16,7 +22,7 @@ export default function Layout(props: LayoutProps) {
 function Header() {
     return (
         <>
-            <Navbar className="bg-base-300">
+            <Navbar className="bg-base-300 text-base-content">
                 <div>
                     <Button className=" btn-ghost text-lg">Yamada Hayao</Button>
                 </div>
@@ -49,9 +55,7 @@ function Header() {
                 <div>
                     <Menu horizontal>
                         <Menu.Item>
-                            <a href="">
-                                <FaTwitter />
-                            </a>
+                            <a href=""></a>
                         </Menu.Item>
                     </Menu>
                 </div>
@@ -65,5 +69,32 @@ function Main(props: React.HTMLAttributes<HTMLDivElement>) {
 }
 
 function Footer() {
-    return <></>;
+    const FooterLink = (props: { href: string; icon: ReactNode; linktext: ReactNode }) => {
+        return (
+            <a className="flex items-center">
+                <span className="pr-2">{}</span>
+                <span>{props.linktext}</span>
+            </a>
+        );
+    };
+
+    return (
+        <DaisyFooter className=" bg-neutral p-10 text-lg text-neutral-content">
+            <aside>
+                <p>Yamada Hayao</p>
+                <p className="text-sm">底辺大学生</p>
+            </aside>
+            <nav>
+                <FooterLink href="" icon={<FaTwitter />} linktext="Twitter" />
+            </nav>
+        </DaisyFooter>
+    );
+}
+
+function RightSidebar(props: React.HTMLAttributes<HTMLDivElement>) {
+    return (
+        <div {...props}>
+            <p>サイドバー</p>
+        </div>
+    );
 }
