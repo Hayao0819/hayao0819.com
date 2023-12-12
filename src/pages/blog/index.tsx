@@ -64,7 +64,7 @@ export const getStaticProps: GetStaticProps<BlogTopProps> = async () => {
 
         returnProps.posts.push({
             file: file,
-            url: "blog/posts/" + blogtools.mdPathToURL(file),
+            url: "posts/" + blogtools.mdPathToURL(file),
             meta: meta,
             content: parsed.content,
         });
