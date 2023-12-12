@@ -3,15 +3,22 @@ import { ReactNode } from "react";
 import { Button, Footer as DaisyFooter, Menu, Navbar } from "react-daisyui";
 import { FaTwitter } from "react-icons/fa";
 
-interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
+    sidebar?: ReactNode;
+}
 
 export default function Layout(props: LayoutProps) {
+    const [mainProps, sidebar] = (function () {
+        const { sidebar, ...mainProps } = props;
+        return [mainProps, sidebar];
+    })();
+
     return (
         <div className="flex min-h-screen flex-col bg-base-100">
             <Header />
             <div className="flex w-4/5 max-w-7xl grow  justify-center child:m-12">
-                <Main {...props} className={classNames(props.className, "w-4/5")} />
-                <RightSidebar className={classNames(props.className, "w-1/5")} />
+                <Main {...mainProps} className={classNames(mainProps.className, "w-4/5")} />
+                {sidebar ? <RightSidebar className={classNames("w-1/5")}>{sidebar}</RightSidebar> : null}
             </div>
 
             <Footer />
@@ -92,9 +99,5 @@ function Footer() {
 }
 
 function RightSidebar(props: React.HTMLAttributes<HTMLDivElement>) {
-    return (
-        <div {...props}>
-            <p>サイドバー</p>
-        </div>
-    );
+    return <div {...props}>{props.children}</div>;
 }
