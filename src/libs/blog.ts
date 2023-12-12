@@ -16,6 +16,6 @@ export const getBlogFilesInDir = (dir: string): string[] => {
             return ext === ".mdx" || ext === ".md";
         });
 };
-export const mdPathToURL = (path: string): string => {
-    return path.replace("index.mdx", "").replace("index.md", "").replace(".mdx", "").replace(".md", "").replace("diaries/", "");
+export const mdPathToURL = (pathName: string): string => {
+    return pathName.replace("index.mdx", "").replace("index.md", "").replace(".mdx", "").replace(".md", "").replace("posts/", "");
 };
