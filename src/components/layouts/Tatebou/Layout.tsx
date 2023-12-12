@@ -41,14 +41,14 @@ function DrawerSide({ children }: { children: ReactNode }) {
     return (
         <div className="daisy-drawer-side md:hidden">
             <label htmlFor="drawer-checkbox" className="daisy-drawer-overlay"></label>
-            <ul className="daisy-menu h-full w-80 bg-base-200 p-4">{children}</ul>
+            <ul className="daisy-menu h-full w-80 bg-base-100 p-4">{children}</ul>
         </div>
     );
 }
 
 function NavBar({ children }: { children: ReactNode }) {
     return (
-        <div className="daisy-navbar w-full bg-base-200">
+        <div className="daisy-navbar w-full bg-base-100">
             <div className="md:hidden">
                 <label htmlFor="drawer-checkbox" className="daisy-btn-ghost daisy-btn-square daisy-btn">
                     <FontAwesomeIcon icon={faBars} size="xl" />

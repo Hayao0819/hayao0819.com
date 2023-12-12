@@ -153,7 +153,7 @@ function SkillCard(props: SkillProps) {
     };*/
 
     return (
-        <div className="daisy-card m-4 w-full bg-transparent text-sm shadow-lg md:max-w-sm">
+        <div className="daisy-card m-4  w-full rounded-xl bg-white text-sm md:max-w-sm">
             <div className="daisy-card-body p-4">
                 <div className="flex child:min-w-fit">
                     {props.icon}

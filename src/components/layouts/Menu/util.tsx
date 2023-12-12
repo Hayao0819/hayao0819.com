@@ -7,6 +7,7 @@ export function useCurrentURL(url: string[]): boolean {
 
     const currentURL = removeHashFlag(router.asPath);
     for (const u of url) {
+        if (u == "") continue
         if (currentURL == u || (currentURL.startsWith(u) && u != "/")) {
             return true;
         }
