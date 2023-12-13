@@ -7,8 +7,8 @@ const shouldDeployToGithubPages = isRunningOnGithubActions && isForGithubPages &
 
 /** @type {import("next").NextConfig} */
 const switchNextConfig = {
-    basePath: isForGithubPages ? "/" + repositoryName + "/" : "",
-    assetPrefix: isForGithubPages ? "/" + repositoryName + "/" : "",
+    basePath: isForGithubPages ? "/" + repositoryName : "",
+    assetPrefix: isForGithubPages ? "/" + repositoryName : "",
 };
 
 /** @type {import("next").NextConfig} */
