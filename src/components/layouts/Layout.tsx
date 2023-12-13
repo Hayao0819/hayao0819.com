@@ -16,8 +16,8 @@ export default function Layout(props: LayoutProps) {
     return (
         <div className="flex min-h-screen flex-col bg-base-100">
             <Header />
-            <div className="flex max-w-7xl grow  justify-center child:ml-8 child:mt-8">
-                <Main {...mainProps} className={classNames(mainProps.className, " w-4/5")} />
+            <div className={classNames("flex  grow  justify-center child:ml-8 child:mt-8", { "child:mr-8": !sidebar })}>
+                <Main {...mainProps} className={classNames(mainProps.className, { "w-4/5": Boolean(sidebar) })} />
                 {sidebar ? <RightSidebar className={classNames("w-1/5")}>{sidebar}</RightSidebar> : null}
             </div>
 
@@ -52,17 +52,17 @@ function Header() {
                             </details>
                         </Menu.Item>
                         <Menu.Item>
-                            <a href="/tatebou">Tatebou</a>
+                            <a href="/portfolio">Portfolio</a>
                         </Menu.Item>
                         <Menu.Item>
-                            <a href="/">About</a>
+                            <a href="/links">Links</a>
                         </Menu.Item>
                     </Menu>
                 </div>
                 <div>
                     <Menu horizontal>
                         <Menu.Item>
-                            <a href=""></a>
+                            <a href="/tatebou">Tatebou</a>
                         </Menu.Item>
                     </Menu>
                 </div>
