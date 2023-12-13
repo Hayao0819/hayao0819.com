@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { ReactNode } from "react";
+import { ReactNode, useMemo } from "react";
 import { Button, Footer as DaisyFooter, Menu, Navbar } from "react-daisyui";
 import { FaTwitter } from "react-icons/fa";
 
@@ -13,15 +13,18 @@ export default function Layout(props: LayoutProps) {
         return [mainProps, sidebar];
     })();
 
+    const headerMemo = useMemo(() => <Header />, []);
+    const footerMemo = useMemo(() => <Footer />, []);
+
     return (
         <div className="flex min-h-screen flex-col bg-base-100">
-            <Header />
+            {headerMemo}
             <div className={classNames("flex  grow  justify-center child:ml-8 child:mt-8", { "child:mr-8": !sidebar })}>
                 <Main {...mainProps} className={classNames(mainProps.className, { "w-4/5": Boolean(sidebar) })} />
                 {sidebar ? <RightSidebar className={classNames("w-1/5")}>{sidebar}</RightSidebar> : null}
             </div>
 
-            <Footer />
+            {footerMemo}
         </div>
     );
 }
