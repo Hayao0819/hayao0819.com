@@ -16,8 +16,8 @@ export default function Layout(props: LayoutProps) {
     return (
         <div className="flex min-h-screen flex-col bg-base-100">
             <Header />
-            <div className="flex w-4/5 max-w-7xl grow  justify-center child:m-12">
-                <Main {...mainProps} className={classNames(mainProps.className, "w-4/5")} />
+            <div className="flex max-w-7xl grow  justify-center child:ml-8 child:mt-8">
+                <Main {...mainProps} className={classNames(mainProps.className, " w-4/5")} />
                 {sidebar ? <RightSidebar className={classNames("w-1/5")}>{sidebar}</RightSidebar> : null}
             </div>
 
