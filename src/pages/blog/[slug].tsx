@@ -120,7 +120,7 @@ export const getStaticPaths = async () => {
             };
         });
 
-    console.log(params);
+    //console.log(params);
 
     return {
         paths: params,
@@ -174,7 +174,7 @@ export const getStaticProps: GetStaticProps<BlogTopProps> = async ({ params }) =
         currentPage: slug,
     };
 
-    console.log(returnProps);
+    //console.log(returnProps);
 
     return {
         props: returnProps,
