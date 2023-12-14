@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import Layout from "@/components/layouts/Layout";
+
 export default function Links() {
     const [hoge, changeHoge] = useState(0);
 
@@ -8,9 +10,9 @@ export default function Links() {
     };
 
     return (
-        <>
+        <Layout>
             <div onClick={increment}>links</div>
             <div>{hoge}</div>
-        </>
+        </Layout>
     );
 }
