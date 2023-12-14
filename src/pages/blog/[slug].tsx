@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { GetStaticProps } from "next";
+import Link from "next/link";
 
 import Layout from "@/components/layouts/Layout";
 import * as blogtools from "@/lib/blog";
@@ -16,7 +17,7 @@ interface BlogTopProps {
 
 export default function BlogTop({ posts, currentPage, allpages }: BlogTopProps) {
     return (
-        <Layout sidebar={Sidebar()}>
+        <Layout sidebar={Sidebar}>
             <div>
                 {posts.map((f) => {
                     return <PostPreview key={f.file} posts={f} />;
@@ -34,7 +35,7 @@ export default function BlogTop({ posts, currentPage, allpages }: BlogTopProps) 
                                 "text-blue-500": isCurrent,
                             })}
                         >
-                            {isCurrent ? <p>{i}</p> : <a href={`/blog/${i}`}>{i}</a>}
+                            {isCurrent ? <p>{i}</p> : <Link href={`/blog/${i}`}>{i}</Link>}
                         </span>
                     );
                 })}
@@ -43,9 +44,7 @@ export default function BlogTop({ posts, currentPage, allpages }: BlogTopProps) 
     );
 }
 
-const Sidebar = () => {
-    return <>再度</>;
-};
+const Sidebar = <>再度</>;
 
 const PostPreview = ({ posts }: { posts: Post }) => {
     if (!posts.meta.title || !posts.meta.date) {
@@ -56,7 +55,7 @@ const PostPreview = ({ posts }: { posts: Post }) => {
     console.log(posts.url);
 
     return (
-        <a href={"/blog/" + posts.url} className="mb-4 flex flex-col border-2 border-solid border-neutral">
+        <Link href={"/blog/" + posts.url} className="mb-4 flex flex-col border-2 border-solid border-neutral">
             <div className="flex justify-start">
                 {(posts.meta.categories ? posts.meta.categories : ["その他"])
                     .filter((c) => {
@@ -80,7 +79,7 @@ const PostPreview = ({ posts }: { posts: Post }) => {
                 <p className="">{utils.dateToString(postDate)}</p>
             </div>
             <div className="m-2">{posts.content}</div>
-        </a>
+        </Link>
     );
 };
 

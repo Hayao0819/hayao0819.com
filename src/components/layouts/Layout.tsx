@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import Link from "next/link";
 import { ReactNode, useMemo } from "react";
 import { Button, Footer as DaisyFooter, Menu, Navbar } from "react-daisyui";
 import { FaTwitter } from "react-icons/fa";
@@ -39,33 +40,33 @@ function Header() {
                 <div className="hidden grow sm:flex">
                     <Menu horizontal>
                         <Menu.Item>
-                            <a href="/">Home</a>
+                            <Link href="/">Home</Link>
                         </Menu.Item>
                         <Menu.Item>
                             <details>
                                 <summary>Blog</summary>
                                 <Menu>
                                     <Menu.Item>
-                                        <a href="/blog">Blog</a>
+                                        <Link href="/blog">Blog</Link>
                                     </Menu.Item>
                                     <Menu.Item>
-                                        <a href="/blog/about">About</a>
+                                        <Link href="/blog/about">About</Link>
                                     </Menu.Item>
                                 </Menu>
                             </details>
                         </Menu.Item>
                         <Menu.Item>
-                            <a href="/portfolio">Portfolio</a>
+                            <Link href="/portfolio">Portfolio</Link>
                         </Menu.Item>
                         <Menu.Item>
-                            <a href="/links">Links</a>
+                            <Link href="/links">Links</Link>
                         </Menu.Item>
                     </Menu>
                 </div>
                 <div>
                     <Menu horizontal>
                         <Menu.Item>
-                            <a href="/tatebou">Tatebou</a>
+                            <Link href="/tatebou">Tatebou</Link>
                         </Menu.Item>
                     </Menu>
                 </div>
