@@ -8,7 +8,7 @@ import TatebouLayout from "@/components/tatebou/Layout";
 import Link from "@/components/tatebou/Link";
 import { Modal } from "@/components/tatebou/Modal";
 import { modalContext } from "@/components/tatebou/ModalContext";
-import { formatURL } from "@/libs/tatebou";
+import { formatURL } from "@/lib/tatebou";
 
 const inputAtom = atom<string>("");
 const fetchedAtom = atom<string>("");

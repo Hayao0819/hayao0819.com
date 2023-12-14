@@ -1,12 +1,15 @@
 import fs from "fs";
-import matter from "gray-matter";
 import { GetStaticPaths, GetStaticProps } from "next";
-import path from "path";
 
-import * as blogtools from "@/libs/blog";
-import { Post } from "@/libs/blog/type";
+import * as blogtools from "@/lib/blog";
+import { getPostFromPath } from "@/lib/blog/post";
+import { Post } from "@/lib/blog/type";
+import { recursivePath } from "@/lib/utils";
 
-type PostProps = Post;
+type PostProps = {
+    post?: Post;
+    isDir: boolean;
+};
 
 export const getStaticProps: GetStaticProps<PostProps> = async function ({ params }) {
     // get slug
@@ -21,36 +24,29 @@ export const getStaticProps: GetStaticProps<PostProps> = async function ({ param
         return "posts/" + p;
     });
 
-    const targetFile = (function (): string {
+    const targetFile = (function (): string | undefined {
         for (const filePath of filePathes) {
             if (fs.existsSync(filePath)) {
                 return filePath;
             }
         }
-        throw new Error("file not found");
     })();
 
-    const { data, content } = matter(fs.readFileSync(targetFile, "utf-8"));
-
-    return {
-        props: {
-            file: "",
-            url: "",
-            meta: {
-                title: data.title,
-                date: data.date,
+    if (targetFile) {
+        const post = getPostFromPath(targetFile);
+        return {
+            props: {
+                post: post,
+                isDir: false,
             },
-            content: content,
-        },
-    };
-};
-
-const recursivePath = (pathName: string) => {
-    const splited = pathName.split("/").filter((s) => s !== "");
-
-    return splited.map((d, i) => {
-        return path.join(...splited.slice(undefined, i), d);
-    });
+        };
+    } else {
+        return {
+            props: {
+                isDir: true,
+            },
+        };
+    }
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -69,6 +65,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     });
 
     // return list of paths
+    //console.log(paths);
 
     const ret = {
         paths: paths,
@@ -79,8 +76,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return ret;
 };
 
-const Post = () => {
-    return <div>コンテンツ</div>;
+const Post = (props: PostProps) => {
+    if (props.isDir) {
+        return <div>ディレクトリ</div>;
+    } else {
+        return <div>{props.post?.meta.title}</div>;
+    }
 };
 
 export default Post;

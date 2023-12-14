@@ -1,13 +1,12 @@
 import classNames from "classnames";
-import fs from "fs";
-import matter from "gray-matter";
 import { GetStaticProps } from "next";
 
 import Layout from "@/components/layouts/Layout";
-import * as blogtools from "@/libs/blog";
-import { Post, PostMeta } from "@/libs/blog/type";
-
-const onePage = 4;
+import * as blogtools from "@/lib/blog";
+import { MDFILE_DIR, POSTLIST_ONEPAGE } from "@/lib/blog/config";
+import { getAllPosts } from "@/lib/blog/post";
+import { Post } from "@/lib/blog/type";
+import * as utils from "@/lib/utils";
 
 interface BlogTopProps {
     posts: Post[];
@@ -54,9 +53,10 @@ const PostPreview = ({ posts }: { posts: Post }) => {
     }
 
     const postDate = new Date(posts.meta.date);
+    console.log(posts.url);
 
     return (
-        <a href={posts.url} className="mb-4 flex flex-col border-2 border-solid border-neutral">
+        <a href={"/blog/" + posts.url} className="mb-4 flex flex-col border-2 border-solid border-neutral">
             <div className="flex justify-start">
                 {(posts.meta.categories ? posts.meta.categories : ["その他"])
                     .filter((c) => {
@@ -77,25 +77,17 @@ const PostPreview = ({ posts }: { posts: Post }) => {
             <div className="m-2 flex justify-between">
                 <p className="text-lg">{posts.meta.title}</p>
 
-                <p className="">{dateToString(postDate)}</p>
+                <p className="">{utils.dateToString(postDate)}</p>
             </div>
             <div className="m-2">{posts.content}</div>
         </a>
     );
 };
 
-const dateToString = (date: Date) => {
-    const year = date.getFullYear();
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const day = ("0" + date.getDate()).slice(-2);
-
-    return `${year}/${month}/${day}`;
-};
-
 export const getStaticPaths = async () => {
-    const files = blogtools.getMdFilesInDir("posts");
+    const files = blogtools.getMdFilesInDir(MDFILE_DIR);
 
-    const filecount = Math.ceil(files.length / onePage);
+    const filecount = Math.ceil(files.length / POSTLIST_ONEPAGE);
 
     const params = [...Array(filecount)]
         .map((v, i) => i + 1)
@@ -116,48 +108,20 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<BlogTopProps> = async ({ params }) => {
-    const allPosts: Post[] = [];
-
-    const files = blogtools.getMdFilesInDir("posts");
-
-    files.forEach((file) => {
-        const fileContent = fs.readFileSync(file, "utf-8");
-        const parsed = matter(fileContent);
-        const meta: PostMeta = {};
-
-        Object.keys(parsed.data).forEach((key) => {
-            if (key === "date") {
-                meta[key] = new Date(parsed.data[key]).toISOString();
-            } else {
-                meta[key] = parsed.data[key];
-            }
-        });
-
-        //console.log(meta);
-
-        allPosts.push({
-            file: file,
-            url: "posts/" + blogtools.mdPathToURL(file),
-            meta: meta,
-            content: parsed.content.slice(0, 100),
-        });
-    });
+    const allPosts: Post[] = getAllPosts();
 
     const slug = parseInt(params?.slug as string) - 1;
 
     const returnProps: BlogTopProps = {
         posts: allPosts
-            .filter((p) => {
-                return p.meta.title && p.meta.date;
+            .map((p) => {
+                return {
+                    ...p,
+                    content: p.content.slice(0, 100),
+                };
             })
-            .sort((a, b) => {
-                if (!a.meta.date || !b.meta.date) {
-                    return 0;
-                }
-                return new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime();
-            })
-            .slice(slug * onePage, (slug + 1) * onePage),
-        allpages: Math.ceil(allPosts.length / onePage),
+            .slice(slug * POSTLIST_ONEPAGE, (slug + 1) * POSTLIST_ONEPAGE),
+        allpages: Math.ceil(allPosts.length / POSTLIST_ONEPAGE),
         currentPage: slug,
     };
 
