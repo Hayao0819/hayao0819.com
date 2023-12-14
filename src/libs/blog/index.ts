@@ -1,14 +1,14 @@
 import fs from "fs";
 import path from "path";
 
-export const getBlogFilesInDir = (dir: string): string[] => {
+export const getMdFilesInDir = (dir: string): string[] => {
     return fs
         .readdirSync(dir, { withFileTypes: true })
         .flatMap((dirent) => {
             if (dirent.isFile()) {
                 return [`${dir}/${dirent.name}`];
             } else {
-                return getBlogFilesInDir(`${dir}/${dirent.name}`);
+                return getMdFilesInDir(`${dir}/${dirent.name}`);
             }
         })
         .filter((postFilePath) => {

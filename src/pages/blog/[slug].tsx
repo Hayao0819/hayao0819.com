@@ -5,22 +5,9 @@ import { GetStaticProps } from "next";
 
 import Layout from "@/components/layouts/Layout";
 import * as blogtools from "@/libs/blog";
+import { Post, PostMeta } from "@/libs/blog/type";
 
 const onePage = 4;
-
-export interface PostMeta extends Record<string, string | string[] | undefined> {
-    title?: string;
-    date?: string;
-    categories?: string[];
-    tags?: string[];
-}
-
-export interface Post {
-    file: string;
-    url: string;
-    meta: PostMeta;
-    content: string;
-}
 
 interface BlogTopProps {
     posts: Post[];
@@ -106,7 +93,7 @@ const dateToString = (date: Date) => {
 };
 
 export const getStaticPaths = async () => {
-    const files = blogtools.getBlogFilesInDir("posts");
+    const files = blogtools.getMdFilesInDir("posts");
 
     const filecount = Math.ceil(files.length / onePage);
 
@@ -131,7 +118,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<BlogTopProps> = async ({ params }) => {
     const allPosts: Post[] = [];
 
-    const files = blogtools.getBlogFilesInDir("posts");
+    const files = blogtools.getMdFilesInDir("posts");
 
     files.forEach((file) => {
         const fileContent = fs.readFileSync(file, "utf-8");
