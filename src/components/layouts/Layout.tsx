@@ -4,15 +4,13 @@ import Footer from "./Footer";
 import Header from "./Header";
 
 export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
+    //const propsWithoutChildren = { ...props, children: undefined };
+
     return (
-        <div className="flex h-screen min-h-screen flex-col bg-base-100">
+        <div {...props} className={classNames("flex", "min-h-screen", "flex-col", "bg-base-100", props.className)}>
             <Header />
-            <Main {...props} className={classNames(props.className, "grow", "w-screen", "h-full", "p-5")} />
+            <main className={classNames("grow", "w-screen", "p-5")}>{props.children}</main>
             <Footer />
         </div>
     );
-}
-
-function Main(props: React.HTMLAttributes<HTMLDivElement>) {
-    return <main {...props} />;
 }

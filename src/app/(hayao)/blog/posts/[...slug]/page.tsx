@@ -1,12 +1,18 @@
 import fs from "fs";
+import { ReactNode } from "react";
+import rehypeStringify from "rehype-stringify";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import { unified } from "unified";
 
 import * as blogtools from "@/lib/blog";
-import { getPostFromPath } from "@/lib/blog/post";
+import { getAllPosts, getPostFromPath } from "@/lib/blog/post";
 import { Post } from "@/lib/blog/type";
 import { recursivePath } from "@/lib/utils";
 
 type PostProps = {
     post?: Post;
+    parsed?: ReactNode;
     isDir: boolean;
 };
 
@@ -33,9 +39,15 @@ export const fetchPostData = async function (path: string): Promise<PostProps> {
 
     if (targetFile) {
         const post = getPostFromPath(targetFile);
+        console.log(post);
+
+        const parsed = await unified().use(remarkParse).use(remarkRehype).use(rehypeStringify).process(post.content);
+        //console.log(parsed);
+
         return {
             post: post,
             isDir: false,
+            parsed: <div dangerouslySetInnerHTML={{ __html: parsed.toString() }} />,
         };
     } else {
         return {
@@ -45,8 +57,8 @@ export const fetchPostData = async function (path: string): Promise<PostProps> {
 };
 
 export const generateStaticParams = async () => {
-    const mdFiles = blogtools.getMdFilesInDir("posts");
-    const pages = mdFiles.flatMap((f) => recursivePath(f));
+    const mdFiles = getAllPosts();
+    const pages = mdFiles.flatMap((f) => recursivePath(f.url));
     const paths = pages.map((fileName) => {
         const pageurl = blogtools.mdPathToURL(fileName);
 
@@ -66,7 +78,12 @@ const Post = async ({ params }: { params: { slug: string } }) => {
     if (postData.isDir) {
         return <div>ディレクトリ</div>;
     } else {
-        return <div>{postData.post?.meta.title}</div>;
+        return (
+            <>
+                <div>{postData.post?.meta.title}</div>
+                {postData.parsed}
+            </>
+        );
     }
 };
 

@@ -1,7 +1,7 @@
-export default function Home() {
-    return (
-        <div>
-            <p>ここはホームです。</p>
-        </div>
-    );
-}
+import { redirect } from "next/navigation";
+
+const page = async () => {
+    redirect("/blog/1");
+};
+
+export default page;
