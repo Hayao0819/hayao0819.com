@@ -17,8 +17,8 @@ export default async function BlogTop({ params }: { params: { slug: number } }) 
     const { posts, currentPage, allpages } = await getPostList(params.slug);
 
     return (
-        <>
-            <div className="sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+        <div className="flex h-full flex-col">
+            <div className="grow sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
                 {posts.map((f) => {
                     return <PostPreview key={f.file} posts={f} />;
                 })}
@@ -40,7 +40,7 @@ export default async function BlogTop({ params }: { params: { slug: number } }) 
                     );
                 })}
             </div>
-        </>
+        </div>
     );
 }
 

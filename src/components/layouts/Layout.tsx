@@ -24,7 +24,7 @@ export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
             )}
         >
             {headerMemo}
-            <main className={classNames("grow", "p-5")}>{props.children}</main>
+            <main className={classNames("grow", "p-5", "flex")}>{props.children}</main>
             {footerMemo}
         </div>
     );
