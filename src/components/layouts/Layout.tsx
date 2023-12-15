@@ -6,26 +6,15 @@ import { ReactNode, useMemo } from "react";
 import { Button, Footer as DaisyFooter, Menu, Navbar } from "react-daisyui";
 import { FaTwitter } from "react-icons/fa";
 
-interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
-    sidebar?: ReactNode;
-}
-
-export default function Layout(props: LayoutProps) {
-    const [mainProps, sidebar] = (function () {
-        const { sidebar, ...mainProps } = props;
-        return [mainProps, sidebar];
-    })();
-
+export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
     const headerMemo = useMemo(() => <Header />, []);
     const footerMemo = useMemo(() => <Footer />, []);
 
     return (
         <div className="flex min-h-screen flex-col bg-base-100">
             {headerMemo}
-            <div className={classNames("flex  grow  justify-center child:ml-8 child:mt-8", { "child:mr-8": !sidebar })}>
-                <Main {...mainProps} className={classNames(mainProps.className, { "w-4/5": Boolean(sidebar) })} />
-                {sidebar ? <RightSidebar className={classNames("w-1/5")}>{sidebar}</RightSidebar> : null}
-            </div>
+
+            <Main {...props} className={classNames(props.className, "grow")} />
 
             {footerMemo}
         </div>
@@ -102,8 +91,4 @@ function Footer() {
             </nav>
         </DaisyFooter>
     );
-}
-
-function RightSidebar(props: React.HTMLAttributes<HTMLDivElement>) {
-    return <div {...props}>{props.children}</div>;
 }
