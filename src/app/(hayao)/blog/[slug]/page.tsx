@@ -18,7 +18,7 @@ export default async function BlogTop({ params }: { params: { slug: number } }) 
 
     return (
         <>
-            <div>
+            <div className="sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
                 {posts.map((f) => {
                     return <PostPreview key={f.file} posts={f} />;
                 })}
@@ -31,8 +31,8 @@ export default async function BlogTop({ params }: { params: { slug: number } }) 
                     return (
                         <span
                             key={i}
-                            className={classNames("mx-1", {
-                                "text-blue-500": isCurrent,
+                            className={classNames("px-2 text-lg", {
+                                " underline": isCurrent,
                             })}
                         >
                             {isCurrent ? <p>{i}</p> : <Link href={`/blog/${i}`}>{i}</Link>}

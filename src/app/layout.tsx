@@ -13,7 +13,7 @@ export const metadata: NextMetadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html>
-            <body className="overscroll-y-none">{children}</body>
+            <body className="overflow-x-hidden overscroll-y-none">{children}</body>
         </html>
     );
 }

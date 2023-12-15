@@ -11,7 +11,7 @@ const PostPreview = ({ posts }: { posts: Post }) => {
     //console.log(posts.url);
 
     return (
-        <Link href={"/blog/" + posts.url} className="mb-4 flex flex-col border-2 border-solid border-neutral">
+        <Link href={"/blog/" + posts.url} className="mb-4 flex flex-col border-4 border-solid border-neutral">
             <div className="flex justify-start">
                 {(posts.meta.categories ? posts.meta.categories : ["その他"])
                     .filter((c) => {
@@ -30,7 +30,7 @@ const PostPreview = ({ posts }: { posts: Post }) => {
             </div>
 
             <div className="m-2 flex justify-between">
-                <p className="text-lg">{posts.meta.title}</p>
+                <p className="text-xl">{posts.meta.title}</p>
 
                 <p className="">{utils.dateToString(postDate)}</p>
             </div>
