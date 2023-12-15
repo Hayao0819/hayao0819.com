@@ -16,7 +16,7 @@ type PostProps = {
     isDir: boolean;
 };
 
-export const fetchPostData = async function (path: string): Promise<PostProps> {
+const fetchPostData = async function (path: string): Promise<PostProps> {
     // get slug
     let rawSlug = path;
     if (!rawSlug) {
