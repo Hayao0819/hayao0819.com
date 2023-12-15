@@ -24,6 +24,6 @@
             "@/*": ["./src/*"]
         }
     },
-    "include": ["**/*.ts", "**/*.tsx", "**/*.js", "prettier.config.mjs"],
+    "include": ["**/*.ts", "**/*.tsx", "**/*.js", "prettier.config.mjs", ".next/types/**/*.ts"],
     "exclude": ["node_modules"]
 }
