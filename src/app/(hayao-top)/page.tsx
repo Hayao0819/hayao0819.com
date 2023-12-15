@@ -18,7 +18,12 @@ export default function Home() {
                 </Link>
             </div>
 
-            <p className="py-6">カスなおたく</p>
+            <p className="py-1 hover:underline">
+                <Link href="/blog">BLOG</Link>
+            </p>
+            <p className="py-1 hover:underline">
+                <Link href="/portfolio">PORTFOLIO</Link>
+            </p>
         </div>
     );
 }
