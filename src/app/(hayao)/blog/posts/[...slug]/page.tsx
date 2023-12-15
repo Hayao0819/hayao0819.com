@@ -1,5 +1,4 @@
 import fs from "fs";
-import { GetStaticPaths, GetStaticProps } from "next";
 
 import * as blogtools from "@/lib/blog";
 import { getPostFromPath } from "@/lib/blog/post";
@@ -11,9 +10,9 @@ type PostProps = {
     isDir: boolean;
 };
 
-export const getStaticProps: GetStaticProps<PostProps> = async function ({ params }) {
+export const fetchPostData = async function (path: string): Promise<PostProps> {
     // get slug
-    let rawSlug = params?.slug;
+    let rawSlug = path;
     if (!rawSlug) {
         throw new Error("slug is undefined");
     } else if (Array.isArray(rawSlug)) {
@@ -35,52 +34,39 @@ export const getStaticProps: GetStaticProps<PostProps> = async function ({ param
     if (targetFile) {
         const post = getPostFromPath(targetFile);
         return {
-            props: {
-                post: post,
-                isDir: false,
-            },
+            post: post,
+            isDir: false,
         };
     } else {
         return {
-            props: {
-                isDir: true,
-            },
+            isDir: true,
         };
     }
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const generateStaticParams = async () => {
     const mdFiles = blogtools.getMdFilesInDir("posts");
-
     const pages = mdFiles.flatMap((f) => recursivePath(f));
-
     const paths = pages.map((fileName) => {
         const pageurl = blogtools.mdPathToURL(fileName);
 
         return {
-            params: {
-                slug: pageurl.split("/").filter((s) => s !== ""),
-            },
+            slug: pageurl.split("/").filter((s) => s !== ""),
         };
     });
 
-    // return list of paths
     //console.log(paths);
 
-    const ret = {
-        paths: paths,
-        fallback: false,
-    };
-
-    //console.log(paths[0]);
-    return ret;
+    return paths;
 };
 
-const Post = (props: PostProps) => {
-    if (props.isDir) {
+const Post = async ({ params }: { params: { slug: string } }) => {
+    const postData = await fetchPostData(params.slug);
+
+    if (postData.isDir) {
         return <div>ディレクトリ</div>;
     } else {
-        return <div>{props.post?.meta.title}</div>;
+        return <div>{postData.post?.meta.title}</div>;
     }
 };
 

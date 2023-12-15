@@ -1,13 +1,11 @@
 import classNames from "classnames";
-import { GetStaticProps } from "next";
 import Link from "next/link";
 
-import Layout from "@/components/layouts/Layout";
+import PostPreview from "@/components/layouts/PostPreview";
 import * as blogtools from "@/lib/blog";
 import { MDFILE_DIR, POSTLIST_ONEPAGE } from "@/lib/blog/config";
 import { getAllPosts } from "@/lib/blog/post";
 import { Post } from "@/lib/blog/type";
-import * as utils from "@/lib/utils";
 
 interface BlogTopProps {
     posts: Post[];
@@ -15,9 +13,11 @@ interface BlogTopProps {
     currentPage: number;
 }
 
-export default function BlogTop({ posts, currentPage, allpages }: BlogTopProps) {
+export default async function BlogTop({ params }: { params: { slug: number } }) {
+    const { posts, currentPage, allpages } = await getPostList(params.slug);
+
     return (
-        <Layout sidebar={Sidebar}>
+        <>
             <div>
                 {posts.map((f) => {
                     return <PostPreview key={f.file} posts={f} />;
@@ -40,50 +40,11 @@ export default function BlogTop({ posts, currentPage, allpages }: BlogTopProps) 
                     );
                 })}
             </div>
-        </Layout>
+        </>
     );
 }
 
-const Sidebar = <>再度</>;
-
-const PostPreview = ({ posts }: { posts: Post }) => {
-    if (!posts.meta.title || !posts.meta.date) {
-        return <></>;
-    }
-
-    const postDate = new Date(posts.meta.date);
-    console.log(posts.url);
-
-    return (
-        <Link href={"/blog/" + posts.url} className="mb-4 flex flex-col border-2 border-solid border-neutral">
-            <div className="flex justify-start">
-                {(posts.meta.categories ? posts.meta.categories : ["その他"])
-                    .filter((c) => {
-                        return c !== "ブログ";
-                    })
-                    .map((c) => {
-                        return c ? c : "その他";
-                    })
-                    .map((s) => {
-                        return (
-                            <div className="bg-neutral p-1 text-neutral-content" key={s}>
-                                {s}
-                            </div>
-                        );
-                    })}
-            </div>
-
-            <div className="m-2 flex justify-between">
-                <p className="text-lg">{posts.meta.title}</p>
-
-                <p className="">{utils.dateToString(postDate)}</p>
-            </div>
-            <div className="m-2">{posts.content}</div>
-        </Link>
-    );
-};
-
-export const getStaticPaths = async () => {
+export const generateStaticParams = async () => {
     const files = blogtools.getMdFilesInDir(MDFILE_DIR);
 
     const filecount = Math.ceil(files.length / POSTLIST_ONEPAGE);
@@ -92,24 +53,19 @@ export const getStaticPaths = async () => {
         .map((v, i) => i + 1)
         .map((i) => {
             return {
-                params: {
-                    slug: i.toString(),
-                },
+                slug: i.toString(),
             };
         });
 
     //console.log(params);
 
-    return {
-        paths: params,
-        fallback: false,
-    };
+    return params;
 };
 
-export const getStaticProps: GetStaticProps<BlogTopProps> = async ({ params }) => {
+const getPostList = async (currentPage: number) => {
     const allPosts: Post[] = getAllPosts();
 
-    const slug = parseInt(params?.slug as string) - 1;
+    const slug = currentPage - 1;
 
     const returnProps: BlogTopProps = {
         posts: allPosts
@@ -126,7 +82,5 @@ export const getStaticProps: GetStaticProps<BlogTopProps> = async ({ params }) =
 
     //console.log(returnProps);
 
-    return {
-        props: returnProps,
-    };
+    return returnProps;
 };

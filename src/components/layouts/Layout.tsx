@@ -49,7 +49,7 @@ function Header() {
                                 <summary>Blog</summary>
                                 <Menu>
                                     <Menu.Item>
-                                        <Link href="/blog">Blog</Link>
+                                        <Link href="/blog/1">Blog</Link>
                                     </Menu.Item>
                                     <Menu.Item>
                                         <Link href="/blog/about">About</Link>
