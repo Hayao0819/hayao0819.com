@@ -24,7 +24,7 @@ export default async function BlogTop({ params }: { params: { slug: number } }) 
                 })}
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex items-center justify-center">
                 {[...Array(allpages)].map((v, i) => {
                     i = i + 1;
                     const isCurrent = i === currentPage + 1;
