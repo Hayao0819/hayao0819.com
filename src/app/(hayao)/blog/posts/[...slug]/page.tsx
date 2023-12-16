@@ -5,6 +5,7 @@ import { BlogHeading } from "@/components/elements/Heading";
 import StringToMd from "@/components/elements/StringToMd";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import * as blogtools from "@/lib/blog";
+import { getAllCategories } from "@/lib/blog/categories";
 import { getAllPosts, getPostFromPath } from "@/lib/blog/post";
 import { Post } from "@/lib/blog/type";
 import { recursivePath } from "@/lib/utils";
@@ -70,6 +71,7 @@ export const generateStaticParams = async () => {
 
 const Post = async ({ params }: { params: { slug: string } }) => {
     const postData = await fetchPostData(params.slug);
+    const categories = await getAllCategories();
 
     if (postData.isDir) {
         return <div>ディレクトリ</div>;
@@ -81,9 +83,22 @@ const Post = async ({ params }: { params: { slug: string } }) => {
                     {postData.parsed}
                 </div>
                 <div className="w-1/5">
-                    <BlogHeading level={2}>Categories</BlogHeading>
+                    <BlogHeading level={2} className="border-b-4">
+                        Categories
+                    </BlogHeading>
+                    <ul>
+                        {categories.map((c) => {
+                            return (
+                                <li key={c}>
+                                    <a href="/"></a>
+                                </li>
+                            );
+                        })}
+                    </ul>
 
-                    <BlogHeading level={2}>Recent Posts</BlogHeading>
+                    <BlogHeading level={2} className="border-b-4">
+                        Recent Posts
+                    </BlogHeading>
                 </div>
             </CommonSpacer>
         );
