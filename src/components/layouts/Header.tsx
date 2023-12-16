@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useRef, useState } from "react";
 import { Button, Menu, Navbar } from "react-daisyui";
+import { useOnClickOutside } from "usehooks-ts";
 
 function MenuItem({ href, text, onClick }: { href: string; text: string; onClick?: () => void }) {
     return (
@@ -47,9 +49,24 @@ export default function Header() {
 }
 
 function MenuItemBlog() {
+    const [isOpened, setIsOpened] = useState(false);
+    const detailsRef = useRef(null);
+
+    useOnClickOutside(detailsRef, () => {
+        setIsOpened(false);
+    });
+
     return (
         <Menu.Item>
-            <details className="dropdown">
+            <details
+                className="dropdown"
+                onClick={(e) => {
+                    e.preventDefault();
+                    setIsOpened(!isOpened);
+                }}
+                open={isOpened}
+                ref={detailsRef}
+            >
                 <summary>Blog</summary>
                 <Menu className="text-base-content">
                     <MenuItem href="/blog/1" text="Blog" />
