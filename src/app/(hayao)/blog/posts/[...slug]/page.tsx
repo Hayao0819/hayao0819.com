@@ -1,6 +1,7 @@
 import fs from "fs";
 import { ReactNode } from "react";
 import rehypeStringify from "rehype-stringify";
+import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
@@ -41,7 +42,12 @@ const fetchPostData = async function (path: string): Promise<PostProps> {
         const post = getPostFromPath(targetFile);
         console.log(post);
 
-        const parsed = await unified().use(remarkParse).use(remarkRehype).use(rehypeStringify).process(post.content);
+        const parsed = await unified()
+            .use(remarkParse)
+            .use(remarkGfm)
+            .use(remarkRehype)
+            .use(rehypeStringify)
+            .process(post.content);
         //console.log(parsed);
 
         return {
