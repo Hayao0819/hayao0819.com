@@ -8,7 +8,7 @@ type HeadingProps = DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHe
 export function Heading(props: HeadingProps) {
     const level = props.level;
     const propsWothoutLevelAndClassName = { ...props, level: undefined, className: undefined };
-    const cn = classNames("prose", props.className);
+    const cn = classNames("prose", "max-w-full", props.className);
 
     const headingTag =
         level == 1 ? (

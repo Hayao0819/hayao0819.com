@@ -1,5 +1,18 @@
+import classNames from "classnames";
 import { ReactNode } from "react";
-import { FaGolang } from "react-icons/fa6";
+import {
+    SiDocker,
+    SiFirebase,
+    SiGo,
+    SiLinux,
+    SiNextdotjs,
+    SiPython,
+    SiReact,
+    SiTailwindcss,
+    SiTypescript,
+    SiVisualstudiocode,
+    SiVuedotjs,
+} from "react-icons/si";
 
 import { Heading } from "@/components/elements/Heading";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
@@ -7,17 +20,80 @@ import CommonSpacer from "@/components/layouts/CommonSpacer";
 export default function Portfolio() {
     return (
         <CommonSpacer>
-            <Heading level={2}>Skills</Heading>
-            <div className="flex">
-                <SkillCard icon={<FaGolang />} title="Golang">
-                    <p>何かを作ります</p>
-                </SkillCard>
+            <div>
+                <Heading level={2} className="my-5 w-full bg-neutral py-3 text-center text-4xl text-neutral-content">
+                    Languages
+                </Heading>
+                <div className="md:grid md:grid-cols-2 md:gap-5">
+                    <SkillCard icon={<SiGo />} title="Golang" side="left">
+                        <ul>
+                            <li>Lico</li>
+                            <li>Ayaka</li>
+                            <li>Stargazy</li>
+                        </ul>
+                    </SkillCard>
+                    <SkillCard icon={<SiTypescript />} title="TypeScript" side="left">
+                        <Heading level={3}>成果物</Heading>
+                        <p>色々を作りました</p>
+                    </SkillCard>
+                    <SkillCard icon={<SiTypescript />} title="ShellScript" side="left">
+                        <Heading level={3}>成果物</Heading>
+                        <p>色々を作りました</p>
+                    </SkillCard>
+                    <SkillCard icon={<SiPython />} title="Python" side="left">
+                        <Heading level={3}>成果物</Heading>
+                        <p>色々を作りました</p>
+                    </SkillCard>
+                </div>
             </div>
 
-            <h2 className="text-xl">Projects</h2>
-            <ul>
-                <li>何もない</li>
-            </ul>
+            <div>
+                <Heading level={2} className="my-5 w-full bg-neutral py-3 text-center text-4xl text-neutral-content">
+                    Frameworks
+                </Heading>
+                <div className="md:grid md:grid-cols-2 md:gap-5">
+                    <SkillCard icon={<SiReact />} title="React.js" side="left">
+                        <Heading level={3}>成果物</Heading>
+                        <p>色々を作りました</p>
+                    </SkillCard>
+                    <SkillCard icon={<SiVuedotjs />} title="Vue.js" side="left">
+                        <Heading level={3}>成果物</Heading>
+                        <p>色々を作りました</p>
+                    </SkillCard>
+                    <SkillCard icon={<SiTailwindcss />} title="Tailwind CSS" side="left">
+                        <Heading level={3}>成果物</Heading>
+                        <p>色々を作りました</p>
+                    </SkillCard>
+                    <SkillCard icon={<SiNextdotjs />} title="Next.js" side="left">
+                        <Heading level={3}>成果物</Heading>
+                        <p>色々を作りました</p>
+                    </SkillCard>
+                </div>
+            </div>
+
+            <div>
+                <Heading level={2} className="my-5 w-full bg-neutral py-3 text-center text-4xl text-neutral-content">
+                    Tools
+                </Heading>
+                <div className="md:grid md:grid-cols-2 md:gap-5">
+                    <SkillCard icon={<SiLinux />} title="Linux" side="left">
+                        <Heading level={3}>成果物</Heading>
+                        <p>色々を作りました</p>
+                    </SkillCard>
+                    <SkillCard icon={<SiVisualstudiocode />} title="VSCode" side="left">
+                        <Heading level={3}>成果物</Heading>
+                        <p>色々を作りました</p>
+                    </SkillCard>
+                    <SkillCard icon={<SiFirebase />} title="Firestore" side="left">
+                        <Heading level={3}>成果物</Heading>
+                        <p>色々を作りました</p>
+                    </SkillCard>
+                    <SkillCard icon={<SiDocker />} title="Docker" side="left">
+                        <Heading level={3}>成果物</Heading>
+                        <p>色々を作りました</p>
+                    </SkillCard>
+                </div>
+            </div>
         </CommonSpacer>
     );
 }
@@ -26,15 +102,27 @@ interface SkillCardProps {
     icon?: ReactNode;
     title: string;
     children?: ReactNode;
+    side: "left" | "right";
 }
 function SkillCard(props: SkillCardProps) {
     return (
-        <div className="w-1/2 ">
-            <div className=" flex items-center justify-center bg-neutral text-neutral-content child:mx-6">
-                <div>{props.icon}</div>
-                <p>{props.title}</p>
+        <div
+            className={classNames("flex w-full", {
+                "flex-row-reverse": props.side === "right",
+            })}
+        >
+            <div className=" flex w-1/2 items-center justify-center bg-neutral px-10 py-12 text-neutral-content child:px-2">
+                <span className="text-2xl">{props.icon}</span>
+                <p className="text-2xl">{props.title}</p>
             </div>
-            <div>{props.children}</div>
+            <div
+                className={classNames("w-1/2 bg-base-300 px-6", {
+                    "text-left": props.side === "left",
+                    "text-right": props.side === "right",
+                })}
+            >
+                {props.children}
+            </div>
         </div>
     );
 }

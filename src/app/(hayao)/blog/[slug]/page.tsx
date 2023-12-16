@@ -36,7 +36,7 @@ export const generateStaticParams = async () => {
             };
         });
 
-    console.log(params);
+    //console.log(params);
 
     return params;
 };
