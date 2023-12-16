@@ -1,13 +1,9 @@
 import { atom, useAtom } from "jotai";
-import React, { useContext } from "react";
+import React from "react";
 
 import Alert, { useAlert } from "@/components/tatebou/Alert";
-import { appendHistory, History, historyAtom, HistoryTable } from "@/components/tatebou/History";
-import HistoryModals from "@/components/tatebou/HistoryModals";
 import TatebouLayout from "@/components/tatebou/Layout";
 import Link from "@/components/tatebou/Link";
-import { Modal } from "@/components/tatebou/Modal";
-import { modalContext } from "@/components/tatebou/ModalContext";
 import { formatURL } from "@/lib/tatebou";
 
 const inputAtom = atom<string>("");
@@ -22,7 +18,6 @@ export default function Tatebou() {
             <Result />
             <TestTools />
             <Alert />
-            <TatebouModals />
         </TatebouLayout>
     );
 }
@@ -69,18 +64,9 @@ function ActionBtns() {
     return (
         <div className="flex gap-2 child:btn child:btn-sm  child:!text-white">
             <CreateBtn />
-            <HistoryBtn />
+
             <ResetBtn />
         </div>
-    );
-}
-
-function HistoryBtn() {
-    const mtx = useContext(modalContext);
-    return (
-        <button className="!btn-neutral !btn-active" onClick={() => mtx.openModal("history")}>
-            履歴
-        </button>
     );
 }
 
@@ -106,9 +92,6 @@ function CreateBtn() {
     // Components
     const { openAlert } = useAlert();
 
-    // 履歴
-    const [histories, setHistories] = useAtom(historyAtom);
-
     const SendPOSTToTatebou = () => {
         const runRequest = (url: string) => {
             fetch("https://1lil.li/p/", {
@@ -127,12 +110,6 @@ function CreateBtn() {
                     } else {
                         res.text().then((text) => {
                             setFetchedData(text);
-                            const newHistory: History = {
-                                original: url,
-                                short: text,
-                                date: new Date().toISOString(),
-                            };
-                            setHistories(appendHistory(histories, newHistory));
                         });
                     }
                 })
@@ -176,7 +153,6 @@ function Result() {
 }
 
 function TestTools() {
-    const mtx = useContext(modalContext);
     /*const openNotImplementedModal = () => {
         mtx.openModal("not-implemented");
     };*/
@@ -209,40 +185,14 @@ function TestTools() {
                             plzMakeURL();
                             return;
                         }
-                        mtx.openModal("will-move");
-                        setTimeout(() => {
-                            mtx.closeModal();
-                            //router.push(fetchedData)
-                            window.open(fetchedData, "_blank");
-                            openAlert("作成されたリンクに移動しました", "Success");
-                        }, 3000);
+
+                        window.open(fetchedData, "_blank");
+                        openAlert("作成されたリンクに移動しました", "Success");
                     }}
                 >
                     テスト
                 </button>
             </div>
-
-            <Modal name="will-move">
-                <p>
-                    3秒後に<code>{fetchedData}</code>に移動します。
-                </p>
-            </Modal>
         </div>
-    );
-}
-
-function TatebouModals() {
-    return (
-        <>
-            <Modal name="not-implemented" title="未実装" backdrop>
-                <p>ごめんね、まだ実装していないんだ</p>
-            </Modal>
-
-            <Modal name="history" title="履歴">
-                <HistoryTable />
-            </Modal>
-
-            <HistoryModals />
-        </>
     );
 }

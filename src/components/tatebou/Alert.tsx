@@ -1,7 +1,6 @@
-import { faClose } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { atom, useAtom } from "jotai";
 import { useEffect, useState } from "react";
+import { FaCircleXmark } from "react-icons/fa6";
 
 export const alertAtom = atom<{ isHidden: boolean; text: string; type: AlertType }>({
     isHidden: true,
@@ -54,11 +53,11 @@ export default function Alert(): React.ReactNode {
         }
     }, [alertInfo.isHidden, alertInfo.type]);
     return (
-        <div className={"m-2 flex rounded-md p-2 " + alertClass}>
+        <div className={"m-2 flex rounded-md p-2 items-center " + alertClass}>
             <div className="grow">{alertInfo.text}</div>
 
             <div onClick={closeAlert} role="button" className="mx-2">
-                <FontAwesomeIcon icon={faClose} />
+                <FaCircleXmark className="text-xl" />
             </div>
         </div>
     );

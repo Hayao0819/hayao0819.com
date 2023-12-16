@@ -8,7 +8,7 @@ interface LinkProps {
     newtab?: boolean;
 }
 export default function Link({ href, children, newtab }: LinkProps): JSX.Element {
-    const className = "text-blue-600 underline underline-offset-4 dark:text-sky-400";
+    const className = "text-blue-800 underline underline-offset-4 dark:text-sky-600";
     if (newtab) {
         return (
             <a href={href.toString()} target="_blank" className={className} rel="noreferrer">

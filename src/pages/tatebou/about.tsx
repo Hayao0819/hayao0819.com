@@ -1,13 +1,12 @@
-import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactNode } from "react";
+import { FaCaretRight } from "react-icons/fa";
 
 import TatebouLayout from "@/components/tatebou/Layout";
 
 export function H3({ children }: { children: ReactNode }) {
     return (
-        <div className="py-4">
-            <FontAwesomeIcon icon={faCaretRight} size="xl" />
+        <div className="flex items-center py-4">
+            <FaCaretRight className="text-2xl" />
             <h3 className="inline pl-2 text-xl">{children}</h3>
         </div>
     );

@@ -1,7 +1,6 @@
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NextLink from "next/link";
 import { ReactNode } from "react";
+import { FaBars } from "react-icons/fa";
 
 import Meta from "@/const/tatebou";
 
@@ -51,7 +50,7 @@ function NavBar({ children }: { children: ReactNode }) {
         <div className="navbar w-full bg-base-200">
             <div className="md:hidden">
                 <label htmlFor="drawer-checkbox" className="btn btn-square btn-ghost">
-                    <FontAwesomeIcon icon={faBars} size="xl" />
+                    <FaBars />
                 </label>
             </div>
             <div className="mx-2 px-2 text-xl">
