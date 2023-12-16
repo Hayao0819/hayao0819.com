@@ -1,11 +1,8 @@
 import fs from "fs";
 import { ReactNode } from "react";
-import rehypeStringify from "rehype-stringify";
-import remarkGfm from "remark-gfm";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import { unified } from "unified";
 
+import { BlogHeading } from "@/components/elements/Heading";
+import StringToMd from "@/components/elements/StringToMd";
 import * as blogtools from "@/lib/blog";
 import { getAllPosts, getPostFromPath } from "@/lib/blog/post";
 import { Post } from "@/lib/blog/type";
@@ -42,18 +39,10 @@ const fetchPostData = async function (path: string): Promise<PostProps> {
         const post = getPostFromPath(targetFile);
         console.log(post);
 
-        const parsed = await unified()
-            .use(remarkParse)
-            .use(remarkGfm)
-            .use(remarkRehype)
-            .use(rehypeStringify)
-            .process(post.content);
-        //console.log(parsed);
-
         return {
             post: post,
             isDir: false,
-            parsed: <div dangerouslySetInnerHTML={{ __html: parsed.toString() }} />,
+            parsed: <StringToMd content={post.content} />,
         };
     } else {
         return {
@@ -85,10 +74,17 @@ const Post = async ({ params }: { params: { slug: string } }) => {
         return <div>ディレクトリ</div>;
     } else {
         return (
-            <>
-                <div>{postData.post?.meta.title}</div>
-                {postData.parsed}
-            </>
+            <div className="mx-auto flex w-1/2  break-words">
+                <div className="w-4/5">
+                    <BlogHeading level={1}>{postData.post?.meta.title}</BlogHeading>
+                    {postData.parsed}
+                </div>
+                <div className="w-1/5">
+                    <BlogHeading level={2}>Categories</BlogHeading>
+
+                    <BlogHeading level={2}>Recent Posts</BlogHeading>
+                </div>
+            </div>
         );
     }
 };
