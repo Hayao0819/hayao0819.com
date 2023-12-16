@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 
 import { BlogHeading } from "@/components/elements/Heading";
 import StringToMd from "@/components/elements/StringToMd";
+import CommonSpacer from "@/components/layouts/CommonSpacer";
 import * as blogtools from "@/lib/blog";
 import { getAllPosts, getPostFromPath } from "@/lib/blog/post";
 import { Post } from "@/lib/blog/type";
@@ -74,7 +75,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
         return <div>ディレクトリ</div>;
     } else {
         return (
-            <div className="mx-auto flex w-1/2  break-words">
+            <CommonSpacer className="flex">
                 <div className="w-4/5">
                     <BlogHeading level={1}>{postData.post?.meta.title}</BlogHeading>
                     {postData.parsed}
@@ -84,7 +85,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
 
                     <BlogHeading level={2}>Recent Posts</BlogHeading>
                 </div>
-            </div>
+            </CommonSpacer>
         );
     }
 };
