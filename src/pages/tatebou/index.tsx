@@ -92,7 +92,33 @@ function CreateBtn() {
     // Components
     const { openAlert } = useAlert();
 
-    const SendPOSTToTatebou = () => {
+    const SendPOSTToTatebou = async () => {
+        const runRequest = async (url: string) => {
+            try {
+                const res = await fetch("https://1lil.li/p/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ l: url }),
+                });
+
+                if (!res.ok) {
+                    const text = await res.text();
+                    console.log("APIエラー");
+                    openAlert(text, "Error");
+                    return;
+                } else {
+                    const text = await res.text();
+                    setFetchedData(text);
+                }
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    openAlert(err.message, "Error");
+                }
+            }
+        };
+        /*
         const runRequest = (url: string) => {
             fetch("https://1lil.li/p/", {
                 method: "POST",
@@ -117,11 +143,12 @@ function CreateBtn() {
                     openAlert(err, "Error");
                 });
         };
+        */
 
         if (inputURL) {
             const url = formatURL(inputURL);
             setInputURL(url);
-            runRequest(url);
+            await runRequest(url);
         } else {
             openAlert("URLを入力してください");
         }
