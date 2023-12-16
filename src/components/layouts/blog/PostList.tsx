@@ -7,13 +7,9 @@ import PostPreview from "./PostPreview";
 
 export interface PostListProps {
     posts: Post[];
-    allpages: number;
-    currentPage: number;
 }
 
-export default async function PostList(props: PostListProps) {
-    const { posts, currentPage, allpages } = props;
-
+export function PostList({ posts }: PostListProps) {
     return (
         <div className="flex h-full flex-col">
             <div className="grow sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-2">
@@ -21,23 +17,32 @@ export default async function PostList(props: PostListProps) {
                     return <PostPreview key={f.file} posts={f} />;
                 })}
             </div>
+        </div>
+    );
+}
 
-            <div className="flex items-center justify-center">
-                {[...Array(allpages)].map((v, i) => {
-                    i = i + 1;
-                    const isCurrent = i === currentPage;
-                    return (
-                        <span
-                            key={i}
-                            className={classNames("px-2 text-lg", {
-                                " underline": isCurrent,
-                            })}
-                        >
-                            {isCurrent ? <p>{i}</p> : <Link href={`/blog/${i}`}>{i}</Link>}
-                        </span>
-                    );
-                })}
-            </div>
+export interface PostPageSwitchProps {
+    allpages: number;
+    currentPage: number;
+    linktemplate: (page: number) => string;
+}
+export function PostPageSwitch({ allpages, currentPage, linktemplate }: PostPageSwitchProps) {
+    return (
+        <div className="flex items-center justify-center">
+            {[...Array(allpages)].map((v, i) => {
+                i = i + 1;
+                const isCurrent = i === currentPage;
+                return (
+                    <span
+                        key={i}
+                        className={classNames("px-2 text-lg", {
+                            " underline": isCurrent,
+                        })}
+                    >
+                        {isCurrent ? <p>{i}</p> : <Link href={linktemplate(i)}>{i}</Link>}
+                    </span>
+                );
+            })}
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import PostListElement from "@/components/layouts/blog/PostList";
+import { PostList as PostListElement, PostPageSwitch } from "@/components/layouts/blog/PostList";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import * as blogtools from "@/lib/blog";
 import { MDFILE_DIR, POSTLIST_ONEPAGE } from "@/lib/blog/config";
@@ -7,11 +7,18 @@ import { Post } from "@/lib/blog/type";
 
 export default async function BlogTop({ params }: { params: { slug: string } }) {
     const slug = parseInt(params.slug);
-    const postpost = await getPostList(slug);
+    const postlist = getPostList(slug);
 
     return (
         <CommonSpacer>
-            <PostListElement {...postpost} />
+            <div>
+                <PostListElement posts={postlist.posts} />
+                <PostPageSwitch
+                    allpages={postlist.allpages}
+                    currentPage={postlist.currentPage}
+                    linktemplate={(page) => `/blog/${page}`}
+                />
+            </div>
         </CommonSpacer>
     );
 }
