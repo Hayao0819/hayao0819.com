@@ -15,7 +15,11 @@
         "sourceType": "module"
     },
     "root": true,
-
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "plugins": ["tailwindcss", "unused-imports", "prettier", "simple-import-sort", "no-unsanitized"],
     "rules": {
         "simple-import-sort/imports": "warn",
