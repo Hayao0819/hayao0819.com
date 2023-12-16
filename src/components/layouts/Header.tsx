@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { Button, Menu, Navbar } from "react-daisyui";
 
-function MenuItem({ href, text }: { href: string; text: string }) {
+function MenuItem({ href, text, onClick }: { href: string; text: string; onClick?: () => void }) {
     return (
-        <Menu.Item>
+        <Menu.Item onClick={onClick}>
             <Link href={href} className="!text-inherit">
                 {text}
             </Link>
@@ -23,15 +23,7 @@ export default function Header() {
                 <Navbar.Start>
                     <Menu horizontal>
                         <MenuItem href="/" text="Home" />
-                        <Menu.Item>
-                            <details className="dropdown">
-                                <summary>Blog</summary>
-                                <Menu className="text-base-content">
-                                    <MenuItem href="/blog/1" text="Blog" />
-                                    <MenuItem href="/blog/about" text="About" />
-                                </Menu>
-                            </details>
-                        </Menu.Item>
+                        <MenuItemBlog />
                         <MenuItem href="/portfolio" text="Portfolio" />
                         <MenuItem href="/links" text="Links" />
                     </Menu>
@@ -51,5 +43,19 @@ export default function Header() {
                 </Menu>
             </Navbar.End>
         </Navbar>
+    );
+}
+
+function MenuItemBlog() {
+    return (
+        <Menu.Item>
+            <details className="dropdown">
+                <summary>Blog</summary>
+                <Menu className="text-base-content">
+                    <MenuItem href="/blog/1" text="Blog" />
+                    <MenuItem href="/blog/about" text="About" />
+                </Menu>
+            </details>
+        </Menu.Item>
     );
 }
