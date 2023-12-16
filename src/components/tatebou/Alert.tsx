@@ -33,7 +33,7 @@ export default function Alert(): React.ReactNode {
         if (alertInfo.isHidden) {
             setAlertClass("hidden");
         } else {
-            console.log(alertInfo.type);
+            //console.log(alertInfo.type);
             switch (alertInfo.type) {
                 case "Error":
                     setAlertClass("bg-red-200");

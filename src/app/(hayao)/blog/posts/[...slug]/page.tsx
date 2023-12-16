@@ -39,7 +39,7 @@ const fetchPostData = async function (path: string): Promise<PostProps> {
 
     if (targetFile) {
         const post = getPostFromPath(targetFile);
-        console.log(post);
+        //console.log(post);
 
         return {
             post: post,
