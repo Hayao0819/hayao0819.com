@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { Button, Menu, Navbar } from "react-daisyui";
+import { Menu, Navbar } from "react-daisyui";
 import { useOnClickOutside } from "usehooks-ts";
 
 function MenuItem({ href, text, onClick }: { href: string; text: string; onClick?: () => void }) {
@@ -19,7 +19,9 @@ export default function Header() {
     return (
         <Navbar className=" bg-neutral text-neutral-content active:text-neutral-content">
             <div>
-                <Button className=" btn-ghost text-lg">Yamada Hayao</Button>
+                <Link className="btn btn-ghost text-lg" href="/" role="button">
+                    Yamada Hayao
+                </Link>
             </div>
             <div className="hidden grow sm:flex">
                 <Navbar.Start>
