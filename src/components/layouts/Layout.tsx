@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useMemo } from "react";
 
-import Drawer from "./drawer/Drawer";
+import Drawer from "./Drawer/Drawer";
 import Footer from "./Footer";
 import Header from "./Header";
 

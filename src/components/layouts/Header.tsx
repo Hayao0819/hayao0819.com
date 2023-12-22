@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Navbar } from "react-daisyui";
 
 import { MainManus, OtherLinks } from "./CommonMenu";
-import * as Drawer from "./drawer";
+import * as Drawer from "./Drawer";
 
 export default function Header({ onMouseEnter, onMouseLeave }: { onMouseEnter?: () => void; onMouseLeave?: () => void }) {
     return (
