@@ -2,28 +2,18 @@
 
 import Link from "next/link";
 import { Navbar } from "react-daisyui";
-import { FaBars } from "react-icons/fa";
 
 import { MainManus, OtherLinks } from "./CommonMenu";
+import * as Drawer from "./drawer";
 
-export default function Header({
-    drawerId,
-    onMouseEnter,
-    onMouseLeave,
-}: {
-    drawerId: string;
-    onMouseEnter?: () => void;
-    onMouseLeave?: () => void;
-}) {
+export default function Header({ onMouseEnter, onMouseLeave }: { onMouseEnter?: () => void; onMouseLeave?: () => void }) {
     return (
         <Navbar
             className=" bg-neutral text-neutral-content active:text-neutral-content"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >
-            <label htmlFor={drawerId} aria-label="open sidebar" className="btn btn-square btn-ghost">
-                <FaBars />
-            </label>
+            <Drawer.Toggle />
             <div>
                 <Link className="btn btn-ghost text-lg" href="/" role="button">
                     Yamada Hayao

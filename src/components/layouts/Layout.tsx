@@ -1,15 +1,14 @@
 import classNames from "classnames";
 import { useMemo } from "react";
 
-import Drawer from "./Drawer";
+import Drawer from "./drawer/Drawer";
 import Footer from "./Footer";
 import Header from "./Header";
 
 export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
     //const propsWithoutChildren = { ...props, children: undefined };
-    const drawerId = "drawer";
 
-    const headerMemo = useMemo(() => <Header drawerId={drawerId} />, []);
+    const headerMemo = useMemo(() => <Header />, []);
     const footerMemo = useMemo(() => <Footer />, []);
 
     const defaultClassName = "flex min-h-screen w-screen flex-col bg-base-100 text-base-content";
