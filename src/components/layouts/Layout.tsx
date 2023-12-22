@@ -1,7 +1,9 @@
 import classNames from "classnames";
 import { useMemo } from "react";
 
-import Drawer from "./drawer/Drawer";
+import { Heading } from "../elements/Heading";
+import { MainManus } from "./CommonMenu";
+import Drawer from "./Drawer";
 import Header from "./Header";
 
 export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
@@ -29,5 +31,14 @@ export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
 }
 
 export function DrawerContent() {
-    return <></>;
+    return (
+        <div className="m-2">
+            <div>
+                <Heading level={2} className="text-center">
+                    Yamada Hayao
+                </Heading>
+            </div>
+            <MainManus />
+        </div>
+    );
 }
