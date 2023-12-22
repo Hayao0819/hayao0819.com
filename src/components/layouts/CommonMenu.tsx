@@ -12,6 +12,7 @@ export function MainManus({ horizontal }: { horizontal?: boolean }) {
             <MenuItem href="/" text="Home" />
             <MenuItemBlog />
             <MenuItem href="/portfolio" text="Portfolio" />
+            <MenuItem href="/projects" text="Projects" />
             <MenuItem href="/links" text="Links" />
         </Menu>
     );

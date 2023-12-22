@@ -55,7 +55,10 @@ const fetchPostData = async function (path: string): Promise<PostProps> {
 
 export const generateStaticParams = async () => {
     const mdFiles = getAllPosts();
-    const pages = mdFiles.flatMap((f) => recursivePath(f.url));
+    const pages = mdFiles.flatMap((f) => {
+        console.log(f.url);
+        return recursivePath(f.url);
+    });
     const paths = pages.map((fileName) => {
         const pageurl = blogtools.mdPathToURL(fileName);
 

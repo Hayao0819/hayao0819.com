@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 import { Post } from "@/lib/blog/type";
@@ -13,6 +13,7 @@ const PostPreview = ({ posts }: { posts: Post }) => {
     const postDate = new Date(posts.meta.date);
     //console.log(posts.url);
 
+    /*
     const animate: Variants = {
         offscreen: {
             x: 100,
@@ -26,14 +27,15 @@ const PostPreview = ({ posts }: { posts: Post }) => {
             },
         },
     };
+    */
 
     return (
         <motion.div
             className="border-4 border-solid border-neutral"
-            variants={animate}
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: false, amount: 0 }}
+            //variants={animate}
+            //initial="offscreen"
+            //whileInView="onscreen"
+            //viewport={{ once: true, amount: 0 }}
         >
             <Link href={"/blog/" + posts.url} className="flex flex-col ">
                 <div className="flex justify-between">
@@ -47,7 +49,7 @@ const PostPreview = ({ posts }: { posts: Post }) => {
                             })
                             .map((s) => {
                                 return (
-                                    <div className="bg-neutral p-1 text-neutral-content" key={s}>
+                                    <div className="bg-primary p-1 text-primary-content" key={s}>
                                         {s}
                                     </div>
                                 );
