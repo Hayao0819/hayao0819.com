@@ -10,7 +10,17 @@ module.exports = {
         },
     },
     daisyui: {
-        themes: ["lofi"],
+        themes: [
+            {
+                mono: {
+                    primary: "#131313",
+                    secondary: "#2b2b2b",
+                    accent: "#b33e5c",
+                    neutral: "#333333",
+                    "base-100": "#F7F7F7",
+                },
+            },
+        ],
     },
     plugins: [
         require("daisyui"),

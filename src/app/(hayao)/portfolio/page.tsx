@@ -1,8 +1,9 @@
 import classNames from "classnames";
-import { ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import {
     SiDocker,
     SiFirebase,
+    SiGnubash,
     SiGo,
     SiLinux,
     SiNextdotjs,
@@ -17,13 +18,19 @@ import {
 import { Heading } from "@/components/elements/Heading";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 
+const PortfolioHeading: FC<{ children: ReactNode }> = ({ children }) => {
+    return (
+        <Heading level={2} className="my-5 w-full  py-3 text-center text-4xl">
+            {children}
+        </Heading>
+    );
+};
+
 export default function Portfolio() {
     return (
         <CommonSpacer>
             <div>
-                <Heading level={2} className="my-5 w-full bg-neutral py-3 text-center text-4xl text-neutral-content">
-                    Languages
-                </Heading>
+                <PortfolioHeading>Languages</PortfolioHeading>
                 <div className="md:grid md:grid-cols-2 md:gap-5">
                     <SkillCard icon={<SiGo />} title="Golang" side="left">
                         <ul>
@@ -36,7 +43,7 @@ export default function Portfolio() {
                         <Heading level={3}>成果物</Heading>
                         <p>色々を作りました</p>
                     </SkillCard>
-                    <SkillCard icon={<SiTypescript />} title="ShellScript" side="left">
+                    <SkillCard icon={<SiGnubash />} title="ShellScript" side="left">
                         <Heading level={3}>成果物</Heading>
                         <p>色々を作りました</p>
                     </SkillCard>
@@ -48,9 +55,7 @@ export default function Portfolio() {
             </div>
 
             <div>
-                <Heading level={2} className="my-5 w-full bg-neutral py-3 text-center text-4xl text-neutral-content">
-                    Frameworks
-                </Heading>
+                <PortfolioHeading>Frameworks</PortfolioHeading>
                 <div className="md:grid md:grid-cols-2 md:gap-5">
                     <SkillCard icon={<SiReact />} title="React.js" side="left">
                         <Heading level={3}>成果物</Heading>
@@ -72,9 +77,7 @@ export default function Portfolio() {
             </div>
 
             <div>
-                <Heading level={2} className="my-5 w-full bg-neutral py-3 text-center text-4xl text-neutral-content">
-                    Tools
-                </Heading>
+                <PortfolioHeading>Tools</PortfolioHeading>
                 <div className="md:grid md:grid-cols-2 md:gap-5">
                     <SkillCard icon={<SiLinux />} title="Linux" side="left">
                         <Heading level={3}>成果物</Heading>

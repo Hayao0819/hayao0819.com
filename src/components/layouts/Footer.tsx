@@ -15,7 +15,7 @@ export default function Footer() {
     };
 
     return (
-        <DaisyFooter className=" bg-base-300 p-10 text-lg text-base-content">
+        <DaisyFooter className=" bg-primary p-10 text-lg text-primary-content">
             <aside>
                 <p>Yamada Hayao</p>
                 <p className="text-sm">底辺大学生</p>
