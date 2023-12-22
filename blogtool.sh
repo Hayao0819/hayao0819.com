@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 if ! type go 2> /dev/null 1>&2; then
     echo "Please install go to use tool" >&2
