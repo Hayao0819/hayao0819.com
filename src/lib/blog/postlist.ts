@@ -102,6 +102,5 @@ export class PostList {
 }
 
 export const getAllPosts = (): PostData[] => {
-    const postList = PostList.fetch();
-    return postList.getPosts();
+    return PostList.fetch().getPosts();
 };

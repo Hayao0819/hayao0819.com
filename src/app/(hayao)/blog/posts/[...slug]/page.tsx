@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { BlogHeading } from "@/components/elements/Heading";
 import Markdown from "@/components/elements/Markdown";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
-import * as blogtools from "@/lib/blog";
+import { Url } from "@/lib/blog";
 import { getAllCategories } from "@/lib/blog/categories";
 import { getPostDataFromFile, PostData } from "@/lib/blog/post";
 import { getAllPosts } from "@/lib/blog/postlist";
@@ -62,7 +62,7 @@ export const generateStaticParams = async () => {
     });
     //console.log(mdFiles.map((m) => m.url));
     const paths = pages.map((fileName) => {
-        const pageurl = blogtools.mdPathToURL(fileName);
+        const pageurl = Url.mdPathToURL(fileName);
         //console.log(fileName);
 
         return {

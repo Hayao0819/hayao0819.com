@@ -1,10 +1,9 @@
 import fs from "fs";
 import matter from "gray-matter";
 
-import * as blogtools from "@/lib/blog";
 import { PostMeta } from "@/lib/blog/type";
 
-import { DEFAULT_URL_FORMAT, formatURL, URLFormat } from "./url";
+import { DEFAULT_URL_FORMAT, formatURL, mdPathToURL, URLFormat } from "./url";
 
 export function getPostDataFromFile(file: string, urlFormat: URLFormat = DEFAULT_URL_FORMAT): PostData {
     const fileContent = fs.readFileSync(file, "utf-8");
@@ -23,7 +22,7 @@ export function getPostDataFromFile(file: string, urlFormat: URLFormat = DEFAULT
 
     const data = {
         file: file,
-        url: formatURL(blogtools.mdPathToURL(file), urlFormat),
+        url: formatURL(mdPathToURL(file), urlFormat),
         meta: meta,
         content: parsed.content,
     };
