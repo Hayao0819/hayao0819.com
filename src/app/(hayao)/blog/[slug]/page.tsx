@@ -51,7 +51,7 @@ const getPostList = (currentPage: number) => {
     const currentPagePosts: PostData[] = allPostList
         .getSplitedPosts(currentPage, POSTLIST_ONEPAGE)
         .getContentSplitedPosts(100)
-        .getPostDatas();
+        .getPosts();
 
     const returnProps: BlogTopProps = {
         posts: currentPagePosts,

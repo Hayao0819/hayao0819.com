@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 import { MDFILE_DIR } from "./config";
-import { Post, PostData } from "./post";
+import { getPostDataFromFile, PostData } from "./post";
 import { DEFAULT_URL_FORMAT, URLFormat } from "./url";
 
 const getMdFilesInDir = (dir: string): string[] => {
@@ -22,7 +22,7 @@ const getMdFilesInDir = (dir: string): string[] => {
 };
 
 export class PostList {
-    private posts: Post[];
+    private posts: PostData[];
     dir: string;
     format: URLFormat;
 
@@ -42,13 +42,13 @@ export class PostList {
 
         const posts = files
             .map((file) => {
-                return Post.fromFile(file, this.format);
+                return getPostDataFromFile(file, this.format);
             })
             .filter((p) => {
                 return p.meta.title && p.meta.date;
             })
             .sort((a, b) => {
-                const [aMeta, bMeta] = [a.get().meta, b.get().meta];
+                const [aMeta, bMeta] = [a.meta, b.meta];
                 if (!aMeta.date || !bMeta.date) {
                     return 0;
                 }
@@ -62,26 +62,22 @@ export class PostList {
     getSplitedPosts(currentPage: number, perPage: number) {
         const start = (currentPage - 1) * perPage;
         const end = start + perPage;
-        return PostList.fromPostDataList(this.posts.slice(start, end));
+        return PostList.fromPostDatas(this.posts.slice(start, end));
     }
 
     getPosts() {
         return this.posts;
     }
 
-    getPostDatas() {
-        return this.posts.map((p) => p.get());
-    }
-
     getByCategory(category: string) {
         const filtered = this.getPosts().filter((p) => {
             return p.meta.categories?.includes(category);
         });
-        return PostList.fromPostDataList(filtered);
+        return PostList.fromPostDatas(filtered);
     }
 
     getContentSplitedPosts(perChars: number) {
-        return PostList.fromPostDataList(
+        return PostList.fromPostDatas(
             this.posts.map((p) => {
                 const content = p.content.slice(0, perChars);
                 return {
@@ -92,11 +88,7 @@ export class PostList {
         );
     }
 
-    static fromPostDataList(posts: PostData[]) {
-        return PostList.fromPosts(posts.map((p) => Post.fromPostData(p)));
-    }
-
-    static fromPosts(posts: Post[]) {
+    static fromPostDatas(posts: PostData[]) {
         const postList = new PostList();
         postList.posts = posts;
         return postList;
@@ -109,7 +101,7 @@ export class PostList {
     }
 }
 
-export const getAllPosts = (): Post[] => {
+export const getAllPosts = (): PostData[] => {
     const postList = PostList.fetch();
     return postList.getPosts();
 };

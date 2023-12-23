@@ -1,7 +1,7 @@
 import { PostList as PostListElement } from "@/components/layouts/blog/PostList";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { getAllCategories } from "@/lib/blog/categories";
-import { Post } from "@/lib/blog/post";
+import { PostData } from "@/lib/blog/post";
 import { PostList } from "@/lib/blog/postlist";
 
 export default async function Categories({ params }: { params: { cat: string } }) {
@@ -29,7 +29,7 @@ export const generateStaticParams = async () => {
     return params;
 };
 
-const getPostList = (category: string): Post[] => {
+const getPostList = (category: string): PostData[] => {
     const categoryFilteredPageList = PostList.fetch().getByCategory(decodeURI(category));
     const currentPagePosts = categoryFilteredPageList.getContentSplitedPosts(100).getPosts();
 
