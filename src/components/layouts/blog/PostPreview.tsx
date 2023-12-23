@@ -3,9 +3,10 @@
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 
-import { Post } from "@/lib/blog/type";
+import { PostData } from "@/lib/blog/post";
 import * as utils from "@/lib/utils";
-const PostPreview = ({ posts }: { posts: Post }) => {
+
+const PostPreview = ({ posts }: { posts: PostData }) => {
     if (!posts.meta.title || !posts.meta.date) {
         return <></>;
     }
@@ -36,7 +37,7 @@ const PostPreview = ({ posts }: { posts: Post }) => {
             whileInView="onscreen"
             viewport={{ once: true }}
         >
-            <Link href={"/blog/" + posts.url} className="flex h-full flex-col">
+            <Link href={"/blog/posts/" + posts.url} className="flex h-full flex-col">
                 <div className="flex justify-between">
                     <div className="flex justify-start">
                         {(posts.meta.categories ? posts.meta.categories : ["その他"])

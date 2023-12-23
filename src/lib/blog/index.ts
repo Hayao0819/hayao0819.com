@@ -16,6 +16,7 @@ export const getMdFilesInDir = (dir: string): string[] => {
             return ext === ".mdx" || ext === ".md";
         });
 };
+
 export const mdPathToURL = (pathName: string): string => {
-    return pathName.replace("index.mdx", "").replace("index.md", "").replace(".mdx", "").replace(".md", "").replace("posts/", "");
+    return pathName.replace("index.mdx", "").replace("index.md", "").replace(".mdx", "").replace(".md", "");
 };

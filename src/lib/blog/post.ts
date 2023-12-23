@@ -2,11 +2,11 @@ import fs from "fs";
 import matter from "gray-matter";
 
 import * as blogtools from "@/lib/blog";
-import { Post, PostMeta } from "@/lib/blog/type";
+import { PostMeta } from "@/lib/blog/type";
 
-import { MDFILE_DIR } from "./config";
+import { DEFAULT_URL_FORMAT, formatURL, URLFormat } from "./url";
 
-export const getPostFromPath = (file: string): Post => {
+export const getPostFromPath = (file: string, urlFormat: URLFormat = DEFAULT_URL_FORMAT): Post => {
     const fileContent = fs.readFileSync(file, "utf-8");
     const parsed = matter(fileContent);
     const meta: PostMeta = {};
@@ -21,89 +21,49 @@ export const getPostFromPath = (file: string): Post => {
 
     //console.log(meta);
 
-    return {
+    const data = {
         file: file,
-        url: "posts/" + blogtools.mdPathToURL(file),
+        url: formatURL(blogtools.mdPathToURL(file), urlFormat),
         meta: meta,
         content: parsed.content,
     };
+
+    return Post.fromPostData(data);
 };
 
-export class PostList {
-    private posts: Post[];
-
-    constructor() {
-        this.posts = [];
-    }
-
-    fetch() {
-        if (this.posts.length !== 0) {
-            return this;
-        }
-
-        const files = blogtools.getMdFilesInDir(MDFILE_DIR);
-
-        const posts = files
-            .map((file) => {
-                return getPostFromPath(file);
-            })
-            .filter((p) => {
-                return p.meta.title && p.meta.date;
-            })
-            .sort((a, b) => {
-                if (!a.meta.date || !b.meta.date) {
-                    return 0;
-                }
-                return new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime();
-            });
-
-        this.posts = posts;
-        return this;
-    }
-
-    getSplitedPosts(currentPage: number, perPage: number) {
-        const start = (currentPage - 1) * perPage;
-        const end = start + perPage;
-        return PostList.fromPostList(this.posts.slice(start, end));
-    }
-
-    getPosts() {
-        return this.posts;
-    }
-
-    getByCategory(category: string) {
-        const filtered = this.getPosts().filter((p) => {
-            return p.meta.categories?.includes(category);
-        });
-        return PostList.fromPostList(filtered);
-    }
-
-    getContentSplitedPosts(perChars: number) {
-        return PostList.fromPostList(
-            this.posts.map((p) => {
-                const content = p.content.slice(0, perChars);
-                return {
-                    ...p,
-                    content: content,
-                };
-            }),
-        );
-    }
-
-    static fromPostList(posts: Post[]) {
-        const postList = new PostList();
-        postList.posts = posts;
-        return postList;
-    }
-
-    static fetch() {
-        const postList = new PostList();
-        postList.fetch();
-        return postList;
-    }
+export interface PostData {
+    file: string;
+    url: string;
+    meta: PostMeta;
+    content: string;
 }
 
-export const getAllPosts = (): Post[] => {
-    const postList = PostList.fetch();
-    return postList.getPosts();
-};
+export class Post {
+    file: string;
+    url: string;
+    meta: PostMeta;
+    content: string;
+
+    get = (): PostData => {
+        return {
+            file: this.file,
+            url: this.url,
+            meta: this.meta,
+            content: this.content,
+        };
+    };
+
+    constructor(file: string, url: string, meta: PostMeta, content: string) {
+        this.file = file;
+        this.url = url;
+        this.meta = meta;
+        this.content = content;
+    }
+
+    static fromPostData(data: PostData): Post {
+        return new Post(data.file, data.url, data.meta, data.content);
+    }
+    static fromFile(file: string, urlFormat: URLFormat = DEFAULT_URL_FORMAT): Post {
+        return getPostFromPath(file, urlFormat);
+    }
+}

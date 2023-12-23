@@ -6,8 +6,8 @@ import Markdown from "@/components/elements/Markdown";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import * as blogtools from "@/lib/blog";
 import { getAllCategories } from "@/lib/blog/categories";
-import { getAllPosts, getPostFromPath } from "@/lib/blog/post";
-import { Post } from "@/lib/blog/type";
+import { getPostFromPath, Post } from "@/lib/blog/post";
+import { getAllPosts } from "@/lib/blog/postlist";
 import { recursivePath } from "@/lib/utils";
 
 type PostProps = {
@@ -16,7 +16,7 @@ type PostProps = {
     isDir: boolean;
 };
 
-const fetchPostData = async function (path: string): Promise<PostProps> {
+const fetchPostData = function (path: string): PostProps {
     // get slug
     let rawSlug = path;
     if (!rawSlug) {
@@ -31,6 +31,7 @@ const fetchPostData = async function (path: string): Promise<PostProps> {
 
     const targetFile = (function (): string | undefined {
         for (const filePath of filePathes) {
+            //console.log("check: " + filePath);
             if (fs.existsSync(filePath)) {
                 return filePath;
             }
@@ -56,11 +57,13 @@ const fetchPostData = async function (path: string): Promise<PostProps> {
 export const generateStaticParams = async () => {
     const mdFiles = getAllPosts();
     const pages = mdFiles.flatMap((f) => {
-        console.log(f.url);
+        //console.log(f.url);
         return recursivePath(f.url);
     });
+    //console.log(mdFiles.map((m) => m.url));
     const paths = pages.map((fileName) => {
         const pageurl = blogtools.mdPathToURL(fileName);
+        //console.log(fileName);
 
         return {
             slug: pageurl.split("/").filter((s) => s !== ""),
@@ -72,9 +75,9 @@ export const generateStaticParams = async () => {
     return paths;
 };
 
-const Post = async ({ params }: { params: { slug: string } }) => {
-    const postData = await fetchPostData(params.slug);
-    const categories = await getAllCategories();
+const PostPage = ({ params }: { params: { slug: string } }) => {
+    const postData = fetchPostData(params.slug);
+    const categories = getAllCategories();
 
     if (postData.isDir) {
         return <div>ディレクトリ</div>;
@@ -108,4 +111,4 @@ const Post = async ({ params }: { params: { slug: string } }) => {
     }
 };
 
-export default Post;
+export default PostPage;

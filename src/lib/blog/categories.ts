@@ -1,4 +1,4 @@
-import { getAllPosts } from "./post";
+import { getAllPosts } from "./postlist";
 
 export const getAllCategories = () => {
     const posts = getAllPosts();

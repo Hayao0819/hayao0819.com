@@ -1,12 +1,12 @@
 import classNames from "classnames";
 import Link from "next/link";
 
-import { Post } from "@/lib/blog/type";
+import { PostData } from "@/lib/blog/post";
 
 import PostPreview from "./PostPreview";
 
 export interface PostListProps {
-    posts: Post[];
+    posts: PostData[];
 }
 
 export function PostList({ posts }: PostListProps) {

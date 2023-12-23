@@ -4,10 +4,3 @@ export interface PostMeta extends Record<string, string | string[] | undefined> 
     categories?: string[];
     tags?: string[];
 }
-
-export interface Post {
-    file: string;
-    url: string;
-    meta: PostMeta;
-    content: string;
-}

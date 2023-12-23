@@ -2,8 +2,8 @@ import { PostList as PostListElement, PostPageSwitch } from "@/components/layout
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import * as blogtools from "@/lib/blog";
 import { MDFILE_DIR, POSTLIST_ONEPAGE } from "@/lib/blog/config";
-import { PostList } from "@/lib/blog/post";
-import { Post } from "@/lib/blog/type";
+import { PostData } from "@/lib/blog/post";
+import { PostList } from "@/lib/blog/postlist";
 
 export default async function BlogTop({ params }: { params: { slug: string } }) {
     const slug = parseInt(params.slug);
@@ -41,15 +41,18 @@ export const generateStaticParams = async () => {
     return params;
 };
 
-interface BlogTopProps {
-    posts: Post[];
+type BlogTopProps = {
+    posts: PostData[];
     allpages: number;
     currentPage: number;
-}
+};
 
 const getPostList = (currentPage: number) => {
     const allPostList = PostList.fetch();
-    const currentPagePosts = allPostList.getSplitedPosts(currentPage, POSTLIST_ONEPAGE).getContentSplitedPosts(100).getPosts();
+    const currentPagePosts: PostData[] = allPostList
+        .getSplitedPosts(currentPage, POSTLIST_ONEPAGE)
+        .getContentSplitedPosts(100)
+        .getPostDatas();
 
     const returnProps: BlogTopProps = {
         posts: currentPagePosts,
