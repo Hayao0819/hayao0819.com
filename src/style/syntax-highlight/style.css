@@ -1,7 +1,0 @@
-/* Customize  */
-div[data-rehype-pretty-code-fragment] {
-    @apply m-1;
-}
-div[data-rehype-pretty-code-fragment] > pre {
-    @apply rounded-lg;
-}

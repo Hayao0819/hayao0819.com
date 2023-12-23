@@ -1,7 +1,16 @@
 import { ReactNode } from "react";
+import { FaCaretRight } from "react-icons/fa";
 
-import { H3 } from "@/components/elements/Headlines";
-import TatebouLayout from "@/components/layouts/Tatebou/Layout";
+import TatebouLayout from "@/components/tatebou/Layout";
+
+export function H3({ children }: { children: ReactNode }) {
+    return (
+        <div className="flex items-center py-4">
+            <FaCaretRight className="text-2xl" />
+            <h3 className="inline pl-2 text-xl">{children}</h3>
+        </div>
+    );
+}
 
 export default function Usage(): ReactNode {
     return (

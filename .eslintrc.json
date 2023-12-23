@@ -1,22 +1,52 @@
 {
-    "extends": [
-        "next/core-web-vitals",
-        "plugin:tailwindcss/recommended",
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:mdx/recommended",
-        "prettier"
-    ],
-    "settings": {
-        "mdx/code-blocks": true
+    "env": {
+        "browser": true,
+        "es2023": true,
+        "node": true
     },
-    "plugins": ["simple-import-sort"],
-
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:tailwindcss/recommended",
+        "plugin:@next/next/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "root": true,
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "plugins": ["tailwindcss", "unused-imports", "prettier", "simple-import-sort", "no-unsanitized"],
     "rules": {
         "simple-import-sort/imports": "warn",
         "simple-import-sort/exports": "warn",
-        "@typescript-eslint/no-non-null-assertion": "off",
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": ["error"]
-    }
+        "prettier/prettier": "warn",
+        "react/react-in-jsx-scope": "off",
+        "unused-imports/no-unused-imports": "error",
+        "tailwindcss/no-custom-classname": [
+            "warn",
+            {
+                "whitelist": ["rainbow\\-bg", "rainbow\\-text", "rainbow\\-bg\\-shadow", "rainbow\\-text\\-shadow"]
+            }
+        ],
+        "no-unsanitized/method": "warn",
+        "no-unsanitized/property": "warn"
+    },
+    "overrides": [
+        {
+            "files": ["*.ts", "*.tsx"],
+            "extends": ["plugin:@typescript-eslint/recommended"],
+            "plugins": ["@typescript-eslint"],
+            "parser": "@typescript-eslint/parser",
+            "rules": {
+                "@typescript-eslint/no-non-null-assertion": "off",
+                "no-unused-vars": "off",
+                "@typescript-eslint/no-unused-vars": ["error"]
+            }
+        }
+    ]
 }

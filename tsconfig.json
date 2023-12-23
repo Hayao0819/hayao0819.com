@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "baseUrl": "./",
-        "target": "es5",
+        "target": "ESNext",
         "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
         "skipLibCheck": true,
@@ -24,6 +24,6 @@
             "@/*": ["./src/*"]
         }
     },
-    "include": ["**/*.ts", "**/*.tsx", "**/*.js"],
+    "include": ["**/*.ts", "**/*.tsx", "**/*.js", "prettier.config.mjs", ".next/types/**/*.ts"],
     "exclude": ["node_modules"]
 }
