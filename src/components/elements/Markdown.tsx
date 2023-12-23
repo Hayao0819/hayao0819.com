@@ -1,12 +1,12 @@
 "use client";
 
-import Markdown, { Components } from "react-markdown";
+import ReactMD, { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 import { BlogHeading as Heading } from "./Heading";
 import Link from "./Link";
 
-export default function StringToMd({ content }: { content: string }) {
+export default function Markdown({ content }: { content: string }) {
     const components: Partial<Components> = {
         h1: ({ children }) => {
             return <Heading level={1}>{children}</Heading>;
@@ -37,8 +37,8 @@ export default function StringToMd({ content }: { content: string }) {
     };
 
     return (
-        <Markdown remarkPlugins={[remarkGfm]} components={components}>
+        <ReactMD remarkPlugins={[remarkGfm]} components={components}>
             {content}
-        </Markdown>
+        </ReactMD>
     );
 }

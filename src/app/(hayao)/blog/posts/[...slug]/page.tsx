@@ -2,7 +2,7 @@ import fs from "fs";
 import { ReactNode } from "react";
 
 import { BlogHeading } from "@/components/elements/Heading";
-import StringToMd from "@/components/elements/StringToMd";
+import Markdown from "@/components/elements/Markdown";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import * as blogtools from "@/lib/blog";
 import { getAllCategories } from "@/lib/blog/categories";
@@ -44,7 +44,7 @@ const fetchPostData = async function (path: string): Promise<PostProps> {
         return {
             post: post,
             isDir: false,
-            parsed: <StringToMd content={post.content} />,
+            parsed: <Markdown content={post.content} />,
         };
     } else {
         return {
