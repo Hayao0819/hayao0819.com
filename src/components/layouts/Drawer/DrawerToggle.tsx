@@ -14,7 +14,7 @@ export default function DrawerToggle() {
     };
 
     return (
-        <span className="btn btn-square btn-ghost" onClick={toggle}>
+        <span className="btn btn-square btn-ghost text-accent " onClick={toggle}>
             <FaBars />
         </span>
     );

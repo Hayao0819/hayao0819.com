@@ -25,7 +25,7 @@ export function OtherLinks({ horizontal }: { horizontal?: boolean }) {
                 <Link href="/tatebou">Tatebou</Link>
             </Menu.Item>
             <Menu.Item>
-                <Link className="!bg-primary-content !text-primary" href="https://seppuku.club/">
+                <Link className="!text-accent" href="https://seppuku.club/">
                     Seppuku
                 </Link>
             </Menu.Item>

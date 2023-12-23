@@ -1,6 +1,6 @@
 import { PostList as PostListElement, PostPageSwitch } from "@/components/layouts/blog/PostList";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
-import { POSTLIST_ONEPAGE } from "@/lib/blog/config";
+import { POSTLIST_ONEPAGE, SUMMARY_LENGTH } from "@/lib/blog/config";
 import { PostData } from "@/lib/blog/post";
 import { PostList } from "@/lib/blog/postlist";
 
@@ -50,7 +50,7 @@ const getPostList = (currentPage: number) => {
     const allPostList = PostList.fetch();
     const currentPagePosts: PostData[] = allPostList
         .getSplitedPosts(currentPage, POSTLIST_ONEPAGE)
-        .getContentSplitedPosts(100)
+        .getContentSplitedPosts(SUMMARY_LENGTH)
         .getPosts();
 
     const returnProps: BlogTopProps = {

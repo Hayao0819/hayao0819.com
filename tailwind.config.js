@@ -15,7 +15,7 @@ module.exports = {
                 mono: {
                     primary: "#131313",
                     secondary: "#2b2b2b",
-                    accent: "#b33e5c",
+                    accent: "#e0002d",
                     neutral: "#333333",
                     "base-100": "#F7F7F7",
                 },

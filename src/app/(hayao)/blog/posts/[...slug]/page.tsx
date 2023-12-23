@@ -1,4 +1,5 @@
 import fs from "fs";
+import Link from "next/link";
 import { ReactNode } from "react";
 
 import { BlogHeading } from "@/components/elements/Heading";
@@ -7,7 +8,7 @@ import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { Url } from "@/lib/blog";
 import { getAllCategories } from "@/lib/blog/categories";
 import { getPostDataFromFile, PostData } from "@/lib/blog/post";
-import { getAllPosts } from "@/lib/blog/postlist";
+import { getAllPosts, PostList } from "@/lib/blog/postlist";
 import { recursivePath } from "@/lib/utils";
 
 type PostProps = {
@@ -79,6 +80,8 @@ const PostPage = ({ params }: { params: { slug: string } }) => {
     const postData = fetchPostData(params.slug);
     const categories = getAllCategories();
 
+    const postlist = new PostList().fetch().getPosts().slice(undefined, 10);
+
     if (postData.isDir) {
         return <div>ディレクトリ</div>;
     } else {
@@ -96,7 +99,7 @@ const PostPage = ({ params }: { params: { slug: string } }) => {
                         {categories.map((c) => {
                             return (
                                 <li key={c}>
-                                    <a href="/"></a>
+                                    <Link href={`/blog/category/${c}`}>{c}</Link>
                                 </li>
                             );
                         })}
@@ -105,6 +108,15 @@ const PostPage = ({ params }: { params: { slug: string } }) => {
                     <BlogHeading level={2} className="border-b-4">
                         Recent Posts
                     </BlogHeading>
+                    <ul>
+                        {postlist.map((p) => {
+                            return (
+                                <li key={p.file} role="link" className="my-2 cursor-pointer text-sm hover:underline">
+                                    <Link href={`/blog/posts/${p.url}`}>{p.meta.title}</Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
                 </div>
             </CommonSpacer>
         );

@@ -8,10 +8,10 @@ import * as Drawer from "./Drawer";
 
 export default function Header({ onMouseEnter, onMouseLeave }: { onMouseEnter?: () => void; onMouseLeave?: () => void }) {
     return (
-        <Navbar className="" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+        <Navbar className="my-2 bg-base-200 shadow-xl" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
             <Drawer.Toggle />
             <div>
-                <Link className="btn btn-ghost text-lg" href="/" role="button">
+                <Link className="btn btn-ghost text-lg text-accent" href="/" role="button">
                     Yamada Hayao
                 </Link>
             </div>
