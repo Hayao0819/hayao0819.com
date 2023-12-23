@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 
 import { Post } from "@/lib/blog/type";
@@ -11,33 +11,32 @@ const PostPreview = ({ posts }: { posts: Post }) => {
     }
 
     const postDate = new Date(posts.meta.date);
-    //console.log(posts.url);
 
-    /*
     const animate: Variants = {
         offscreen: {
-            x: 100,
+            y: 100,
             opacity: 0,
         },
         onscreen: {
-            x: 0,
+            y: 0,
             opacity: 1,
             transition: {
                 duration: 0.5,
             },
         },
     };
-    */
+
+    const contentString = posts.content.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, "").slice(0, 100) + "...";
 
     return (
         <motion.div
             className="border-4 border-solid border-neutral"
-            //variants={animate}
-            //initial="offscreen"
-            //whileInView="onscreen"
-            //viewport={{ once: true, amount: 0 }}
+            variants={animate}
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true }}
         >
-            <Link href={"/blog/" + posts.url} className="flex flex-col ">
+            <Link href={"/blog/" + posts.url} className="flex h-full flex-col">
                 <div className="flex justify-between">
                     <div className="flex justify-start">
                         {(posts.meta.categories ? posts.meta.categories : ["その他"])
@@ -61,7 +60,7 @@ const PostPreview = ({ posts }: { posts: Post }) => {
                 <div className="m-2 flex justify-between">
                     <p className="text-xl">{posts.meta.title}</p>
                 </div>
-                <div className="m-2 grow">{posts.content}</div>
+                <div className="m-2 grow">{contentString}</div>
 
                 <div className="flex justify-end">
                     <p className="btn btn-ghost p-1">Read More</p>
