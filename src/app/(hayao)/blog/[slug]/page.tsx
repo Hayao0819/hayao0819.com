@@ -10,15 +10,15 @@ export default async function BlogTop({ params }: { params: { slug: string } }) 
     const postlist = getPostList(slug);
 
     return (
-        <CommonSpacer>
-            <div>
+        <CommonSpacer className="flex flex-col">
+            <div className="grow">
                 <PostListElement posts={postlist.posts} />
-                <PostPageSwitch
-                    allpages={postlist.allpages}
-                    currentPage={postlist.currentPage}
-                    linktemplate={(page) => `/blog/${page}`}
-                />
             </div>
+            <PostPageSwitch
+                allpages={postlist.allpages}
+                currentPage={postlist.currentPage}
+                linktemplate={(page) => `/blog/${page}`}
+            />
         </CommonSpacer>
     );
 }
