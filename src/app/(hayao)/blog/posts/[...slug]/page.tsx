@@ -6,12 +6,12 @@ import Markdown from "@/components/elements/Markdown";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import * as blogtools from "@/lib/blog";
 import { getAllCategories } from "@/lib/blog/categories";
-import { getPostFromPath, Post } from "@/lib/blog/post";
+import { Post, PostData } from "@/lib/blog/post";
 import { getAllPosts } from "@/lib/blog/postlist";
 import { recursivePath } from "@/lib/utils";
 
 type PostProps = {
-    post?: Post;
+    post?: PostData;
     parsed?: ReactNode;
     isDir: boolean;
 };
@@ -39,7 +39,7 @@ const fetchPostData = function (path: string): PostProps {
     })();
 
     if (targetFile) {
-        const post = getPostFromPath(targetFile);
+        const post = Post.fromFile(targetFile).get();
         //console.log(post);
 
         return {

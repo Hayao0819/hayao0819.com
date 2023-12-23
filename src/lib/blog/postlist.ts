@@ -1,8 +1,25 @@
-import * as blogtools from "@/lib/blog";
+import fs from "fs";
+import path from "path";
 
 import { MDFILE_DIR } from "./config";
-import { getPostFromPath, Post, PostData } from "./post";
+import { Post, PostData } from "./post";
 import { DEFAULT_URL_FORMAT, URLFormat } from "./url";
+
+const getMdFilesInDir = (dir: string): string[] => {
+    return fs
+        .readdirSync(dir, { withFileTypes: true })
+        .flatMap((dirent) => {
+            if (dirent.isFile()) {
+                return [`${dir}/${dirent.name}`];
+            } else {
+                return getMdFilesInDir(`${dir}/${dirent.name}`);
+            }
+        })
+        .filter((postFilePath) => {
+            const ext = path.extname(postFilePath).toLowerCase();
+            return ext === ".mdx" || ext === ".md";
+        });
+};
 
 export class PostList {
     private posts: Post[];
@@ -21,12 +38,11 @@ export class PostList {
             return this;
         }
 
-        const files = blogtools.getMdFilesInDir(this.dir);
-        //console.log(files);
+        const files = getMdFilesInDir(this.dir);
 
         const posts = files
             .map((file) => {
-                return getPostFromPath(file, this.format);
+                return Post.fromFile(file, this.format);
             })
             .filter((p) => {
                 return p.meta.title && p.meta.date;

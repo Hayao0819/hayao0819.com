@@ -1,7 +1,6 @@
 import { PostList as PostListElement, PostPageSwitch } from "@/components/layouts/blog/PostList";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
-import * as blogtools from "@/lib/blog";
-import { MDFILE_DIR, POSTLIST_ONEPAGE } from "@/lib/blog/config";
+import { POSTLIST_ONEPAGE } from "@/lib/blog/config";
 import { PostData } from "@/lib/blog/post";
 import { PostList } from "@/lib/blog/postlist";
 
@@ -24,7 +23,7 @@ export default async function BlogTop({ params }: { params: { slug: string } }) 
 }
 
 export const generateStaticParams = async () => {
-    const files = blogtools.getMdFilesInDir(MDFILE_DIR);
+    const files = PostList.fetch().getPosts();
 
     const filecount = Math.ceil(files.length / POSTLIST_ONEPAGE);
 
