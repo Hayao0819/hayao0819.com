@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import Links from "../(hayao-top)/links";
+import Links from "./links";
 
 export default function Home() {
     return (
