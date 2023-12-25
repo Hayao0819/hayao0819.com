@@ -4,13 +4,14 @@ import { useMemo } from "react";
 import { Heading } from "../elements/Heading";
 import { MainManus } from "./CommonMenu";
 import Drawer from "./Drawer";
+import Footer from "./Footer";
 import Header from "./Header";
 
 export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
     //const propsWithoutChildren = { ...props, children: undefined };
 
     const headerMemo = useMemo(() => <Header />, []);
-    //const footerMemo = useMemo(() => <Footer />, []);
+    const footerMemo = useMemo(() => <Footer />, []);
 
     const defaultClassName = "flex min-h-screen w-screen flex-col bg-base-200 text-base-content";
 
@@ -22,9 +23,7 @@ export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
             <div {...props} className={classNames(defaultClassName, props.className)}>
                 {headerMemo}
                 <main className={classNames("grow", "flex")}>{props.children}</main>
-                {
-                    //footerMemo
-                }
+                {footerMemo}
             </div>
         </>
     );

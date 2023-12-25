@@ -11,12 +11,10 @@ export interface PostListProps {
 
 export function PostList({ posts }: PostListProps) {
     return (
-        <div className="flex h-full flex-col">
-            <div className="grow child:mb-2 sm:grid sm:grid-cols-3 sm:gap-4 child:sm:mb-0 lg:grid-cols-3">
-                {posts.map((f) => {
-                    return <PostPreview posts={f} key={f.file} />;
-                })}
-            </div>
+        <div className="flex flex-col gap-12">
+            {posts.map((f) => {
+                return <PostPreview posts={f} key={f.file} />;
+            })}
         </div>
     );
 }

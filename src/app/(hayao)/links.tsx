@@ -61,20 +61,20 @@ export default function Links() {
     return (
         <>
             <Link href="https://twitter.com/Hayao0819" {...commonProps("twitter")}>
-                <FaTwitter />
+                <FaTwitter className="text-twitter" />
                 <div {...detailProps("twitter")}>
                     <p>@Hayao0819</p>
                     <p>@YamadaHayao</p>
                 </div>
             </Link>
             <Link href="https://instagram.com/Hayao0819" {...commonProps("instagram")}>
-                <FaInstagram />
+                <FaInstagram className="text-instagram" />
                 <div {...detailProps("instagram")}>
                     <p>@Hayao0819</p>
                 </div>
             </Link>
             <Link href="https://github.com/Hayao0819" {...commonProps("github")}>
-                <FaGithub />
+                <FaGithub className="text-github" />
                 <div {...detailProps("github")}>
                     <p>@Hayao0819</p>
                 </div>

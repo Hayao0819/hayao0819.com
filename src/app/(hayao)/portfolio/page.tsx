@@ -21,7 +21,7 @@ import CommonSpacer from "@/components/layouts/CommonSpacer";
 
 const PortfolioHeading: FC<{ children: ReactNode }> = ({ children }) => {
     return (
-        <Heading level={2} className="my-5 w-fit  px-5 py-3 text-center text-4xl">
+        <Heading level={2} className="my-5 w-fit px-5 py-3 text-center text-4xl text-accent">
             {children}
         </Heading>
     );
@@ -126,7 +126,7 @@ function SkillCard(props: SkillCardProps) {
                 "flex-row-reverse": props.side === "right",
             })}
         >
-            <div className=" flex w-1/2 items-center justify-center bg-neutral px-10 py-12 text-neutral-content shadow-xl child:px-2">
+            <div className=" flex w-1/2 items-center justify-center px-10 py-12  shadow-xl child:px-2">
                 <span className="text-2xl">{props.icon}</span>
                 <p className="text-2xl">{props.title}</p>
             </div>

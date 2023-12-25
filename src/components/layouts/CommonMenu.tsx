@@ -54,7 +54,8 @@ function MenuItemBlog() {
             >
                 <summary>Blog</summary>
                 <Menu className="text-base-content">
-                    <MenuItem href="/blog/1" text="Blog" />
+                    <MenuItem href="/blog/1" text="Posts" />
+                    <MenuItem href="/blog/category" text="Categories" />
                     <MenuItem href="/blog/about" text="About" />
                 </Menu>
             </details>

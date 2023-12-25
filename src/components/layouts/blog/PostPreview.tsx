@@ -29,15 +29,16 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
 
     const contentString = posts.content.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, "").slice(0, 100) + "...";
 
+    const fullURL = "/blog/posts/" + posts.url;
     return (
         <motion.div
-            className="border-4 border-solid border-neutral"
+            className="p-2 shadow-xl"
             variants={animate}
             initial="offscreen"
             whileInView="onscreen"
             viewport={{ once: true }}
         >
-            <Link href={"/blog/posts/" + posts.url} className="flex h-full flex-col">
+            <div className="flex h-full flex-col">
                 <div className="flex justify-between">
                     <div className="flex justify-start">
                         {(posts.meta.categories ? posts.meta.categories : ["その他"])
@@ -49,8 +50,8 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
                             })
                             .map((s) => {
                                 return (
-                                    <div className="bg-primary p-1 text-primary-content" key={s}>
-                                        {s}
+                                    <div className="p-1" key={s}>
+                                        <Link href={`/blog/category/${s}`}>{s}</Link>
                                     </div>
                                 );
                             })}
@@ -59,14 +60,20 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
                 </div>
 
                 <div className="m-2 flex justify-between">
-                    <p className="text-xl">{posts.meta.title}</p>
+                    <Link href={fullURL} className="text-xl text-accent underline-offset-8 hover:underline">
+                        {posts.meta.title}
+                    </Link>
                 </div>
-                <div className="m-2 grow">{contentString}</div>
+                <div className="m-2 grow">
+                    <Link href={fullURL}>{contentString}</Link>
+                </div>
 
                 <div className="flex justify-end">
-                    <p className="btn btn-ghost p-1">Read More</p>
+                    <Link href={fullURL} className="btn btn-ghost p-1 text-accent">
+                        Read More
+                    </Link>
                 </div>
-            </Link>
+            </div>
         </motion.div>
     );
 };

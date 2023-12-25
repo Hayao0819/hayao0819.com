@@ -11,12 +11,17 @@ export default function Home() {
                 <Links />
             </div>
 
-            <p className="py-1 hover:underline">
-                <Link href="/blog">BLOG</Link>
-            </p>
-            <p className="py-1 hover:underline">
-                <Link href="/portfolio">PORTFOLIO</Link>
-            </p>
+            <div className="flex flex-col items-center gap-5 hover:underline">
+                <Link className="text-accent" href="/about">
+                    About Me
+                </Link>
+                <Link className="" href="/blog">
+                    BLOG
+                </Link>
+                <Link className="" href="/portfolio">
+                    PORTFOLIO
+                </Link>
+            </div>
         </div>
     );
 }

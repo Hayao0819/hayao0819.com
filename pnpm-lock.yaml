@@ -115,6 +115,9 @@ devDependencies:
   tailwindcss:
     specifier: ^3.3.6
     version: 3.3.6
+  tailwindcss-brand-colors:
+    specifier: ^0.3.6
+    version: 0.3.6
   tailwindcss-textshadow:
     specifier: ^2.1.3
     version: 2.1.3
@@ -4829,6 +4832,10 @@ packages:
     dependencies:
       '@pkgr/utils': 2.4.2
       tslib: 2.6.2
+    dev: true
+
+  /tailwindcss-brand-colors@0.3.6:
+    resolution: {integrity: sha512-Me1fnwdxFtkUs4MzEyMFE+5rad2MM1EyBOAwCOp5JQzNDXRfUqyEe55nrxloyQ75LBaGUuTVzbVDIjI+GoBQnw==}
     dev: true
 
   /tailwindcss-textshadow@2.1.3:

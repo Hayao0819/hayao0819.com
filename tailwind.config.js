@@ -26,6 +26,7 @@ module.exports = {
         require("daisyui"),
         require("tailwindcss-textshadow"),
         require("@tailwindcss/typography"),
+        require("tailwindcss-brand-colors"),
         function ({ addVariant }) {
             addVariant("child", "& > *");
             addVariant("child-all", "& *");
