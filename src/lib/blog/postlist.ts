@@ -75,7 +75,7 @@ export class PostList {
         console.log(`category: ${category}`);
         const filtered = this.getPosts().filter((p) => {
             console.log(`${p.file}: ${p.meta.categories}`);
-            return p.meta.categories?.includes(category);
+            return p.meta.categories?.includes(category) || p.meta.categories?.includes(decodeURI(category));
         });
         return PostList.fromPostDatas(filtered);
     }
