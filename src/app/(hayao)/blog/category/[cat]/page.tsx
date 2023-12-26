@@ -32,7 +32,7 @@ export const generateStaticParams = async () => {
         };
     });
 
-    //console.log(params);
+    console.log({ categories, params });
 
     return params;
 };
