@@ -72,13 +72,15 @@ export class PostList {
     }
 
     getByCategory(category: string) {
-        console.log(`category: ${category} ${decodeURI(category)}`);
-        console.log(this.getPosts().length);
         const filtered = this.getPosts().filter((p) => {
-            console.log(`${p.file}: ${p.meta.categories?.map((c) => encodeURI(c))}`);
-            return p.meta.categories?.includes(category) || p.meta.categories?.includes(decodeURI(category));
+            return (
+                p.meta.categories?.includes(category) ||
+                p.meta.categories?.includes(decodeURI(category)) ||
+                p.meta.categories?.map((c) => encodeURI(c)).includes(category) ||
+                p.meta.categories?.map((c) => encodeURI(c)).includes(decodeURI(category))
+            );
         });
-        console.log(filtered.length);
+
         return PostList.fromPostDatas(filtered);
     }
 
