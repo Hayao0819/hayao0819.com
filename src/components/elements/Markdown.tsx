@@ -45,7 +45,19 @@ export default function Markdown({ content }: { content: string }) {
     };
 
     return (
-        <ReactMD remarkPlugins={[[remarkGfm, {}]]} rehypePlugins={[rehypeCodeTitles, rehypePrism]} components={components}>
+        <ReactMD
+            remarkPlugins={[[remarkGfm, {}]]}
+            rehypePlugins={[
+                rehypeCodeTitles,
+                [
+                    rehypePrism,
+                    {
+                        ignoreMissing: true,
+                    },
+                ],
+            ]}
+            components={components}
+        >
             {content}
         </ReactMD>
     );
