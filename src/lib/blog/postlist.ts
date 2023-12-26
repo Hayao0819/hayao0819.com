@@ -75,7 +75,7 @@ export class PostList {
         console.log(`category: ${category} ${decodeURI(category)}`);
         console.log(this.getPosts().length);
         const filtered = this.getPosts().filter((p) => {
-            console.log(`${p.file}: ${p.meta.categories}`);
+            console.log(`${p.file}: ${p.meta.categories?.map((c) => encodeURI(c))}`);
             return p.meta.categories?.includes(category) || p.meta.categories?.includes(decodeURI(category));
         });
         console.log(filtered.length);
