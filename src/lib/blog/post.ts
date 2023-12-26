@@ -13,12 +13,6 @@ export function getPostDataFromFile(file: string, urlFormat: URLFormat = DEFAULT
     Object.keys(parsed.data).forEach((key) => {
         if (key === "date") {
             meta[key] = new Date(parsed.data[key]).toISOString();
-        } else if (key === "categories") {
-            console.log(parsed.data[key]);
-            if (typeof parsed.data[key] === "string") {
-                meta[key] = [parsed.data[key]];
-            }
-            meta[key] = parsed.data[key];
         } else {
             meta[key] = parsed.data[key];
         }
