@@ -39,6 +39,8 @@ export class PostList {
         }
 
         const files = getMdFilesInDir(this.dir);
+        console.log(getMdFilesInDir(process.cwd()));
+        console.log(files);
 
         const posts = files
             .map((file) => {

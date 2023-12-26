@@ -32,7 +32,7 @@ export default function Portfolio() {
         <CommonSpacer>
             <div>
                 <PortfolioHeading>Languages</PortfolioHeading>
-                <div className="md:grid md:grid-cols-2 md:gap-5">
+                <div className="flex flex-col  gap-5 md:grid md:grid-cols-2">
                     <SkillCard icon={<SiGo />} title="Golang" side="left">
                         <SkillCardLinkList>
                             <SkillCardLink href="https://github.com/Hayao0819/lico">lico</SkillCardLink>
@@ -63,7 +63,7 @@ export default function Portfolio() {
 
             <div>
                 <PortfolioHeading>Frameworks</PortfolioHeading>
-                <div className="md:grid md:grid-cols-2 md:gap-5">
+                <div className="flex flex-col  gap-5 md:grid md:grid-cols-2">
                     <SkillCard icon={<SiReact />} title="React.js" side="left">
                         <SkillCardLinkList>
                             <SkillCardLink href="https://github.com/Hayao0819/hayao0819.com">hayao0819.com</SkillCardLink>
@@ -96,7 +96,7 @@ export default function Portfolio() {
 
             <div>
                 <PortfolioHeading>Tools</PortfolioHeading>
-                <div className="md:grid md:grid-cols-2 md:gap-5">
+                <div className="flex flex-col  gap-5 md:grid md:grid-cols-2">
                     <SkillCard icon={<SiArchlinux />} title="Linux" side="left">
                         <p className="">btw, I use Arch Linux.</p>
                     </SkillCard>

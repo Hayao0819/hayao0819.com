@@ -80,7 +80,7 @@ const PostPage = ({ params }: { params: { slug: string } }) => {
         return <div>ディレクトリ</div>;
     } else {
         return (
-            <div className="w-4/5">
+            <div className="">
                 <BlogHeading level={1}>{postData.post?.meta.title}</BlogHeading>
                 {postData.parsed}
             </div>

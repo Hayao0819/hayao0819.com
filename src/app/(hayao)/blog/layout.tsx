@@ -10,9 +10,9 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
     const postlist = new PostList().fetch().getPosts().slice(undefined, 10);
 
     return (
-        <CommonSpacer className="flex">
-            <div className=" w-9/12">{children}</div>
-            <div className="w-3/12">
+        <CommonSpacer className="md:flex">
+            <div className="md:w-9/12">{children}</div>
+            <div className="md:w-3/12">
                 <div className="p-5 shadow-lg">
                     <Link href="/blog/category">
                         <Heading level={2} className="border-b-2 border-accent text-accent">

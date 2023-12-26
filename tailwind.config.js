@@ -7,6 +7,9 @@ module.exports = {
                 "1/2": "50%",
                 "1/3": "33.3%",
             },
+            colors: {
+                kaybase: "#ff6f21",
+            },
         },
     },
     daisyui: {
