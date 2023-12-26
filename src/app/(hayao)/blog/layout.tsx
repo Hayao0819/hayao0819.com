@@ -14,9 +14,11 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
             <div className=" w-9/12">{children}</div>
             <div className="w-3/12">
                 <div className="p-5 shadow-lg">
-                    <Heading level={2} className="border-b-2 border-accent text-accent">
-                        Categories
-                    </Heading>
+                    <Link href="/blog/category">
+                        <Heading level={2} className="border-b-2 border-accent text-accent">
+                            Categories
+                        </Heading>
+                    </Link>
                     <ul>
                         {categories.map((c) => {
                             return (

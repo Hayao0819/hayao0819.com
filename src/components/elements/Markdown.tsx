@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import ReactMD, { Components } from "react-markdown";
+import rehypeCodeTitles from "rehype-code-titles";
+import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
 
 import { BlogHeading as Heading } from "./Heading";
-import Link from "./Link";
 
 export default function Markdown({ content }: { content: string }) {
     const components: Partial<Components> = {
@@ -25,19 +27,25 @@ export default function Markdown({ content }: { content: string }) {
             return <Heading level={5}>{children}</Heading>;
         },
         a: ({ href, children }) => {
-            if (!href) return <></>;
-            return <Link href={href}>{children}</Link>;
+            if (!href) return <span>{children}</span>;
+            return (
+                <Link href={href} className=" underline underline-offset-4">
+                    {children}
+                </Link>
+            );
         },
+        /*
         pre: ({ children }) => {
             return <pre className="!overflow-x-scroll">{children}</pre>;
         },
         code: ({ children }) => {
             return <code>{children}</code>;
         },
+        */
     };
 
     return (
-        <ReactMD remarkPlugins={[remarkGfm]} components={components}>
+        <ReactMD remarkPlugins={[[remarkGfm, {}]]} rehypePlugins={[rehypeCodeTitles, rehypePrism]} components={components}>
             {content}
         </ReactMD>
     );

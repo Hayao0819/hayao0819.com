@@ -1,4 +1,5 @@
 import "@/style/global.css";
+import "@/style/prism.css";
 
 import { Metadata as NextMetadata } from "next";
 import React, { ReactNode } from "react";
