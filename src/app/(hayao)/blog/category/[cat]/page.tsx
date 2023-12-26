@@ -39,6 +39,7 @@ export const generateStaticParams = async () => {
 
 const getPostList = (category: string): PostData[] => {
     const categoryFilteredPageList = PostList.fetch().getByCategory(decodeURI(category));
+    console.log(categoryFilteredPageList.getPosts().map((p) => p.file));
     const currentPagePosts = categoryFilteredPageList.getContentSplitedPosts(SUMMARY_LENGTH).getPosts();
 
     return currentPagePosts;
