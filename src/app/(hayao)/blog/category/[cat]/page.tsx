@@ -11,7 +11,7 @@ import { PostList } from "@/lib/blog/postlist";
 export default async function Categories({ params }: { params: { cat: string } }) {
     const postpost = getPostList(params.cat);
 
-    //console.log(postpost);
+    console.log(params.cat);
 
     return (
         <CommonSpacer>

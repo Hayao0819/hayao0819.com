@@ -1,3 +1,4 @@
+import { CATEGORY_INFO } from "./config";
 import { getAllPosts } from "./postlist";
 
 export const getAllCategories = () => {
@@ -14,4 +15,13 @@ export const getAllCategories = () => {
         .filter((category) => category);
 
     return [...new Set(categories)];
+};
+
+export const findCategoryInfo = (category: string) => {
+    const catingo: { jp: string; url: string; desc: string }[] = getCategoryInfo();
+    return catingo.filter((c) => c.url === category || c.jp === category)[0];
+};
+
+export const getCategoryInfo = () => {
+    return CATEGORY_INFO;
 };
