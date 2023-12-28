@@ -73,6 +73,7 @@ export class PostList {
 
     getByCategory(category: string) {
         const filtered = this.getPosts().filter((p) => {
+            // 何故かこれをしないと動かない
             return (
                 p.meta.categories?.includes(category) ||
                 p.meta.categories?.includes(decodeURI(category)) ||

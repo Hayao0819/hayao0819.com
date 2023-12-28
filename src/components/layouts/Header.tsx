@@ -15,7 +15,7 @@ export default function Header({ onMouseEnter, onMouseLeave }: { onMouseEnter?: 
                     Yamada Hayao
                 </Link>
             </div>
-            <div className="hidden grow sm:flex">
+            <div className="hidden grow md:flex">
                 <Navbar.Start>
                     <MainManus horizontal />
                 </Navbar.Start>

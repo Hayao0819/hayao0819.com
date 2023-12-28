@@ -13,3 +13,7 @@
     outline: 2px red solid;
 }
 */
+
+:where(.menu li) {
+    z-index: 0;
+}

@@ -65,7 +65,7 @@ export default function Drawer(props: DrawerProps) {
     return (
         <>
             <motion.div
-                className={classNames("fixed z-5 w-screen h-screen grow bg-black/70", {
+                className={classNames("fixed z-10 w-screen h-svh bg-black/70", {
                     //hidden: isFirstRender,
                 })}
                 onClick={toggle}
@@ -75,7 +75,7 @@ export default function Drawer(props: DrawerProps) {
             />
 
             <motion.div
-                className={classNames("fixed z-10 h-screen w-4/5 md:w-1/3 bg-base-100 text-base-content", {
+                className={classNames("fixed z-20 h-svh w-4/5 md:w-1/3 bg-base-100 text-base-content", {
                     //hidden: isFirstRender,
                 })}
                 animate={open ? "open" : "closed"}
