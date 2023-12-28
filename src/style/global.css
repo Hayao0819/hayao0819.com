@@ -4,7 +4,7 @@
 
 @layer components {
     p {
-        @apply leading-loose;
+        @apply leading-10;
     }
 }
 
