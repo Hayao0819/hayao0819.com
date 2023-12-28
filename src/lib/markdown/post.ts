@@ -3,9 +3,10 @@ import matter from "gray-matter";
 
 import { PostMeta } from "@/lib/markdown/type";
 
-import { DEFAULT_URL_FORMAT, formatURL, mdPathToURL, URLFormat } from "./url";
+import { BLOG_URL_FORMAT } from "../blog/config";
+import { formatURL, mdPathToURL, URLFormat } from "./url";
 
-export function getPostDataFromFile(file: string, urlFormat: URLFormat = DEFAULT_URL_FORMAT): PostData {
+export function getPostDataFromFile(file: string, urlFormat: URLFormat = BLOG_URL_FORMAT): PostData {
     const fileContent = fs.readFileSync(file, "utf-8");
     const parsed = matter(fileContent);
     const meta: PostMeta = {};

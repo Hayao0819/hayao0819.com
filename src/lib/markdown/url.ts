@@ -1,5 +1,3 @@
-import path from "path";
-
 // URLフォーマットは/blog/posts/以下のURLを返すように設定する
 export type URLFormat = {
     prefix?: string;
@@ -16,10 +14,6 @@ export function formatURL(path: string, format: URLFormat): string {
     const cutTail = format.cutTail || 0;
     return prefix + pathArr.slice(cutHead, pathArr.length - cutTail).join("/") + suffix;
 }
-
-export const DEFAULT_URL_FORMAT: URLFormat = {
-    cutHead: path.join(process.cwd()).split("/").length + 1,
-};
 
 export const mdPathToURL = (pathName: string): string => {
     return pathName.replace("index.mdx", "").replace("index.md", "").replace(".mdx", "").replace(".md", "");
