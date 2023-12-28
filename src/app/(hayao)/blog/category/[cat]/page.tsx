@@ -38,7 +38,7 @@ export const generateStaticParams = async () => {
 };
 
 const getPostList = (category: string): PostData[] => {
-    const categoryFilteredPageList = PostList.fetch().getByCategory(category);
+    const categoryFilteredPageList = new PostList().getByCategory(category);
     const currentPagePosts = categoryFilteredPageList.getContentSplitedPosts(SUMMARY_LENGTH).getPosts();
 
     return currentPagePosts;

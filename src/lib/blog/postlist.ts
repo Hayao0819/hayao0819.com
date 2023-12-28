@@ -105,11 +105,11 @@ export class PostList {
 
     static fetch() {
         const postList = new PostList();
-        postList.fetch();
+        //postList.fetch();
         return postList;
     }
 }
 
 export const getAllPosts = (): PostData[] => {
-    return PostList.fetch().getPosts();
+    return new PostList().getPosts();
 };

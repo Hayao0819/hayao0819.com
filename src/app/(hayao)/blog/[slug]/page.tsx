@@ -23,7 +23,7 @@ export default async function BlogTop({ params }: { params: { slug: string } }) 
 }
 
 export const generateStaticParams = async () => {
-    const files = PostList.fetch().getPosts();
+    const files = new PostList().getPosts();
 
     const filecount = Math.ceil(files.length / POSTLIST_ONEPAGE);
 
@@ -47,7 +47,7 @@ type BlogTopProps = {
 };
 
 const getPostList = (currentPage: number) => {
-    const allPostList = PostList.fetch();
+    const allPostList = new PostList();
     const currentPagePosts: PostData[] = allPostList
         .getSplitedPosts(currentPage, POSTLIST_ONEPAGE)
         .getContentSplitedPosts(SUMMARY_LENGTH)
