@@ -1,5 +1,5 @@
+import { getAllPosts } from "../markdown/postlist";
 import { CATEGORY_INFO } from "./config";
-import { getAllPosts } from "./postlist";
 
 export const getAllCategories = () => {
     const posts = getAllPosts();

@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-import { MDFILE_DIR } from "./config";
+import { MDFILE_DIR } from "../blog/config";
 import { getPostDataFromFile, PostData } from "./post";
 import { DEFAULT_URL_FORMAT, URLFormat } from "./url";
 

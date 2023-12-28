@@ -1,9 +1,9 @@
+import * as Post from "../markdown/post";
+import * as PostList from "../markdown/postlist";
+import * as Type from "../markdown/type";
+import * as Url from "../markdown/url";
 import * as Categories from "./categories";
 import * as Config from "./config";
-import * as Post from "./post";
-import * as PostList from "./postlist";
-import * as Type from "./type";
-import * as Url from "./url";
 
 export default { Categories, Config, Post, PostList, Type, Url };
 

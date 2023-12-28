@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Heading } from "@/components/elements/Heading";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { getAllCategories } from "@/lib/blog/categories";
-import { PostList } from "@/lib/blog/postlist";
+import { PostList } from "@/lib/markdown/postlist";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
     const categories = getAllCategories();

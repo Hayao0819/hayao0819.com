@@ -1,8 +1,8 @@
 import { PostList as PostListElement, PostPageSwitch } from "@/components/layouts/blog/PostList";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { POSTLIST_ONEPAGE, SUMMARY_LENGTH } from "@/lib/blog/config";
-import { PostData } from "@/lib/blog/post";
-import { PostList } from "@/lib/blog/postlist";
+import { PostData } from "@/lib/markdown/post";
+import { PostList } from "@/lib/markdown/postlist";
 
 export default async function BlogTop({ params }: { params: { slug: string } }) {
     const slug = parseInt(params.slug);

@@ -5,8 +5,8 @@ import { PostList as PostListElement } from "@/components/layouts/blog/PostList"
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { getAllCategories } from "@/lib/blog/categories";
 import { SUMMARY_LENGTH } from "@/lib/blog/config";
-import { PostData } from "@/lib/blog/post";
-import { PostList } from "@/lib/blog/postlist";
+import { PostData } from "@/lib/markdown/post";
+import { PostList } from "@/lib/markdown/postlist";
 
 export default async function Categories({ params }: { params: { cat: string } }) {
     const postpost = getPostList(params.cat);

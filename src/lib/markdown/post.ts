@@ -1,7 +1,7 @@
 import fs from "fs";
 import matter from "gray-matter";
 
-import { PostMeta } from "@/lib/blog/type";
+import { PostMeta } from "@/lib/markdown/type";
 
 import { DEFAULT_URL_FORMAT, formatURL, mdPathToURL, URLFormat } from "./url";
 

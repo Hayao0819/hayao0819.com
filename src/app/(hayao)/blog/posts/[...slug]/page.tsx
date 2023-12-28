@@ -4,8 +4,8 @@ import { ReactNode } from "react";
 import { BlogHeading } from "@/components/elements/Heading";
 import Markdown from "@/components/elements/Markdown";
 import { Url } from "@/lib/blog";
-import { getPostDataFromFile, PostData } from "@/lib/blog/post";
-import { getAllPosts } from "@/lib/blog/postlist";
+import { getPostDataFromFile, PostData } from "@/lib/markdown/post";
+import { getAllPosts } from "@/lib/markdown/postlist";
 import { recursivePath } from "@/lib/utils";
 
 type PostProps = {

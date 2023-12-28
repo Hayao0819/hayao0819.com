@@ -3,7 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 
-import { PostData } from "@/lib/blog/post";
+import { PostData } from "@/lib/markdown/post";
 import * as utils from "@/lib/utils";
 
 const PostPreview = ({ posts }: { posts: PostData }) => {

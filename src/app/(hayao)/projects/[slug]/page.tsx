@@ -1,6 +1,6 @@
 import path from "path";
 
-import { PostList } from "@/lib/blog/postlist";
+import { PostList } from "@/lib/markdown/postlist";
 
 export const generateStaticParams = () => {
     const dirpath = ["src", "app", "(hayao)", "projects", "files"];

@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import Link from "next/link";
 
-import { PostData } from "@/lib/blog/post";
+import { PostData } from "@/lib/markdown/post";
 
 import PostPreview from "./PostPreview";
 
