@@ -1,9 +1,8 @@
 import fs from "fs";
 import path from "path";
 
-import { MDFILE_DIR } from "../blog/config";
 import { getPostDataFromFile, PostData } from "./post";
-import { DEFAULT_URL_FORMAT, URLFormat } from "./url";
+import { URLFormat } from "./url";
 
 const getMdFilesInDir = (dir: string): string[] => {
     return fs
@@ -23,28 +22,24 @@ const getMdFilesInDir = (dir: string): string[] => {
 
 export class PostList {
     private posts: PostData[];
-    dir: string;
-    format: URLFormat;
+    private fetched: boolean = false;
 
-    constructor(dir: string = MDFILE_DIR, format: URLFormat = DEFAULT_URL_FORMAT) {
+    constructor() {
         this.posts = [];
-        this.dir = dir;
-        this.format = format;
-        this.fetch();
     }
 
-    fetch() {
-        if (this.posts.length !== 0) {
+    fetch(dir: string, format: URLFormat) {
+        if (this.fetched) {
             return this;
         }
 
-        const files = getMdFilesInDir(this.dir);
+        const files = getMdFilesInDir(dir);
         //console.log(getMdFilesInDir(process.cwd()));
         //console.log(files);
 
         const posts = files
             .map((file) => {
-                return getPostDataFromFile(file, this.format);
+                return getPostDataFromFile(file, format);
             })
             .filter((p) => {
                 return p.meta.title && p.meta.date;
@@ -58,16 +53,21 @@ export class PostList {
             });
 
         this.posts = posts;
+        this.fetched = true;
         return this;
     }
 
     getSplitedPosts(currentPage: number, perPage: number) {
         const start = (currentPage - 1) * perPage;
         const end = start + perPage;
-        return PostList.fromPostDatas(this.posts.slice(start, end));
+        const posts = this.getPosts();
+        return PostList.fromPostDatas(posts.slice(start, end));
     }
 
     getPosts() {
+        if (!this.fetched) {
+            throw new Error("PostList is not fetched yet.");
+        }
         return this.posts;
     }
 
@@ -116,16 +116,13 @@ export class PostList {
     static fromPostDatas(posts: PostData[]) {
         const postList = new PostList();
         postList.posts = posts;
+        postList.fetched = true;
         return postList;
     }
 
-    static fetch() {
+    static fetch(dir: string, format: URLFormat) {
         const postList = new PostList();
-        //postList.fetch();
+        postList.fetch(dir, format);
         return postList;
     }
 }
-
-export const getAllPosts = (): PostData[] => {
-    return new PostList().getPosts();
-};

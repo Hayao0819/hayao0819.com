@@ -3,9 +3,8 @@ import { ReactNode } from "react";
 
 import { BlogHeading } from "@/components/elements/Heading";
 import Markdown from "@/components/elements/Markdown";
-import { Url } from "@/lib/blog";
+import { getFetchedBlogPostList } from "@/lib/blog/post";
 import { getPostDataFromFile, PostData } from "@/lib/markdown/post";
-import { getAllPosts } from "@/lib/markdown/postlist";
 import { recursivePath } from "@/lib/utils";
 
 type PostProps = {
@@ -53,18 +52,14 @@ const fetchPostData = function (path: string): PostProps {
 };
 
 export const generateStaticParams = async () => {
-    const mdFiles = getAllPosts();
+    const mdFiles = getFetchedBlogPostList().getPosts();
     const pages = mdFiles.flatMap((f) => {
         //console.log(f.url);
         return recursivePath(f.url);
     });
-    //console.log(mdFiles.map((m) => m.url));
     const paths = pages.map((fileName) => {
-        const pageurl = Url.mdPathToURL(fileName);
-        //console.log(fileName);
-
         return {
-            slug: pageurl.split("/").filter((s) => s !== ""),
+            slug: fileName.split("/").filter((s) => s !== ""),
         };
     });
 

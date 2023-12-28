@@ -3,11 +3,11 @@ import Link from "next/link";
 import { Heading } from "@/components/elements/Heading";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { getAllCategories } from "@/lib/blog/categories";
-import { PostList } from "@/lib/markdown/postlist";
+import { getFetchedBlogPostList } from "@/lib/blog/post";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
     const categories = getAllCategories();
-    const postlist = new PostList().fetch().getPosts().slice(undefined, 10);
+    const postlist = getFetchedBlogPostList().getPosts().slice(undefined, 10);
 
     return (
         <CommonSpacer className="md:flex">

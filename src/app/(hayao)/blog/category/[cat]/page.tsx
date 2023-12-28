@@ -5,8 +5,8 @@ import { PostList as PostListElement } from "@/components/layouts/blog/PostPrevi
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { getAllCategories } from "@/lib/blog/categories";
 import { SUMMARY_LENGTH } from "@/lib/blog/config";
+import { getFetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
-import { PostList } from "@/lib/markdown/postlist";
 
 export default async function Categories({ params }: { params: { cat: string } }) {
     const postpost = getPostList(params.cat);
@@ -38,7 +38,7 @@ export const generateStaticParams = async () => {
 };
 
 const getPostList = (category: string): PostData[] => {
-    const categoryFilteredPageList = new PostList().getByCategory(category);
+    const categoryFilteredPageList = getFetchedBlogPostList().getByCategory(category);
     const currentPagePosts = categoryFilteredPageList.getContentSplitedPosts(SUMMARY_LENGTH).getPosts();
 
     return currentPagePosts;

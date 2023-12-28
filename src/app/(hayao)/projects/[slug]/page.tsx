@@ -1,10 +1,7 @@
-import path from "path";
-
-import { PostList } from "@/lib/markdown/postlist";
+import { getFetchedProjectPostList } from "@/lib/projects";
 
 export const generateStaticParams = () => {
-    const dirpath = ["src", "app", "(hayao)", "projects", "files"];
-    const postlist = new PostList(path.join(...dirpath)).fetch().getPosts();
+    const postlist = getFetchedProjectPostList().getPosts();
 
     const params = postlist.map((p) => {
         return {
