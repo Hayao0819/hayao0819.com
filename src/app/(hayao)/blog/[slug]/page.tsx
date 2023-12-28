@@ -1,4 +1,4 @@
-import { PostList as PostListElement, PostPageSwitch } from "@/components/layouts/blog/PostList";
+import { PostList as PostListElement, PostPageSwitch } from "@/components/layouts/blog/PostPreviewList";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { POSTLIST_ONEPAGE, SUMMARY_LENGTH } from "@/lib/blog/config";
 import { PostData } from "@/lib/markdown/post";

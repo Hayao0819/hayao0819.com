@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa6";
 
-import { PostList as PostListElement } from "@/components/layouts/blog/PostList";
+import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { getAllCategories } from "@/lib/blog/categories";
 import { SUMMARY_LENGTH } from "@/lib/blog/config";
