@@ -97,6 +97,22 @@ export class PostList {
         );
     }
 
+    getAllCategories() {
+        const posts = this.getPosts();
+        const categories = posts
+            .flatMap((post) => {
+                const categories = post.meta.categories;
+                if (categories) {
+                    return categories;
+                } else {
+                    return [];
+                }
+            })
+            .filter((category) => category);
+
+        return [...new Set(categories)];
+    }
+
     static fromPostDatas(posts: PostData[]) {
         const postList = new PostList();
         postList.posts = posts;
