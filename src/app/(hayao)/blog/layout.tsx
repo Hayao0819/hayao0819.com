@@ -7,12 +7,13 @@ import { getFetchedBlogPostList } from "@/lib/blog/post";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
     const categories = getAllCategories();
-    const postlist = getFetchedBlogPostList().getPosts().slice(undefined, 10);
+    const postlist = getFetchedBlogPostList().getPosts().slice(undefined, 15);
 
     return (
         <CommonSpacer className="md:flex">
             <div className="md:w-9/12">{children}</div>
-            <div className="md:w-3/12">
+            <div className="flex flex-col gap-12 md:w-3/12">
+                {/* Categories */}
                 <div className="p-5 shadow-lg">
                     <Link href="/blog/category">
                         <Heading level={2} className="border-b-2 border-accent text-accent">
@@ -30,6 +31,21 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
                     </ul>
                 </div>
 
+                <div className="p-5 shadow-lg">
+                    <Heading level={2} className="border-b-2 border-accent text-accent">
+                        Links
+                    </Heading>
+                    <ul className="child:my-2 child:p-2">
+                        <li>
+                            <Link href="https://blog.fascode.net/">Fascode Network Blog</Link>
+                        </li>
+                        <li>
+                            <Link href="https://seppuku.club/">切腹倶楽部</Link>
+                        </li>
+                    </ul>
+                </div>
+
+                {/* Recent Posts */}
                 <div className="p-5 shadow-lg">
                     <Heading level={2} className="border-b-2 border-accent text-accent">
                         Recent Posts
