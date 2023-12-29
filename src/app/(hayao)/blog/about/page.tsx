@@ -1,3 +1,10 @@
+import { Heading } from "@/components/elements/Heading";
+
 export default function BlogAbout() {
-    return <div>ブログについて</div>;
+    return (
+        <>
+            <Heading level={1}>ハヤオについて</Heading>
+            <p>しがない理系もどき大学生</p>
+        </>
+    );
 }
