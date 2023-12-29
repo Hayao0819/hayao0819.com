@@ -11,14 +11,14 @@ export default function Home() {
                 <Links />
             </div>
 
-            <div className="flex flex-col items-center gap-5 hover:underline">
-                <Link className="text-accent" href="/about">
+            <div className="flex flex-col items-center gap-5">
+                <Link className="text-accent hover:underline" href="/about">
                     About Me
                 </Link>
-                <Link className="" href="/blog">
+                <Link className="hover:underline" href="/blog">
                     BLOG
                 </Link>
-                <Link className="" href="/portfolio">
+                <Link className="hover:underline" href="/portfolio">
                     PORTFOLIO
                 </Link>
             </div>

@@ -9,6 +9,7 @@ module.exports = {
             },
             colors: {
                 kaybase: "#ff6f21",
+                line: "#06c755",
             },
         },
     },

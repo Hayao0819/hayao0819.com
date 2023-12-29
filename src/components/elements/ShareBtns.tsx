@@ -1,6 +1,6 @@
 //import { headers } from "next/headers";
 import Link from "next/link";
-import { FaTwitter } from "react-icons/fa";
+import { FaLine, FaTwitter } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa6";
 
 export interface ShareProps {
@@ -13,6 +13,7 @@ export default function ShareBtns({ url, text }: ShareProps) {
             <div className="flex justify-end  child:m-2 child:flex child:justify-center child:rounded-lg child:p-3 child:shadow-lg">
                 <ShareTwitter url={url} text={text} />
                 <ShareFacebook url={url} />
+                <ShareLine url={url} />
             </div>
         </div>
     );
@@ -35,6 +36,14 @@ const ShareFacebook = ({ url }: ShareProps) => {
     );
 };
 
+const ShareLine = ({ url }: ShareProps) => {
+    return (
+        <Link href={generateLineShareUrl(url)} className="bg-line">
+            <FaLine className="text-base-100" />
+        </Link>
+    );
+};
+
 const generateTwitterShareUrl = (url: string, text?: string) => {
     if (text === undefined) {
         text = "";
@@ -44,4 +53,8 @@ const generateTwitterShareUrl = (url: string, text?: string) => {
 
 const generateFaceBookShareUrl = (url: string) => {
     return `https://www.facebook.com/share.php?u=${encodeURIComponent(url)}`;
+};
+
+const generateLineShareUrl = (url: string) => {
+    return `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}`;
 };
