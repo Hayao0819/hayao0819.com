@@ -1,20 +1,18 @@
 //import { headers } from "next/headers";
 import Link from "next/link";
 import { FaTwitter } from "react-icons/fa";
-import { FaShare } from "react-icons/fa6";
+import { FaFacebook } from "react-icons/fa6";
 
 export interface ShareProps {
     url: string;
-    text: string;
+    text?: string;
 }
 export default function ShareBtns({ url, text }: ShareProps) {
     return (
-        <div className="flex items-center justify-between">
-            <div>
-                <FaShare />
-            </div>
-            <div className="flex w-full justify-end child:m-2 child:flex child:justify-center child:rounded-lg child:p-4">
+        <div className="flex w-full items-center justify-end ">
+            <div className="flex justify-end  child:m-2 child:flex child:justify-center child:rounded-lg child:p-3 child:shadow-lg">
                 <ShareTwitter url={url} text={text} />
+                <ShareFacebook url={url} />
             </div>
         </div>
     );
@@ -24,11 +22,26 @@ const ShareTwitter = ({ url, text }: ShareProps) => {
     //const currentUrl = headers().get("next-url");
     return (
         <Link href={generateTwitterShareUrl(url, text)} className="bg-twitter">
-            <FaTwitter />
+            <FaTwitter className="text-base-100" />
         </Link>
     );
 };
 
-const generateTwitterShareUrl = (url: string, text: string) => {
+const ShareFacebook = ({ url }: ShareProps) => {
+    return (
+        <Link href={generateFaceBookShareUrl(url)} className="bg-facebook">
+            <FaFacebook className="text-base-100" />
+        </Link>
+    );
+};
+
+const generateTwitterShareUrl = (url: string, text?: string) => {
+    if (text === undefined) {
+        text = "";
+    }
     return `https://twitter.com/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+};
+
+const generateFaceBookShareUrl = (url: string) => {
+    return `https://www.facebook.com/share.php?u=${encodeURIComponent(url)}`;
 };
