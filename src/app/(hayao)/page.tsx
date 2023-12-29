@@ -12,7 +12,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col items-center gap-5">
-                <Link className="text-accent hover:underline" href="/about">
+                <Link className="text-accent hover:underline" href="/me">
                     About Me
                 </Link>
                 <Link className="hover:underline" href="/blog">
