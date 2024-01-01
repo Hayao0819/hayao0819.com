@@ -18,7 +18,7 @@ export default function Projects() {
 
 const getPJList = () => {
     const postlist = getFetchedProjectPostList().getContentSplitedPosts(SUMMARY_LENGTH);
-    console.log(postlist.getPosts());
+    //console.log(postlist.getPosts());
 
     return postlist.getPosts();
 };

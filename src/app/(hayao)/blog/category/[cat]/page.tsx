@@ -11,7 +11,7 @@ import { PostData } from "@/lib/markdown/post";
 export default async function Categories({ params }: { params: { cat: string } }) {
     const postpost = getPostList(params.cat);
 
-    console.log(params.cat);
+    //console.log(params.cat);
 
     return (
         <CommonSpacer>
@@ -32,7 +32,7 @@ export const generateStaticParams = async () => {
         };
     });
 
-    console.log({ categories, params });
+    //console.log({ categories, params });
 
     return params;
 };

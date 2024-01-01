@@ -9,7 +9,7 @@ export const generateStaticParams = () => {
         };
     });
 
-    console.log(postlist);
+    //console.log(postlist);
 
     return params;
 };
