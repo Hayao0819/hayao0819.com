@@ -1,12 +1,13 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import path from "path";
 
 import { BlogHeading } from "@/components/elements/Heading";
 import ShareBtns from "@/components/elements/ShareBtns";
+import { findPostFromUrl } from "@/lib/blog/fromurl";
 import { getFetchedBlogPostList } from "@/lib/blog/post";
-import { findPostFromUrl } from "@/lib/markdown/fromurl";
 import { PostList } from "@/lib/markdown/postlist";
-import { recursivePath } from "@/lib/utils";
+import { dateToString, recursivePath } from "@/lib/utils";
 
 export const generateStaticParams = async () => {
     const mdFiles = getFetchedBlogPostList().getPosts();
@@ -23,7 +24,7 @@ export const generateStaticParams = async () => {
 
 export default function PostPage({ params }: { params: { slug: string[] } }) {
     const postData = findPostFromUrl(params.slug.join("/"));
-    console.log(postData);
+    const postDate = new Date(postData.post?.meta.date ?? 0);
 
     if (postData.isDir === true) {
         const posts = new PostList().fetch(path.join(process.cwd(), "posts", ...params.slug), {});
@@ -37,6 +38,18 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
     } else {
         return (
             <div className="mx-5 flex h-full flex-col">
+                <div className="flex justify-between">
+                    <ul className="flex gap-4 text-sm text-accent">
+                        {postData.post?.meta.categories?.map((c) => {
+                            return (
+                                <li key={c}>
+                                    <Link href={`/blog/category/${c}`}>{c}</Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                    <span>{dateToString(postDate)}</span>
+                </div>
                 <BlogHeading level={1}>{postData.post?.meta.title}</BlogHeading>
                 <div className="grow">{postData.parsed}</div>
                 <ShareBtns text="hoge" url="hoge" />

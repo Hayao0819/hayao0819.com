@@ -15,3 +15,7 @@ export const recursivePath = (pathName: string) => {
         return splited.slice(undefined, i + 1).join("/");
     });
 };
+
+export function removeTrailingSlash(url: string) {
+    return url.endsWith("/") ? url.substring(0, url.length - 1) : url;
+}

@@ -1,4 +1,4 @@
-import { getFetchedProjectPostList } from "@/lib/projects";
+import { getFetchedProjectPostList, getProjectFromURL } from "@/lib/projects";
 
 export const generateStaticParams = () => {
     const postlist = getFetchedProjectPostList().getPosts();
@@ -15,6 +15,7 @@ export const generateStaticParams = () => {
 };
 
 export default function Projects(hoge: { params: { slug: string } }) {
-    console.log(hoge.params.slug);
-    return <div>projects</div>;
+    const postElement = getProjectFromURL(hoge.params.slug);
+
+    return postElement ? <>{postElement}</> : <div>404</div>;
 }

@@ -60,7 +60,7 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
                 </div>
 
                 <div className="m-2 flex justify-between">
-                    <Link href={fullURL} className="text-xl text-accent underline-offset-8 hover:underline">
+                    <Link href={fullURL} className="w-full text-xl text-accent underline-offset-8 hover:underline">
                         {posts.meta.title}
                     </Link>
                 </div>
