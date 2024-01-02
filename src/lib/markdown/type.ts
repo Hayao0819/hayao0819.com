@@ -3,4 +3,5 @@ export interface PostMeta extends Record<string, string | string[] | undefined> 
     date?: string;
     categories?: string[];
     tags?: string[];
+    description?: string;
 }
