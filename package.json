@@ -27,7 +27,6 @@
         "react-daisyui": "^5.0.0",
         "react-dom": "18.2.0",
         "react-icons": "^4.12.0",
-        "react-markdown": "^9.0.1",
         "remark-gfm": "^4.0.0",
         "typescript": "5.3.3",
         "usehooks-ts": "^2.9.1"
@@ -45,6 +44,7 @@
         "eslint": "8.56.0",
         "eslint-config-next": "14.0.4",
         "eslint-config-prettier": "^9.1.0",
+        "eslint-mdx": "^2.3.1",
         "eslint-plugin-mdx": "^3.1.1",
         "eslint-plugin-no-unsanitized": "^4.0.2",
         "eslint-plugin-prettier": "^5.1.2",
@@ -55,6 +55,7 @@
         "postcss-nested": "^6.0.1",
         "prettier": "^3.1.1",
         "prettier-plugin-tailwindcss": "^0.5.9",
+        "react-markdown": "^9.0.1",
         "rehype-code-titles": "^1.2.0",
         "rehype-prism-plus": "^1.6.3",
         "tailwindcss": "^3.4.0",
