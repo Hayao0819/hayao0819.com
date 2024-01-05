@@ -67,6 +67,7 @@ function MenuItemBlog({ onMenuItemClick }: MenusCommonProps) {
                 <Menu className="text-base-content">
                     <MenuItem href="/blog/1" text="Posts" onClick={onMenuItemClick} />
                     <MenuItem href="/blog/category" text="Categories" onClick={onMenuItemClick} />
+                    <MenuItem href="/blog/tag" text="Tags" onClick={onMenuItemClick} />
                     <MenuItem href="/blog/about" text="About" onClick={onMenuItemClick} />
                 </Menu>
             </details>

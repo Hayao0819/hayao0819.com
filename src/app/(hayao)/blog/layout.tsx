@@ -2,12 +2,13 @@ import Link from "next/link";
 
 import { Heading } from "@/components/elements/Heading";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
-import { getAllCategories } from "@/lib/blog/categories";
 import { getFetchedBlogPostList } from "@/lib/blog/post";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
-    const categories = getAllCategories();
-    const postlist = getFetchedBlogPostList().getPosts().slice(undefined, 15);
+    const postlist = getFetchedBlogPostList();
+    const categories = postlist.getAllCategories();
+    const tags = postlist.getAllTags();
+    const posts = postlist.getPosts().slice(undefined, 15);
 
     return (
         <CommonSpacer className="md:flex">
@@ -25,6 +26,23 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
                             return (
                                 <li key={c} role="link" className="my-2 cursor-pointer p-2 text-sm hover:underline">
                                     <Link href={`/blog/category/${c}`}>{c}</Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+
+                <div className="p-5 shadow-lg">
+                    <Link href="/blog/category">
+                        <Heading level={2} className="border-b-2 border-accent text-accent">
+                            Tags
+                        </Heading>
+                    </Link>
+                    <ul>
+                        {tags.map((c) => {
+                            return (
+                                <li key={c} role="link" className="my-2 cursor-pointer p-2 text-sm hover:underline">
+                                    <Link href={`/blog/tag/${c}`}>{c}</Link>
                                 </li>
                             );
                         })}
@@ -51,7 +69,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
                         Recent Posts
                     </Heading>
                     <ul>
-                        {postlist.map((p) => {
+                        {posts.map((p) => {
                             return (
                                 <li key={p.file} role="link" className="my-2 cursor-pointer p-2 text-sm hover:underline">
                                     <Link href={`/blog/posts/${p.url}`}>{p.meta.title}</Link>
