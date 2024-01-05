@@ -28,7 +28,7 @@ export class PostList {
         this.posts = [];
     }
 
-    fetch(dir: string, format: URLFormat) {
+    fetch(dir: string, format: URLFormat, includeDraft: boolean = false) {
         if (this.fetched) {
             return this;
         }
@@ -43,6 +43,12 @@ export class PostList {
             })
             .filter((p) => {
                 return p.meta.title && p.meta.date;
+            })
+            .filter((p) => {
+                if (includeDraft) return true;
+                if (p.meta.draft == undefined) return true;
+                if (p.meta.draft == false) return true;
+                return false;
             })
             .sort((a, b) => {
                 const [aMeta, bMeta] = [a.meta, b.meta];
@@ -116,6 +122,20 @@ export class PostList {
         return PostList.fromPostDatas(filtered);
     }
 
+    getByTag(tag: string) {
+        const filtered = this.getPosts().filter((p) => {
+            // 何故かこれをしないと動かない
+            return (
+                p.meta.tags?.includes(tag) ||
+                p.meta.tags?.includes(decodeURI(tag)) ||
+                p.meta.tags?.map((c) => encodeURI(c)).includes(tag) ||
+                p.meta.tags?.map((c) => encodeURI(c)).includes(decodeURI(tag))
+            );
+        });
+
+        return PostList.fromPostDatas(filtered);
+    }
+
     getContentSplitedPosts(perChars: number) {
         return PostList.fromPostDatas(
             this.posts.map((p) => {
@@ -139,9 +159,26 @@ export class PostList {
                     return [];
                 }
             })
-            .filter((category) => category);
+            .filter((category) => category)
+            .filter((cat) => cat != "ブログ");
 
         return [...new Set(categories)];
+    }
+
+    getAllTags() {
+        const posts = this.getPosts();
+        const tags = posts
+            .flatMap((post) => {
+                const tags = post.meta.tags;
+                if (tags) {
+                    return tags;
+                } else {
+                    return [];
+                }
+            })
+            .filter((tag) => tag);
+
+        return [...new Set(tags)];
     }
 
     static fromPostDatas(posts: PostData[]) {

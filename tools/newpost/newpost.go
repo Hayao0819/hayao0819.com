@@ -14,9 +14,9 @@ import (
 type BlogCategory string
 
 var Categories = []BlogCategory{
-	"hoge",
-	"fugo",
-	"anime",
+	"技術系",
+	"プライベート",
+	"ゲーム",
 }
 
 func Cmd() *cobra.Command {

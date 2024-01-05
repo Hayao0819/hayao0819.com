@@ -1,5 +1,5 @@
 ---
-title: "Pass Univ"
+title: "大学に合格しました"
 description: ""
 date: 2023-01-03T23:47:07+09:00
 categories:
