@@ -74,7 +74,7 @@ share: true
 ### 川口駅からフレンディア
 
 <div>
-<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3235.934918105711!2d139.71622871531085!3d35.80153103097217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x6018936ef93ed8e1%3A0x2108995708cb90a4!2z5bed5Y-j6aeF44CB44CSMzMyLTAwMTcg5Z-8546J55yM5bed5Y-j5biC5qCE55S677yT5LiB55uu77yR4oiS77yS77yR!3m2!1d35.8019691!2d139.7176452!4m5!1s0x6018936e928097c1%3A0x8d627c9bf3d1b0f!2z44CSMzMyLTAwMTUg5Z-8546J55yM5bed5Y-j5biC5bed5Y-j77yR5LiB55uu77yR4oiS77yRIOODleODrOODs-ODh-OCo-OCog!3m2!1d35.801033!2d139.71848!5e0!3m2!1sja!2sjp!4v1651421472493!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3235.934918105711!2d139.71622871531085!3d35.80153103097217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x6018936ef93ed8e1%3A0x2108995708cb90a4!2z5bed5Y-j6aeF44CB44CSMzMyLTAwMTcg5Z-8546J55yM5bed5Y-j5biC5qCE55S677yT5LiB55uu77yR4oiS77yS77yR!3m2!1d35.8019691!2d139.7176452!4m5!1s0x6018936e928097c1%3A0x8d627c9bf3d1b0f!2z44CSMzMyLTAwMTUg5Z-8546J55yM5bed5Y-j5biC5bed5Y-j77yR5LiB55uu77yR4oiS77yRIOODleODrOODs-ODh-OCo-OCog!3m2!1d35.801033!2d139.71848!5e0!3m2!1sja!2sjp!4v1651421472493!5m2!1sja!2sjp" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 
 ## プリレコ後の予定
