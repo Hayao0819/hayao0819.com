@@ -139,7 +139,8 @@ export class PostList {
                     return [];
                 }
             })
-            .filter((category) => category);
+            .filter((category) => category)
+            .filter((cat) => cat != "ブログ");
 
         return [...new Set(categories)];
     }
