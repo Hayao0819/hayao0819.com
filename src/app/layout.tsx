@@ -10,6 +10,7 @@ import Metadata from "../const/meta";
 //import BaseColor from "@/components/layouts/BaseColor";
 
 export const metadata: NextMetadata = {
+    metadataBase: new URL("https://www.hayao0819.com"),
     title: Metadata.title,
     description: Metadata.description,
 };
