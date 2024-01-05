@@ -28,7 +28,7 @@ export class PostList {
         this.posts = [];
     }
 
-    fetch(dir: string, format: URLFormat) {
+    fetch(dir: string, format: URLFormat, includeDraft: boolean = false) {
         if (this.fetched) {
             return this;
         }
@@ -43,6 +43,12 @@ export class PostList {
             })
             .filter((p) => {
                 return p.meta.title && p.meta.date;
+            })
+            .filter((p) => {
+                if (includeDraft) return true;
+                if (p.meta.draft == undefined) return true;
+                if (p.meta.draft == false) return true;
+                return false;
             })
             .sort((a, b) => {
                 const [aMeta, bMeta] = [a.meta, b.meta];
