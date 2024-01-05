@@ -41,7 +41,20 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
 
 const MostRecentPostPreview = ({ post, type }: { post: PostData | null; type: "before" | "after" }) => {
     if (!post) {
-        return <></>;
+        if (type == "before") {
+            return <></>;
+        } else {
+            return (
+                <div className="flex flex-col p-5 shadow-lg">
+                    <div className="flex items-center justify-end">
+                        <span className="grow text-center">ハヤオの次回作にご期待ください</span>
+                        <span>
+                            <FaArrowRight />
+                        </span>
+                    </div>
+                </div>
+            );
+        }
     }
 
     //console.log(post);
