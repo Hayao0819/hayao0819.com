@@ -1,1 +1,0 @@
-export { My } from "./My";

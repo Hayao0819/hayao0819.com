@@ -1,16 +1,35 @@
-import NextLink from "next/link";
-import React, { JSX } from "react";
+"use client";
 
-export default function Footer(): JSX.Element {
-    // スマホで常に下部に固定するいい感じのスタイルを設定したい
+import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
+import { Footer as DaisyFooter } from "react-daisyui";
+import { FaTwitter } from "react-icons/fa";
+
+export default function Footer() {
+    const FooterLink = (props: { href: string; icon: ReactNode; linktext: ReactNode }) => {
+        return (
+            <a className="flex items-center">
+                <span className="pr-2">{}</span>
+                <span>{props.linktext}</span>
+            </a>
+        );
+    };
+
+    const pathName = usePathname();
+
+    if (pathName === "/") {
+        return null;
+    }
+
     return (
-        <footer
-            className="daisy-tooltip flex h-12 w-full items-center justify-center p-2 text-center"
-            data-tip="Thanks to Watasuke , YamaD and Yuri Katsuki"
-        >
-            <p className="mx-auto block h-6 text-center">
-                <NextLink href="/thanks">&copy; 2018-2023 山田ハヤオ</NextLink>
-            </p>
-        </footer>
+        <DaisyFooter className="bg-secondary  p-10 text-lg text-secondary-content shadow-xl">
+            <aside>
+                <p>Yamada Hayao</p>
+                <p className="text-sm">底辺大学生</p>
+            </aside>
+            <nav>
+                <FooterLink href="" icon={<FaTwitter />} linktext="Twitter" />
+            </nav>
+        </DaisyFooter>
     );
 }

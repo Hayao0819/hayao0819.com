@@ -1,37 +1,28 @@
-import React, { ReactNode, useState } from "react";
+import classNames from "classnames";
+import { useMemo } from "react";
 
-import BaseColor from "./BaseColor";
-import DrawerSide from "./Drawer";
-//import { DrawerContents, DrawerSide } from "./Drawer";
-import DrawerContents from "./MainContents";
-//import Head from "next/head";
-//import BaseColor from "./BaseColor";
+import Drawer, { DrawerContent } from "./Drawer";
+import Footer from "./Footer";
+import Header from "./Header";
 
-interface LayoutProps {
-    children: ReactNode;
-}
+export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
+    //const propsWithoutChildren = { ...props, children: undefined };
 
-export function Layout({ children }: LayoutProps) {
-    // よくわからないけどここでstateを使うといい感じにリンクがクリックされたときにメニューが閉じる
-    const [isDrawerOpened, changeDrawerOpened] = useState(false);
+    const headerMemo = useMemo(() => <Header />, []);
+    const footerMemo = useMemo(() => <Footer />, []);
+
+    const defaultClassName = "flex min-h-svh w-screen flex-col bg-base-200 text-base-content";
+
     return (
-        <BaseColor>
-            <div className="flex min-h-screen flex-col">
-                <div className="daisy-drawer md:daisy-drawer-open">
-                    <input
-                        id="sidebar"
-                        type="checkbox"
-                        className="daisy-drawer-toggle"
-                        checked={isDrawerOpened}
-                        onClick={() => changeDrawerOpened(!isDrawerOpened)}
-                        readOnly
-                    />
-                    <DrawerContents>{children}</DrawerContents>
-                    <DrawerSide />
-                </div>
+        <>
+            <Drawer>
+                <DrawerContent />
+            </Drawer>
+            <div {...props} className={classNames(defaultClassName, props.className)}>
+                {headerMemo}
+                <main className={classNames("grow", "flex")}>{props.children}</main>
+                {footerMemo}
             </div>
-        </BaseColor>
+        </>
     );
 }
-
-export default Layout;

@@ -58,7 +58,7 @@ func MakePost(url, title, desc string) (*string, error) {
 	if err != nil {
 		return nil, err
 	}
-	path := path.Join(currnet_dir, "diaries", time.Now().Format("20060102"), url, "index.md")
+	path := path.Join(currnet_dir, "posts", time.Now().Format("20060102"), url, "index.md")
 
 	// Make file
 	os.MkdirAll(filepath.Dir(path), os.FileMode(0750))

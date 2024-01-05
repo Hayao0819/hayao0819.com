@@ -1,27 +1,29 @@
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+"use client";
 
-import Metadata from "@/const/meta";
+import Link from "next/link";
+import { Navbar } from "react-daisyui";
 
-export default function Header() {
+import { MainManus, OtherLinks } from "./CommonMenu";
+import * as Drawer from "./Drawer";
+
+export default function Header({ onMouseEnter, onMouseLeave }: { onMouseEnter?: () => void; onMouseLeave?: () => void }) {
     return (
-        <>
-            <HeaderForSP />
-        </>
-    );
-}
+        <Navbar className="my-2 bg-base-200 shadow-xl" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+            <Drawer.ToggleSwitch />
+            <div>
+                <Link className="btn btn-ghost text-lg text-accent" href="/" role="button">
+                    Yamada Hayao
+                </Link>
+            </div>
+            <div className="hidden grow md:flex">
+                <Navbar.Start>
+                    <MainManus horizontal />
+                </Navbar.Start>
+            </div>
 
-function HeaderForSP() {
-    return (
-        <div className="daisy-navbar justify-center p-4 md:hidden">
-            <div className="">
-                <label htmlFor="sidebar" className="daisy-btn-ghost daisy-btn-square daisy-btn">
-                    <FontAwesomeIcon icon={faBars} size="xl" />
-                </label>
-            </div>
-            <div className="mx-auto">
-                <h1 className="px-2 text-center">{Metadata.title}</h1>
-            </div>
-        </div>
+            <Navbar.End className="hidden sm:flex">
+                <OtherLinks horizontal />
+            </Navbar.End>
+        </Navbar>
     );
 }

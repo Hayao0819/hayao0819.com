@@ -1,14 +1,10 @@
 import { atom, useAtom } from "jotai";
-import React, { useContext } from "react";
+import React from "react";
 
-import Alert, { useAlert } from "@/components/elements/Alert";
-import Link from "@/components/elements/Link";
-import { Modal } from "@/components/elements/Modal";
-import { modalContext } from "@/components/elements/ModalContext";
-import { appendHistory, History, historyAtom, HistoryTable } from "@/components/layouts/Tatebou/History";
-import HistoryModals from "@/components/layouts/Tatebou/HistoryModals";
-import TatebouLayout from "@/components/layouts/Tatebou/Layout";
-import { formatURL } from "@/libs/tatebou";
+import Alert, { useAlert } from "@/components/tatebou/Alert";
+import TatebouLayout from "@/components/tatebou/Layout";
+import Link from "@/components/tatebou/Link";
+import { formatURL } from "@/lib/tatebou";
 
 const inputAtom = atom<string>("");
 const fetchedAtom = atom<string>("");
@@ -22,7 +18,6 @@ export default function Tatebou() {
             <Result />
             <TestTools />
             <Alert />
-            <TatebouModals />
         </TatebouLayout>
     );
 }
@@ -42,21 +37,21 @@ function OriginalURLInput() {
     const [inputURL, setInputURL] = useAtom(inputAtom);
     return (
         <div>
-            <div className="daisy-form-control w-full">
-                <label className="daisy-label">
-                    <span className="daisy-label-text">元URL</span>
+            <div className="form-control w-full">
+                <label className="label">
+                    <span className="label-text">元URL</span>
                 </label>
                 <input
                     type="text"
                     placeholder="短縮するURLを入力して下さい"
-                    className="daisy-input-bordered daisy-input w-full"
+                    className="input input-bordered w-full"
                     onChange={(e) => {
                         setInputURL(e.target.value);
                     }}
                     value={inputURL}
                 />
-                <label className="daisy-label">
-                    <span className="daisy-label-text-alt">
+                <label className="label">
+                    <span className="label-text-alt">
                         <code className=" text-sm text-pink-600">http</code>から始まるURLを入力して下さい
                     </span>
                 </label>
@@ -67,20 +62,11 @@ function OriginalURLInput() {
 
 function ActionBtns() {
     return (
-        <div className="flex gap-2 child:daisy-btn-sm child:daisy-btn  child:!text-white">
+        <div className="flex gap-2 child:btn child:btn-sm  child:!text-white">
             <CreateBtn />
-            <HistoryBtn />
+
             <ResetBtn />
         </div>
-    );
-}
-
-function HistoryBtn() {
-    const mtx = useContext(modalContext);
-    return (
-        <button className="!daisy-btn-neutral !daisy-btn-active" onClick={() => mtx.openModal("history")}>
-            履歴
-        </button>
     );
 }
 
@@ -88,7 +74,7 @@ function ResetBtn() {
     const [, setInputURL] = useAtom(inputAtom);
     return (
         <button
-            className="!daisy-btn-error !daisy-btn-active"
+            className="!btn-error !btn-active"
             onClick={() => {
                 setInputURL("");
             }}
@@ -106,10 +92,33 @@ function CreateBtn() {
     // Components
     const { openAlert } = useAlert();
 
-    // 履歴
-    const [histories, setHistories] = useAtom(historyAtom);
+    const SendPOSTToTatebou = async () => {
+        const runRequest = async (url: string) => {
+            try {
+                const res = await fetch("https://1lil.li/p/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ l: url }),
+                });
 
-    const SendPOSTToTatebou = () => {
+                if (!res.ok) {
+                    const text = await res.text();
+                    console.log("APIエラー");
+                    openAlert(text, "Error");
+                    return;
+                } else {
+                    const text = await res.text();
+                    setFetchedData(text);
+                }
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    openAlert(err.message, "Error");
+                }
+            }
+        };
+        /*
         const runRequest = (url: string) => {
             fetch("https://1lil.li/p/", {
                 method: "POST",
@@ -127,12 +136,6 @@ function CreateBtn() {
                     } else {
                         res.text().then((text) => {
                             setFetchedData(text);
-                            const newHistory: History = {
-                                original: url,
-                                short: text,
-                                date: new Date().toISOString(),
-                            };
-                            setHistories(appendHistory(histories, newHistory));
                         });
                     }
                 })
@@ -140,18 +143,19 @@ function CreateBtn() {
                     openAlert(err, "Error");
                 });
         };
+        */
 
         if (inputURL) {
             const url = formatURL(inputURL);
             setInputURL(url);
-            runRequest(url);
+            await runRequest(url);
         } else {
             openAlert("URLを入力してください");
         }
     };
 
     return (
-        <button className="!daisy-btn-info !daisy-btn-active" onClick={SendPOSTToTatebou}>
+        <button className="!btn-info !btn-active" onClick={SendPOSTToTatebou}>
             作成
         </button>
     );
@@ -160,15 +164,15 @@ function CreateBtn() {
 function Result() {
     const [fetchedData] = useAtom(fetchedAtom);
     return (
-        <div className="daisy-form-control w-full">
-            <label className="daisy-label">
-                <span className="daisy-label-text">結果</span>
+        <div className="form-control w-full">
+            <label className="label">
+                <span className="label-text">結果</span>
             </label>
             <input
                 type="text"
                 placeholder="結果がここに出力されます"
                 value={fetchedData}
-                className="daisy-input-bordered daisy-input w-full"
+                className="input input-bordered w-full"
                 readOnly
             />
         </div>
@@ -176,7 +180,6 @@ function Result() {
 }
 
 function TestTools() {
-    const mtx = useContext(modalContext);
     /*const openNotImplementedModal = () => {
         mtx.openModal("not-implemented");
     };*/
@@ -188,9 +191,9 @@ function TestTools() {
     return (
         <div>
             <p>結果をテスト</p>
-            <div className="flex gap-2 child:daisy-btn-sm child:daisy-btn  child:!text-white">
+            <div className="flex gap-2 child:btn child:btn-sm  child:!text-white">
                 <button
-                    className="!daisy-btn-primary !daisy-btn-active"
+                    className="!btn-primary !btn-active"
                     onClick={() => {
                         if (!fetchedData) {
                             plzMakeURL();
@@ -203,46 +206,20 @@ function TestTools() {
                     コピー
                 </button>
                 <button
-                    className="!daisy-btn-secondary !daisy-btn-active"
+                    className="!btn-secondary !btn-active"
                     onClick={() => {
                         if (!fetchedData) {
                             plzMakeURL();
                             return;
                         }
-                        mtx.openModal("will-move");
-                        setTimeout(() => {
-                            mtx.closeModal();
-                            //router.push(fetchedData)
-                            window.open(fetchedData, "_blank");
-                            openAlert("作成されたリンクに移動しました", "Success");
-                        }, 3000);
+
+                        window.open(fetchedData, "_blank");
+                        openAlert("作成されたリンクに移動しました", "Success");
                     }}
                 >
                     テスト
                 </button>
             </div>
-
-            <Modal name="will-move">
-                <p>
-                    3秒後に<code>{fetchedData}</code>に移動します。
-                </p>
-            </Modal>
         </div>
-    );
-}
-
-function TatebouModals() {
-    return (
-        <>
-            <Modal name="not-implemented" title="未実装" backdrop>
-                <p>ごめんね、まだ実装していないんだ</p>
-            </Modal>
-
-            <Modal name="history" title="履歴">
-                <HistoryTable />
-            </Modal>
-
-            <HistoryModals />
-        </>
     );
 }

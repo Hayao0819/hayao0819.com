@@ -6,3 +6,5 @@ Dockerfile
 package.json
 /SUSHI.md
 /README.md
+src/style/prism-themes
+src/style/prism-plus.css

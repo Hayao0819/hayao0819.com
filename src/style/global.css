@@ -1,31 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "./syntax-highlight/index.css";
-
-ul {
-    padding-inline: 2em;
-}
 
 @layer components {
-    .hidden-scrollbar {
-        -ms-overflow-style: none; /* IE, Edge 対応 */
-        scrollbar-width: none; /* Firefox 対応 */
-    }
-    .hidden-scrollbar::-webkit-scrollbar {
-        /* Chrome, Safari 対応 */
-        display: none;
-    }
-
-    .bg-dark {
-        background-color: #0f1829;
+    p {
+        @apply leading-10;
     }
 }
 
-details > summary {
-    list-style: none;
+/*
+* {
+    outline: 2px red solid;
 }
+*/
 
-details summary::-webkit-details-marker {
-    display: none;
+:where(.menu li) {
+    z-index: 0;
 }
