@@ -14,6 +14,8 @@ export function getPostDataFromFile(file: string, urlFormat: URLFormat = BLOG_UR
     Object.keys(parsed.data).forEach((key) => {
         if (key === "date") {
             meta[key] = new Date(parsed.data[key]).toISOString();
+        } else if (key === "categories") {
+            meta[key] = parsed.data[key].filter((c: string) => c !== "ブログ");
         } else {
             meta[key] = parsed.data[key];
         }
