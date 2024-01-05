@@ -1,15 +1,15 @@
-"use client";
-
+import { MDXComponents } from "mdx/types";
 import Link from "next/link";
-import ReactMD, { Components } from "react-markdown";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { serialize } from "next-mdx-remote/serialize";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
 
 import { BlogHeading as Heading } from "./Heading";
 
-export default function Markdown({ content }: { content: string }) {
-    const components: Partial<Components> = {
+export default async function Markdown({ content }: { content: string }) {
+    const components: MDXComponents = {
         h1: ({ children }) => {
             return <Heading level={1}>{children}</Heading>;
         },
@@ -34,20 +34,12 @@ export default function Markdown({ content }: { content: string }) {
                 </Link>
             );
         },
-        /*
-        pre: ({ children }) => {
-            return <pre className="!overflow-x-scroll">{children}</pre>;
-        },
-        code: ({ children }) => {
-            return <code>{children}</code>;
-        },
-        */
     };
 
-    return (
-        <ReactMD
-            remarkPlugins={[[remarkGfm, {}]]}
-            rehypePlugins={[
+    const mdxSrc = serialize(content, {
+        mdxOptions: {
+            remarkPlugins: [remarkGfm],
+            rehypePlugins: [
                 rehypeCodeTitles,
                 [
                     rehypePrism,
@@ -55,10 +47,14 @@ export default function Markdown({ content }: { content: string }) {
                         ignoreMissing: true,
                     },
                 ],
-            ]}
-            components={components}
-        >
-            {content}
-        </ReactMD>
+            ],
+        },
+        scope: {},
+    });
+
+    return (
+        <div>
+            <MDXRemote {...mdxSrc} source={content} components={components} />
+        </div>
     );
 }
