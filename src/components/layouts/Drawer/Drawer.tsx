@@ -15,9 +15,11 @@ export interface DrawerProps {
 
 export default function Drawer(props: DrawerProps) {
     const [open, setOpen] = useAtom(drawerAtom);
-    //const [isFirstRender, setIsFirstRender] = useState(true);
 
-    // Update open state when props.open changes
+    // Toggle open state
+    const toggle = () => {
+        setOpen(!open);
+    };
 
     useEffect(() => {
         if (props.open === undefined) {
@@ -25,12 +27,6 @@ export default function Drawer(props: DrawerProps) {
         }
         setOpen(props.open);
     }, [props.open]);
-
-    // Toggle open state
-    const toggle = () => {
-        console.log("toggle");
-        setOpen(!open);
-    };
 
     const leftdrawer_variants: Variants = {
         open: {
@@ -65,9 +61,7 @@ export default function Drawer(props: DrawerProps) {
     return (
         <>
             <motion.div
-                className={classNames("fixed z-10 w-screen h-svh bg-black/70", {
-                    //hidden: isFirstRender,
-                })}
+                className="fixed z-10 h-svh w-screen bg-black/70"
                 onClick={toggle}
                 animate={open ? "open" : "closed"}
                 variants={rightoverlay_variants}
