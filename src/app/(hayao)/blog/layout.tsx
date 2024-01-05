@@ -38,10 +38,10 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
                             Tags
                         </Heading>
                     </Link>
-                    <ul>
+                    <ul className="flex flex-wrap">
                         {tags.map((c) => {
                             return (
-                                <li key={c} role="link" className="my-2 cursor-pointer p-2 text-sm hover:underline">
+                                <li key={c} role="link" className="cursor-pointer p-2 text-sm hover:underline">
                                     <Link href={`/blog/tag/${c}`}>{c}</Link>
                                 </li>
                             );
