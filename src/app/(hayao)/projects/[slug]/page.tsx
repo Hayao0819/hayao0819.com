@@ -1,3 +1,4 @@
+import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { getFetchedProjectPostList, getProjectFromURL } from "@/lib/projects";
 
 export const generateStaticParams = () => {
@@ -17,5 +18,5 @@ export const generateStaticParams = () => {
 export default function Projects(hoge: { params: { slug: string } }) {
     const postElement = getProjectFromURL(hoge.params.slug);
 
-    return postElement ? <>{postElement}</> : <div>404</div>;
+    return postElement ? <CommonSpacer>{postElement}</CommonSpacer> : <div>404</div>;
 }

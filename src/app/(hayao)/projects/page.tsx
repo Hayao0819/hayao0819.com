@@ -13,6 +13,8 @@ export default function Projects() {
             <Heading level={1}>Projects</Heading>
             <p>今までにつくった色々なものへのリンクです。</p>
 
+            <p className="">（Projectsはまだ作成中です）</p>
+
             {postlist.map((p) => {
                 return (
                     <Link href={`/projects/${p.url}`} key={p.url} className="flex w-52 flex-col p-4  shadow-lg">
