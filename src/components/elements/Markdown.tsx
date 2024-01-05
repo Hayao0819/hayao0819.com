@@ -6,6 +6,7 @@ import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
 
 import { BlogHeading as Heading } from "./Heading";
+import Tweet from "./Tweet";
 
 export default async function Markdown({ content }: { content: string }) {
     const components: MDXComponents = {
@@ -32,6 +33,9 @@ export default async function Markdown({ content }: { content: string }) {
                     {children}
                 </Link>
             );
+        },
+        Tweet: ({ id }: { id: string }) => {
+            return <Tweet id={id} />;
         },
     };
 
