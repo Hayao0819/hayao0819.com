@@ -9,9 +9,9 @@ const getMdFilesInDir = (dir: string): string[] => {
         .readdirSync(dir, { withFileTypes: true })
         .flatMap((dirent) => {
             if (dirent.isFile()) {
-                return [`${dir}/${dirent.name}`];
+                return [path.join(`${dir}`, `${dirent.name}`)];
             } else {
-                return getMdFilesInDir(`${dir}/${dirent.name}`);
+                return getMdFilesInDir(path.join(`${dir}`, `${dirent.name}`));
             }
         })
         .filter((postFilePath) => {
@@ -54,6 +54,7 @@ export class PostList {
 
         this.posts = posts;
         this.fetched = true;
+        //console.log(posts.map((p) => p.file));
         return this;
     }
 

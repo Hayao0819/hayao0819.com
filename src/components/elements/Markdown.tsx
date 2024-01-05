@@ -1,15 +1,14 @@
-"use client";
-
+import { MDXComponents } from "mdx/types";
 import Link from "next/link";
-import ReactMD, { Components } from "react-markdown";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
 
 import { BlogHeading as Heading } from "./Heading";
 
-export default function Markdown({ content }: { content: string }) {
-    const components: Partial<Components> = {
+export default async function Markdown({ content }: { content: string }) {
+    const components: MDXComponents = {
         h1: ({ children }) => {
             return <Heading level={1}>{children}</Heading>;
         },
@@ -34,31 +33,36 @@ export default function Markdown({ content }: { content: string }) {
                 </Link>
             );
         },
-        /*
-        pre: ({ children }) => {
-            return <pre className="!overflow-x-scroll">{children}</pre>;
-        },
-        code: ({ children }) => {
-            return <code>{children}</code>;
-        },
-        */
     };
 
+    /* だるいエラーについて
+
+    https://github.com/hashicorp/next-mdx-remote/issues/403
+
+    現在next-mdx-remoteはremarkGfm 4.0.0をサポートしていないため、3.0.1を使う必要がある
+    
+    */
+
     return (
-        <ReactMD
-            remarkPlugins={[[remarkGfm, {}]]}
-            rehypePlugins={[
-                rehypeCodeTitles,
-                [
-                    rehypePrism,
-                    {
-                        ignoreMissing: true,
+        <div>
+            <MDXRemote
+                source={content}
+                options={{
+                    mdxOptions: {
+                        remarkPlugins: [remarkGfm],
+                        rehypePlugins: [
+                            rehypeCodeTitles,
+                            [
+                                rehypePrism,
+                                {
+                                    ignoreMissing: true,
+                                },
+                            ],
+                        ],
                     },
-                ],
-            ]}
-            components={components}
-        >
-            {content}
-        </ReactMD>
+                }}
+                components={components}
+            />
+        </div>
     );
 }

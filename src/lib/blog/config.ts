@@ -10,7 +10,7 @@ export const CATEGORY_DESC = {
 };
 
 export const BLOG_URL_FORMAT: URLFormat = {
-    cutHead: path.join(process.cwd()).split("/").length + 1,
+    cutHead: path.join(process.cwd()).replaceAll(path.sep, "/").split("/").length + 1,
 };
 
 export const CATEGORY_INFO: { jp: string; url: string; desc: string }[] = [
