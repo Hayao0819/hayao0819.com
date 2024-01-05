@@ -1,7 +1,6 @@
 import { MDXComponents } from "mdx/types";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { serialize } from "next-mdx-remote/serialize";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
@@ -36,25 +35,34 @@ export default async function Markdown({ content }: { content: string }) {
         },
     };
 
-    const mdxSrc = serialize(content, {
-        mdxOptions: {
-            remarkPlugins: [remarkGfm],
-            rehypePlugins: [
-                rehypeCodeTitles,
-                [
-                    rehypePrism,
-                    {
-                        ignoreMissing: true,
-                    },
-                ],
-            ],
-        },
-        scope: {},
-    });
+    /* だるいエラーについて
+
+    https://github.com/hashicorp/next-mdx-remote/issues/403
+
+    現在next-mdx-remoteはremarkGfm 4.0.0をサポートしていないため、3.0.1を使う必要がある
+    
+    */
 
     return (
         <div>
-            <MDXRemote {...mdxSrc} source={content} components={components} />
+            <MDXRemote
+                source={content}
+                options={{
+                    mdxOptions: {
+                        remarkPlugins: [remarkGfm],
+                        rehypePlugins: [
+                            rehypeCodeTitles,
+                            [
+                                rehypePrism,
+                                {
+                                    ignoreMissing: true,
+                                },
+                            ],
+                        ],
+                    },
+                }}
+                components={components}
+            />
         </div>
     );
 }

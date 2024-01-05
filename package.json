@@ -28,7 +28,6 @@
         "react-daisyui": "^5.0.0",
         "react-dom": "18.2.0",
         "react-icons": "^4.12.0",
-        "remark-gfm": "^4.0.0",
         "typescript": "5.3.3",
         "usehooks-ts": "^2.9.1"
     },
@@ -59,6 +58,7 @@
         "prettier-plugin-tailwindcss": "^0.5.9",
         "rehype-code-titles": "^1.2.0",
         "rehype-prism-plus": "^1.6.3",
+        "remark-gfm": "^3.0.1",
         "tailwindcss": "^3.4.0",
         "tailwindcss-brand-colors": "^0.3.6",
         "tailwindcss-textshadow": "^2.1.3"
