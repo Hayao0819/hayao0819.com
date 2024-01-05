@@ -8,6 +8,7 @@ import Metadata from "../const/meta";
 //import BaseColor from "@/components/layouts/BaseColor";
 
 export const metadata: NextMetadata = {
+    title: Metadata.title,
     description: Metadata.description,
 };
 

@@ -34,8 +34,24 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
             title: "Posts",
         };
     }
+
+    const title = postData.post?.meta.title;
+    const description = postData.post?.meta.description ? postData.post?.meta.description : postData.post?.content.slice(0, 100);
+    const base = {
+        title: title,
+        description: description,
+    };
+
     return {
-        title: postData.post?.meta.title,
+        ...base,
+        twitter: {
+            ...base,
+            card: "summary_large_image",
+        },
+        openGraph: {
+            ...base,
+            type: "website",
+        },
     };
 }
 
