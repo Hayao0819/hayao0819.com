@@ -72,6 +72,36 @@ export class PostList {
         return this.posts;
     }
 
+    getPostByURL(url: string): [PostData | null, number] {
+        const posts = this.getPosts();
+        const post = posts.findIndex((p) => {
+            //console.log(p.url, url);
+            return p.url === url;
+        });
+        if (post === -1 || !posts[post]) {
+            //console.log("not found");
+            return [null, -1];
+        }
+        return [posts[post], post];
+    }
+
+    getMostRecentPostByURL(url: string): { before: PostData | null; current: PostData | null; after: PostData | null } {
+        const [, postIndex] = this.getPostByURL(url);
+        //console.log(postIndex);
+        if (postIndex === -1 || !this.posts[postIndex]) {
+            return {
+                before: null,
+                current: null,
+                after: null,
+            };
+        }
+        return {
+            before: this.posts[postIndex + 1] ? this.posts[postIndex + 1] : null,
+            current: this.posts[postIndex],
+            after: this.posts[postIndex - 1] ? this.posts[postIndex - 1] : null,
+        };
+    }
+
     getByCategory(category: string) {
         const filtered = this.getPosts().filter((p) => {
             // 何故かこれをしないと動かない
