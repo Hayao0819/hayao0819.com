@@ -8,7 +8,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
     const postlist = getFetchedBlogPostList();
     const categories = postlist.getAllCategories();
     const tags = postlist.getAllTags();
-    const posts = postlist.getPosts().slice(undefined, 15);
+    const posts = postlist.getPosts().slice(undefined, 10);
 
     return (
         <CommonSpacer className="md:flex">
@@ -77,6 +77,11 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
                             );
                         })}
                     </ul>
+                    <div>
+                        <Link href="/blog/posts">
+                            <p className="text-right text-sm text-accent hover:underline">全ての投稿</p>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </CommonSpacer>
