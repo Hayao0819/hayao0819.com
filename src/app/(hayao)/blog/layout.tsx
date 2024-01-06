@@ -8,7 +8,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
     const postlist = getFetchedBlogPostList();
     const categories = postlist.getAllCategories();
     const tags = postlist.getAllTags();
-    const posts = postlist.getPosts().slice(undefined, 15);
+    const posts = postlist.getPosts().slice(undefined, 10);
 
     return (
         <CommonSpacer className="md:flex">
@@ -38,10 +38,10 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
                             Tags
                         </Heading>
                     </Link>
-                    <ul>
+                    <ul className="flex flex-wrap">
                         {tags.map((c) => {
                             return (
-                                <li key={c} role="link" className="my-2 cursor-pointer p-2 text-sm hover:underline">
+                                <li key={c} role="link" className="cursor-pointer p-2 text-sm hover:underline">
                                     <Link href={`/blog/tag/${c}`}>{c}</Link>
                                 </li>
                             );
@@ -77,6 +77,11 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
                             );
                         })}
                     </ul>
+                    <div>
+                        <Link href="/blog/posts">
+                            <p className="text-right text-sm text-accent hover:underline">全ての投稿</p>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </CommonSpacer>

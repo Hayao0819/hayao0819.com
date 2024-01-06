@@ -1,10 +1,12 @@
+import { AnimatedLink } from "@/components/elements/Link";
+
 export default function Playground() {
     return (
         <div className="container mx-auto">
             <h1 className="text-3xl">Playground</h1>
             <ColorList />
-
             <ClassTest />
+            <LinkTest />
         </div>
     );
 }
@@ -36,5 +38,9 @@ function ClassTest() {
 
     const myClassInstance: myType = new myClass("myClass");
 
-    return <>{myClassInstance.name}</>;
+    return <span>{myClassInstance.name}</span>;
+}
+
+function LinkTest() {
+    return <AnimatedLink href="https://google.com">Google</AnimatedLink>;
 }

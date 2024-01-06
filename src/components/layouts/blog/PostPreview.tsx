@@ -59,11 +59,21 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
                     <p className="p-1">{utils.dateToString(postDate)}</p>
                 </div>
 
-                <div className="m-2 flex justify-between">
-                    <Link href={fullURL} className="w-full text-xl text-accent underline-offset-8 hover:underline">
+                <div className="m-2 flex items-center justify-between">
+                    <Link href={fullURL} className="grow text-xl text-accent underline-offset-8 hover:underline">
                         {posts.meta.title}
                     </Link>
+                    <div className="flex">
+                        {posts.meta.tags?.map((s) => {
+                            return (
+                                <Link href={`/blog/tag/${s}`} className="px-2 text-sm" key={s}>
+                                    #{s}
+                                </Link>
+                            );
+                        })}
+                    </div>
                 </div>
+
                 <div className="m-2 grow">
                     <Link href={fullURL}>{contentString}</Link>
                 </div>
