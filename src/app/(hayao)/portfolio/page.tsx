@@ -122,11 +122,11 @@ interface SkillCardProps {
 function SkillCard(props: SkillCardProps) {
     return (
         <div
-            className={classNames("flex w-full shadow-xl", {
+            className={classNames("flex w-full shadow-lg", {
                 "flex-row-reverse": props.side === "right",
             })}
         >
-            <div className=" flex w-1/2 items-center justify-center px-10 py-12  shadow-xl child:px-2">
+            <div className=" flex w-1/2 items-center justify-center px-10 py-12 child:px-2">
                 <span className="text-2xl">{props.icon}</span>
                 <p className="text-2xl">{props.title}</p>
             </div>
