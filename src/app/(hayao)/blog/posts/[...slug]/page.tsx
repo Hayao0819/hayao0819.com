@@ -4,6 +4,7 @@ import Link from "next/link";
 import path from "path";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
+import Breadcrumbs from "@/components/elements/Breadcrumbs";
 import { BlogHeading } from "@/components/elements/Heading";
 import ShareBtns from "@/components/elements/ShareBtns";
 import { findPostFromUrl } from "@/lib/blog/fromurl";
@@ -114,7 +115,8 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
 
     return (
         <div className="mx-5 flex h-full flex-col">
-            <div className="flex justify-between">
+            <div className="flex items-center justify-between">
+                <Breadcrumbs />
                 <ul className="flex gap-4 text-sm text-accent">
                     {postData.post?.meta.categories?.map((c) => {
                         return (
@@ -124,9 +126,9 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
                         );
                     })}
                 </ul>
-                <span>{dateToString(postDate)}</span>
             </div>
             <BlogHeading level={1}>{postData.post?.meta.title}</BlogHeading>
+            <span className="text-right">{dateToString(postDate)}</span>
             <div className="grow">{postData.parsed}</div>
 
             <div className="mt-4 border-t-2 border-secondary/15 pt-4">
