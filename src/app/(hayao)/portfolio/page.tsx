@@ -17,6 +17,7 @@ import {
 } from "react-icons/si";
 
 import { Heading } from "@/components/elements/Heading";
+import MyLink from "@/components/elements/Link";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 
 const PortfolioHeading: FC<{ children: ReactNode }> = ({ children }) => {
@@ -30,6 +31,12 @@ const PortfolioHeading: FC<{ children: ReactNode }> = ({ children }) => {
 export default function Portfolio() {
     return (
         <CommonSpacer>
+            <div>
+                <PortfolioHeading>Projects</PortfolioHeading>
+                <p className="px-5">
+                    Please see <MyLink href="/projects">projects page</MyLink>.
+                </p>
+            </div>
             <div>
                 <PortfolioHeading>Languages</PortfolioHeading>
                 <div className="flex flex-col  gap-5 md:grid md:grid-cols-2">
@@ -122,11 +129,11 @@ interface SkillCardProps {
 function SkillCard(props: SkillCardProps) {
     return (
         <div
-            className={classNames("flex w-full shadow-xl", {
+            className={classNames("flex w-full shadow-lg", {
                 "flex-row-reverse": props.side === "right",
             })}
         >
-            <div className=" flex w-1/2 items-center justify-center px-10 py-12  shadow-xl child:px-2">
+            <div className=" flex w-1/2 items-center justify-center px-10 py-12 child:px-2">
                 <span className="text-2xl">{props.icon}</span>
                 <p className="text-2xl">{props.title}</p>
             </div>

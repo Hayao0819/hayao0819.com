@@ -11,6 +11,19 @@ module.exports = {
                 kaybase: "#ff6f21",
                 line: "#06c755",
             },
+            fontFamily: {
+                gothic: [
+                    "Hiragino Sans",
+                    "ヒラギノ角ゴシック",
+                    "メイリオ",
+                    "Meiryo",
+                    "MS Ｐゴシック",
+                    "MS PGothic",
+                    "sans-serif",
+                    "YuGothic",
+                    "Yu Gothic",
+                ],
+            },
         },
     },
     daisyui: {
