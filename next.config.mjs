@@ -17,6 +17,9 @@ const nextConfig = {
     output: "export",
     trailingSlash: true,
     pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+    images: {
+        unoptimized: true,
+    },
     ...(shouldDeployToGithubPages ? switchNextConfig : {}),
 };
 
