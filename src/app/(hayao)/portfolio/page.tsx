@@ -129,7 +129,7 @@ interface SkillCardProps {
 function SkillCard(props: SkillCardProps) {
     return (
         <div
-            className={classNames("flex w-full shadow-lg", {
+            className={classNames("flex w-full border-y ", {
                 "flex-row-reverse": props.side === "right",
             })}
         >
@@ -139,7 +139,7 @@ function SkillCard(props: SkillCardProps) {
             </div>
             <div
                 className={
-                    "w-1/2 bg-base-200 text-center p-6 flex flex-col items-center justify-center font-bold " +
+                    "w-1/2 text-center p-6 flex flex-col items-center justify-center font-bold " +
                     classNames({
                         "text-left": props.side === "left",
                         "text-right": props.side === "right",

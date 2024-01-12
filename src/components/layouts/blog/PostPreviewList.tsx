@@ -11,7 +11,7 @@ export interface PostListProps {
 
 export function PostList({ posts }: PostListProps) {
     return (
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col">
             {posts.map((f) => {
                 return <PostPreview posts={f} key={f.file} />;
             })}
