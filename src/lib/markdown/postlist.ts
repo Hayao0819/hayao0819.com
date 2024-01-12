@@ -42,7 +42,12 @@ export class PostList {
                 return getPostDataFromFile(file, format);
             })
             .filter((p) => {
-                return p.meta.title && p.meta.date;
+                if (p.meta.title && p.meta.date) {
+                    return true;
+                } else {
+                    console.log(`[WARN] ${p.file} is invalid post file.`);
+                    return false;
+                }
             })
             .filter((p) => {
                 if (includeDraft) return true;

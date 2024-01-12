@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Link from "next/link";
 
 import { Heading } from "@/components/elements/Heading";
@@ -10,12 +11,14 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
     const tags = postlist.getAllTags();
     const posts = postlist.getPosts().slice(undefined, 10);
 
+    const sectionClassName = classNames("p-5", { "shadow-lg": false, "": true });
+
     return (
         <CommonSpacer className="md:flex">
             <div className="md:w-9/12">{children}</div>
             <div className="flex flex-col gap-12 md:w-3/12">
                 {/* Categories */}
-                <div className="p-5 shadow-lg">
+                <div className={sectionClassName}>
                     <Link href="/blog/category">
                         <Heading level={2} className="border-b-2 border-accent text-accent">
                             Categories
@@ -32,7 +35,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
                     </ul>
                 </div>
 
-                <div className="p-5 shadow-lg">
+                <div className={sectionClassName}>
                     <Link href="/blog/category">
                         <Heading level={2} className="border-b-2 border-accent text-accent">
                             Tags
@@ -49,7 +52,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
                     </ul>
                 </div>
 
-                <div className="p-5 shadow-lg">
+                <div className={sectionClassName}>
                     <Heading level={2} className="border-b-2 border-accent text-accent">
                         Links
                     </Heading>
@@ -64,7 +67,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
                 </div>
 
                 {/* Recent Posts */}
-                <div className="p-5 shadow-lg">
+                <div className={sectionClassName}>
                     <Heading level={2} className="border-b-2 border-accent text-accent">
                         Recent Posts
                     </Heading>

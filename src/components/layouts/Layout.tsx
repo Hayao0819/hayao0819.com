@@ -11,7 +11,7 @@ export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
     const headerMemo = useMemo(() => <Header />, []);
     const footerMemo = useMemo(() => <Footer />, []);
 
-    const defaultClassName = "flex min-h-svh w-screen flex-col bg-base-200 text-base-content";
+    const defaultClassName = "flex min-h-svh w-screen flex-col bg-base-100 text-base-content";
 
     return (
         <>

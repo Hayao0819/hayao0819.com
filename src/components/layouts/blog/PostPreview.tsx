@@ -32,7 +32,7 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
     const fullURL = "/blog/posts/" + posts.url;
     return (
         <motion.div
-            className="p-2 shadow-xl"
+            className="border-b p-2"
             variants={animate}
             initial="offscreen"
             whileInView="onscreen"

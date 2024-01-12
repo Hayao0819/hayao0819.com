@@ -26,7 +26,7 @@ const Category = ({ category }: { category: string }) => {
     const link = `/blog/category/${category}`;
 
     return (
-        <Link href={link} className="m-4 flex flex-col p-4 transition-shadow hover:shadow-lg">
+        <Link href={link} className="m-4 flex flex-col p-4">
             <div className="text-xl text-accent">{category}</div>
             <div>{desc}</div>
         </Link>
