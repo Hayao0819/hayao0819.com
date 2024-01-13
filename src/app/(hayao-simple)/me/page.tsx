@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Heading } from "@/components/elements/Heading";
+import { getFetchedBlogPostList } from "@/lib/blog/post";
+import { PostData } from "@/lib/markdown/post";
+import { getFetchedProjectPostList } from "@/lib/projects";
 
 const Separator = () => <hr className="my-3 border-t-[1px] border-[#9a9a9a]" />;
 
@@ -17,11 +20,13 @@ export default function Me() {
                         <Image alt="アイコン" src="/icons/newicon.jpeg" width={350} height={200} />
                     </div>
                     <div className="mx-2 flex-[2]">
-                        <span>★★★ 最新情報 ★★★</span>
+                        <span className="flex justify-center gap-6">
+                            <span>★★★</span>
+                            <span>最新情報</span>
+                            <span>★★★</span>
+                        </span>
                         <Separator />
-                        <p className="text-left font-bold">・ブログ</p>
-                        <Separator />
-                        <p className="text-left font-bold">・Projects</p>
+                        <News />
                         <Separator />
                         <div className=" text-balance text-left font-bold child:leading-tight">
                             <p>当サイトの内容、テキスト、画像等はMITライセンスの基で自由に再利用できます。</p>
@@ -41,3 +46,36 @@ export default function Me() {
         </div>
     );
 }
+
+const News = () => {
+    const blogposts = getFetchedBlogPostList().getPosts().slice(0, 4);
+    const projects = getFetchedProjectPostList().getPosts().slice(0, 4);
+
+    return (
+        <>
+            <section className="text-left">
+                <p className="font-bold">・ブログ</p>
+                <PostLinkList posts={blogposts} linkbase="/blog" />
+            </section>
+            <Separator />
+            <section className="text-left">
+                <p className="font-bold">・Projects</p>
+                <PostLinkList posts={projects} linkbase="/projects" />
+            </section>
+        </>
+    );
+};
+
+const PostLinkList = ({ posts, linkbase }: { posts: PostData[]; linkbase: string }) => {
+    return (
+        <ul className="pl-10">
+            {posts.map((post) => (
+                <li key={post.url}>
+                    <Link href={`${linkbase}/${post.url}`}>
+                        <span className="text-balance">{post.meta.title}</span>
+                    </Link>
+                </li>
+            ))}
+        </ul>
+    );
+};
