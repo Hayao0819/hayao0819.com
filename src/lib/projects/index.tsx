@@ -6,15 +6,16 @@ import { findMarkdownFromURL } from "../markdown/fromurl";
 import { getPostDataFromFile } from "../markdown/post";
 import { PostList } from "../markdown/postlist";
 
+export const projectsDir = path.join(process.cwd(), "src", "app", "(hayao)", "something", "files");
+
 export const getFetchedProjectPostList = () => {
-    const dirpath = path.join(process.cwd(), "src", "app", "(hayao)", "projects", "files");
-    return new PostList().fetch(dirpath, {
+    return new PostList().fetch(projectsDir, {
         cutHead: process.cwd().split(path.sep).length + 5,
     });
 };
 
 export const getProjectFromURL = (url: string) => {
-    const mdFile = findMarkdownFromURL(path.join(process.cwd(), "src", "app", "(hayao)", "projects", "files"), url);
+    const mdFile = findMarkdownFromURL(projectsDir, url);
 
     if (mdFile) {
         const projPost = getPostDataFromFile(mdFile);
