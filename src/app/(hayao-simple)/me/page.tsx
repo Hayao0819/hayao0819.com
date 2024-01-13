@@ -15,9 +15,17 @@ export default function Me() {
                 <Heading level={1} className="my-12 block text-3xl font-bold">
                     山田ハヤオのホームページ
                 </Heading>
-                <div className="flex">
-                    <div className=" flex-[1]">
-                        <Image alt="アイコン" src="/icons/newicon.jpeg" width={350} height={200} />
+                <div className="md:flex">
+                    <div className="flex-[1]">
+                        <Image alt="アイコン" className="mx-auto" src="/icons/newicon.jpeg" width={350} height={200} />
+                        <div className="m-5 text-left">
+                            <p>山田 ハヤオ (やまだ はやお)</p>
+                            <p>生年月日 2004年8月19日</p>
+                            <p>血液型 O型</p>
+                            <Link className="text-blue-400 underline" href="/">
+                                プロフィール
+                            </Link>
+                        </div>
                     </div>
                     <div className="mx-2 flex-[2]">
                         <span className="flex justify-center gap-6">
@@ -35,13 +43,21 @@ export default function Me() {
                     </div>
                 </div>
             </div>
-            <div>
-                <p>山田 ハヤオ (やまだ はやお)</p>
-                <p>生年月日 2004年8月19日</p>
-                <p>血液型 O型</p>
-                <Link className="text-blue-400 underline" href="/">
-                    プロフィール
-                </Link>
+
+            <div className="my-2">
+                <p className="w-52 leading-5">
+                    If you have any enquiries regarding my codes or posts, or would like to make an enquiry concerning future
+                    projects, please do not hesitate to concact me through the following email address or Twitter.
+                </p>
+                <p>
+                    mail: <span className="text-blue-500 underline">shun819.mail at gmail.com</span>
+                </p>
+                <p>
+                    twitter:{" "}
+                    <Link href="https://twitter.com/Hayao0819" className="text-blue-500 underline">
+                        @Hayao0819
+                    </Link>
+                </p>
             </div>
         </div>
     );
