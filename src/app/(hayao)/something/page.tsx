@@ -10,12 +10,12 @@ export default function Projects() {
     //console.log(postlist.map((p) => p.url));
     return (
         <CommonSpacer>
-            <Heading level={1}>Projects</Heading>
-            <p>今までにつくった色々なものへのリンクです。</p>
+            <Heading level={1}>Something</Heading>
+            <p>今までにつくった色々な何かへのリンクです。</p>
 
             {postlist.map((p) => {
                 return (
-                    <Link href={`/projects/${p.url}`} key={p.url} className="flex flex-col p-4">
+                    <Link href={`/something/${p.url}`} key={p.url} className="flex flex-col p-4">
                         <span className="my-2 text-accent">{p.meta.title}</span>
 
                         <span>{p.meta.description}</span>

@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 const page = async () => {
-    redirect("/projects");
+    redirect("/something");
 };
 
 export default page;
