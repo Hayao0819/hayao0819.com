@@ -48,7 +48,7 @@ const MeSideBar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link rel="prefetch" href="/health">
+                        <Link rel="prefetch" href="/me/health">
                             <Circle className="text-[#0099FF]" />
                             身体
                         </Link>
