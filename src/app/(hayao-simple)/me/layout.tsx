@@ -6,7 +6,9 @@ export default function MeLayout(props: { children: ReactNode }) {
     return (
         <div className="flex h-full w-svw  font-gothic !text-black">
             <MeSideBar />
-            <div className="grow border-l-[1px] border-black pl-2 ">{props.children}</div>
+            <div className="grow border-l-[1px] border-black pl-2 ">
+                <div className="child:mx-auto">{props.children}</div>
+            </div>
         </div>
     );
 }
@@ -34,21 +36,21 @@ const MeSideBar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link rel="prefetch" href="/blog">
+                        <Link rel="prefetch" href="/me/env">
                             <Circle className="text-[#00FF00]" />
+                            環境
+                        </Link>
+                    </li>
+                    <li>
+                        <Link rel="prefetch" href="/blog">
+                            <Circle className="text-[#33FFFF]" />
                             ブログ
                         </Link>
                     </li>
                     <li>
-                        <Link rel="prefetch" href="/portfolio">
-                            <Circle className="text-[#33FFFF]" />
-                            ポートフォリオ
-                        </Link>
-                    </li>
-                    <li>
-                        <Link rel="prefetch" href="/skill">
+                        <Link rel="prefetch" href="/health">
                             <Circle className="text-[#0099FF]" />
-                            スキル
+                            身体
                         </Link>
                     </li>
                     <li>

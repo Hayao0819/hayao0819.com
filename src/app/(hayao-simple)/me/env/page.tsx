@@ -5,7 +5,7 @@ export default function EnvPage() {
     const H2 = ({ children }: { children: React.ReactNode }) => Heading({ level: 2, children });
 
     return (
-        <>
+        <div className="w-full md:w-1/2">
             <H2>環境</H2>
             <H3>メインPC-1</H3>
             <PCEnvTable
@@ -46,7 +46,7 @@ export default function EnvPage() {
                     { key: "OS", value: "Manjaro" },
                 ]}
             />
-        </>
+        </div>
     );
 }
 
