@@ -10,6 +10,9 @@ export default function History() {
                 <p>過去のハヤオのホームページです</p>
                 <ul>
                     <li>
+                        <Link href="https://github.com/Hayao0819/hayao0819.com/tree/old-2023">2023年前半のウェブサイト</Link>
+                    </li>
+                    <li>
                         <Link href="https://old.hayao0819.com/">昔のウェブサイト</Link>
                     </li>
                     <li>
