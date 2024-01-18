@@ -71,12 +71,12 @@ const News = () => {
         <>
             <section className="text-left">
                 <p className="font-bold">・ブログ</p>
-                <PostLinkList posts={blogposts} linkbase="/blog" />
+                <PostLinkList posts={blogposts} linkbase="/blog/posts" />
             </section>
             <Separator />
             <section className="text-left">
                 <p className="font-bold">・Projects</p>
-                <PostLinkList posts={projects} linkbase="/projects" />
+                <PostLinkList posts={projects} linkbase="/something" />
             </section>
         </>
     );
