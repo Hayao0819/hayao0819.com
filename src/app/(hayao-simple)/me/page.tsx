@@ -10,7 +10,7 @@ const Separator = () => <hr className="my-3 border-t-[1px] border-[#9a9a9a]" />;
 
 export default function Me() {
     return (
-        <div className="mx-auto w-fit">
+        <div className="w-fit">
             <div className="text-center child:mx-auto">
                 <Heading level={1} className="my-12 block text-3xl font-bold">
                     山田ハヤオのホームページ
@@ -22,8 +22,8 @@ export default function Me() {
                             <p>山田 ハヤオ (やまだ はやお)</p>
                             <p>生年月日 2004年8月19日</p>
                             <p>血液型 O型</p>
-                            <Link className="text-blue-400 underline" href="/">
-                                プロフィール
+                            <Link className="text-blue-400 underline" href="/portfolio">
+                                ポートフォリオ
                             </Link>
                         </div>
                     </div>
@@ -36,8 +36,15 @@ export default function Me() {
                         <Separator />
                         <News />
                         <Separator />
-                        <div className=" text-balance text-left font-bold child:leading-tight">
+                        <div className="text-balance text-left font-bold child:leading-tight">
                             <p>当サイトの内容、テキスト、画像等はMITライセンスの基で自由に再利用できます。</p>
+                            <p>
+                                ソースコードは
+                                <Link href="https://github.com/Hayao0819/hayao0819.com" className="underline">
+                                    こちら
+                                </Link>
+                                で公開されています。
+                            </p>
                             <p>お問い合わせはメールまたはTwitterでご連絡をお願い致します。</p>
                         </div>
                     </div>
@@ -71,12 +78,12 @@ const News = () => {
         <>
             <section className="text-left">
                 <p className="font-bold">・ブログ</p>
-                <PostLinkList posts={blogposts} linkbase="/blog" />
+                <PostLinkList posts={blogposts} linkbase="/blog/posts" />
             </section>
             <Separator />
             <section className="text-left">
                 <p className="font-bold">・Projects</p>
-                <PostLinkList posts={projects} linkbase="/projects" />
+                <PostLinkList posts={projects} linkbase="/something" />
             </section>
         </>
     );

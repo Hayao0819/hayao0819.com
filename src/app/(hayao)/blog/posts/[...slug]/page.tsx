@@ -6,7 +6,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 import Breadcrumbs from "@/components/elements/Breadcrumbs";
 import { BlogHeading } from "@/components/elements/Heading";
-import ShareBtns from "@/components/elements/ShareBtns";
+import { ShareCurrentURL } from "@/components/elements/ShareCurrentURL";
 import { findPostFromUrl } from "@/lib/blog/fromurl";
 import { getFetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
@@ -132,7 +132,7 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
             <div className="grow">{postData.parsed}</div>
 
             <div className="mt-4 border-t-2 border-secondary/15 pt-4">
-                <ShareBtns text="hoge" url="hoge" />
+                <ShareCurrentURL text={postData.post.meta.title} />
                 <div className="mx-auto flex w-full min-w-fit flex-1 items-center justify-between child:w-1/2 md:w-2/3">
                     <MostRecentPostPreview post={mostRecentUpdate.before} type="before" />
                     <MostRecentPostPreview post={mostRecentUpdate.after} type="after" />

@@ -19,6 +19,7 @@ import {
 import { Heading } from "@/components/elements/Heading";
 import MyLink from "@/components/elements/Link";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
+import { genMetaData } from "@/lib/meta";
 
 const PortfolioHeading: FC<{ children: ReactNode }> = ({ children }) => {
     return (
@@ -27,6 +28,8 @@ const PortfolioHeading: FC<{ children: ReactNode }> = ({ children }) => {
         </Heading>
     );
 };
+
+export const metadata = genMetaData({ title: "Portfolio" });
 
 export default function Portfolio() {
     return (

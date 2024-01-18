@@ -3,6 +3,9 @@ import { FaGithub, FaTwitter } from "react-icons/fa";
 import { FaInstagram, FaKeybase } from "react-icons/fa6";
 
 import CommonSpacer from "@/components/layouts/CommonSpacer";
+import { genMetaData } from "@/lib/meta";
+
+export const metadata = genMetaData({ title: "SNS Links" });
 
 export default function Links() {
     return (
