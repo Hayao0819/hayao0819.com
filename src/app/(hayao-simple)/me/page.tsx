@@ -38,6 +38,13 @@ export default function Me() {
                         <Separator />
                         <div className="text-balance text-left font-bold child:leading-tight">
                             <p>当サイトの内容、テキスト、画像等はMITライセンスの基で自由に再利用できます。</p>
+                            <p>
+                                ソースコードは
+                                <Link href="https://github.com/Hayao0819/hayao0819.com" className="underline">
+                                    こちら
+                                </Link>
+                                で公開されています。
+                            </p>
                             <p>お問い合わせはメールまたはTwitterでご連絡をお願い致します。</p>
                         </div>
                     </div>
