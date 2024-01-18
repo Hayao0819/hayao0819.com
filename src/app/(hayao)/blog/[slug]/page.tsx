@@ -1,8 +1,11 @@
+import { Metadata } from "next";
+
 import { PostList as PostListElement, PostPageSwitch } from "@/components/layouts/blog/PostPreviewList";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { POSTLIST_ONEPAGE, SUMMARY_LENGTH } from "@/lib/blog/config";
 import { getFetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
+import { genMetaData } from "@/lib/meta";
 
 export default async function BlogTop({ params }: { params: { slug: string } }) {
     const slug = parseInt(params.slug);
@@ -21,6 +24,27 @@ export default async function BlogTop({ params }: { params: { slug: string } }) 
         </CommonSpacer>
     );
 }
+
+export const generateMetadata = async ({ params }: { params: { slug: string } }): Promise<Metadata> => {
+    const title = `記事一覧 ${params.slug}ページ目`;
+
+    const base = {
+        title: title,
+        //description: description,
+    };
+
+    return genMetaData({
+        ...base,
+        twitter: {
+            ...base,
+            card: "summary_large_image",
+        },
+        openGraph: {
+            ...base,
+            type: "website",
+        },
+    });
+};
 
 export const generateStaticParams = async () => {
     const files = getFetchedBlogPostList().getPosts();

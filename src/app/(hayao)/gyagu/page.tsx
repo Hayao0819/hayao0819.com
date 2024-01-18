@@ -2,6 +2,9 @@ import { BlogHeading as Heading } from "@/components/elements/Heading";
 import Link from "@/components/elements/Link";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import GyaguList from "@/components/layouts/GyaguList";
+import { genMetaData } from "@/lib/meta";
+
+export const metadata = genMetaData({ title: "爆笑ギャグページ" });
 
 export default function Gyagu() {
     return (
