@@ -57,6 +57,19 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
 }
 
 const MostRecentPostPreview = ({ post, type }: { post: PostData | null; type: "before" | "after" }) => {
+    const TopLevelLink = ({ children, className }: { children: React.ReactNode; className: string }) => {
+        if (!post) {
+            return <div className={className}>{children}</div>;
+        } else {
+            return (
+                <Link href={`/blog/posts/${post.url}`} className={className}>
+                    {children}
+                </Link>
+            );
+        }
+    };
+
+    /*
     if (!post) {
         if (type == "before") {
             return <></>;
@@ -73,17 +86,18 @@ const MostRecentPostPreview = ({ post, type }: { post: PostData | null; type: "b
             );
         }
     }
+    */
 
     //console.log(post);
 
     return (
-        <Link href={`/blog/posts/${post.url}`} className="flex flex-col p-5 shadow-lg">
-            <div className={classNames("flex items-center", { "justify-end": type == "after" })}>
-                <span>{type == "before" ? <FaArrowLeft /> : null}</span>
-                <span className="grow text-center">{post.meta.title}</span>
-                <span>{type == "after" ? <FaArrowRight /> : null}</span>
-            </div>
-        </Link>
+        <TopLevelLink
+            className={classNames("flex items-center p-3", { "justify-end": type == "after" }, { "hover:text-accent": post })}
+        >
+            <span>{type == "before" && post ? <FaArrowLeft /> : null}</span>
+            <span className="grow text-center">{post ? post.meta.title : "ハヤオの次回作にご期待ください"}</span>
+            <span>{type == "after" || !post ? <FaArrowRight /> : null}</span>
+        </TopLevelLink>
     );
 };
 
@@ -116,7 +130,7 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
     return (
         <div className="mx-5 flex h-full flex-col">
             <div className="flex items-center justify-between">
-                <Breadcrumbs />
+                <Breadcrumbs className="hidden md:block" />
                 <ul className="flex gap-4 text-sm text-accent">
                     {postData.post?.meta.categories?.map((c) => {
                         return (
@@ -127,13 +141,15 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
                     })}
                 </ul>
             </div>
-            <BlogHeading level={1}>{postData.post?.meta.title}</BlogHeading>
-            <span className="text-right">{dateToString(postDate)}</span>
+            <BlogHeading level={1} className="break-phrase">
+                {postData.post?.meta.title}
+            </BlogHeading>
+            <span className="text-center md:text-right">{dateToString(postDate)}</span>
             <div className="grow">{postData.parsed}</div>
 
-            <div className="mt-4 border-t-2 border-secondary/15 pt-4">
+            <div className="mt-4 h-fit border-t-2 border-secondary/15 pt-4">
                 <ShareCurrentURL text={postData.post.meta.title} />
-                <div className="mx-auto flex w-full min-w-fit flex-1 items-center justify-between child:w-1/2 md:w-2/3">
+                <div className="mx-auto grid h-full w-full grid-cols-2 items-stretch  justify-around py-3 text-sm">
                     <MostRecentPostPreview post={mostRecentUpdate.before} type="before" />
                     <MostRecentPostPreview post={mostRecentUpdate.after} type="after" />
                 </div>
