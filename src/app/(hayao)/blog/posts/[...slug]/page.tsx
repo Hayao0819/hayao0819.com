@@ -130,17 +130,17 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
     return (
         <div className="mx-5 flex h-full flex-col">
             <div className="flex items-center justify-between">
-                <Breadcrumbs className="hidden md:block" />
-                <ul className="flex gap-4 text-sm text-accent">
-                    {postData.post?.meta.categories?.map((c) => {
-                        return (
-                            <li key={c}>
-                                <Link href={`/blog/category/${c}`}>{c}</Link>
-                            </li>
-                        );
-                    })}
-                </ul>
+                <Breadcrumbs start={2} className="hidden md:block" />
             </div>
+            <ul className="flex justify-end gap-4 text-sm text-accent">
+                {postData.post?.meta.categories?.map((c) => {
+                    return (
+                        <li key={c}>
+                            <Link href={`/blog/category/${c}`}>{c}</Link>
+                        </li>
+                    );
+                })}
+            </ul>
             <BlogHeading level={1} className="break-phrase">
                 {postData.post?.meta.title}
             </BlogHeading>

@@ -4,21 +4,27 @@ import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Breadcrumbs({ className }: { className?: string }) {
+export default function Breadcrumbs({ className, start = 0 }: { className?: string; start?: number }) {
     const pathName = usePathname()
         ?.split("/")
         .filter((p) => p);
+    const pathNameToShow = pathName?.slice(start);
+    const pathNameBase = pathName?.slice(0, start);
+    console.log(pathNameToShow, pathNameBase);
+
     //console.log(pathName);
 
     return (
         <div className={classNames("breadcrumbs", className)}>
             <ul className="">
-                {pathName?.map((path, index) => {
-                    const link = "/" + pathName.slice(0, index + 1).join("/");
+                {pathNameToShow?.map((path, index) => {
+                    const link = "/" + pathNameBase?.join("/") + "/" + pathNameToShow?.slice(0, index + 1).join("/");
                     //console.log(link, index);
                     return (
                         <li key={path}>
-                            <Link href={link}>{path}</Link>
+                            <Link href={link} className=" text-gray-600">
+                                {path}
+                            </Link>
                         </li>
                     );
                 })}
