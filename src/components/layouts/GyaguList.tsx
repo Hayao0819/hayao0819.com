@@ -5,6 +5,9 @@ import { ReactNode } from "react";
 export default function GyaguList() {
     return (
         <ul className="list-decimal pl-10">
+            <div className="tooltip" data-tip="提供: DaiChi">
+                <Gyagu>キャンディーをそのまま飲んだらいキャンディー</Gyagu>
+            </div>
             <Gyagu>院試書かれた印紙。</Gyagu>
             <Gyagu>首位のSyuilo</Gyagu>
             <Gyagu>カニのカニバリズム</Gyagu>
