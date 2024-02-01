@@ -3,8 +3,8 @@ title: "あけましておめでとうございます"
 description: ""
 date: 2022-01-02T12:40:13+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
+    - "ブログ"
+    - "プライベート"
 tags:
 draft: false
 pager: true

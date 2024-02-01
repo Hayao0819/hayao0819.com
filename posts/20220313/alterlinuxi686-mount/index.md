@@ -3,11 +3,11 @@ title: "Alterlinuxi686 Mount"
 description: ""
 date: 2022-03-13T23:19:56+09:00
 categories:
-  - "ブログ"
-  - "技術系"
+    - "ブログ"
+    - "技術系"
 tags:
-  - "Linux"
-  - "Fascode"
+    - "Linux"
+    - "Fascode"
 draft: false
 pager: true
 share: true

@@ -3,8 +3,8 @@ title: "色々"
 description: ""
 date: 2022-03-12T12:15:16+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
+    - "ブログ"
+    - "プライベート"
 tags:
 draft: false
 pager: true

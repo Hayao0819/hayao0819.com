@@ -3,8 +3,8 @@ title: "DCU"
 description: ""
 date: 2022-03-13T22:02:22+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
+    - "ブログ"
+    - "プライベート"
 tags:
 draft: false
 pager: true

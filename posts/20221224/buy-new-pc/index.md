@@ -3,12 +3,12 @@ title: "大学生向けのノートPCの選び方"
 description: ""
 date: 2022-12-24T13:22:59+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
-  - "技術系"
+    - "ブログ"
+    - "プライベート"
+    - "技術系"
 tags:
-  - "Windows"
-  - "学校"
+    - "Windows"
+    - "学校"
 draft: false
 pager: true
 share: true
@@ -47,8 +47,8 @@ Googleで検索して出てくるサイトの大半はアフィリエイト（�
 
 次の条件に**合致しない**PCならなんでもOK
 
-- Apple製
-- ChromeBook
+-   Apple製
+-   ChromeBook
 
 #### → macOS指定がある場合
 
@@ -102,12 +102,11 @@ LenovoやMicrosoft、HPやDellといった会社のPCをおすすめする。間
 
 学生には必要十分な性能がある上に有名なメーカーで軽量なのでおすすめ。
 
-
 ### Lenovo IdeaPad Slim 370i
 
 値段は8万円ほどと安い。性能も必要基準は満たしているのでおすすめ。
 
-[公式サイト](https://www.lenovo.com/jp/ja/p/laptops/ideapad/ideapad-slim-3-series/ideapad-3i-gen-7-(14-inch-intel)/len101i0052)
+[公式サイト](<https://www.lenovo.com/jp/ja/p/laptops/ideapad/ideapad-slim-3-series/ideapad-3i-gen-7-(14-inch-intel)/len101i0052>)
 
 ### Lenovo ThinkPad E14 Gen4
 
@@ -115,8 +114,7 @@ LenovoやMicrosoft、HPやDellといった会社のPCをおすすめする。間
 
 実際に店頭で触ってみてほしい。
 
-[公式サイト](https://www.lenovo.com/jp/ja/p/laptops/thinkpad/thinkpad-e-series/thinkpad-e14-gen-4-(14-inch-intel)/len101t0042)
-
+[公式サイト](<https://www.lenovo.com/jp/ja/p/laptops/thinkpad/thinkpad-e-series/thinkpad-e14-gen-4-(14-inch-intel)/len101t0042>)
 
 ### Dell Inspiron シリーズ
 

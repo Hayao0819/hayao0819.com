@@ -3,12 +3,12 @@ title: "ハヤオの年賀状作成の話"
 description: ""
 date: 2022-01-04T18:33:22+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
-  - "技術系"
+    - "ブログ"
+    - "プライベート"
+    - "技術系"
 tags:
-  - "Windows"
-  - "Linux"
+    - "Windows"
+    - "Linux"
 draft: false
 pager: true
 share: true

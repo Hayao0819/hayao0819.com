@@ -3,8 +3,8 @@ title: "Tukareta"
 description: ""
 date: 2021-11-08T01:15:47+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
+    - "ブログ"
+    - "プライベート"
 tags:
 draft: false
 pager: true

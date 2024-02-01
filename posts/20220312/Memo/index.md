@@ -3,16 +3,15 @@ title: "Memo"
 description: ""
 date: 2022-03-12T23:21:14+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
-  - "技術系"
+    - "ブログ"
+    - "プライベート"
+    - "技術系"
 tags:
-  - "Linux"
+    - "Linux"
 draft: false
 pager: true
 share: true
 ---
-
 
 Alter Linux i686のテスト中にmkinitcpioで失敗したのでログ。
 
@@ -40,7 +39,7 @@ Alter Linux i686のテスト中にmkinitcpioで失敗したのでログ。
 ==> WARNING: Possibly missing firmware for module: bfa
   -> Running build hook: [filesystems]
   -> Running build hook: [keyboard]
-zstd: /tmp/mkinitcpio.IWsRcW/root/lib/modules/5.16.12-zen1-1.0-zen-zen/kernel/hid-appleir.ko.zst: unsupported format 
+zstd: /tmp/mkinitcpio.IWsRcW/root/lib/modules/5.16.12-zen1-1.0-zen-zen/kernel/hid-appleir.ko.zst: unsupported format
 ==> Generating module dependencies
 depmod: ERROR: failed to load symbols from /tmp/mkinitcpio.IWsRcW/root/lib/modules/5.16.12-zen1-1.0-zen-zen/kernel/hid-appleir.ko.zst: Exec format error
 ==> Creating xz-compressed initcpio image: /boot/archiso.img
@@ -50,4 +49,3 @@ depmod: ERROR: failed to load symbols from /tmp/mkinitcpio.IWsRcW/root/lib/modul
 [build.sh]  Error Line: 675
 [build.sh]  Error Argument: -a i686 lxde --nolog --nocolor --nodepend --rerun
 ```
-

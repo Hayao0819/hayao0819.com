@@ -3,17 +3,16 @@ title: "Gentoo良さげって話"
 description: ""
 date: 2022-03-13T00:05:55+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
-  - "技術系"
+    - "ブログ"
+    - "プライベート"
+    - "技術系"
 
 tags:
-  - "Linux"
+    - "Linux"
 draft: false
 pager: true
 share: true
 ---
-
 
 クソ記事なのでご容赦を。Twitter感覚でブログを更新しているので。
 
@@ -60,6 +59,3 @@ https://seppuku.club/unix-like/gentoo-overlay-enter/
 Gnome 41で拡張機能壊れてないかなって確認したけど、全く壊れてなくて安心した。
 
 しょっちゅう壊れるGnomeのAPIに追従する拡張機能開発者様には脱帽。
-
-
-

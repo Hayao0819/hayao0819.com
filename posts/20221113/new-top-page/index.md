@@ -3,9 +3,9 @@ title: "新しいトップページを作った報告"
 description: ""
 date: 2022-11-13T00:03:27+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
-  - "技術系"
+    - "ブログ"
+    - "プライベート"
+    - "技術系"
 tags:
 draft: false
 pager: true
