@@ -21,21 +21,33 @@ export function getPostDataFromFile(file: string, urlFormat: URLFormat = BLOG_UR
         }
     });
 
-    //console.log(meta);
-
     const data = {
         file: file,
         url: formatURL(mdPathToURL(file), urlFormat),
         meta: meta,
         content: parsed.content,
+        toc: [],
     };
 
     return data;
 }
 
+export const getHeadingsFromContent = (content: string): Heading[] => {
+    const headings: Heading[] = [];
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, "text/html");
+    const elements = doc.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    //elements.forEach((element) => {
+}
+
+export type Heading = {
+    level: number;
+    title: string;
+};
 export interface PostData {
     file: string;
     url: string;
     meta: PostMeta;
     content: string;
+    toc: Heading[];
 }
