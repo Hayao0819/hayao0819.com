@@ -147,10 +147,12 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
                     );
                 })}
             </ul>
-            <BlogHeading level={1} className="break-phrase">
-                {postData.post?.meta.title}
-            </BlogHeading>
-            <span className="text-center md:text-right">{dateToString(postDate)}</span>
+            <div className="my-6">
+                <BlogHeading level={1} className="break-phrase">
+                    {postData.post?.meta.title}
+                </BlogHeading>
+                <div className="text-center">{dateToString(postDate)}</div>
+            </div>
             <div className="grow">{postData.parsed}</div>
 
             <div className="mt-4 h-fit border-t-2 border-secondary/15 pt-4">
