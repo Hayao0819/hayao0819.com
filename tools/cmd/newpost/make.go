@@ -20,6 +20,11 @@ func MakePost(url, title, desc string) (*string, error) {
 	mdpath := path.Join(currnet_dir, "posts", time.Now().Format("20060102"), url, "index.md")
 	template := path.Join(currnet_dir, "tools", "assets", "template.mdx")
 
+	// 存在確認
+	if _, err := os.Stat(mdpath); err == nil {
+		return nil, os.ErrExist
+	}
+
 	// Make template
 	mddata, err := fm.GenerateMdFromTemplate(template)
 	if err != nil {
