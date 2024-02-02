@@ -1,4 +1,4 @@
-package newpost
+package post
 
 import (
 	"strings"
@@ -7,15 +7,15 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-type BlogFrontMatter struct {
+type FrontMatter struct {
 	Title       string         `yaml:"title"`
 	Description string         `yaml:"description"`
 	Date        time.Time      `yaml:"date"`
-	Categories  []BlogCategory `yaml:"categories"`
+	Categories  []Category `yaml:"categories"`
 }
 
-func NewBlogFrontMatter(title string, desc string) *BlogFrontMatter {
-	return &BlogFrontMatter{
+func NewFrontMatter(title string, desc string) *FrontMatter {
+	return &FrontMatter{
 		Title:       title,
 		Description: desc,
 		Date:        time.Now(),
@@ -23,11 +23,11 @@ func NewBlogFrontMatter(title string, desc string) *BlogFrontMatter {
 	}
 }
 
-func (f *BlogFrontMatter) GetYaml() ([]byte, error) {
+func (f *FrontMatter) GetYaml() ([]byte, error) {
 	return yaml.Marshal(*f)
 }
 
-func (f *BlogFrontMatter) MakeTemplate() ([]byte, error) {
+func (f *FrontMatter) MakeTemplate() ([]byte, error) {
 	yamlData, err := f.GetYaml()
 	if err != nil {
 		return []byte{}, err
