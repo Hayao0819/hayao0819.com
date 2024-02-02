@@ -13,9 +13,11 @@
     "scripts": {
         "dev": "pnpm next dev",
         "build": "pnpm next build",
-        "start": "pnpm next start",
-        "lint": "next lint",
-        "fix": "prettier --write . && eslint --fix ."
+        "lint": "pnpm next lint",
+        "fix": "prettier --write . && eslint --fix .",
+        "blogtool": "go run main.go",
+        "newpost": "pnpm run blogtool newpost"
+
     },
     "dependencies": {
         "classnames": "^2.5.1",
