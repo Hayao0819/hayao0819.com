@@ -7,6 +7,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import Breadcrumbs from "@/components/elements/Breadcrumbs";
 import { BlogHeading } from "@/components/elements/Heading";
 import { ShareCurrentURL } from "@/components/elements/ShareCurrentURL";
+import { BLOG_URL_FORMAT } from "@/lib/blog/config";
 import { findPostFromUrl } from "@/lib/blog/fromurl";
 import { getFetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
@@ -110,11 +111,16 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
         return <div>404</div>;
     }
     if (postData.isDir === true && postData.post === undefined) {
-        const posts = new PostList().fetch(path.join(process.cwd(), "posts", ...params.slug), {});
+        const posts = new PostList().fetch(path.join(process.cwd(), "posts", ...params.slug), BLOG_URL_FORMAT);
+
         return (
             <>
                 {posts.getPosts().map((p) => {
-                    return <div key={p.url}>{p.meta.title}</div>;
+                    return (
+                        <div key={p.url}>
+                            <Link href={`/blog/posts/${p.url}`}>{p.meta.title}</Link>
+                        </div>
+                    );
                 })}
             </>
         );
