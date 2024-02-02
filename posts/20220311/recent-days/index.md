@@ -3,8 +3,8 @@ title: "最近の出来事とお願いについて"
 description: ""
 date: 2022-03-11T19:30:24+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
+    - "ブログ"
+    - "プライベート"
 tags:
 draft: false
 pager: true
@@ -38,5 +38,3 @@ share: true
 ## 連絡ごと
 
 とりあえず何かあったら `contact@fascode.net` まで連絡をお願いします。
-
-

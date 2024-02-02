@@ -3,10 +3,10 @@ title: "Gentoo Linuxでインストールされている全てのカーネルの
 description: ""
 date: 2022-08-14T15:37:10+09:00
 categories:
-  - "ブログ"
-  - "技術系"
+    - "ブログ"
+    - "技術系"
 tags:
-  - "Linux"
+    - "Linux"
 draft: false
 pager: true
 share: true
@@ -33,5 +33,3 @@ dracutは全く詳しくないので、何か便利にやってくれるオプ�
 こういう短いラッパースクリプトでこそシェルスクリプトの真価を発揮できるなぁと思いました🍊
 
 <script src="https://gist.github.com/Hayao0819/d0bc7d890fe220c92c34f651356c2cae.js"></script>
-
-

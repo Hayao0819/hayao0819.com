@@ -23,6 +23,7 @@
     },
     "plugins": ["tailwindcss", "unused-imports", "prettier", "simple-import-sort", "no-unsanitized"],
     "rules": {
+        "@next/next/no-img-element": "off",
         "simple-import-sort/imports": "warn",
         "simple-import-sort/exports": "warn",
         "prettier/prettier": "warn",

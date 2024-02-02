@@ -3,9 +3,9 @@ title: "自作ソフトウェアのライセンスについて"
 description: ""
 date: 2022-11-24T23:41:47+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
-  - "技術系"
+    - "ブログ"
+    - "プライベート"
+    - "技術系"
 tags:
 draft: false
 pager: true
@@ -44,7 +44,6 @@ Copyright [YEAR] [COPYRIGHT HOLDER]
 - The right to buy the author (copyright holder) of the software a bowl of sushi🍣.
 ```
 
-
 ### WTFPL – Do What the Fuck You Want to Public License
 
 [WTFPLの公式サイトはこちら](http://www.wtfpl.net/)
@@ -58,21 +57,19 @@ Copyright [YEAR] [COPYRIGHT HOLDER]
 ライセンス全文はこんな感じ。
 
 ```
-        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
-                    Version 2, December 2004 
+        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+                    Version 2, December 2004
 
- Copyright (C) 2004 Sam Hocevar <sam@hocevar.net> 
+ Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
 
- Everyone is permitted to copy and distribute verbatim or modified 
- copies of this license document, and changing it is allowed as long 
- as the name is changed. 
+ Everyone is permitted to copy and distribute verbatim or modified
+ copies of this license document, and changing it is allowed as long
+ as the name is changed.
 
-            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
-   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
   0. You just DO WHAT THE FUCK YOU WANT TO.
-  ```
-
+```
 
 みんなもGPLなんてクソをやめていい感じの自由なものを使おうぜ!!
-

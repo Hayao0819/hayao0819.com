@@ -44,10 +44,10 @@ Next.jsのいいところってISRやSSRがあって、それらをよしなに�
 
 わたすけが数週間前にやっていて、結構簡単そうだったのでやってみようかなと。
 
-- マークダウンの編集画面を提供するフロント
-- 記事一覧を表示するフロント
-- マークダウンのテキストデータをGitにコミットするバック
-- Gitから記事一覧を返したりフィルターしたりするRest API
+-   マークダウンの編集画面を提供するフロント
+-   記事一覧を表示するフロント
+-   マークダウンのテキストデータをGitにコミットするバック
+-   Gitから記事一覧を返したりフィルターしたりするRest API
 
 があれば良さそうなので、RustやGoと組み合わせれば簡単にできそうです。
 
@@ -66,14 +66,13 @@ Pagesだとコンポーネントでasync/awaitを使えないので、`use`フ�
 App Routerでは
 
 ```jsx
-export default async function Hello(){
-    const data = await getPosts()
-    return <p>{data}</p>
+export default async function Hello() {
+    const data = await getPosts();
+    return <p>{data}</p>;
 }
 ```
 
 のような書き方ができるので、より直感的になってるように感じます。（内部の実装は数段複雑になってるのがフロントエンドの嫌なところ。こういう隠蔽体質がｒｙ）
-
 
 ## それでもApp Routerつらい
 

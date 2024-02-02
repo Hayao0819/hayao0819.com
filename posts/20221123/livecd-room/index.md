@@ -3,11 +3,11 @@ title: "ライブCDの部屋の陰謀論の影響と対策"
 description: ""
 date: 2022-11-23T00:46:53+09:00
 categories:
-  - "ブログ"
-  - "技術系"
-tags:  
-  - "Linux"
-  - "Fascode"
+    - "ブログ"
+    - "技術系"
+tags:
+    - "Linux"
+    - "Fascode"
 draft: false
 pager: true
 share: true
@@ -46,7 +46,7 @@ LiveCDの部屋の管理人はその禁忌を犯し、自身のウェブサイ�
 [陰謀論や政治思想を削除したLiveCDの部屋 https://hayao0819.github.io/livecdroom/](https://hayao0819.github.io/livecdroom/)
 
 ## ソースコード
+
 更新作業の自動化のためのシェルスクリプトが含まれています。
 
 [https://github.com/Hayao0819/hayao.fascode.net/tree/master/livecdroom](https://github.com/Hayao0819/hayao.fascode.net/tree/master/livecdroom)
-

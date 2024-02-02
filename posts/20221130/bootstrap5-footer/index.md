@@ -3,9 +3,9 @@ title: "Bootstrap5でFooterを下部に固定する"
 description: ""
 date: 2022-11-30T19:02:18+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
-  - "技術系"
+    - "ブログ"
+    - "プライベート"
+    - "技術系"
 tags:
 draft: false
 pager: true
@@ -36,5 +36,3 @@ share: true
 `box-sizing: border-box;`はBootstrapではデフォルトでグローバルに当たってる。
 
 `position-relative vh-100`を付けないとスクロールしたときに重なってしまって`✞CSS完全に理解した✞`状態になる。
-
-

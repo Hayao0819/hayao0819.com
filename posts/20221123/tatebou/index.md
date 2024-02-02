@@ -3,16 +3,15 @@ title: "Tatebou"
 description: ""
 date: 2022-11-23T20:12:01+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
-  - "技術系"
+    - "ブログ"
+    - "プライベート"
+    - "技術系"
 tags:
-  - "Fascode"
+    - "Fascode"
 draft: false
 pager: true
 share: true
 ---
-
 
 縦棒短縮URLのUIを作り直しました。
 

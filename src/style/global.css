@@ -6,13 +6,11 @@
     p {
         @apply leading-10;
     }
-}
 
-/*
-* {
-    outline: 2px red solid;
+    .break-phrase {
+        word-break: auto-phrase;
+    }
 }
-*/
 
 :where(.menu li) {
     z-index: 0;

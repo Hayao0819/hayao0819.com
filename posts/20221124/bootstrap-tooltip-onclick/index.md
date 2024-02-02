@@ -3,9 +3,9 @@ title: "BootstrapのTooltipをクリックされたときのみ表示する"
 description: ""
 date: 2022-11-24T22:16:46+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
-  - "技術系"
+    - "ブログ"
+    - "プライベート"
+    - "技術系"
 tags:
 draft: false
 pager: true
@@ -21,26 +21,33 @@ Bootstrap 5の`bootstrap.bundle.min.js`をCDNで読み込んでいます。
 ## HTML
 
 ```html
-<button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="コピーしました" id="discord-copy">
-  ボタン
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    data-bs-toggle="tooltip"
+    data-bs-placement="bottom"
+    title="コピーしました"
+    id="discord-copy"
+>
+    ボタン
 </button>
 ```
 
 ## JavaScript
 
 ```js
-const tooltipElement = document.getElementById("discord-copy")
-const tooltip = new bootstrap.Tooltip(tooltipElement)
-tooltip.disable()
+const tooltipElement = document.getElementById("discord-copy");
+const tooltip = new bootstrap.Tooltip(tooltipElement);
+tooltip.disable();
 
-tooltipElement.addEventListener("click", function() {
-    tooltip.enable()
+tooltipElement.addEventListener("click", function () {
+    tooltip.enable();
     navigator.clipboard.writeText("クリップビードにコピーしたいテキストをほげほげ");
-    tooltip.show()
+    tooltip.show();
 });
 
-tooltipElement.addEventListener("hidden.bs.tooltip", ()=>{
-    tooltip.disable()
+tooltipElement.addEventListener("hidden.bs.tooltip", () => {
+    tooltip.disable();
 });
 ```
 
@@ -67,5 +74,3 @@ Bootstrap読み込み前に`<script>`で埋め込んでいるせいで`bootstrap
 ## 終わり
 
 Bootstrap、JSやSCSSのほうまで弄りたいですね。
-
-

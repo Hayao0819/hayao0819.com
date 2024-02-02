@@ -3,15 +3,14 @@ title: "Magiskを使ってAndroidの充電状態を管理する"
 description: ""
 date: 2023-01-01T20:22:57+09:00
 categories:
-  - "ブログ"
-  - "技術系"
+    - "ブログ"
+    - "技術系"
 tags:
-  - "Android"
+    - "Android"
 draft: false
 pager: true
 share: true
 ---
-
 
 あけましておめでとうございます。今年もよろしくお願い致します。
 
@@ -48,9 +47,3 @@ GitHubにもApkがあるけど、無難にF-Droidから引っ張ってくれば�
 ## おまけ
 
 あんまりMagiskモジュールを知らないので、面白いやつ知ってたら教えて下さい。
-
-
-
-
-
-

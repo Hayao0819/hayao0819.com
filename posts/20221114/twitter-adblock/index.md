@@ -3,10 +3,10 @@ title: "Twitterの広告ブロックをする方法"
 description: ""
 date: 2022-11-14T17:15:58+09:00
 categories:
-  - "ブログ"
-  - "技術系"
+    - "ブログ"
+    - "技術系"
 tags:
-  - "Android"
+    - "Android"
 draft: false
 pager: true
 share: true

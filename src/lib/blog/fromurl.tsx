@@ -22,7 +22,7 @@ export function findPostFromUrl(url: string): FoundPost {
         return {
             post: post,
             isDir: false,
-            parsed: <Markdown content={post.content} />,
+            parsed: <Markdown content={post.content} basepath={"/posts/" + post.url} />,
         };
     } else {
         return {

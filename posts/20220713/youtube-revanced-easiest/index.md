@@ -3,10 +3,10 @@ title: "Youtube Revancedを最も簡単に導入する方法"
 description: ""
 date: 2022-07-13T18:24:21+09:00
 categories:
-  - "ブログ"
-  - "技術系"
+    - "ブログ"
+    - "技術系"
 tags:
-  - "Android"
+    - "Android"
 draft: false
 pager: true
 share: true

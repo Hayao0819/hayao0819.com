@@ -14,9 +14,9 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
     const sectionClassName = classNames("p-5", { "shadow-lg": false, "": true });
 
     return (
-        <CommonSpacer className="md:flex">
+        <CommonSpacer className="md:flex md:gap-2">
             <div className="md:w-9/12">{children}</div>
-            <div className="flex flex-col gap-12 md:w-3/12">
+            <div className="flex flex-col gap-12 md:w-3/12 ">
                 {/* Categories */}
                 <div className={sectionClassName}>
                     <Link href="/blog/category">

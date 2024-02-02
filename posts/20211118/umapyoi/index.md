@@ -3,10 +3,10 @@ title: "Umapyoi"
 description: ""
 date: 2021-11-18T17:48:45+09:00
 categories:
-  - "ブログ"
-  - "プライベート"
+    - "ブログ"
+    - "プライベート"
 tags:
-  - "学校"
+    - "学校"
 draft: false
 pager: true
 share: true
