@@ -19,7 +19,8 @@ export const getProjectFromURL = (url: string) => {
 
     if (mdFile) {
         const projPost = getPostDataFromFile(mdFile);
-        return <Markdown content={projPost.content} />;
+        // Todo: basepathは多分間違ってる
+        return <Markdown content={projPost.content} basepath={projPost.url} />;
     } else {
         return undefined;
     }

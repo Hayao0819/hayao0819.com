@@ -8,7 +8,7 @@ import remarkGfm from "remark-gfm";
 import { BlogHeading as Heading } from "./Heading";
 import Tweet from "./Tweet";
 
-export default async function Markdown({ content }: { content: string }) {
+export default async function Markdown({ content, basepath }: { content: string; basepath: string }) {
     const components: MDXComponents = {
         h1: ({ children }) => {
             return <Heading level={1}>{children}</Heading>;
@@ -36,6 +36,14 @@ export default async function Markdown({ content }: { content: string }) {
         },
         Tweet: ({ id }: { id: string }) => {
             return <Tweet id={id} />;
+        },
+        img: (props) => {
+            let src = props.src;
+            if (!src?.startsWith("http")) {
+                src = basepath + "/" + src;
+            }
+            props = { ...props, src };
+            return <img {...props} className="rounded-md" />;
         },
     };
 
