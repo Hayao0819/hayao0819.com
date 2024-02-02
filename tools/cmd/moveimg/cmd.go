@@ -1,8 +1,10 @@
 package moveimg
 
 import (
+	"errors"
 	"os"
 	"path"
+	"path/filepath"
 	"strings"
 
 	"github.com/Hayao0819/hayao0819.com/tools/utils/cobrautil"
@@ -19,11 +21,24 @@ func Cmd() *cobra.Command {
 		Use:   "moveimg",
 		Short: "画像を移動します",
 		PreRunE: func(cmd *cobra.Command, args []string) error {
+			// カレントディレクトリを取得
 			var err error
 			currnet_dir, err = os.Getwd()
 			if err != nil {
 				return err
 			}
+
+			// 絶対パスに変換
+			abs, err := filepath.Abs(postsDir)
+			if err != nil {
+				return err
+			}
+			postsDir = abs
+			abs, err = filepath.Abs(publicDir)
+			if err != nil {
+				return err
+			}
+			publicDir = abs
 			return nil
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -32,23 +47,58 @@ func Cmd() *cobra.Command {
 				return err
 			}
 
+			cmd.Println(publicDir)
+
+			errs := []error{}
 			for _, file := range *files {
 				tp, err := fputils.DetectFileType(file)
 				if err != nil {
 					continue
 				}
-				if strings.HasPrefix(tp, "image") {
 
+				if strings.HasPrefix(tp, "image") {
+					// 移動先
+					dist := strings.Replace(file, postsDir, publicDir, 1)
+
+					// ディレクトリがなければ作成
+					err = os.MkdirAll(path.Dir(dist), 0755)
+					if err != nil {
+						cmd.PrintErrln(err)
+						errs = append(errs, err)
+						continue
+					}
+
+					// 移動
+					cmd.Println(file, " => ", dist)
+					err = os.Rename(file, dist)
+					if err != nil {
+						cmd.PrintErrln(err)
+						errs = append(errs, err)
+					}
+				}else if strings.HasPrefix(tp, "text") {
+					
+					data, err := os.ReadFile(file)
+					if err != nil {
+						cmd.PrintErrln(err)
+						errs = append(errs, err)
+						continue
+					}
+
+					// 画像のパスを変更
+					data = []byte(strings.ReplaceAll(string(data), "![", "!["+path.Base(postsDir)+"/"))
 				}
+
+			}
+			if len(errs) > 0 {
+				return errors.New("error occured. see logs.")
 			}
 
-			cmd.Println(*files)
 			return nil
 		},
 	}
 	cobrautil.ApplyTemplate(&cmd)
 	cmd.Flags().StringVarP(&postsDir, "posts-dir", "p", path.Join(currnet_dir, "posts"), "記事のディレクトリ")
-	cmd.Flags().StringVarP(&publicDir, "public-dir", "P", path.Join(currnet_dir, "public"), "公開ディレクトリ")
+	cmd.Flags().StringVarP(&publicDir, "public-dir", "P", path.Join(currnet_dir, "public", "posts"), "公開ディレクトリ")
 
 	return &cmd
 }
