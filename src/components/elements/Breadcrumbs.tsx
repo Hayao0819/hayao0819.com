@@ -10,9 +10,6 @@ export default function Breadcrumbs({ className, start = 0 }: { className?: stri
         .filter((p) => p);
     const pathNameToShow = pathName?.slice(start);
     const pathNameBase = pathName?.slice(0, start);
-    console.log(pathNameToShow, pathNameBase);
-
-    //console.log(pathName);
 
     return (
         <div className={classNames("breadcrumbs", className)}>
