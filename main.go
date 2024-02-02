@@ -11,7 +11,7 @@ func main() {
 	cmd.SetOutput(os.Stdout)
 	if err := cmd.Execute(); err != nil {
 		cmd.SetOutput(os.Stderr)
-		cmd.PrintErr(err)
+		cmd.PrintErrln(err)
 		os.Exit(1)
 	}
 }

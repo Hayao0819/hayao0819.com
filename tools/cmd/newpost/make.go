@@ -12,25 +12,26 @@ import (
 func MakePost(url, title, desc string) (*string, error) {
 	fm := post.NewFrontMatter(title, desc)
 
-	// Make template
-	tp, err := fm.MakeTemplate()
-	if err != nil {
-		return nil, err
-	}
-
-	// path
+	// ファイルパスを取得
 	currnet_dir, err := os.Getwd()
 	if err != nil {
 		return nil, err
 	}
-	path := path.Join(currnet_dir, "posts", time.Now().Format("20060102"), url, "index.md")
+	mdpath := path.Join(currnet_dir, "posts", time.Now().Format("20060102"), url, "index.md")
+	template := path.Join(currnet_dir, "tools", "assets", "template.mdx")
 
-	// Make file
-	os.MkdirAll(filepath.Dir(path), os.FileMode(0750))
-	err = os.WriteFile(path, tp, os.FileMode(0640))
+	// Make template
+	mddata, err := fm.GenerateMdFromTemplate(template)
 	if err != nil {
 		return nil, err
 	}
 
-	return &path, nil
+	// ファイルを作成して書き込み
+	os.MkdirAll(filepath.Dir(mdpath), os.FileMode(0750))
+	err = os.WriteFile(mdpath, mddata, os.FileMode(0640))
+	if err != nil {
+		return nil, err
+	}
+
+	return &mdpath, nil
 }

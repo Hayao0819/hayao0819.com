@@ -1,6 +1,8 @@
 package newpost
 
 import (
+	"errors"
+
 	"github.com/spf13/cobra"
 )
 
@@ -20,8 +22,15 @@ func Cmd() *cobra.Command {
 	cmd := cobra.Command{
 		Use:     "new URL タイトル 説明",
 		Aliases: []string{"newpost"},
-		Args:    cobra.MatchAll(cobra.ExactArgs(0), cobra.RangeArgs(2, 3)),
-		Short:   "新しい記事を作成します",
+		Args: func(cmd *cobra.Command, args []string) error {
+			exact := cobra.ExactArgs(0)(cmd, args)
+			rangegrags := cobra.RangeArgs(2, 3)(cmd, args)
+			if exact != nil && rangegrags != nil {
+				return errors.New("invalid number of arguments")
+			}
+			return nil
+		},
+		Short: "新しい記事を作成します",
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if len(args) == 0 {
 				argdata.wizard = true
