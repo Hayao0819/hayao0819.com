@@ -12,12 +12,13 @@
     ],
     "scripts": {
         "dev": "pnpm next dev",
-        "build": "pnpm next build",
+        "build": "pnpm run build:blogtool && pnpm run build:next",
+        "build:blogtool": "go build -o blogtool main.go ",
+        "build:next": "pnpm next build",
         "lint": "pnpm next lint",
         "fix": "prettier --write . && eslint --fix .",
-        "blogtool": "go run main.go",
+        "blogtool": "./blogtool",
         "newpost": "pnpm run blogtool newpost"
-
     },
     "dependencies": {
         "classnames": "^2.5.1",
