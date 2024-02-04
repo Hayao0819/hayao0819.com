@@ -38,8 +38,8 @@ export class PostList {
         //console.log(files);
 
         const posts = files
-            .map((file) => {
-                return getPostDataFromFile(file, format);
+            .map(async (file) => {
+                return await getPostDataFromFile(file, format);
             })
             .filter((p) => {
                 if (p.meta.title && p.meta.date) {

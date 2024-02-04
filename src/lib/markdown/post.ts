@@ -1,12 +1,14 @@
 import fs from "fs";
 import matter from "gray-matter";
+import { serialize } from "next-mdx-remote/serialize";
+import { parse } from "node-html-parser";
 
 import { PostMeta } from "@/lib/markdown/type";
 
 import { BLOG_URL_FORMAT } from "../blog/config";
 import { formatURL, mdPathToURL, URLFormat } from "./url";
 
-export function getPostDataFromFile(file: string, urlFormat: URLFormat = BLOG_URL_FORMAT): PostData {
+export async function getPostDataFromFile(file: string, urlFormat: URLFormat = BLOG_URL_FORMAT): Promise<PostData> {
     const fileContent = fs.readFileSync(file, "utf-8");
     const parsed = matter(fileContent);
     const meta: PostMeta = {};
@@ -26,19 +28,27 @@ export function getPostDataFromFile(file: string, urlFormat: URLFormat = BLOG_UR
         url: formatURL(mdPathToURL(file), urlFormat),
         meta: meta,
         content: parsed.content,
-        toc: [],
+        toc: await getHeadingsFromContent(parsed.content),
     };
 
     return data;
 }
 
-export const getHeadingsFromContent = (content: string): Heading[] => {
+export const getHeadingsFromContent = async (content: string): Promise<Heading[]> => {
     const headings: Heading[] = [];
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(content, "text/html");
+
+    const result = await serialize(content);
+    const doc = parse(result.compiledSource);
+
     const elements = doc.querySelectorAll("h1, h2, h3, h4, h5, h6");
-    //elements.forEach((element) => {
-}
+    elements.forEach((element) => {
+        const level = parseInt(element.tagName[1]);
+        const title = element.textContent || "";
+        headings.push({ level, title });
+    });
+    console.log(headings);
+    return headings;
+};
 
 export type Heading = {
     level: number;
