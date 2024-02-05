@@ -28,9 +28,13 @@ export class PostList {
         this.posts = [];
     }
 
-    fetch(dir: string, format: URLFormat, includeDraft: boolean = false) {
+    fetch(dir: string, format: URLFormat, includeDraft: boolean | undefined = undefined) {
         if (this.fetched) {
             return this;
+        }
+
+        if (includeDraft === undefined) {
+            includeDraft = process.env.NODE_ENV === "development";
         }
 
         const files = getMdFilesInDir(dir);
