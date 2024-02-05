@@ -1,6 +1,7 @@
 import { MDXComponents } from "mdx/types";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { ReactNode } from "react";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
@@ -43,7 +44,11 @@ export default async function Markdown({ content, basepath }: { content: string;
                 src = basepath + "/" + src;
             }
             props = { ...props, src };
-            return <img {...props} className="rounded-md" />;
+            return <img {...props} className="" />;
+        },
+
+        Flex: ({ children }: { children: ReactNode }) => {
+            return <div className="mx-auto flex flex-wrap justify-center md:w-2/3 lg:w-1/2 lg:child:w-1/2">{children}</div>;
         },
     };
 
