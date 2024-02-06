@@ -4,6 +4,8 @@ github.com/Hayao0819/nahi v0.0.0-20240202020341-161f9790bbbe h1:r1AU+5A6oK/TVWRs
 github.com/Hayao0819/nahi v0.0.0-20240202020341-161f9790bbbe/go.mod h1:P3boyG1B2+4/J6ln65zsY2XRFitM/LcvKppzwXAPjGw=
 github.com/Hayao0819/nahi v0.0.0-20240202022039-3d1d243abe4e h1:gKlRFeCykwJWTkUlgbKLn1eqID1xeI+SkAEe5jVo9qM=
 github.com/Hayao0819/nahi v0.0.0-20240202022039-3d1d243abe4e/go.mod h1:P3boyG1B2+4/J6ln65zsY2XRFitM/LcvKppzwXAPjGw=
+github.com/Hayao0819/nahi v0.0.0-20240206054946-5e734551893b h1:adhQu99C2a+WkjVBW6urejqsb6VSKxXYcwXxHkeQWN4=
+github.com/Hayao0819/nahi v0.0.0-20240206054946-5e734551893b/go.mod h1:P3boyG1B2+4/J6ln65zsY2XRFitM/LcvKppzwXAPjGw=
 github.com/cpuguy83/go-md2man/v2 v2.0.3/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=

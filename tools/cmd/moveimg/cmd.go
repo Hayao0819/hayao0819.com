@@ -42,7 +42,7 @@ func Cmd() *cobra.Command {
 			return nil
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			files, err := fputils.FileList(path.Join(currnet_dir, "posts"))
+			files, err := fputils.RecursiveFileList(path.Join(currnet_dir, "posts"))
 			if err != nil {
 				return err
 			}
@@ -75,8 +75,8 @@ func Cmd() *cobra.Command {
 						cmd.PrintErrln(err)
 						errs = append(errs, err)
 					}
-				}else if strings.HasPrefix(tp, "text") {
-					
+				} else if strings.HasPrefix(tp, "text") {
+
 					data, err := os.ReadFile(file)
 					if err != nil {
 						cmd.PrintErrln(err)
