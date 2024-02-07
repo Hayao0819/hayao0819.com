@@ -13,7 +13,7 @@
     "scripts": {
         "dev": "pnpm next dev",
         "build": "pnpm run build:blogtool && pnpm run build:next",
-        "build:blogtool": "go build -o blogtool main.go ",
+        "build:blogtool": "go build blogtool.go ",
         "build:next": "pnpm next build",
         "lint": "pnpm next lint",
         "fix": "prettier --write . && eslint --fix .",
