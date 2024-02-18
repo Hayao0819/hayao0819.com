@@ -54,6 +54,11 @@ export class PostList {
                 }
             })
             .filter((p) => {
+                if (p.meta.publish == undefined) return true;
+                if (p.meta.publish == true) return true;
+                return false;
+            })
+            .filter((p) => {
                 if (includeDraft) return true;
                 if (p.meta.draft == undefined) return true;
                 if (p.meta.draft == false) return true;
