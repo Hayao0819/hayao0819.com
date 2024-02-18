@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/Hayao0819/hayao0819.com/tools/utils"
 	"github.com/Hayao0819/hayao0819.com/tools/utils/cobrautil"
 	"github.com/Hayao0819/nahi/fputils"
 	"github.com/spf13/cobra"
@@ -42,7 +43,7 @@ func Cmd() *cobra.Command {
 			return nil
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			files, err := fputils.RecursiveFileList(path.Join(currnet_dir, "posts"))
+			files, err := utils.GetPostFiles(postsDir)
 			if err != nil {
 				return err
 			}
