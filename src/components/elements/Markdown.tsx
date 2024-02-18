@@ -44,11 +44,23 @@ export default async function Markdown({ content, basepath }: { content: string;
                 src = basepath + "/" + src;
             }
             props = { ...props, src };
+
             return <img {...props} className="" />;
         },
 
         Flex: ({ children }: { children: ReactNode }) => {
-            return <div className="mx-auto flex flex-wrap justify-center md:w-2/3 lg:w-1/2 lg:child:w-1/2">{children}</div>;
+            return <div className="mx-auto flex flex-wrap justify-center">{children}</div>;
+        },
+
+        Grid: ({ children, col }: { children: ReactNode; col: number }) => {
+            return (
+                <div
+                    className="mx-auto grid justify-center gap-8"
+                    style={{ gridTemplateColumns: `repeat(${col}, minmax(0, 1fr))` }}
+                >
+                    {children}
+                </div>
+            );
         },
     };
 
