@@ -11,6 +11,7 @@ tags:
 draft: false
 pager: true
 share: true
+publish: false
 ---
 
 Alter Linux i686でインストールに失敗する問題、2月の更新から発生するようになった。

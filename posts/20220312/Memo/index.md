@@ -11,6 +11,7 @@ tags:
 draft: false
 pager: true
 share: true
+publish: false
 ---
 
 Alter Linux i686のテスト中にmkinitcpioで失敗したのでログ。
