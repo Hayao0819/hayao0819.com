@@ -21,6 +21,7 @@
         "newpost": "pnpm run blogtool newpost"
     },
     "dependencies": {
+        "budoux": "^0.6.2",
         "classnames": "^2.5.1",
         "framer-motion": "^10.17.9",
         "gray-matter": "^4.0.3",

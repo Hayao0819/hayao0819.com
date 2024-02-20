@@ -5,6 +5,7 @@ import path from "path";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 import Breadcrumbs from "@/components/elements/Breadcrumbs";
+import BudouX from "@/components/elements/BudouX";
 import { BlogHeading } from "@/components/elements/Heading";
 import { ShareCurrentURL } from "@/components/elements/ShareCurrentURL";
 import { BLOG_URL_FORMAT } from "@/lib/blog/config";
@@ -70,33 +71,19 @@ const MostRecentPostPreview = ({ post, type }: { post: PostData | null; type: "b
         }
     };
 
-    /*
-    if (!post) {
-        if (type == "before") {
-            return <></>;
-        } else {
-            return (
-                <div className="flex flex-col p-5 shadow-lg">
-                    <div className="flex items-center justify-end">
-                        <span className="grow text-center">ハヤオの次回作にご期待ください</span>
-                        <span>
-                            <FaArrowRight />
-                        </span>
-                    </div>
-                </div>
-            );
-        }
-    }
-    */
-
-    //console.log(post);
-
     return (
         <TopLevelLink
             className={classNames("flex items-center p-3", { "justify-end": type == "after" }, { "hover:text-accent": post })}
         >
             <span>{type == "before" && post ? <FaArrowLeft /> : null}</span>
-            <span className="grow text-center">{post ? post.meta.title : "ハヤオの次回作にご期待ください"}</span>
+            <span
+                className={classNames("grow", "md:text-center", "mx-2", {
+                    "text-left": type == "before",
+                    "text-right": type == "after",
+                })}
+            >
+                <BudouX>{post && post.meta.title ? post.meta.title : "ハヤオの次回作にご期待ください"}</BudouX>
+            </span>
             <span>{type == "after" || !post ? <FaArrowRight /> : null}</span>
         </TopLevelLink>
     );
@@ -107,28 +94,25 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
     const postData = findPostFromUrl(params.slug.join("/"));
 
     // handle dir page and 404
-    if (postData.post === undefined && postData.isDir === false) {
-        return <div>404</div>;
-    }
-    if (postData.isDir === true && postData.post === undefined) {
-        const posts = new PostList().fetch(path.join(process.cwd(), "posts", ...params.slug), BLOG_URL_FORMAT);
-
-        return (
-            <>
-                {posts.getPosts().map((p) => {
-                    return (
-                        <div key={p.url}>
-                            <Link href={`/blog/posts/${p.url}`}>{p.meta.title}</Link>
-                        </div>
-                    );
-                })}
-            </>
-        );
-    }
     if (postData.post === undefined) {
+        if (postData.isDir === true) {
+            const posts = new PostList().fetch(path.join(process.cwd(), "posts", ...params.slug), BLOG_URL_FORMAT);
+
+            return (
+                <>
+                    {posts.getPosts().map((p) => {
+                        return (
+                            <div key={p.url}>
+                                <Link href={`/blog/posts/${p.url}`}>{p.meta.title}</Link>
+                            </div>
+                        );
+                    })}
+                </>
+            );
+        }
+
         return <div>404</div>;
     }
-
     // Correctly parse date
     const postDate = new Date(postData.post.meta.date || 0);
     const mostRecentUpdate = postList.getMostRecentPostByURL(postData.post.url);
@@ -157,7 +141,7 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
 
             <div className="mt-4 h-fit border-t-2 border-secondary/15 pt-4">
                 <ShareCurrentURL text={postData.post.meta.title} />
-                <div className="mx-auto grid h-full w-full grid-cols-2 items-stretch  justify-around py-3 text-sm">
+                <div className="mx-auto h-full w-full items-stretch justify-around py-3  text-sm md:grid md:grid-cols-2">
                     <MostRecentPostPreview post={mostRecentUpdate.before} type="before" />
                     <MostRecentPostPreview post={mostRecentUpdate.after} type="after" />
                 </div>

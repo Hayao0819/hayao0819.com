@@ -35,6 +35,10 @@ export default async function Markdown({ content, basepath }: { content: string;
                 </Link>
             );
         },
+        p: ({ children }) => {
+            // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
+            return <p style={{ wordBreak: "auto-phrase" }}>{children}</p>;
+        },
         Tweet: ({ id }: { id: string }) => {
             return <Tweet id={id} />;
         },
