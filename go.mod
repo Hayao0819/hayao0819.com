@@ -1,6 +1,6 @@
 module github.com/Hayao0819/hayao0819.com
 
-go 1.21.6
+go 1.22
 
 require (
 	github.com/Hayao0819/nahi v0.0.0-20240206062916-9e007fa67d66
