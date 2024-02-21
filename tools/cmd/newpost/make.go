@@ -10,13 +10,17 @@ import (
 )
 
 func MakePost(url, title, desc string) (*string, error) {
-	fm := post.NewFrontMatter(title, desc)
-
 	// ファイルパスを取得
 	currnet_dir, err := os.Getwd()
 	if err != nil {
 		return nil, err
 	}
+
+	fm, err := post.NewFrontMatterFromYaml(path.Join(currnet_dir, "tools", "assets", "frontmatter.yaml"), title, desc)
+	if err != nil {
+		return nil, err
+	}
+
 	mdpath := path.Join(currnet_dir, "posts", time.Now().Format("20060102"), url, "index.md")
 	template := path.Join(currnet_dir, "tools", "assets", "template.mdx")
 

@@ -1,6 +1,7 @@
 import { MDXComponents } from "mdx/types";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { ReactNode } from "react";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
@@ -34,6 +35,10 @@ export default async function Markdown({ content, basepath }: { content: string;
                 </Link>
             );
         },
+        p: ({ children }) => {
+            // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
+            return <p style={{ wordBreak: "auto-phrase" }}>{children}</p>;
+        },
         Tweet: ({ id }: { id: string }) => {
             return <Tweet id={id} />;
         },
@@ -43,7 +48,23 @@ export default async function Markdown({ content, basepath }: { content: string;
                 src = basepath + "/" + src;
             }
             props = { ...props, src };
-            return <img {...props} className="rounded-md" />;
+
+            return <img {...props} className="" />;
+        },
+
+        Flex: ({ children }: { children: ReactNode }) => {
+            return <div className="mx-auto flex flex-wrap justify-center">{children}</div>;
+        },
+
+        Grid: ({ children, col }: { children: ReactNode; col: number }) => {
+            return (
+                <div
+                    className="mx-auto grid justify-center gap-8"
+                    style={{ gridTemplateColumns: `repeat(${col}, minmax(0, 1fr))` }}
+                >
+                    {children}
+                </div>
+            );
         },
     };
 

@@ -1,6 +1,7 @@
 package tools
 
 import (
+	"github.com/Hayao0819/hayao0819.com/tools/cmd/list"
 	"github.com/Hayao0819/hayao0819.com/tools/cmd/moveimg"
 	"github.com/Hayao0819/hayao0819.com/tools/cmd/newpost"
 	"github.com/Hayao0819/hayao0819.com/tools/utils/cobrautil"
@@ -13,7 +14,7 @@ func Cmd() *cobra.Command {
 		Short: "ブログを管理するためのいい感じなツール",
 		Long:  "ブログの記事の新規作成やその他をよしなにしてくれるものです",
 	}
-	cmd.AddCommand(newpost.Cmd(), moveimg.Cmd())
+	cmd.AddCommand(newpost.Cmd(), moveimg.Cmd(), list.Cmd())
 	cobrautil.ApplyTemplate(&cmd)
 	return &cmd
 }
