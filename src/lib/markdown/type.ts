@@ -6,4 +6,5 @@ export interface PostMeta extends Record<string, string | string[] | boolean | u
     description?: string;
     draft?: boolean;
     publish?: boolean;
+    hidden?: boolean;
 }

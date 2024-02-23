@@ -7,6 +7,7 @@ categories:
     - "プライベート"
 tags:
 draft: false
+hidden: true
 ---
 
 中学時代の友人である[こたつ氏](https://twitter.com/often_1111)と一緒にカラオケに行った

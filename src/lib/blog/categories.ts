@@ -1,7 +1,7 @@
 import { CATEGORY_INFO } from "./config";
-import { getFetchedBlogPostList } from "./post";
+import { fetchedBlogPostList } from "./post";
 
-export const getAllCategories = () => getFetchedBlogPostList().getAllCategories();
+export const getAllCategories = () => fetchedBlogPostList.getAllCategories();
 
 export const findCategoryInfo = (category: string) => {
     const catingo: { jp: string; url: string; desc: string }[] = getCategoryInfo();

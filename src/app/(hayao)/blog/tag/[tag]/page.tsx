@@ -4,7 +4,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { SUMMARY_LENGTH } from "@/lib/blog/config";
-import { getFetchedBlogPostList } from "@/lib/blog/post";
+import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 
 export default async function Categories({ params }: { params: { tag: string } }) {
@@ -24,7 +24,7 @@ export default async function Categories({ params }: { params: { tag: string } }
 }
 
 export const generateStaticParams = async () => {
-    const tags = getFetchedBlogPostList().getAllTags();
+    const tags = fetchedBlogPostList.getAllTags();
     const params = tags.map((c) => {
         return {
             tag: encodeURI(c),
@@ -35,7 +35,7 @@ export const generateStaticParams = async () => {
 };
 
 const getPostList = (tag: string): PostData[] => {
-    const categoryFilteredPageList = getFetchedBlogPostList().getByTag(tag);
+    const categoryFilteredPageList = fetchedBlogPostList.getByTag(tag);
     const currentPagePosts = categoryFilteredPageList.getContentSplitedPosts(SUMMARY_LENGTH).getPosts();
 
     return currentPagePosts;

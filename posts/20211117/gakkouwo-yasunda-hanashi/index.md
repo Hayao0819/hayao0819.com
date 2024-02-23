@@ -10,8 +10,7 @@ tags:
     - "Linux"
     - "Fascode"
 draft: false
-pager: true
-share: true
+hidden: true
 ---
 
 アホほど頭が痛くて学校を休んだ、かといってやることもないからTwitterとブログを更新してる

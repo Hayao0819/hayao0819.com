@@ -28,14 +28,19 @@ export class PostList {
         this.posts = [];
     }
 
-    fetch(dir: string, format: URLFormat, includeDraft: boolean | undefined = undefined) {
+    fetch(
+        dir: string,
+        format: URLFormat,
+        //includeDraft: boolean | undefined = undefined,
+        //includeHidden: boolean | undefined = undefined,
+    ) {
         if (this.fetched) {
             return this;
         }
 
-        if (includeDraft === undefined) {
-            includeDraft = process.env.NODE_ENV === "development";
-        }
+        //if (includeDraft === undefined) {
+        //    includeDraft = process.env.NODE_ENV === "development";
+        //}
 
         const files = getMdFilesInDir(dir);
         //console.log(getMdFilesInDir(process.cwd()));
@@ -56,12 +61,6 @@ export class PostList {
             .filter((p) => {
                 if (p.meta.publish == undefined) return true;
                 if (p.meta.publish == true) return true;
-                return false;
-            })
-            .filter((p) => {
-                if (includeDraft) return true;
-                if (p.meta.draft == undefined) return true;
-                if (p.meta.draft == false) return true;
                 return false;
             })
             .sort((a, b) => {
@@ -90,6 +89,29 @@ export class PostList {
             throw new Error("PostList is not fetched yet.");
         }
         return this.posts;
+    }
+
+    excludeDraft() {
+        const posts = this.getPosts();
+        return PostList.fromPostDatas(
+            posts.filter((p) => {
+                if (p.meta.draft == undefined) return true;
+                if (p.meta.draft == false) return true;
+                return false;
+            }),
+        );
+    }
+
+    excludeHidden() {
+        const posts = this.getPosts();
+        //console.log(posts.length);
+        return PostList.fromPostDatas(
+            posts.filter((p) => {
+                if (p.meta.hidden == undefined) return true;
+                if (p.meta.hidden == false) return true;
+                return false;
+            }),
+        );
     }
 
     getPostByURL(url: string): [PostData | null, number] {

@@ -7,8 +7,7 @@ categories:
     - "プライベート"
 tags:
 draft: false
-pager: true
-share: false
+hidden: true
 ---
 
 タイトルは真面目な感じだけどたぶん本文はめちゃくちゃになると思う。

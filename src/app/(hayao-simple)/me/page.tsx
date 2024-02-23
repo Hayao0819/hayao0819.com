@@ -2,9 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Heading } from "@/components/elements/Heading";
-import { getFetchedBlogPostList } from "@/lib/blog/post";
+import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
-import { getFetchedProjectPostList } from "@/lib/projects";
 
 const Separator = () => <hr className="my-3 border-t-[1px] border-[#9a9a9a]" />;
 
@@ -71,8 +70,8 @@ export default function Me() {
 }
 
 const News = () => {
-    const blogposts = getFetchedBlogPostList().getPosts().slice(0, 4);
-    const projects = getFetchedProjectPostList().getPosts().slice(0, 4);
+    const blogposts = fetchedBlogPostList.getPosts().slice(0, 4);
+    const projects = fetchedBlogPostList.getPosts().slice(0, 4);
 
     return (
         <>
