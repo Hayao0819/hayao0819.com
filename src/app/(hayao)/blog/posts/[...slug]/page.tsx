@@ -5,7 +5,6 @@ import path from "path";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 import Breadcrumbs from "@/components/elements/Breadcrumbs";
-import BudouX from "@/components/elements/BudouX";
 import { BlogHeading } from "@/components/elements/Heading";
 import { ShareCurrentURL } from "@/components/elements/ShareCurrentURL";
 import { BLOG_URL_FORMAT } from "@/lib/blog/config";
@@ -82,7 +81,7 @@ const MostRecentPostPreview = ({ post, type }: { post: PostData | null; type: "b
                     "text-right": type == "after",
                 })}
             >
-                <BudouX>{post && post.meta.title ? post.meta.title : "ハヤオの次回作にご期待ください"}</BudouX>
+                {post && post.meta.title ? post.meta.title : "ハヤオの次回作にご期待ください"}
             </span>
             <span>{type == "after" || !post ? <FaArrowRight /> : null}</span>
         </TopLevelLink>

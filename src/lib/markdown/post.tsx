@@ -1,8 +1,8 @@
 import fs from "fs";
 import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize";
 import { parse } from "node-html-parser";
 
+import Markdown from "@/components/elements/Markdown";
 import { PostMeta } from "@/lib/markdown/type";
 
 import { BLOG_URL_FORMAT } from "../blog/config";
@@ -23,9 +23,11 @@ export async function getPostDataFromFile(file: string, urlFormat: URLFormat = B
         }
     });
 
+    const url = formatURL(mdPathToURL(file), urlFormat);
+
     const data = {
         file: file,
-        url: formatURL(mdPathToURL(file), urlFormat),
+        url: url,
         meta: meta,
         content: parsed.content,
         toc: await getHeadingsFromContent(parsed.content),
@@ -37,16 +39,17 @@ export async function getPostDataFromFile(file: string, urlFormat: URLFormat = B
 export const getHeadingsFromContent = async (content: string): Promise<Heading[]> => {
     const headings: Heading[] = [];
 
-    const result = await serialize(content);
-    const doc = parse(result.compiledSource);
+    const { renderToString } = await import("react-dom/server");
+    const html = await renderToString(<Markdown content={content} basepath="" />);
+    const doc = parse(html);
 
-    const elements = doc.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    const elements = doc.getElementsByTagName("h2");
     elements.forEach((element) => {
         const level = parseInt(element.tagName[1]);
         const title = element.textContent || "";
         headings.push({ level, title });
     });
-    console.log(headings);
+    console.log(elements);
     return headings;
 };
 
