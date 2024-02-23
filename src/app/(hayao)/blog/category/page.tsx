@@ -1,8 +1,7 @@
 import Link from "next/link";
 
 import CommonSpacer from "@/components/layouts/CommonSpacer";
-import { getAllCategories } from "@/lib/blog/categories";
-import { CATEGORY_DESC } from "@/lib/blog/config";
+import { findCategoryInfo, getAllCategories } from "@/lib/blog/categories";
 
 export default function CategoryTop() {
     const categories = getAllCategories();
@@ -20,9 +19,9 @@ export default function CategoryTop() {
 }
 
 const Category = ({ category }: { category: string }) => {
-    const descList: { [key: string]: string } = CATEGORY_DESC;
+    const catInfo = findCategoryInfo(category);
 
-    const desc = descList[category] ? descList[category] : "";
+    const desc = catInfo ? catInfo.desc : "";
     const link = `/blog/category/${category}`;
 
     return (
