@@ -14,11 +14,11 @@ export const getFetchedProjectPostList = () => {
     });
 };
 
-export const getProjectFromURL = (url: string) => {
+export const getProjectFromURL = async (url: string) => {
     const mdFile = findMarkdownFromURL(projectsDir, url);
 
     if (mdFile) {
-        const projPost = getPostDataFromFile(mdFile);
+        const projPost = await getPostDataFromFile(mdFile);
         // Todo: basepathは多分間違ってる
         return <Markdown content={projPost.content} basepath={projPost.url} />;
     } else {

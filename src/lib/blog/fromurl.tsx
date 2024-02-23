@@ -12,11 +12,11 @@ type FoundPost = {
     isDir: boolean;
 };
 
-export function findPostFromUrl(url: string): FoundPost {
+export async function findPostFromUrl(url: string): Promise<FoundPost> {
     const targetFile = findMarkdownFromURL(path.join(process.cwd(), "posts"), url);
 
     if (targetFile) {
-        const post = getPostDataFromFile(targetFile);
+        const post = await getPostDataFromFile(targetFile);
         //console.log(post);
 
         return {

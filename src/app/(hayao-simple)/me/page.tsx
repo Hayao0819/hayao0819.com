@@ -70,9 +70,9 @@ export default function Me() {
     );
 }
 
-const News = () => {
-    const blogposts = getFetchedBlogPostList().getPosts().slice(0, 4);
-    const projects = getFetchedProjectPostList().getPosts().slice(0, 4);
+const News = async () => {
+    const blogposts = (await getFetchedBlogPostList()).getPosts().slice(0, 4);
+    const projects = (await getFetchedProjectPostList()).getPosts().slice(0, 4);
 
     return (
         <>

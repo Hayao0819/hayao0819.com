@@ -2,8 +2,8 @@ import Link from "@/components/elements/Link";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { getFetchedBlogPostList } from "@/lib/blog/post";
 
-export default function CategoryTop() {
-    const tags = getFetchedBlogPostList().getAllTags();
+export default async function CategoryTop() {
+    const tags = (await getFetchedBlogPostList()).getAllTags();
     return (
         <CommonSpacer>
             <div className="flex flex-col">

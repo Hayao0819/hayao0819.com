@@ -4,8 +4,8 @@ import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { getAllCategories } from "@/lib/blog/categories";
 import { CATEGORY_DESC } from "@/lib/blog/config";
 
-export default function CategoryTop() {
-    const categories = getAllCategories();
+export default async function CategoryTop() {
+    const categories = await getAllCategories();
     return (
         <CommonSpacer>
             <div className="flex flex-col">

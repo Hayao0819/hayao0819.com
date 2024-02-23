@@ -28,7 +28,7 @@ export class PostList {
         this.posts = [];
     }
 
-    fetch(dir: string, format: URLFormat, includeDraft: boolean | undefined = undefined) {
+    async fetch(dir: string, format: URLFormat, includeDraft: boolean | undefined = undefined) {
         if (this.fetched) {
             return this;
         }
@@ -41,10 +41,13 @@ export class PostList {
         //console.log(getMdFilesInDir(process.cwd()));
         //console.log(files);
 
-        const posts = files
-            .map(async (file) => {
-                return await getPostDataFromFile(file, format);
-            })
+        const posts = (
+            await Promise.all(
+                files.map((file) => {
+                    return getPostDataFromFile(file, format);
+                }),
+            )
+        )
             .filter((p) => {
                 if (p.meta.title && p.meta.date) {
                     return true;

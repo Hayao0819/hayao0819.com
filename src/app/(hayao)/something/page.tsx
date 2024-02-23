@@ -5,8 +5,8 @@ import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { SUMMARY_LENGTH } from "@/lib/blog/config";
 import { getFetchedProjectPostList } from "@/lib/projects";
 
-export default function Projects() {
-    const postlist = getPJList();
+export default async function Projects() {
+    const postlist = await getPJList();
     //console.log(postlist.map((p) => p.url));
     return (
         <CommonSpacer>
@@ -26,8 +26,8 @@ export default function Projects() {
     );
 }
 
-const getPJList = () => {
-    const postlist = getFetchedProjectPostList().getContentSplitedPosts(SUMMARY_LENGTH);
+const getPJList = async () => {
+    const postlist = (await getFetchedProjectPostList()).getContentSplitedPosts(SUMMARY_LENGTH);
     //console.log(postlist.getPosts());
 
     return postlist.getPosts();

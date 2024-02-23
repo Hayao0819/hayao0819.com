@@ -9,7 +9,7 @@ import { getFetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 
 export default async function Categories({ params }: { params: { cat: string } }) {
-    const postpost = getPostList(params.cat);
+    const postpost = await getPostList(params.cat);
 
     //console.log(params.cat);
 
@@ -25,7 +25,7 @@ export default async function Categories({ params }: { params: { cat: string } }
 }
 
 export const generateStaticParams = async () => {
-    const categories = getAllCategories();
+    const categories = await getAllCategories();
     const params = categories.map((c) => {
         return {
             cat: encodeURI(c),
@@ -37,8 +37,8 @@ export const generateStaticParams = async () => {
     return params;
 };
 
-const getPostList = (category: string): PostData[] => {
-    const categoryFilteredPageList = getFetchedBlogPostList().getByCategory(category);
+const getPostList = async (category: string): Promise<PostData[]> => {
+    const categoryFilteredPageList = (await getFetchedBlogPostList()).getByCategory(category);
     const currentPagePosts = categoryFilteredPageList.getContentSplitedPosts(SUMMARY_LENGTH).getPosts();
 
     return currentPagePosts;

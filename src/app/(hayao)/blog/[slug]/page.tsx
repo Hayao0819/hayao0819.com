@@ -9,7 +9,7 @@ import { genMetaData } from "@/lib/meta";
 
 export default async function BlogTop({ params }: { params: { slug: string } }) {
     const slug = parseInt(params.slug);
-    const postlist = getPostList(slug);
+    const postlist = await getPostList(slug);
 
     return (
         <CommonSpacer className="flex flex-col">
@@ -47,7 +47,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 };
 
 export const generateStaticParams = async () => {
-    const files = getFetchedBlogPostList().getPosts();
+    const files = (await getFetchedBlogPostList()).getPosts();
 
     const filecount = Math.ceil(files.length / POSTLIST_ONEPAGE);
 
@@ -70,8 +70,8 @@ type BlogTopProps = {
     currentPage: number;
 };
 
-const getPostList = (currentPage: number) => {
-    const allPostList = getFetchedBlogPostList();
+const getPostList = async (currentPage: number) => {
+    const allPostList = await getFetchedBlogPostList();
     const currentPagePosts: PostData[] = allPostList
         .getSplitedPosts(currentPage, POSTLIST_ONEPAGE)
         .getContentSplitedPosts(SUMMARY_LENGTH)

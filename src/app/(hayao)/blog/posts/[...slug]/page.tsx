@@ -15,7 +15,7 @@ import { PostData } from "@/lib/markdown/post";
 import { PostList } from "@/lib/markdown/postlist";
 import { dateToString, recursivePath } from "@/lib/utils";
 
-const postList = getFetchedBlogPostList();
+const postList = await getFetchedBlogPostList();
 
 export const generateStaticParams = async () => {
     const mdFiles = postList.getPosts();
@@ -31,7 +31,7 @@ export const generateStaticParams = async () => {
 };
 
 export async function generateMetadata({ params }: { params: { slug: string[] } }): Promise<Metadata> {
-    const postData = findPostFromUrl(params.slug.join("/"));
+    const postData = await findPostFromUrl(params.slug.join("/"));
     if (postData.isDir === true) {
         return {
             title: "Posts",
@@ -89,14 +89,14 @@ const MostRecentPostPreview = ({ post, type }: { post: PostData | null; type: "b
     );
 };
 
-export default function PostPage({ params }: { params: { slug: string[] } }) {
+export default async function PostPage({ params }: { params: { slug: string[] } }) {
     // get post data
-    const postData = findPostFromUrl(params.slug.join("/"));
+    const postData = await findPostFromUrl(params.slug.join("/"));
 
     // handle dir page and 404
     if (postData.post === undefined) {
         if (postData.isDir === true) {
-            const posts = new PostList().fetch(path.join(process.cwd(), "posts", ...params.slug), BLOG_URL_FORMAT);
+            const posts = await new PostList().fetch(path.join(process.cwd(), "posts", ...params.slug), BLOG_URL_FORMAT);
 
             return (
                 <>
@@ -141,7 +141,7 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
 
             <div className="mt-4 h-fit border-t-2 border-secondary/15 pt-4">
                 <ShareCurrentURL text={postData.post.meta.title} />
-                <div className="mx-auto h-full w-full items-stretch justify-around py-3  text-sm md:grid md:grid-cols-2">
+                <div className="mx-auto size-full items-stretch justify-around py-3 text-sm  md:grid md:grid-cols-2">
                     <MostRecentPostPreview post={mostRecentUpdate.before} type="before" />
                     <MostRecentPostPreview post={mostRecentUpdate.after} type="after" />
                 </div>

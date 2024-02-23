@@ -1,8 +1,8 @@
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { getFetchedProjectPostList, getProjectFromURL } from "@/lib/projects";
 
-export const generateStaticParams = () => {
-    const postlist = getFetchedProjectPostList().getPosts();
+export const generateStaticParams = async () => {
+    const postlist = (await getFetchedProjectPostList()).getPosts();
 
     const params = postlist.map((p) => {
         return {
