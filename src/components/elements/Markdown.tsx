@@ -1,9 +1,9 @@
+import { MDXRemote } from "@daviereid/next-mdx-remote/rsc";
 import { MDXComponents } from "mdx/types";
 import Link from "next/link";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { ReactNode } from "react";
 import rehypeCodeTitles from "rehype-code-titles";
-import rehypePrism from "rehype-prism-plus";
+import rehypePrism from "rehype-prism";
 import remarkGfm from "remark-gfm";
 
 import { BlogHeading as Heading } from "./Heading";
