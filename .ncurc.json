@@ -1,0 +1,7 @@
+{
+    "packageManager": "pnpm",
+    "install": "always",
+    "reject": ["remark-gfm"],
+    "cache": true,
+    "cacheExpiration": 30
+}

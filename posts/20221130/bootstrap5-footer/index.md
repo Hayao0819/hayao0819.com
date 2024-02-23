@@ -3,8 +3,6 @@ title: "Bootstrap5でFooterを下部に固定する"
 description: ""
 date: 2022-11-30T19:02:18+09:00
 categories:
-    - "ブログ"
-    - "プライベート"
     - "技術系"
 tags:
 draft: false

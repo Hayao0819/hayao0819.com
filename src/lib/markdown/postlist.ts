@@ -28,9 +28,13 @@ export class PostList {
         this.posts = [];
     }
 
-    fetch(dir: string, format: URLFormat, includeDraft: boolean = false) {
+    fetch(dir: string, format: URLFormat, includeDraft: boolean | undefined = undefined) {
         if (this.fetched) {
             return this;
+        }
+
+        if (includeDraft === undefined) {
+            includeDraft = process.env.NODE_ENV === "development";
         }
 
         const files = getMdFilesInDir(dir);
@@ -48,6 +52,11 @@ export class PostList {
                     console.log(`[WARN] ${p.file} is invalid post file.`);
                     return false;
                 }
+            })
+            .filter((p) => {
+                if (p.meta.publish == undefined) return true;
+                if (p.meta.publish == true) return true;
+                return false;
             })
             .filter((p) => {
                 if (includeDraft) return true;

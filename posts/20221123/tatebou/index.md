@@ -1,5 +1,5 @@
 ---
-title: "Tatebou"
+title: "縦棒短縮URLのUIを作り直した話"
 description: ""
 date: 2022-11-23T20:12:01+09:00
 categories:

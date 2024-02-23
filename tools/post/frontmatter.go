@@ -1,6 +1,7 @@
 package post
 
 import (
+	"os"
 	"strings"
 	"time"
 
@@ -9,19 +10,46 @@ import (
 )
 
 type FrontMatter struct {
-	Title       string     `yaml:"title"`
-	Description string     `yaml:"description"`
-	Date        time.Time  `yaml:"date"`
-	Categories  []Category `yaml:"categories"`
+	Title       string    `yaml:"title"`
+	Description string    `yaml:"description"`
+	Date        time.Time `yaml:"date"`
+	Categories  []string  `yaml:"categories"`
+	Draft       bool      `yaml:"draft"`
+	Publish     bool      `yaml:"publish"`
 }
 
-func NewFrontMatter(title string, desc string) *FrontMatter {
+func GetFrontMatterFromYaml(path string) (*FrontMatter, error) {
+	buf, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	fm := FrontMatter{}
+	err = yaml.Unmarshal(buf, &fm)
+	if err != nil {
+		return nil, err
+	}
+	return &fm, nil
+}
+
+func NewFrontMatter(title, desc string) *FrontMatter {
 	return &FrontMatter{
 		Title:       title,
 		Description: desc,
 		Date:        time.Now(),
-		Categories:  Categories,
 	}
+}
+
+func NewFrontMatterFromYaml(yamlPath, title, desc string) (*FrontMatter, error) {
+	fm, err := GetFrontMatterFromYaml(yamlPath)
+	if err != nil {
+		return nil, err
+	}
+
+	fm.Title = title
+	fm.Description = desc
+	fm.Date = time.Now()
+
+	return fm, nil
 }
 
 func (f *FrontMatter) GetYaml() ([]byte, error) {

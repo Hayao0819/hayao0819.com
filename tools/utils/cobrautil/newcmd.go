@@ -11,6 +11,7 @@ func Command() cobra.Command {
 func ApplyTemplate(cmd *cobra.Command) {
 	cmd.CompletionOptions.DisableDefaultCmd = true
 	cmd.SilenceUsage = true
-	//cmd.SilenceErrors = true
+	cmd.SilenceErrors = true
+	
 	//println(cmd.UsageTemplate())
 }
