@@ -3,10 +3,9 @@ import Link from "next/link";
 
 import { Heading } from "@/components/elements/Heading";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
-import { getFetchedBlogPostList } from "@/lib/blog/post";
+import { fetchedBlogPostList as postlist } from "@/lib/blog/post";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
-    const postlist = getFetchedBlogPostList();
     const categories = postlist.getAllCategories();
     const tags = postlist.getAllTags();
     const posts = postlist.getPosts().slice(undefined, 10);

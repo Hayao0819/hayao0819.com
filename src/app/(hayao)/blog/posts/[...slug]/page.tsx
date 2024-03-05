@@ -9,15 +9,13 @@ import { BlogHeading } from "@/components/elements/Heading";
 import { ShareCurrentURL } from "@/components/elements/ShareCurrentURL";
 import { BLOG_URL_FORMAT } from "@/lib/blog/config";
 import { findPostFromUrl } from "@/lib/blog/fromurl";
-import { getFetchedBlogPostList } from "@/lib/blog/post";
+import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 import { PostList } from "@/lib/markdown/postlist";
 import { dateToString, recursivePath } from "@/lib/utils";
 
-const postList = getFetchedBlogPostList();
-
 export const generateStaticParams = async () => {
-    const mdFiles = postList.getPosts();
+    const mdFiles = fetchedBlogPostList.getPosts();
     const pages = mdFiles.flatMap((f) => {
         return recursivePath(f.url);
     });
@@ -114,7 +112,7 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
     }
     // Correctly parse date
     const postDate = new Date(postData.post.meta.date || 0);
-    const mostRecentUpdate = postList.getMostRecentPostByURL(postData.post.url);
+    const mostRecentUpdate = fetchedBlogPostList.getMostRecentPostByURL(postData.post.url);
 
     return (
         <div className="mx-5 flex h-full flex-col">

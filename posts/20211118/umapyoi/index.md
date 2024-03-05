@@ -8,8 +8,7 @@ categories:
 tags:
     - "学校"
 draft: false
-pager: true
-share: true
+hidden: true
 ---
 
 学校が嫌いすぎるのを払拭したくて下校中に車がめちゃくちゃ通ってる国道でうまぴょい歌いながら帰ってきた

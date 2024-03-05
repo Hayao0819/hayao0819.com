@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { PostList as PostListElement, PostPageSwitch } from "@/components/layouts/blog/PostPreviewList";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { POSTLIST_ONEPAGE, SUMMARY_LENGTH } from "@/lib/blog/config";
-import { getFetchedBlogPostList } from "@/lib/blog/post";
+import { fetchedBlogPostListWithoutHidden } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 import { genMetaData } from "@/lib/meta";
 
@@ -47,7 +47,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 };
 
 export const generateStaticParams = async () => {
-    const files = getFetchedBlogPostList().getPosts();
+    const files = fetchedBlogPostListWithoutHidden.getPosts();
 
     const filecount = Math.ceil(files.length / POSTLIST_ONEPAGE);
 
@@ -59,8 +59,6 @@ export const generateStaticParams = async () => {
             };
         });
 
-    //console.log(params);
-
     return params;
 };
 
@@ -71,15 +69,14 @@ type BlogTopProps = {
 };
 
 const getPostList = (currentPage: number) => {
-    const allPostList = getFetchedBlogPostList();
-    const currentPagePosts: PostData[] = allPostList
+    const currentPagePosts: PostData[] = fetchedBlogPostListWithoutHidden
         .getSplitedPosts(currentPage, POSTLIST_ONEPAGE)
         .getContentSplitedPosts(SUMMARY_LENGTH)
         .getPosts();
 
     const returnProps: BlogTopProps = {
         posts: currentPagePosts,
-        allpages: Math.ceil(allPostList.getPosts().length / POSTLIST_ONEPAGE),
+        allpages: Math.ceil(fetchedBlogPostListWithoutHidden.getPosts().length / POSTLIST_ONEPAGE),
         currentPage: currentPage,
     };
 

@@ -8,6 +8,7 @@ categories:
 tags:
     - "学校"
 draft: false
+hidden: true
 ---
 
 学校であったことをだらだらと書いてみる。なかなかに今日も面倒だった。

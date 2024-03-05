@@ -7,8 +7,7 @@ categories:
 tags:
     - "原神"
 draft: false
-pager: true
-share: true
+hidden: true
 ---
 
 原神にハマった。サービスが開始して割とすぐにアカウントは作ってあったのだが、最初のチュートリアルでよくわからなくてやめてしまった。

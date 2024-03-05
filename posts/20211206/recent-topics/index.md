@@ -8,8 +8,7 @@ categories:
 tags:
     - "学校"
 draft: false
-pager: true
-share: true
+hidden: true
 ---
 
 一昨日と昨日で某国立大学に行ってきた。グローバルサイエンスキャンパスの特論があった。
