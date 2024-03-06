@@ -34,13 +34,7 @@ export class PostList {
         //includeDraft: boolean | undefined = undefined,
         //includeHidden: boolean | undefined = undefined,
     ) {
-        if (this.fetched) {
-            return this;
-        }
-
-        //if (includeDraft === undefined) {
-        //    includeDraft = process.env.NODE_ENV === "development";
-        //}
+        if (this.fetched) return this;
 
         const files = getMdFilesInDir(dir);
         //console.log(getMdFilesInDir(process.cwd()));

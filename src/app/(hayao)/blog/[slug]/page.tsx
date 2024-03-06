@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 
 import { PostList as PostListElement, PostPageSwitch } from "@/components/layouts/blog/PostPreviewList";
-import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { POSTLIST_ONEPAGE, SUMMARY_LENGTH } from "@/lib/blog/config";
 import { fetchedBlogPostListWithoutHidden } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
@@ -12,7 +11,7 @@ export default async function BlogTop({ params }: { params: { slug: string } }) 
     const postlist = getPostList(slug);
 
     return (
-        <CommonSpacer className="flex flex-col">
+        <div className="flex flex-col">
             <div className="grow">
                 <PostListElement posts={postlist.posts} />
             </div>
@@ -21,7 +20,7 @@ export default async function BlogTop({ params }: { params: { slug: string } }) 
                 currentPage={postlist.currentPage}
                 linktemplate={(page) => `/blog/${page}`}
             />
-        </CommonSpacer>
+        </div>
     );
 }
 

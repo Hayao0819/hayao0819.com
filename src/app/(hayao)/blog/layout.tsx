@@ -14,7 +14,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
 
     return (
         <CommonSpacer className="md:flex md:gap-2">
-            <div className="md:w-9/12">{children}</div>
+            <div className="mx-auto md:w-9/12 xl:w-1/2">{children}</div>
             <div className="flex flex-col gap-12 md:w-3/12 ">
                 {/* Categories */}
                 <div className={sectionClassName}>
