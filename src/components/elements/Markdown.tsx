@@ -1,9 +1,10 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { MDXComponents } from "mdx/types";
 import Link from "next/link";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { ReactNode } from "react";
 import rehypeCodeTitles from "rehype-code-titles";
-import rehypePrism from "rehype-prism";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
 
 import { BlogHeading as Heading } from "./Heading";
@@ -86,11 +87,13 @@ export default async function Markdown({ content, basepath }: { content: string;
                         rehypePlugins: [
                             rehypeCodeTitles,
                             [
-                                rehypePrism,
+                                rehypePrettyCode,
                                 {
-                                    ignoreMissing: true,
+                                    theme: "one-dark-pro",
+                                    keepBackground: true,
                                 },
                             ],
+                            rehypeStringify,
                         ],
                     },
                 }}
