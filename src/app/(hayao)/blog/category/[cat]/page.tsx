@@ -1,8 +1,4 @@
-import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa6";
-
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
-import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { getAllCategories } from "@/lib/blog/categories";
 import { SUMMARY_LENGTH } from "@/lib/blog/config";
 import { fetchedBlogPostList } from "@/lib/blog/post";
@@ -11,16 +7,10 @@ import { PostData } from "@/lib/markdown/post";
 export default async function Categories({ params }: { params: { cat: string } }) {
     const postpost = getPostList(params.cat);
 
-    //console.log(decodeURI(params.cat));
-
     return (
-        <CommonSpacer>
-            <Link href="/blog/category" className="mb-2 flex items-center p-2 hover:text-accent">
-                <FaArrowLeft />
-                <p>カテゴリ一覧に戻る</p>
-            </Link>
+        <div>
             <PostListElement posts={postpost} />
-        </CommonSpacer>
+        </div>
     );
 }
 
@@ -39,6 +29,7 @@ export const generateStaticParams = async () => {
 
 const getPostList = (category: string): PostData[] => {
     const categoryFilteredPageList = fetchedBlogPostList.getByCategory(category);
+    console.log(category);
     const currentPagePosts = categoryFilteredPageList.getContentSplitedPosts(SUMMARY_LENGTH).getPosts();
 
     return currentPagePosts;

@@ -17,7 +17,7 @@ export interface MenusProps extends MenusCommonProps {
 export function MainManus({ horizontal, className, onMenuItemClick }: MenusProps) {
     return (
         <Menu horizontal={horizontal} className={className}>
-            <MenuItem href="/" text="Home" onClick={onMenuItemClick} />
+            <MenuItem href="/" text="トップ" onClick={onMenuItemClick} />
             <MenuItemBlog onMenuItemClick={onMenuItemClick} />
             <MenuItem href="/portfolio" text="Portfolio" onClick={onMenuItemClick} />
             <MenuItem href="/projects" text="Projects" onClick={onMenuItemClick} />
@@ -63,12 +63,12 @@ function MenuItemBlog({ onMenuItemClick }: MenusCommonProps) {
                 open={isOpened}
                 ref={detailsRef}
             >
-                <summary>Blog</summary>
+                <summary>ブログ</summary>
                 <Menu className="text-base-content">
-                    <MenuItem href="/blog/1" text="Posts" onClick={onMenuItemClick} />
-                    <MenuItem href="/blog/category" text="Categories" onClick={onMenuItemClick} />
-                    <MenuItem href="/blog/tag" text="Tags" onClick={onMenuItemClick} />
-                    <MenuItem href="/blog/about" text="About" onClick={onMenuItemClick} />
+                    <MenuItem href="/blog/1" text="記事一覧" onClick={onMenuItemClick} />
+                    <MenuItem href="/blog/category/技術系/" text="技術系" onClick={onMenuItemClick} />
+                    <MenuItem href="/blog/tag" text="タグ一覧" onClick={onMenuItemClick} />
+                    <MenuItem href="/blog/about" text="筆者" onClick={onMenuItemClick} />
                 </Menu>
             </details>
         </Menu.Item>
