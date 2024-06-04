@@ -141,12 +141,14 @@ export class PostList {
     getByCategory(category: string) {
         const filtered = this.getPosts().filter((p) => {
             // 何故かこれをしないと動かない
-            return (
-                p.meta.categories?.includes(category) ||
-                p.meta.categories?.includes(decodeURI(category)) ||
-                p.meta.categories?.map((c) => encodeURI(c)).includes(category) ||
-                p.meta.categories?.map((c) => encodeURI(c)).includes(decodeURI(category))
-            );
+            const some = [
+                p.meta.categories?.includes(category),
+                p.meta.categories?.includes(decodeURI(category)),
+                p.meta.categories?.map((c) => encodeURI(c)).includes(category),
+                p.meta.categories?.map((c) => encodeURI(c)).includes(decodeURI(category)),
+            ];
+
+            return some.some((s) => s);
         });
 
         return PostList.fromPostDatas(filtered);
