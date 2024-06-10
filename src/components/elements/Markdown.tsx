@@ -36,10 +36,13 @@ export default async function Markdown({ content, basepath }: { content: string;
                 </Link>
             );
         },
-        p: ({ children }) => {
+        p: ({ children }) => (
             // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
-            return <p style={{ wordBreak: "auto-phrase" }}>{children}</p>;
-        },
+            <p style={{ wordBreak: "auto-phrase" }} className="leading-8">
+                {children}
+            </p>
+        ),
+
         Tweet: ({ id }: { id: string }) => {
             return <Tweet id={id} />;
         },
@@ -50,8 +53,9 @@ export default async function Markdown({ content, basepath }: { content: string;
             }
             props = { ...props, src };
 
-            return <img {...props} className="" />;
+            return <img {...props} className="p-4" />;
         },
+        code: ({ children }) => <code className="bg-gray-100 text-red-500">{children}</code>,
 
         Flex: ({ children }: { children: ReactNode }) => {
             return <div className="mx-auto flex flex-wrap justify-center">{children}</div>;
@@ -59,10 +63,7 @@ export default async function Markdown({ content, basepath }: { content: string;
 
         Grid: ({ children, col }: { children: ReactNode; col: number }) => {
             return (
-                <div
-                    className="mx-auto grid justify-center gap-8"
-                    style={{ gridTemplateColumns: `repeat(${col}, minmax(0, 1fr))` }}
-                >
+                <div className="mx-auto grid justify-center" style={{ gridTemplateColumns: `repeat(${col}, minmax(0, 1fr))` }}>
                     {children}
                 </div>
             );

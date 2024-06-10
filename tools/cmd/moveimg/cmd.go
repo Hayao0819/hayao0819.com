@@ -48,8 +48,6 @@ func Cmd() *cobra.Command {
 				return err
 			}
 
-			cmd.Println(publicDir)
-
 			errs := []error{}
 			for _, file := range *files {
 				tp, err := fputils.DetectFileType(file)
@@ -62,8 +60,7 @@ func Cmd() *cobra.Command {
 					dist := strings.Replace(file, postsDir, publicDir, 1)
 
 					// ディレクトリがなければ作成
-					err = os.MkdirAll(path.Dir(dist), 0755)
-					if err != nil {
+					if err = os.MkdirAll(filepath.Dir(dist), 0755); err != nil {
 						cmd.PrintErrln(err)
 						errs = append(errs, err)
 						continue
@@ -76,22 +73,22 @@ func Cmd() *cobra.Command {
 						cmd.PrintErrln(err)
 						errs = append(errs, err)
 					}
-				} else if strings.HasPrefix(tp, "text") {
+				} //else if strings.HasPrefix(tp, "text") {
 
-					data, err := os.ReadFile(file)
-					if err != nil {
-						cmd.PrintErrln(err)
-						errs = append(errs, err)
-						continue
-					}
+				// 	data, err := os.ReadFile(file)
+				// 	if err != nil {
+				// 		cmd.PrintErrln(err)
+				// 		errs = append(errs, err)
+				// 		continue
+				// 	}
 
-					// 画像のパスを変更
-					data = []byte(strings.ReplaceAll(string(data), "![", "!["+path.Base(postsDir)+"/"))
-				}
+				// 	// 画像のパスを変更
+				// 	data = []byte(strings.ReplaceAll(string(data), "![", "!["+path.Base(postsDir)+"/"))
+				// }
 
 			}
 			if len(errs) > 0 {
-				return errors.New("error occured. see logs.")
+				return errors.New("error occured. see logs")
 			}
 
 			return nil
