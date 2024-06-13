@@ -41,7 +41,7 @@ publish: true
 
 <hr />
 とあるDiscordサーバにFlagが投稿されたぞ！本問に限って、ターゲットに接触を試みても大丈夫だ。  
-[画像](./PXL.png)
+![画像](./PXL.jpg)
 <hr />
 
 URLをそのまま読み取って開いても権限エラーで何も表示されませんでした。
@@ -78,7 +78,7 @@ Wordでトリミングした場合トリミングは文書上でのみ行われ�
 
 <hr />
 この荷物の宛先として考えられる施設の郵便番号を教えてほしい。  
-[画像](./label.jpg)
+![画像](./label.jpg)
 <hr />
 
 宛先だけ見事に敗れた荷物がある。最初はこの荷物と同じ形式のラベルを貼っている運送会社を調べたり、追跡番号を様々なサイトで検索してみたのだがヒットしなかった。諦めかけていたときに、なんとなくQRコードを読み取ると、ガッツリと住所が書いてあった。
@@ -149,7 +149,16 @@ python3 ./main.py email yune.jun.0727@gmail.com
 
 ## geo/imagetrack
 
-TODO:
+<hr />
+画像の撮影された郷土料理屋の店名を答えよ。  
+[画像](https://drive.google.com/file/d/1R_BClVaJc1tv5UXvqIR8OdF7OE0UoBcf/view?usp=drive_link)
+<hr />
+
+最初にこの「open air brewing」という銘柄を調べたが、蒸留所がヒットするのみで郷土料理店は見つからなかった。
+
+![GPS](image.png)
+
+macOSのプレビューでGPS情報を見ると緯度経度が出てくるので、この値を調べて完了。
 
 ## geo/chiban
 
