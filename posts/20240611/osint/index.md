@@ -147,9 +147,26 @@ python3 ./main.py email yune.jun.0727@gmail.com
 
 このレビューでは「伊勢定 大丸東京店」という鰻屋で4400円のうな重を食べていることがわかるため、これが Flagとなる。
 
-## geo/chiban
+## geo/imagetrack
 
 TODO:
+
+## geo/chiban
+
+<hr />
+画像の中央に写っている道路の地番は何か。  
+[画像](https://drive.google.com/file/d/124CUGWBbMWwqGTrvNrEOkrst3s1y9uEB/view?usp=drive_link)
+<hr />
+
+まず地番がわからないので調べる。[このサイト](https://www.home4u.jp/sell/juku/course/basic/sell-432-33017)によると登記簿上で扱われる数字らしい。なんとなくわかったので、実際に住所を特定する。
+
+画像の住所特定においてヒントになるのは、「サンディ 7号店」と「明光義塾」「岡田歯科医院」程度である。
+
+7号店というのは出店した順番らしいが、検索してもなかなかヒットしない。`サンディ "7号店"`と引用符つきで検索すると[アルバイト募集EX](https://kyujin.arubaito-ex.jp/jobs/247782038)より「双葉店」であることがわかる。
+
+住所がわかったところで、今度は地番を探さなければならない。ほとんどの検索サービスは有料か資料請求が必要であったが、こちらの[地番検索くん](https://chiban-kensaku.com/)より見つけることができた。
+
+検索した結果が「筆界未定地-6」だったので文字的に少々怪しかったのだが、無事に正解だった。
 
 ## geo/championships (by バンダナ無しワドルディ)
 
