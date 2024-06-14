@@ -53,6 +53,7 @@ publish: true
 - [【らき☆すた　もってけベース　Ｆｕｌｌ】 視界不良で弾いてみた](https://www.nicovideo.jp/watch_tmp/sm1042065)
 - [【初音ミク】みくみくにしてあげる♪【してやんよ】](https://www.nicovideo.jp/watch_tmp/sm1097445)
 - [一万年と二千年前から神様を愛してる](https://www.nicovideo.jp/watch_tmp/sm1104006)
+- [初音ミクオリジナル『えれくとりっく・えんじぇぅ』Full ver.](https://www.nicovideo.jp/watch_tmp/sm1249071)
 - [伝説のクソゲー チーターマン2](https://www.nicovideo.jp/watch_tmp/sm1289422)
 - [ボーカロイドにオリ曲を喋ってもらった１　「初音ミクの暴走」](https://www.nicovideo.jp/watch_tmp/sm1342044)
 - [たみ☆ふる巫女](https://www.nicovideo.jp/watch_tmp/sm1413044)

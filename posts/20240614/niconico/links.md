@@ -32,4 +32,4 @@
 - [涼宮ハルヒの憂鬱－GodKnows...（フルプロモバージョン修正版ver.1）](https://www.nicovideo.jp/watch_tmp/sm350258)
 - [MADLAX 挿入曲 nowhere](https://www.nicovideo.jp/watch_tmp/sm22396)
 - [ひぐらしのなく頃に　「you」三昧　☆画像付きFull ver.](https://www.nicovideo.jp/watch_tmp/sm590449)
-
+- [初音ミクオリジナル『えれくとりっく・えんじぇぅ』Full ver.](https://www.nicovideo.jp/watch_tmp/sm1249071)
