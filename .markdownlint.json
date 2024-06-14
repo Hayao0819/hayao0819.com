@@ -1,0 +1,7 @@
+{
+    "default": true,
+    "colors": true,
+    "MD033": false,
+    "line-length": false,
+    "no-bare-urls":false
+}

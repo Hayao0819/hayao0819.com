@@ -32,7 +32,7 @@ export function BlogHeading(props: HeadingProps) {
     const level = props.level;
     const propsWithoutClassName = { ...props, className: undefined };
 
-    const cn = classNames(props.className, "my-4");
+    const cn = classNames(props.className, "my-5");
     //console.log(cn);
 
     const headingTag =

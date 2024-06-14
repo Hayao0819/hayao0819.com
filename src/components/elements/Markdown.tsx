@@ -31,15 +31,18 @@ export default async function Markdown({ content, basepath }: { content: string;
         a: ({ href, children }) => {
             if (!href) return <span>{children}</span>;
             return (
-                <Link href={href} className=" underline underline-offset-4">
+                <Link href={href} className=" text-blue-900">
                     {children}
                 </Link>
             );
         },
-        p: ({ children }) => {
+        p: ({ children }) => (
             // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
-            return <p style={{ wordBreak: "auto-phrase" }}>{children}</p>;
-        },
+            <p style={{ wordBreak: "auto-phrase" }} className="py-2 leading-6">
+                {children}
+            </p>
+        ),
+
         Tweet: ({ id }: { id: string }) => {
             return <Tweet id={id} />;
         },
@@ -50,8 +53,11 @@ export default async function Markdown({ content, basepath }: { content: string;
             }
             props = { ...props, src };
 
-            return <img {...props} className="" />;
+            return <img {...props} className="p-4" />;
         },
+        code: ({ children }) => <code className="text-sky-400">{children}</code>,
+
+        //pre: ({ children, className }) => <pre className={classNames(className, "p-2")}>{children}</pre>,
 
         Flex: ({ children }: { children: ReactNode }) => {
             return <div className="mx-auto flex flex-wrap justify-center">{children}</div>;
@@ -59,10 +65,7 @@ export default async function Markdown({ content, basepath }: { content: string;
 
         Grid: ({ children, col }: { children: ReactNode; col: number }) => {
             return (
-                <div
-                    className="mx-auto grid justify-center gap-8"
-                    style={{ gridTemplateColumns: `repeat(${col}, minmax(0, 1fr))` }}
-                >
+                <div className="mx-auto grid justify-center" style={{ gridTemplateColumns: `repeat(${col}, minmax(0, 1fr))` }}>
                     {children}
                 </div>
             );
