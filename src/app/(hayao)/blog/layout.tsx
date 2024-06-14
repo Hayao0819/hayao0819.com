@@ -27,7 +27,9 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
                         {categories.map((c) => {
                             return (
                                 <li key={c} role="link" className="my-2 cursor-pointer p-2 text-sm hover:underline">
-                                    <Link href={`/blog/category/${c}`}>{c}</Link>
+                                    <Link href={`/blog/category/${c}`} className="block size-full">
+                                        {c}
+                                    </Link>
                                 </li>
                             );
                         })}

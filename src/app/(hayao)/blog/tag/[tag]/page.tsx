@@ -2,7 +2,6 @@ import { Link } from "next-view-transitions";
 import { FaArrowLeft } from "react-icons/fa6";
 
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
-import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { SUMMARY_LENGTH } from "@/lib/blog/config";
 import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
@@ -13,13 +12,13 @@ export default async function Categories({ params }: { params: { tag: string } }
     //console.log(params.cat);
 
     return (
-        <CommonSpacer>
+        <>
             <Link href="/blog/tag" className="mb-2 flex items-center p-2 hover:text-accent">
                 <FaArrowLeft />
                 <p>タグ一覧に戻る</p>
             </Link>
             <PostListElement posts={postpost} />
-        </CommonSpacer>
+        </>
     );
 }
 
