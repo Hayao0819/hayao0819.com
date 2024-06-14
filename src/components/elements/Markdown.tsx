@@ -31,14 +31,14 @@ export default async function Markdown({ content, basepath }: { content: string;
         a: ({ href, children }) => {
             if (!href) return <span>{children}</span>;
             return (
-                <Link href={href} className=" underline underline-offset-4">
+                <Link href={href} className=" text-blue-900">
                     {children}
                 </Link>
             );
         },
         p: ({ children }) => (
             // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
-            <p style={{ wordBreak: "auto-phrase" }} className="leading-8">
+            <p style={{ wordBreak: "auto-phrase" }} className="py-2 leading-6">
                 {children}
             </p>
         ),
@@ -55,7 +55,9 @@ export default async function Markdown({ content, basepath }: { content: string;
 
             return <img {...props} className="p-4" />;
         },
-        code: ({ children }) => <code className="bg-gray-100 text-red-500">{children}</code>,
+        code: ({ children }) => <code className="text-sky-400">{children}</code>,
+
+        //pre: ({ children, className }) => <pre className={classNames(className, "p-2")}>{children}</pre>,
 
         Flex: ({ children }: { children: ReactNode }) => {
             return <div className="mx-auto flex flex-wrap justify-center">{children}</div>;
