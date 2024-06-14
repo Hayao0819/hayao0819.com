@@ -1,3 +1,10 @@
+---
+title: ニコニコRe:仮のリンク集 - サブページ
+date: 2024-06-14T15:53:56.7472404+09:00
+draft: false
+publish: true
+---
+
 - [新・豪血寺一族 -煩悩解放 - レッツゴー！陰陽師](https://www.nicovideo.jp/watch_tmp/sm9)
 - [[キーボードクラッシャー]Unreal Gamer[本家]](https://www.nicovideo.jp/watch_tmp/sm167)
 - [バラライカ](https://www.nicovideo.jp/watch_tmp/sm87799)
@@ -34,3 +41,5 @@
 - [初音ミクオリジナル『えれくとりっく・えんじぇぅ』Full ver.](https://www.nicovideo.jp/watch_tmp/sm1249071)
 - [クラッシャーは大変なキーボードを破壊していきました](https://www.nicovideo.jp/watch_tmp/sm427208)
 - [忙しい人のための『粉雪』](https://www.nicovideo.jp/watch_tmp/sm1592472)
+- [バラライカの替え歌「やらないか?」](https://www.nicovideo.jp/watch_tmp/sm738503)
+- [組曲『ニコニコ動画』](https://www.nicovideo.jp/watch_tmp/sm500873)

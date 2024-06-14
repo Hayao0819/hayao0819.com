@@ -45,17 +45,17 @@ export class PostList {
                 return getPostDataFromFile(file, format);
             })
             .filter((p) => {
+                if (p.meta.publish == undefined) return true;
+                if (p.meta.publish == true) return true;
+                return false;
+            })
+            .filter((p) => {
                 if (p.meta.title && p.meta.date) {
                     return true;
                 } else {
                     console.log(`[WARN] ${p.file} is invalid post file.`);
                     return false;
                 }
-            })
-            .filter((p) => {
-                if (p.meta.publish == undefined) return true;
-                if (p.meta.publish == true) return true;
-                return false;
             })
             .sort((a, b) => {
                 const [aMeta, bMeta] = [a.meta, b.meta];
