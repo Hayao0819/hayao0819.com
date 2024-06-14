@@ -6,7 +6,6 @@
 - [初音ミク　が　オリジナル曲を歌ってくれたよ「メルト」](https://www.nicovideo.jp/watch_tmp/sm1715919?s=06)
 - [【K-Flash】 千葉！滋賀！佐賀！ 【懐フラ】](https://www.nicovideo.jp/watch_tmp/sm1886770)
 - [【初音ミク】コンビニ【オリジナル曲】](https://www.nicovideo.jp/watch_tmp/sm1908098)
-- [VOCALOID2 初音ミクに「Ievan Polkka」を歌わせてみた](https://www.nicovideo.jp/watch_tmp/sm982882)
 - [つるぺったん　Full ver.](https://www.nicovideo.jp/watch_tmp/sm183036)
 - [１００％　エアーマンが倒せない　Full ver.](https://www.nicovideo.jp/watch_tmp/sm1787131)
 - [エヴァをドラえもんで吹き替えてみた](https://www.nicovideo.jp/watch_tmp/sm989809)
@@ -33,3 +32,5 @@
 - [MADLAX 挿入曲 nowhere](https://www.nicovideo.jp/watch_tmp/sm22396)
 - [ひぐらしのなく頃に　「you」三昧　☆画像付きFull ver.](https://www.nicovideo.jp/watch_tmp/sm590449)
 - [初音ミクオリジナル『えれくとりっく・えんじぇぅ』Full ver.](https://www.nicovideo.jp/watch_tmp/sm1249071)
+- [クラッシャーは大変なキーボードを破壊していきました](https://www.nicovideo.jp/watch_tmp/sm427208)
+- [忙しい人のための『粉雪』](https://www.nicovideo.jp/watch_tmp/sm1592472)
