@@ -1,5 +1,5 @@
 import classNames from "clsx";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import React, { FC, ReactNode } from "react";
 import {
     SiArchlinux,

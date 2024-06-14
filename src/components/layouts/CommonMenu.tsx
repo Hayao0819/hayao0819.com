@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { useRef, useState } from "react";
 import { Menu } from "react-daisyui";
 import { useOnClickOutside } from "usehooks-ts";

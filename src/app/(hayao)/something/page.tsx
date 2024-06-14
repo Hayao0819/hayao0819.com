@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 import { Heading } from "@/components/elements/Heading";
 import CommonSpacer from "@/components/layouts/CommonSpacer";

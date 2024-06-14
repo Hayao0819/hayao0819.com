@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { ReactNode } from "react";
 import { FaCircle } from "react-icons/fa6";
 

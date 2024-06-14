@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { findCategoryInfo, getAllCategories } from "@/lib/blog/categories";

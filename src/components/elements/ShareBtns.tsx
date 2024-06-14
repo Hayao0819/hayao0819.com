@@ -1,5 +1,5 @@
 //import { headers } from "next/headers";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { FaFacebook, FaLine, FaLinkedin, FaTwitter } from "react-icons/fa6";
 
 export interface ShareProps {

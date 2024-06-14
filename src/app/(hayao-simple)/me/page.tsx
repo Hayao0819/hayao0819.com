@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 import { Heading } from "@/components/elements/Heading";
 import { fetchedBlogPostList } from "@/lib/blog/post";

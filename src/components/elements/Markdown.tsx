@@ -1,5 +1,5 @@
 import { MDXComponents } from "mdx/types";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { ReactNode } from "react";
 import rehypeCodeTitles from "rehype-code-titles";

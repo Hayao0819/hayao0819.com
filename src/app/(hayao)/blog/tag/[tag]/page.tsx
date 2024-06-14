@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { FaArrowLeft } from "react-icons/fa6";
 
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";

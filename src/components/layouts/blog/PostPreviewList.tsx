@@ -1,5 +1,5 @@
 import classNames from "clsx";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 import { PostData } from "@/lib/markdown/post";
 

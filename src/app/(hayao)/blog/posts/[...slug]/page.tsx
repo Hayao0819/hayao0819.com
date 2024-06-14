@@ -1,6 +1,6 @@
 import classNames from "clsx";
 import { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import path from "path";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 

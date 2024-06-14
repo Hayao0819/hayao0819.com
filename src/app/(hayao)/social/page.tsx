@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { FaInstagram, FaKeybase } from "react-icons/fa6";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import classNames from "clsx";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 
 export default function Breadcrumbs({ className, start = 0 }: { className?: string; start?: number }) {
