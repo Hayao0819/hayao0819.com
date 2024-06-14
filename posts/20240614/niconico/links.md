@@ -27,3 +27,9 @@
 - [きみのためなら死ねる　天国と地獄](https://www.nicovideo.jp/watch_tmp/sm150712)
 - [おもいではおっくせんまん](https://www.nicovideo.jp/watch_tmp/sm369808)
 - [日本の形　折り紙](https://www.nicovideo.jp/watch_tmp/sm58031)
+- [YATTA!!](https://www.nicovideo.jp/watch_tmp/sm18061)
+- [たみ☆ふる巫女](https://www.nicovideo.jp/watch_tmp/sm1413044)
+- [涼宮ハルヒの憂鬱－GodKnows...（フルプロモバージョン修正版ver.1）](https://www.nicovideo.jp/watch_tmp/sm350258)
+- [MADLAX 挿入曲 nowhere](https://www.nicovideo.jp/watch_tmp/sm22396)
+- [ひぐらしのなく頃に　「you」三昧　☆画像付きFull ver.](https://www.nicovideo.jp/watch_tmp/sm590449)
+
