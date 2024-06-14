@@ -31,7 +31,8 @@
         "unused-imports/no-unused-imports": "error",
         "tailwindcss/no-custom-classname": "warn",
         "no-unsanitized/method": "warn",
-        "no-unsanitized/property": "warn"
+        "no-unsanitized/property": "warn",
+        "react/prop-types": "off"
     },
     "overrides": [
         {

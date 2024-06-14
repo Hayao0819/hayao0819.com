@@ -1,6 +1,6 @@
 "use client";
 
-import classNames from "classnames";
+import classNames from "clsx";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";

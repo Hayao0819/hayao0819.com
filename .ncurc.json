@@ -1,7 +1,7 @@
 {
     "packageManager": "pnpm",
     "install": "always",
-    "reject": ["remark-gfm"],
+    "reject": ["eslint-plugin-unused-imports"],
     "cache": true,
     "cacheExpiration": 30
 }

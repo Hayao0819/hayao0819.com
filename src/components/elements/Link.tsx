@@ -1,6 +1,6 @@
 "use client";
 
-import classNames from "classnames";
+import classNames from "clsx";
 import { motion } from "framer-motion";
 import { default as NextLink } from "next/link";
 export default function Link(props: { children: React.ReactNode; href: string }) {

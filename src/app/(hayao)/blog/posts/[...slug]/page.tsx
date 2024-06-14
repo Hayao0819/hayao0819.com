@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import classNames from "clsx";
 import { Metadata } from "next";
 import Link from "next/link";
 import path from "path";

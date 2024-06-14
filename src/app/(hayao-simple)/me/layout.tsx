@@ -6,7 +6,7 @@ export default function MeLayout(props: { children: ReactNode }) {
     return (
         <div className="flex h-full w-svw  font-gothic !text-black">
             <MeSideBar />
-            <div className="grow border-l-[1px] border-black pl-2 ">
+            <div className="grow border-l border-black pl-2 ">
                 <div className="child:mx-auto">{props.children}</div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import classNames from "clsx";
 import { useMemo } from "react";
 
 import Drawer, { DrawerContent } from "./Drawer";
