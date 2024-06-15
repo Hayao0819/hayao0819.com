@@ -12,10 +12,12 @@ const Header = () => (
     <>
         <div>
             <p>
-                このサイトは<Link href="https://x.com/nanasi_rasi">ななしぃ様</Link>
-                が作成した動画リストを許可のもの使用しています。ニコニコ動画様のサーバ負荷を考慮して、サムネイルは非表示になっています。
+                動画リストは<Link href="https://x.com/nanasi_rasi">ななしぃ様</Link>
+                が作成したものを許可のもの使用しています。ニコニコ動画様のサーバ負荷を考慮して、サムネイルは非表示になっています。
             </p>
+            <p>スペース区切りでAnd検索を行うことが可能です。</p>
             <p>
+                このサイトはニコニコ動画及び株式会社ドワンゴ様の公式<b>ではございません。</b>
                 ソースコードは
                 <Link href="https://github.com/Hayao0819/hayao0819.com/blob/master/src/app/(hayao)/playground/niconico/page.tsx">
                     こちら
