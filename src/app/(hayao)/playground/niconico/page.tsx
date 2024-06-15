@@ -19,20 +19,24 @@ interface Video {
 
 type VideoList = Map<string, Video>;
 
+type ClickList = { [key: string]: boolean };
+
 export default function Niconico() {
     const [info, setInfo] = useState<VideoList | null>(null);
     const [error, setError] = useState<Error | null>(null);
     const [search, setSearch] = useState<string>("");
+    const [status, setStatus] = useState<ClickList | null>(null);
 
     useEffect(() => {
         (async () => {
-            console.log(apiUrl);
+            //console.log(apiUrl);
             const res = await fetch(apiUrl);
             if (!res.ok) {
                 setError(new Error(res.statusText));
                 throw new Error(res.statusText);
             }
             const json = await res.json();
+
             const videoMap = new Map<string, Video>();
 
             Object.keys(json).forEach((key) => {
@@ -40,6 +44,13 @@ export default function Niconico() {
             });
 
             setInfo(videoMap);
+
+            const initClickList: ClickList = {};
+            videoMap.forEach((v, k) => {
+                initClickList[k] = false;
+            });
+
+            setStatus(initClickList);
         })();
     }, []);
 
@@ -66,12 +77,24 @@ export default function Niconico() {
                             return (
                                 <li key={v.id} className="">
                                     <a
-                                        href={`https://www.nicovideo.jp/watch/${v.id}`}
+                                        //href={`https://www.nicovideo.jp/watch_tmp/${v.id}`}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="flex"
+                                        className="flex cursor-pointer"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            if (status && status[v.id]) {
+                                                window.open(`https://www.nicovideo.jp/watch_tmp/${v.id}`, "_blank");
+                                            }
+                                            setStatus({ ...(status ?? {}), [v.id]: true });
+                                        }}
                                     >
                                         {/* <img src={v.thumbnail} alt={v.title} className="size-20" /> */}
+                                        {status && status[v.id] ? (
+                                            <img src={v.thumbnail} alt={v.title} className="size-20" />
+                                        ) : (
+                                            <></>
+                                        )}
                                         <span className=" flex items-center p-3 align-middle">{v.title}</span>
                                     </a>
                                 </li>
