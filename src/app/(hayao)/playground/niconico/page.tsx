@@ -81,13 +81,6 @@ export default function Niconico() {
                                         target="_blank"
                                         rel="noreferrer"
                                         className="flex cursor-pointer"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            if (status && status[v.id]) {
-                                                window.open(`https://www.nicovideo.jp/watch_tmp/${v.id}`, "_blank");
-                                            }
-                                            setStatus({ ...(status ?? {}), [v.id]: true });
-                                        }}
                                     >
                                         {/* <img src={v.thumbnail} alt={v.title} className="size-20" /> */}
                                         {status && status[v.id] ? (
