@@ -24,12 +24,16 @@ type ClickList = { [key: string]: boolean };
 export default function Niconico() {
     const [info, setInfo] = useState<VideoList | null>(null);
     const [error, setError] = useState<Error | null>(null);
-    const [search, setSearch] = useState<string>("");
+
     const [status, setStatus] = useState<ClickList | null>(null);
+    //const [catList, setCatList] = useState<string[]>([]);
+
+    const [search, setSearch] = useState<string>("");
+    //const [category, setCategory] = useState<string>("");
 
     useEffect(() => {
         (async () => {
-            //console.log(apiUrl);
+            // fetch data
             const res = await fetch(apiUrl);
             if (!res.ok) {
                 setError(new Error(res.statusText));
@@ -37,20 +41,22 @@ export default function Niconico() {
             }
             const json = await res.json();
 
+            // set videoList
             const videoMap = new Map<string, Video>();
-
             Object.keys(json).forEach((key) => {
                 videoMap.set(key, json[key]);
             });
-
             setInfo(videoMap);
 
+            // set clickList
             const initClickList: ClickList = {};
             videoMap.forEach((v, k) => {
                 initClickList[k] = false;
             });
-
             setStatus(initClickList);
+
+            // set category
+            //setCatList(Array.from(new Set(Array.from(videoMap.values()).map((v) => v.cT))));
         })();
     }, []);
 
@@ -69,6 +75,23 @@ export default function Niconico() {
             </div>
             <Input value={search} onChange={(e) => setSearch(e.target.value)} className="my-10 w-full" />
 
+            {/* <div>
+                <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full rounded-md border-2 border-gray-300 p-2"
+                >
+                    <option value="">全て</option>
+                    {catList.map((c) => {
+                        return (
+                            <option key={c} value={c}>
+                                {c}
+                            </option>
+                        );
+                    })}
+                </select>
+            </div> */}
+
             <ul className="grid grid-cols-2 gap-3">
                 {info &&
                     Array.from(info?.values())
@@ -82,12 +105,9 @@ export default function Niconico() {
                                         rel="noreferrer"
                                         className="flex cursor-pointer"
                                     >
-                                        {/* <img src={v.thumbnail} alt={v.title} className="size-20" /> */}
                                         {status && status[v.id] ? (
                                             <img src={v.thumbnail} alt={v.title} className="size-20" />
-                                        ) : (
-                                            <></>
-                                        )}
+                                        ) : null}
                                         <span className=" flex items-center p-3 align-middle">{v.title}</span>
                                     </a>
                                 </li>
