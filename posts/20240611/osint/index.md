@@ -6,7 +6,7 @@ categories:
     - 技術系
 tags:
     - OSINT
-draft: true
+draft: false
 publish: true
 ---
 
@@ -108,7 +108,16 @@ https://qiita.com/Figaro-san/items/7aa220472eff06849824#introduction--246
 
 ## introduction/chain
 
-TODO:
+チーム全員で鳥貴族の公式サイトから、
+
+- 4階
+- ４階
+- 4F
+- ４Ｆ
+- ４F
+- 4Ｆ
+
+を片っ端から探しました。
 
 ## introduction/dream (by figaro)
 
