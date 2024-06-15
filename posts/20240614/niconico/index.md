@@ -19,6 +19,12 @@ https://nicorekari.nanasi-rasi.net/
 
 スクレイピングにより作成したものとのことなので、規約変更等により削除される可能性がありますが、是非ご活用ください。
 
+## 検索
+
+動画の検索サイトを緊急で開発しました。スクレイピングされたデータをクライアント側で取得し検索します。
+
+[http://localhost:3000/playground/niconico/](http://localhost:3000/playground/niconico/)
+
 ## ニコニコ動画中毒の方へ贈る一曲
 
 - [新・豪血寺一族 -煩悩解放 - レッツゴー！陰陽師](https://www.nicovideo.jp/watch_tmp/sm9)
