@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 const apiUrl =
     process.env.NODE_ENV === "development" ? "http://localhost:3000/api/niconico" : "https://nicorekari.nanasi-rasi.net/DB.json";
@@ -15,6 +15,12 @@ interface Video {
 export type ClickList = { [key: string]: boolean };
 
 export type VideoList = Map<string, Video>;
+
+export const useSearch = (): [string[], Dispatch<SetStateAction<string>>] => {
+    const [search, setSearch] = useState<string>("");
+    const replaced = search.replace("　", " ").split(" ");
+    return [replaced, setSearch];
+};
 
 export const useVideoList = () => {
     const [info, setInfo] = useState<VideoList | null>(null);

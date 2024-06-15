@@ -6,7 +6,7 @@ import { Checkbox, Form, Input } from "react-daisyui";
 import Link from "@/components/elements/Link";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 
-import { useVideoList } from "./video";
+import { useSearch, useVideoList } from "./video";
 
 const Header = () => (
     <>
@@ -27,7 +27,7 @@ const Header = () => (
 );
 
 export default function Niconico() {
-    const [search, setSearch] = useState<string>("");
+    const [search, setSearch] = useSearch();
     const [musicOnly, setMusicOnly] = useState<boolean>(false);
 
     const { info, error } = useVideoList();
@@ -41,7 +41,7 @@ export default function Niconico() {
             <div>
                 {header}
                 <Form className="my-10">
-                    <Input value={search} onChange={(e) => setSearch(e.target.value)} className="w-full" />
+                    <Input value={search.join(" ")} onChange={(e) => setSearch(e.target.value)} className="w-full" />
                     <Form.Label title="音楽のみ" className="mx-auto w-fit child:mx-2">
                         <Checkbox checked={musicOnly} onChange={(e) => setMusicOnly(e.target.checked)} />
                     </Form.Label>
@@ -51,7 +51,8 @@ export default function Niconico() {
             <ul className="grid grid-cols-2 gap-3">
                 {info &&
                     Array.from(info?.values())
-                        .filter((v) => v.title.includes(search))
+                        //.filter((v) => v.title.includes(search))
+                        .filter((v) => search.every((s) => v.title.includes(s)))
                         .filter((v) => !musicOnly || v.cT === "music")
                         .map((v) => {
                             return (
