@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { Checkbox, Form, Input } from "react-daisyui";
 
 import Link from "@/components/elements/Link";
@@ -34,45 +34,45 @@ export default function Niconico() {
     const [search, setSearch] = useSearch();
     const [musicOnly, setMusicOnly] = useState<boolean>(false);
 
-    const { info, error } = useVideoList();
+    const info = useVideoList();
 
     const header = useMemo(() => <Header />, []);
 
-    if (error) return <CommonSpacer>{error.message}</CommonSpacer>;
-
     return (
         <CommonSpacer>
-            <div>
-                {header}
-                <Form className="my-10">
-                    <Input value={search.join(" ")} onChange={(e) => setSearch(e.target.value)} className="w-full" />
-                    <Form.Label title="音楽のみ" className="mx-auto w-fit child:mx-2">
-                        <Checkbox checked={musicOnly} onChange={(e) => setMusicOnly(e.target.checked)} />
-                    </Form.Label>
-                </Form>
-            </div>
+            <Suspense fallback={<>Loading...</>}>
+                <div>
+                    {header}
+                    <Form className="my-10">
+                        <Input value={search.join(" ")} onChange={(e) => setSearch(e.target.value)} className="w-full" />
+                        <Form.Label title="音楽のみ" className="mx-auto w-fit child:mx-2">
+                            <Checkbox checked={musicOnly} onChange={(e) => setMusicOnly(e.target.checked)} />
+                        </Form.Label>
+                    </Form>
+                </div>
 
-            <ul className="grid grid-cols-2 gap-3">
-                {info &&
-                    Array.from(info?.values())
-                        //.filter((v) => v.title.includes(search))
-                        .filter((v) => search.every((s) => v.title.includes(s)))
-                        .filter((v) => !musicOnly || v.cT === "music")
-                        .map((v) => {
-                            return (
-                                <li key={v.id} className="">
-                                    <a
-                                        href={`https://www.nicovideo.jp/watch_tmp/${v.id}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="flex cursor-pointer"
-                                    >
-                                        <span className=" flex items-center p-3 align-middle">{v.title}</span>
-                                    </a>
-                                </li>
-                            );
-                        })}
-            </ul>
+                <ul className="grid grid-cols-2 gap-3">
+                    {info &&
+                        Array.from(info?.values())
+
+                            .filter((v) => search.every((s) => v.title.includes(s)))
+                            .filter((v) => !musicOnly || v.cT === "music")
+                            .map((v) => {
+                                return (
+                                    <li key={v.id} className="">
+                                        <a
+                                            href={`https://www.nicovideo.jp/watch_tmp/${v.id}`}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="flex cursor-pointer"
+                                        >
+                                            <span className=" flex items-center p-3 align-middle">{v.title}</span>
+                                        </a>
+                                    </li>
+                                );
+                            })}
+                </ul>
+            </Suspense>
         </CommonSpacer>
     );
 }
