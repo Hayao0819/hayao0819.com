@@ -72,6 +72,13 @@ export default function Niconico() {
                     が作成した動画リストを許可のもの使用しています。
                 </p>
                 <p>ニコニコ動画様のサーバ負荷を考慮して、サムネイルは非表示になっています。</p>
+                <p>
+                    ソースコードは
+                    <Link href="https://github.com/Hayao0819/hayao0819.com/blob/master/src/app/(hayao)/playground/niconico/page.tsx">
+                        こちら
+                    </Link>
+                    で公開されています。
+                </p>
             </div>
             <Input value={search} onChange={(e) => setSearch(e.target.value)} className="my-10 w-full" />
 
