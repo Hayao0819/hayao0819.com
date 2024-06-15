@@ -77,7 +77,7 @@ export default function Niconico() {
                             return (
                                 <li key={v.id} className="">
                                     <a
-                                        //href={`https://www.nicovideo.jp/watch_tmp/${v.id}`}
+                                        href={`https://www.nicovideo.jp/watch_tmp/${v.id}`}
                                         target="_blank"
                                         rel="noreferrer"
                                         className="flex cursor-pointer"
