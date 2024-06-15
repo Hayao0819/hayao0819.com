@@ -10,6 +10,8 @@ import { useSearch, useVideoList } from "./video";
 
 const Header = () => (
     <>
+        <title>ニコニコRe:仮 非公式検索</title>
+        <meta name="description" content="ニコニコ動画の非公式検索サイトです。" />
         <div>
             <p>
                 動画リストは<Link href="https://x.com/nanasi_rasi">ななしぃ様</Link>
