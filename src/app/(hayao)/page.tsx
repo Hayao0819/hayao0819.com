@@ -15,6 +15,10 @@ export default function Home() {
                 <Link className="text-accent hover:underline" href="/me">
                     About Me
                 </Link>
+                <Link className="hover:underline" href="/playground/niconico/">
+                    ニコニコ動画検索
+                </Link>
+
                 <Link className="hover:underline" href="/blog">
                     BLOG
                 </Link>
