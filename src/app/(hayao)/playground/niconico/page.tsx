@@ -1,12 +1,8 @@
 "use client";
 
-import { memo, Suspense, useMemo, useState } from "react";
-import { Checkbox, Form, Input } from "react-daisyui";
+import { memo } from "react";
 
-import Link from "@/components/elements/Link";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
-
-import { useSearch, useVideoList } from "./video";
 
 const Page = () => (
     <CommonSpacer>
@@ -21,27 +17,27 @@ const Page = () => (
 
 export default memo(Page);
 
-const Header = () => (
-    <>
-        <title>ニコニコRe:仮 非公式検索</title>
-        <meta name="description" content="ニコニコ動画の非公式検索サイトです。" />
-        <div>
-            <p>
-                動画リストは<Link href="https://x.com/nanasi_rasi">ななしぃ様</Link>
-                が作成したものを許可のもの使用しています。ニコニコ動画様のサーバ負荷を考慮して、サムネイルは非表示になっています。
-            </p>
-            <p>スペース区切りでAnd検索を行うことが可能です。</p>
-            <p>
-                このサイトはニコニコ動画及び株式会社ドワンゴ様の公式<b>ではございません。</b>
-                ソースコードは
-                <Link href="https://github.com/Hayao0819/hayao0819.com/blob/master/src/app/(hayao)/playground/niconico/page.tsx">
-                    こちら
-                </Link>
-                で公開されています。
-            </p>
-        </div>
-    </>
-);
+// const Header = () => (
+//     <>
+//         <title>ニコニコRe:仮 非公式検索</title>
+//         <meta name="description" content="ニコニコ動画の非公式検索サイトです。" />
+//         <div>
+//             <p>
+//                 動画リストは<Link href="https://x.com/nanasi_rasi">ななしぃ様</Link>
+//                 が作成したものを許可のもの使用しています。ニコニコ動画様のサーバ負荷を考慮して、サムネイルは非表示になっています。
+//             </p>
+//             <p>スペース区切りでAnd検索を行うことが可能です。</p>
+//             <p>
+//                 このサイトはニコニコ動画及び株式会社ドワンゴ様の公式<b>ではございません。</b>
+//                 ソースコードは
+//                 <Link href="https://github.com/Hayao0819/hayao0819.com/blob/master/src/app/(hayao)/playground/niconico/page.tsx">
+//                     こちら
+//                 </Link>
+//                 で公開されています。
+//             </p>
+//         </div>
+//     </>
+// );
 
 // export function Niconico() {
 //     const [search, setSearch] = useSearch();
