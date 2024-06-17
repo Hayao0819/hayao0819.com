@@ -19,8 +19,8 @@ export function MainManus({ horizontal, className, onMenuItemClick }: MenusProps
         <Menu horizontal={horizontal} className={className}>
             <MenuItem href="/" text="トップ" onClick={onMenuItemClick} />
             <MenuItemBlog onMenuItemClick={onMenuItemClick} />
-            <MenuItem href="/portfolio" text="Portfolio" onClick={onMenuItemClick} />
-            <MenuItem href="/projects" text="Projects" onClick={onMenuItemClick} />
+            <MenuItem href="/portfolio" text="ポートフォリオ" onClick={onMenuItemClick} />
+            <MenuItem href="/projects" text="Something" onClick={onMenuItemClick} />
             <MenuItem href="/social" text="SNS" onClick={onMenuItemClick} />
         </Menu>
     );
@@ -33,11 +33,11 @@ export function OtherLinks({ horizontal, onMenuItemClick }: OtherLinksProps) {
     return (
         <Menu horizontal={horizontal}>
             <Menu.Item onClick={onMenuItemClick}>
-                <Link href="/tatebou">Tatebou</Link>
+                <Link href="/tatebou">縦棒</Link>
             </Menu.Item>
             <Menu.Item onClick={onMenuItemClick}>
                 <Link className="!text-accent" href="https://seppuku.club/">
-                    Seppuku
+                    Let&apos;s get Seppukued!
                 </Link>
             </Menu.Item>
         </Menu>

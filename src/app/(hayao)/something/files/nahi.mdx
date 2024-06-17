@@ -1,0 +1,69 @@
+---
+title: "Hayao0819/nahi"
+date: 2024-06-18
+draft: false
+description: "Go言語のオレオレライブラリ"
+---
+
+## nahi
+
+nahiはGolangで個人的に頻繁に使う関数をまとめたオレオレライブラリです。
+
+公式パッケージからマイナーなサードパーティライブラリまで、自分がよく使うものをいい感じにラップしたり、繰り返し書くようなコードをまとめたりしています。
+
+### cobrautils
+
+[spf13/cobra](https://github.com/spf13/cobra)に関する様々な関数をまとめてあります。
+
+- デフォルトで生成されるヘルプドキュメントを加工
+- 本来アクセスできないサブコマンドにアクセス
+- テスタビリティの高いサブコマンドと、パッケージの独立性を両立するディレクトリ構成のためのユーティリティ
+
+[使い方](./cobrautils/README.md)
+
+### cputils
+
+[otiai10/copy](github.com/otiai10/copy)で複数のタスクをまとめて実行します。
+
+### flist
+
+GNU Find のようにファイルパスの一覧を文字列で取得します。
+
+### futils
+
+ファイルパスや実際の読み書きに関するツールをまとめてあります。
+
+### mobra
+
+spf13/cobraをメソッドチェーン形式で記述できるようにしたユーティリティです。
+
+```go
+func root() *cobra.Command {
+ root := mobra.New("nahi-dev").
+  Short("dev tool for nahi").
+  BindSubCmds(&reg).
+  DisableDefaultCmd().
+  HideUsage().
+  Cobra()
+
+ return root
+}
+```
+
+### nconf
+
+設定ファイルを読み込むためのユーティリティ。
+
+joho/godotenv と spf13/viper に関連したものを入れる予定です。
+
+### rfutils
+
+`reflect`に関する関数をまとめてあります。
+
+### sigutils
+
+`os/signal`に関する関数をまとめてあります。
+
+### srun
+
+ソースコードをコンパイルして実行するユーティリティ。
