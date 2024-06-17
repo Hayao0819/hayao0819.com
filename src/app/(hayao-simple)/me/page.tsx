@@ -5,7 +5,7 @@ import { Heading } from "@/components/elements/Heading";
 import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 
-const Separator = () => <hr className="my-3 border-t-[1px] border-[#9a9a9a]" />;
+const Separator = () => <hr className="my-3 border-t border-[#9a9a9a]" />;
 
 export default function Me() {
     return (

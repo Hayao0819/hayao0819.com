@@ -1,12 +1,25 @@
 "use client";
 
-import { Suspense, useMemo, useState } from "react";
+import { memo, Suspense, useMemo, useState } from "react";
 import { Checkbox, Form, Input } from "react-daisyui";
 
 import Link from "@/components/elements/Link";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 
 import { useSearch, useVideoList } from "./video";
+
+const Page = () => (
+    <CommonSpacer>
+        <title>ニコニコRe:仮 非公式検索</title>
+        <meta name="description" content="ニコニコ動画の非公式検索サイトです。" />
+        <div>
+            <p>APIの提供が終了したため公開を停止しました。</p>
+            <p>今後は公式様の[https://nicorekari.nanasi-rasi.net/](https://nicorekari.nanasi-rasi.net/)を御覧ください。</p>
+        </div>
+    </CommonSpacer>
+);
+
+export default memo(Page);
 
 const Header = () => (
     <>
@@ -30,7 +43,7 @@ const Header = () => (
     </>
 );
 
-export default function Niconico() {
+export function Niconico() {
     const [search, setSearch] = useSearch();
     const [musicOnly, setMusicOnly] = useState<boolean>(false);
 

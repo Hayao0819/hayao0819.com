@@ -1,8 +1,8 @@
 "use client";
 
 import classNames from "clsx";
-import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
+import { Link } from "next-view-transitions";
 
 export default function Breadcrumbs({ className, start = 0 }: { className?: string; start?: number }) {
     const pathName = usePathname()
