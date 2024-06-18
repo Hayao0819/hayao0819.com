@@ -1,0 +1,4 @@
+figure[data-rehype-pretty-code-figure] > pre {
+    padding: 10px;
+    overflow: scroll;
+}

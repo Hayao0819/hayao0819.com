@@ -1,3 +1,5 @@
+import "@/style/markdown.css";
+
 import { MDXComponents } from "mdx/types";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Link } from "next-view-transitions";
@@ -53,7 +55,7 @@ export default async function Markdown({ content, basepath }: { content: string;
             }
             props = { ...props, src };
 
-            return <img {...props} className="p-4" />;
+            return <img {...props} className="py-4" />;
         },
         code: ({ children }) => <code className="text-sky-400">{children}</code>,
 
