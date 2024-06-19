@@ -318,6 +318,10 @@ const Header = memo(()=>{
 
 [/playground/learn-react/rendering/3-memo](/playground/learn-react/rendering/3-memo)
 
+まとめると、`memo`関数によるメモ化はPropsが変化しない場合において、とある子コンポーネント全体での再レンダリングを塞ぐ場合において有用なものである。
+
+レンダリングされる条件の一つである「親コンポーネントが再レンダリングされたときに子も巻き込まれる」のを防ぐ役割を持つ。
+
 ### useCallback
 
 TODO

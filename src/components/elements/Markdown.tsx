@@ -60,7 +60,7 @@ export default async function Markdown({ content, basepath }: { content: string;
 
             return <img {...props} className="py-4" />;
         },
-        code: ({ children }) => <code className="text-sky-600">{children}</code>,
+        //code: ({ children }) => <code className="text-sky-600">{children}</code>,
 
         ul: ({ children }) => <ul className="list-disc pl-8">{children}</ul>,
 
@@ -101,6 +101,7 @@ export default async function Markdown({ content, basepath }: { content: string;
                                 {
                                     theme: "one-dark-pro",
                                     keepBackground: true,
+                                    defaultLang: "plaintext",
                                 },
                             ],
                             rehypeStringify,
