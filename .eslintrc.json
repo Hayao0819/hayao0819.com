@@ -32,7 +32,8 @@
         "tailwindcss/no-custom-classname": "warn",
         "no-unsanitized/method": "warn",
         "no-unsanitized/property": "warn",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "react/display-name": "off"
     },
     "overrides": [
         {

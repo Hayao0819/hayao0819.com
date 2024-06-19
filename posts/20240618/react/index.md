@@ -131,11 +131,11 @@ const Header = () => {
 }
 ```
 
-[こちら](/playground/learn-react/rendering/no-memo/)にこのコンポーネントをデプロイしてある。
+[こちら](/playground/learn-react/rendering/0-simple-counter/)にこのコンポーネントをデプロイしてある。
 
 開発者ツールを開くと、ボタンをクリックするたびにconsoleに文字が出力されているのが確認できるはずである。
 
-## Reactの開発者ツールを用いる
+### Reactの開発者ツールを用いる
 
 ![React 開発の拡張機能のスクリーンショット](react-devtool.png)
 
@@ -147,11 +147,182 @@ React公式が開発しているブラウザ拡張機能で、レンダリング
 
 [React Developer Toolsのすすめ \#redux \- Qiita](https://qiita.com/sh-suzuki0301/items/9c2af4b28ba665cc0744)
 
-## 再レンダリングされる厳密な条件
+## 再レンダリングされる厳密な条件と、その回避方法
+
+### 再レンダリングが起こる仕組み
+
+再レンダリングは結局のところ以下の場合において行われる
+
+- stateやContextをはじめとした値の変化
+- 親コンポーネントの再レンダリング
+- カスタムフックの変化
+
+Reactの再レンダリングについての記事でよく見かけるのはpropsの変化であるがこれは間違いである(詳細は[こちら](https://qiita.com/yokoto/items/ee3ed0b3ca905b9016d3#%EF%B8%8F-%E5%86%8D%E3%83%AC%E3%83%B3%E3%83%80%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E7%90%86%E7%94%B1-props-%E3%81%AE%E5%A4%89%E6%9B%B4-%E5%A4%A7%E3%81%8D%E3%81%AA%E9%96%93%E9%81%95%E3%81%84))。
+
+カスタムフックの変化は、結局のところstateやContextの変化にたどり着く。
+
+```tsx
+const useCount = () => {
+    const [count, setCount] = useState(0)
+    const incrementCount = () => setCount(count + 1);
+    return [count, increment]
+}
+```
+
+このカスタムフックにおいては、`increment`が呼び出されることでcountが変化し、それによって`useCount`そのものが更新される。
+
+こうした場合にもフックの変化と検知され、レンダリングが実行される。
+
+また、レンダリングは当然のことながらコンポーネント単位で行われる。言い換えれば巨大なコンポーネントにおいてはたとえごく一部の変更で済む場合においても全体の再レンダリングが行われてしまうのである。
+
+すなわち、stateの変化が行われるコンポーネントを別の場所に切り出すことで影響を少なくすることができる。
+
+[React再レンダリングガイド: 一度に全て理解する \#Next\.js \- Qiita](https://qiita.com/yokoto/items/ee3ed0b3ca905b9016d3)
+
+### 具体例と回避方法
+
+```tsx
+const Header = () => {
+    console.log("Header rendered!");
+    return <p>Myheader</p>;
+};
+
+const MyApp = () => {
+    const [count, setCount] = useState(0)
+    const incrementCount = () => setCount(count + 1);
+
+    return <>
+        <header>
+            <Header />
+            <AppBar />
+        </header>
+        <main>
+            <h1>Title</h1>
+            <p>高度な機能を備えた素晴らしいカウンタ</p>
+            <p>{count}</p>
+            <button onClick={incrementCount}>Click me!</button>
+        </main>
+        <footer>
+            <p>Created by HogeHoge</p>
+            <SNSLinks />
+        </footer>
+    </>
+}
+```
+
+これは先程のカウンタアプリに少々いろいろなコンポーネントを付け加えたものである。`incrementCount`が呼び出される度にstateが変化し`MyApp`は再レンダリングされる。
+
+すると当然その子コンポーネントである`Header`や`AppBar`, `footer`の中まですべてが再レンダリングされることになる。
+
+このアプリのことをクソデカコンポーネントと呼称し、これについて再レンダリングの回避方法をいくつか紹介する。
+
+ちなみに、クソデカコンポーネントが再レンダリングを引き起こす様子は以下で確認できる。
+
+[/playground/learn-react/rendering/1-big](/playground/learn-react/rendering/1-big)
+
+### コンポーネントを分割する
+
+これは最もシンプルで簡単に理解できるパフォーマンスの改善方法である。
+
+```tsx
+const Counter = () => {
+    const [count, setCount] = useState(0);
+    const incrementCount = () => setCount(count + 1);
+    console.log("Counter rendered!");
+    return (
+        <>
+            <p>{count}</p>
+            <button onClick={incrementCount}>Click me!</button>
+        </>
+    );
+};
+
+const MyApp = () => {
+    return (
+        <>
+            <header>
+                <Header />
+                <AppBar />
+            </header>
+            <main>
+                <h1>Title</h1>
+                <p>高度な機能を備えた素晴らしいカウンタ</p>
+                <Counter />
+            </main>
+            <footer>
+                <p>Created by HogeHoge</p>
+                <SNSLinks />
+            </footer>
+        </>
+    );
+};
+```
+
+こうすることで`Counter`のみが再レンダリングされることになる。個人的にはコンポーネントのサイズは100行以内にしたい。
+
+分割した結果は以下で確認できる
+
+[/playground/learn-react/rendering/2-split](/playground/learn-react/rendering/2-split)
+
+### メモ化の概念とその手法
+
+改めて先程のクソデカコンポーネントに戻ってみる。何らかの理由でコンポーネントを分割できないという状況に遭遇することもある。
+
+というか実際の開発ではその場合のほうが多いだろう(複数の箇所でstateを使用している等が考えうる)
+
+そういう場合にはメモ化という概念がある。ある結果についてメモしておくことによって、再計算を防ぐというものである。キャッシュに近い概念である。
+
+メモ化には主に3つの方法がある。
+
+- memo
+- useCallback
+- useMemo
+
+である。まずは簡単なmemoから紹介する。
+
+### memo
+
+先程のクソデカコンポーネントでは、Headerなどの純粋なコンポーネントもstateの変化によって再レンダリングされてしまうことがあった。
+
+これを防ぐ簡単な方法が`memo`である。先のクソデカコンポーネントにおける`Header`を例にとろう。
+
+もともとのHeaderの実装は以下であった。
+
+```tsx
+const Header = () => {
+    console.log("Header rendered!");
+    return <p>Myheader</p>;
+};
+```
+
+この状態では親のコンポーネントがレンダリングされる度に、それに倣ってHeaderも再レンダリングされてしまう。
+
+これに`memo`という関数を挟んでみる。
+
+```tsx
+const Header = memo(()=>{
+    console.log("Header rendered!");
+    return <p>MyHeader</p>
+})
+```
+
+こうすることでHeaderコンポーネント全体がメモ化される。memo関数は引数に渡したコンポーネントをそのまま返すため、返り値を通常のコンポーネントと同じように利用できる。
+
+唯一の違いは「Propsに変化が無い場合は再レンダリングしない」という点である。
+
+[公式ドキュメント](https://ja.react.dev/reference/react/memo)を参照すればわかることではあるが、`memo`はデフォルトの場合において個々のPropsを`Object.is`を用いて比較する。
+
+比較した結果前回のPropsに変化がなければ、計算済みのコンポーネントをそのまま返すというわけだ。
+
+この結果については以下で確認できる。
+
+[/playground/learn-react/rendering/3-memo](/playground/learn-react/rendering/3-memo)
+
+### useCallback
 
 TODO
 
-## メモ化
+### useMemo
 
 TODO
 
@@ -161,4 +332,10 @@ TODO
 
 ## 終わりに
 
-TODO
+ここまで基本的なReactのパフォーマンスの改善の方法について紹介した。
+
+しかし、Nextをフレームワークとして用いる場合にはReact 19の最新機能を使ったり、Next側のキャッシュ機構を用いたり、更にはSSRをフル活用することで更にパフォーマンスを改善することができる。
+
+また、JotaiやRecailのような状態管理ライブラリを用いる場合にもそれぞれに即したパフォーマンスの改善方法が存在する。
+
+ハヤオの技術力不足もありそれらすべてを網羅することはできないが、まずはこれらの基本的なパフォーマンス改善を行ってみてほしい。

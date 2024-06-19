@@ -39,8 +39,11 @@ export default async function Markdown({ content, basepath }: { content: string;
             );
         },
         p: ({ children }) => (
-            // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
-            <p style={{ wordBreak: "auto-phrase" }} className="py-2 leading-6">
+            <p
+                // // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
+                // style={{ wordBreak: "auto-phrase" }}
+                className="py-2 leading-6"
+            >
                 {children}
             </p>
         ),
@@ -57,7 +60,9 @@ export default async function Markdown({ content, basepath }: { content: string;
 
             return <img {...props} className="py-4" />;
         },
-        code: ({ children }) => <code className="text-sky-400">{children}</code>,
+        code: ({ children }) => <code className="text-sky-600">{children}</code>,
+
+        ul: ({ children }) => <ul className="list-disc pl-8">{children}</ul>,
 
         //pre: ({ children, className }) => <pre className={classNames(className, "p-2")}>{children}</pre>,
 
