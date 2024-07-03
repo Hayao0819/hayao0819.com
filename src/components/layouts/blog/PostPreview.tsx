@@ -56,7 +56,9 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
                                 );
                             })}
                     </div>
-                    <p className="p-1">{utils.dateToString(postDate)}</p>
+                    <p className="p-1">
+                        <Link href={`/blog/posts/${utils.dateToString(postDate, "")}`}>{utils.dateToString(postDate)}</Link>
+                    </p>
                 </div>
 
                 <div className="m-2 flex items-center justify-between">

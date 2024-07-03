@@ -7,6 +7,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import Breadcrumbs from "@/components/elements/Breadcrumbs";
 import { BlogHeading } from "@/components/elements/Heading";
 import { ShareCurrentURL } from "@/components/elements/ShareCurrentURL";
+import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
 import { BLOG_URL_FORMAT } from "@/lib/blog/config";
 import { findPostFromUrl } from "@/lib/blog/fromurl";
 import { fetchedBlogPostList } from "@/lib/blog/post";
@@ -93,19 +94,9 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
     // handle dir page and 404
     if (postData.post === undefined) {
         if (postData.isDir === true) {
-            const posts = new PostList().fetch(path.join(process.cwd(), "posts", ...params.slug), BLOG_URL_FORMAT);
+            const posts = new PostList().fetch(path.join(process.cwd(), "posts", ...params.slug), BLOG_URL_FORMAT).getPosts();
 
-            return (
-                <>
-                    {posts.getPosts().map((p) => {
-                        return (
-                            <div key={p.url}>
-                                <Link href={`/blog/posts/${p.url}`}>{p.meta.title}</Link>
-                            </div>
-                        );
-                    })}
-                </>
-            );
+            return <PostListElement posts={posts} />;
         }
 
         return <div>404</div>;
