@@ -17,6 +17,9 @@ const Toc = ({ contentSelector, ...props }: TocProps) => {
             tocSelector: `#${id}`, // 目次の表示部分
             contentSelector: contentSelector, // 目次を生成する対象
             headingSelector: "h2, h3", // 目次に表示する見出しのタグ
+
+            scrollSmooth: false,
+            scrollSmoothDuration: 0,
         });
 
         // コンポーネントがアンマウントされたときにTocbotを破棄
