@@ -2,10 +2,9 @@
 
 import classNames from "clsx";
 import { motion, Variants } from "framer-motion";
-import { useAtom } from "jotai";
 import { useEffect } from "react";
 
-import { drawerAtom } from "@/lib/atom";
+import useDrawerAtom from "@/hooks/useDrawerAtom";
 
 export interface DrawerProps {
     open?: boolean;
@@ -14,7 +13,7 @@ export interface DrawerProps {
 }
 
 export default function Drawer(props: DrawerProps) {
-    const [open, setOpen] = useAtom(drawerAtom);
+    const [open, setOpen] = useDrawerAtom();
 
     // Toggle open state
     const toggle = () => {

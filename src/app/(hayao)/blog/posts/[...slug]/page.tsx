@@ -7,7 +7,9 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import Breadcrumbs from "@/components/elements/Breadcrumbs";
 import { BlogHeading } from "@/components/elements/Heading";
 import { ShareCurrentURL } from "@/components/elements/ShareCurrentURL";
+import Toc from "@/components/elements/Toc";
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
+import useNoColonId from "@/hooks/useNoColonId";
 import { BLOG_URL_FORMAT } from "@/lib/blog/config";
 import { findPostFromUrl } from "@/lib/blog/fromurl";
 import { fetchedBlogPostList } from "@/lib/blog/post";
@@ -88,6 +90,8 @@ const MostRecentPostPreview = ({ post, type }: { post: PostData | null; type: "b
 };
 
 export default function PostPage({ params }: { params: { slug: string[] } }) {
+    const contentId = useNoColonId();
+
     // get post data
     const postData = findPostFromUrl(params.slug.join("/"));
 
@@ -125,7 +129,10 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
                 </BlogHeading>
                 <div className="text-center">{dateToString(postDate)}</div>
             </div>
-            <div className="grow">{postData.parsed}</div>
+            <Toc contentSelector={`#${contentId}`} className="border-y border-accent p-4" />
+            <div className="grow" id={contentId}>
+                {postData.parsed}
+            </div>
 
             <div className="mt-4 h-fit border-t-2 border-secondary/15 pt-4">
                 <ShareCurrentURL text={postData.post.meta.title} />

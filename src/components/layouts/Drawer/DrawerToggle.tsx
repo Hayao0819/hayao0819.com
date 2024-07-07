@@ -1,12 +1,11 @@
 "use client";
 
-import { useAtom } from "jotai";
 import { FaBars } from "react-icons/fa6";
 
-import { drawerAtom } from "@/lib/atom";
+import useDrawerAtom from "@/hooks/useDrawerAtom";
 
 export default function DrawerToggle() {
-    const [open, setOpen] = useAtom(drawerAtom);
+    const [open, setOpen] = useDrawerAtom();
 
     const toggle = () => {
         console.log("toggle");
