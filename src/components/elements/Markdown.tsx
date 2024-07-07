@@ -3,54 +3,78 @@ import "@/style/markdown.css";
 import { MDXComponents } from "mdx/types";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Link } from "next-view-transitions";
-import { ReactNode } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
+
+import { ComponentPropsWithoutRefAndClassName } from "@/lib/type";
 
 import { BlogHeading as Heading } from "./Heading";
 import Tweet from "./Tweet";
 
 export default async function Markdown({ content, basepath }: { content: string; basepath: string }) {
+    // PropsにidがないとrehypeSlugが動かない
+    // https://stackoverflow.com/questions/78294682/rehype-slug-is-not-adding-ids-to-headings
     const components: MDXComponents = {
-        h1: ({ children }) => {
-            return <Heading level={1}>{children}</Heading>;
+        h1: ({ children, id }) => {
+            return (
+                <Heading id={id} level={1}>
+                    {children}
+                </Heading>
+            );
         },
 
-        h2: ({ children }) => {
-            return <Heading level={2}>{children}</Heading>;
+        h2: ({ children, id }) => {
+            return (
+                <Heading id={id} level={2}>
+                    {children}
+                </Heading>
+            );
         },
-        h3: ({ children }) => {
-            return <Heading level={3}>{children}</Heading>;
+        h3: ({ children, id }) => {
+            return (
+                <Heading id={id} level={3}>
+                    {children}
+                </Heading>
+            );
         },
-        h4: ({ children }) => {
-            return <Heading level={4}>{children}</Heading>;
+        h4: ({ children, id }) => {
+            return (
+                <Heading id={id} level={4}>
+                    {children}
+                </Heading>
+            );
         },
-        h5: ({ children }) => {
-            return <Heading level={5}>{children}</Heading>;
+        h5: ({ children, id }) => {
+            return (
+                <Heading id={id} level={5}>
+                    {children}
+                </Heading>
+            );
         },
-        a: ({ href, children }) => {
+        a: ({ href, children, id }) => {
             if (!href) return <span>{children}</span>;
             return (
-                <Link href={href} className=" text-blue-900">
+                <Link href={href} id={id} className=" text-blue-900">
                     {children}
                 </Link>
             );
         },
-        p: ({ children }) => (
+        p: ({ children, id }) => (
             <p
                 // // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
                 // style={{ wordBreak: "auto-phrase" }}
                 className="py-2 leading-6"
+                id={id}
             >
                 {children}
             </p>
         ),
 
-        Tweet: ({ id }: { id: string }) => {
-            return <Tweet id={id} />;
-        },
+        Tweet: Tweet,
         img: (props) => {
             let src = props.src;
             if (!src?.startsWith("http")) {
@@ -62,30 +86,35 @@ export default async function Markdown({ content, basepath }: { content: string;
         },
         //code: ({ children }) => <code className="text-sky-600">{children}</code>,
 
-        ul: ({ children }) => <ul className="list-disc pl-8">{children}</ul>,
+        ul: ({ children, id }) => (
+            <ul id={id} className="list-disc pl-8">
+                {children}
+            </ul>
+        ),
 
         //pre: ({ children, className }) => <pre className={classNames(className, "p-2")}>{children}</pre>,
 
-        Flex: ({ children }: { children: ReactNode }) => {
-            return <div className="mx-auto flex flex-wrap justify-center">{children}</div>;
+        Flex: ({ children, id, ...props }: ComponentPropsWithoutRefAndClassName<"div">) => {
+            return (
+                <div id={id} {...props} className="mx-auto flex flex-wrap justify-center">
+                    {children}
+                </div>
+            );
         },
 
-        Grid: ({ children, col }: { children: ReactNode; col: number }) => {
+        Grid: ({ children, col, id, ...props }: Omit<ComponentPropsWithoutRef<"div">, "className"> & { col: number }) => {
             return (
-                <div className="mx-auto grid justify-center" style={{ gridTemplateColumns: `repeat(${col}, minmax(0, 1fr))` }}>
+                <div
+                    className="mx-auto grid justify-center"
+                    id={id}
+                    style={{ gridTemplateColumns: `repeat(${col}, minmax(0, 1fr))` }}
+                    {...props}
+                >
                     {children}
                 </div>
             );
         },
     };
-
-    /* だるいエラーについて
-
-    https://github.com/hashicorp/next-mdx-remote/issues/403
-
-    現在next-mdx-remoteはremarkGfm 4.0.0をサポートしていないため、3.0.1を使う必要がある
-    
-    */
 
     return (
         <div>
@@ -95,6 +124,12 @@ export default async function Markdown({ content, basepath }: { content: string;
                     mdxOptions: {
                         remarkPlugins: [remarkGfm],
                         rehypePlugins: [
+                            [
+                                rehypeSlug,
+                                {
+                                    prefix: "",
+                                },
+                            ],
                             rehypeCodeTitles,
                             [
                                 rehypePrettyCode,
