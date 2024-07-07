@@ -2,7 +2,6 @@ import "@/style/global.css";
 import "@/style/prism.css";
 
 import { Metadata as NextMetadata } from "next";
-import { ViewTransitions } from "next-view-transitions";
 import React, { ReactNode, Suspense } from "react";
 
 import GoogleAnalytics from "@/components/elements/GoogleAnalytics";
@@ -19,7 +18,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 </Suspense>
             </head>
             <body className="overflow-x-hidden overscroll-y-none">
-                <ViewTransitions>{children}</ViewTransitions>
+                {/* ページ内リンクで正常に動作しない */}
+                {/*<ViewTransitions>{children}</ViewTransitions>*/}
+                {children}
             </body>
         </html>
     );

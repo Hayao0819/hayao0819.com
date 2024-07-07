@@ -3,13 +3,19 @@
 import classNames from "clsx";
 import { motion } from "framer-motion";
 import { default as NextLink } from "next/link";
-export default function Link(props: { children: React.ReactNode; href: string }) {
-    const cn = classNames("link");
+import { Link as NextTransitionsLink } from "next-view-transitions";
+import { ComponentPropsWithoutRef } from "react";
 
-    return <NextLink {...props} className={cn} />;
+//type LinkProps = ComponentPropsWithoutRefAndClassName<"a">;
+type NextLinkProps = ComponentPropsWithoutRef<typeof NextLink>;
+
+export default function Link(props: NextLinkProps) {
+    const cn = classNames("link", props.className);
+
+    return <NextTransitionsLink {...props} className={cn} />;
 }
 
-export function AnimatedLink(props: { children: React.ReactNode; href: string }) {
+export function AnimatedLink(props: NextLinkProps) {
     const underlineVariants = {
         hidden: { width: 0 },
         visible: { width: "100%" },
@@ -17,7 +23,7 @@ export function AnimatedLink(props: { children: React.ReactNode; href: string })
 
     return (
         <span className="flex">
-            <Link {...props} />
+            <NextLink {...props} />
             <motion.div
                 initial="hidden"
                 whileHover="visible"

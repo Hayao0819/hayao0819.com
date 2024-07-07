@@ -2,7 +2,6 @@ import "@/style/markdown.css";
 
 import { MDXComponents } from "mdx/types";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { Link } from "next-view-transitions";
 import { ComponentPropsWithoutRef } from "react";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -13,6 +12,7 @@ import remarkGfm from "remark-gfm";
 import { ComponentPropsWithoutRefAndClassName } from "@/lib/type";
 
 import { BlogHeading as Heading } from "./Heading";
+import Link from "./Link";
 import Tweet from "./Tweet";
 
 export default async function Markdown({ content, basepath }: { content: string; basepath: string }) {

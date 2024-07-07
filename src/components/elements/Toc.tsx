@@ -1,9 +1,11 @@
 "use client";
 
-import { ComponentPropsWithoutRef, useEffect } from "react";
+import { ComponentPropsWithoutRef, useEffect, useState } from "react";
 import * as tocbot from "tocbot";
 
 import useNoColonId from "@/hooks/useNoColonId";
+
+import Link from "./Link";
 
 interface TocProps extends ComponentPropsWithoutRef<"div"> {
     contentSelector: string;
@@ -17,9 +19,6 @@ const Toc = ({ contentSelector, ...props }: TocProps) => {
             tocSelector: `#${id}`, // 目次の表示部分
             contentSelector: contentSelector, // 目次を生成する対象
             headingSelector: "h2, h3", // 目次に表示する見出しのタグ
-
-            scrollSmooth: false,
-            scrollSmoothDuration: 0,
         });
 
         // コンポーネントがアンマウントされたときにTocbotを破棄
@@ -27,6 +26,23 @@ const Toc = ({ contentSelector, ...props }: TocProps) => {
     }, []);
 
     return <div id={id} {...props}></div>;
+};
+
+export const TocWithoutTocBot = ({ contentSelector, ...props }: TocProps) => {
+    const [htmlIds, setHtmlIds] = useState<Element[]>([]);
+    useEffect(() => {
+        setHtmlIds(Array.from(document.querySelector(contentSelector)?.querySelectorAll("h2, h3") || []));
+    }, []);
+
+    return (
+        <div {...props}>
+            {htmlIds.map((e) => (
+                <li key={e.id}>
+                    <Link href={`#${e.id}`}>{e.innerHTML}</Link>
+                </li>
+            ))}
+        </div>
+    );
 };
 
 export default Toc;
