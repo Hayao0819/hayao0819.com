@@ -1,5 +1,6 @@
 "use client";
 
+import { Link as ViewTransitionLink } from "@hayao/next-view-transitions";
 import classNames from "clsx";
 import { motion } from "framer-motion";
 import { default as NextLink } from "next/link";
@@ -15,7 +16,7 @@ export default function DaisyLink(props: NextLinkProps) {
 }
 
 export const Link = (props: NextLinkProps) => {
-    return <NextLink {...props} />;
+    return <ViewTransitionLink {...props} />;
 };
 
 export function AnimatedLink(props: NextLinkProps) {

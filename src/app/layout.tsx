@@ -1,6 +1,7 @@
 import "@/style/global.css";
 import "@/style/prism.css";
 
+import { ViewTransitions } from "@hayao/next-view-transitions";
 import { Metadata as NextMetadata } from "next";
 import React, { ReactNode, Suspense } from "react";
 
@@ -18,9 +19,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 </Suspense>
             </head>
             <body className="overflow-x-hidden overscroll-y-none">
-                {/* ページ内リンクで正常に動作しない */}
-                {/*<ViewTransitions>{children}</ViewTransitions>*/}
-                {children}
+                <ViewTransitions>{children}</ViewTransitions>
             </body>
         </html>
     );
