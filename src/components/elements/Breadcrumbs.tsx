@@ -2,7 +2,8 @@
 
 import classNames from "clsx";
 import { usePathname } from "next/navigation";
-import { Link } from "next-view-transitions";
+
+import { Link } from "@/components/elements/Link";
 
 export default function Breadcrumbs({ className, start = 0 }: { className?: string; start?: number }) {
     const pathName = usePathname()

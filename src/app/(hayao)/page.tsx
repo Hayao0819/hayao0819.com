@@ -1,4 +1,4 @@
-import { Link } from "next-view-transitions";
+import { Link } from "@/components/elements/Link";
 
 import Links from "./links";
 

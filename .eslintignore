@@ -5,4 +5,5 @@ pnpm-lock.yaml
 Dockerfile
 package.json
 *.md
-
+out
+tools/assets/template.mdx

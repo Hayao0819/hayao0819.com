@@ -46,6 +46,12 @@
                 "no-unused-vars": "off",
                 "@typescript-eslint/no-unused-vars": "error"
             }
+        },
+        {
+            "files": ["*.mdx"],
+            "rules": {
+                "react/jsx-no-undef": "off"
+            }
         }
     ]
 }

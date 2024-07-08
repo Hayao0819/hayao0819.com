@@ -18,4 +18,3 @@ https://github.com/Hayao0819/nm-vpngate
 NetworkManagerを採用しているディストリビューションなら何でも動作します。
 
 Bash 5で書かれているのでコンパイルも何もいらないです。
-

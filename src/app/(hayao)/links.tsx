@@ -1,9 +1,10 @@
 "use client";
 
 import classNames from "clsx";
-import { Link } from "next-view-transitions";
 import { useRef, useState } from "react";
 import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
+
+import { Link } from "@/components/elements/Link";
 
 type LinkStatus = {
     status: "default" | WebSites;

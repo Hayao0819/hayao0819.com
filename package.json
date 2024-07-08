@@ -15,7 +15,6 @@
         "build": "pnpm run build:blogtool && pnpm run build:next",
         "build:blogtool": "go build blogtool.go ",
         "build:next": "pnpm next build",
-        "lint": "pnpm next lint",
         "fix": "prettier --write . && eslint --fix .",
         "blogtool": "./blogtool",
         "newpost": "pnpm run blogtool newpost"
@@ -27,7 +26,6 @@
         "jotai": "^2.8.3",
         "next": "14.2.4",
         "next-mdx-remote": "5.0.0",
-        "next-view-transitions": "^0.2.0",
         "react": "18.3.1",
         "react-daisyui": "^5.0.0",
         "react-dom": "18.3.1",

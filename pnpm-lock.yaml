@@ -23,9 +23,6 @@ dependencies:
   next-mdx-remote:
     specifier: 5.0.0
     version: 5.0.0(@types/react@18.3.3)(react@18.3.1)
-  next-view-transitions:
-    specifier: ^0.2.0
-    version: 0.2.0(next@14.2.4)(react-dom@18.3.1)(react@18.3.1)
   react:
     specifier: 18.3.1
     version: 18.3.1
@@ -4766,18 +4763,6 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - supports-color
-    dev: false
-
-  /next-view-transitions@0.2.0(next@14.2.4)(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-dFxevMIJy8irIstytJivLEtgYT4IJ7Gy7fnDCKHJtNZAsuQgmewYcdA/o/mRkMd1zwxTfyGALiOlZYxvtsn5jg==}
-    peerDependencies:
-      next: ^14.0.0
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      next: 14.2.4(react-dom@18.3.1)(react@18.3.1)(sass@1.77.6)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
     dev: false
 
   /next@14.2.4(react-dom@18.3.1)(react@18.3.1)(sass@1.77.6):

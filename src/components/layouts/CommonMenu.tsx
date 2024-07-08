@@ -1,9 +1,10 @@
 "use client";
 
-import { Link } from "next-view-transitions";
 import { useRef, useState } from "react";
 import { Menu } from "react-daisyui";
 import { useOnClickOutside } from "usehooks-ts";
+
+import { Link } from "@/components/elements/Link";
 
 export interface MenusCommonProps {
     onMenuItemClick?: () => void;

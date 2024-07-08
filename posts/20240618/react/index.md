@@ -37,7 +37,7 @@ const sum = (a: number, b: number) => a + b;
 Reactの文脈においては、以下のようなコンポーネントは純粋であると言える。
 
 ```tsx
-const Hello = () => <>Hello World</>
+const Hello = () => <>Hello World</>;
 ```
 
 一方で、以下のようなコードは常に同じ結果が返ってくるとは限らない。
@@ -46,8 +46,8 @@ const Hello = () => <>Hello World</>
 let hoge = 0;
 const count = (add: number) => {
     hoge += add;
-    return hoge
-}
+    return hoge;
+};
 ```
 
 この関数は1回目の実行と2回目の実行で返ってくる値が異なる。これは関数において`hoge`というグローバル変数を書き換えているためである。
@@ -85,7 +85,7 @@ Reactではコンポーネントの値が変更されると、その変更をDOM
 以下に具体例を示す。
 
 ```tsx
-const Header = () => <p>ボタンをクリックすると数字が増えるよ！</p>
+const Header = () => <p>ボタンをクリックすると数字が増えるよ！</p>;
 
 const Counter = () => {
     const [count, setCount] = useState<number>(0);
@@ -126,9 +126,9 @@ Counterコンポーネントにおいて、ボタンがクリックされる(`in
 
 ```tsx
 const Header = () => {
-    console.log("rendering Header")
-    return <p>ボタンをクリックすると数字が増えるよ！</p>
-}
+    console.log("rendering Header");
+    return <p>ボタンをクリックすると数字が増えるよ！</p>;
+};
 ```
 
 [こちら](/playground/learn-react/rendering/0-simple-counter/)にこのコンポーネントをデプロイしてある。
@@ -153,9 +153,9 @@ React公式が開発しているブラウザ拡張機能で、レンダリング
 
 再レンダリングは結局のところ以下の場合において行われる
 
-- stateやContextをはじめとした値の変化
-- 親コンポーネントの再レンダリング
-- カスタムフックの変化
+-   stateやContextをはじめとした値の変化
+-   親コンポーネントの再レンダリング
+-   カスタムフックの変化
 
 Reactの再レンダリングについての記事でよく見かけるのはpropsの変化であるがこれは間違いである(詳細は[こちら](https://qiita.com/yokoto/items/ee3ed0b3ca905b9016d3#%EF%B8%8F-%E5%86%8D%E3%83%AC%E3%83%B3%E3%83%80%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E7%90%86%E7%94%B1-props-%E3%81%AE%E5%A4%89%E6%9B%B4-%E5%A4%A7%E3%81%8D%E3%81%AA%E9%96%93%E9%81%95%E3%81%84))。
 
@@ -163,10 +163,10 @@ Reactの再レンダリングについての記事でよく見かけるのはpro
 
 ```tsx
 const useCount = () => {
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0);
     const incrementCount = () => setCount(count + 1);
-    return [count, increment]
-}
+    return [count, increment];
+};
 ```
 
 このカスタムフックにおいては、`increment`が呼び出されることでcountが変化し、それによって`useCount`そのものが更新される。
@@ -188,26 +188,28 @@ const Header = () => {
 };
 
 const MyApp = () => {
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0);
     const incrementCount = () => setCount(count + 1);
 
-    return <>
-        <header>
-            <Header />
-            <AppBar />
-        </header>
-        <main>
-            <h1>Title</h1>
-            <p>高度な機能を備えた素晴らしいカウンタ</p>
-            <p>{count}</p>
-            <button onClick={incrementCount}>Click me!</button>
-        </main>
-        <footer>
-            <p>Created by HogeHoge</p>
-            <SNSLinks />
-        </footer>
-    </>
-}
+    return (
+        <>
+            <header>
+                <Header />
+                <AppBar />
+            </header>
+            <main>
+                <h1>Title</h1>
+                <p>高度な機能を備えた素晴らしいカウンタ</p>
+                <p>{count}</p>
+                <button onClick={incrementCount}>Click me!</button>
+            </main>
+            <footer>
+                <p>Created by HogeHoge</p>
+                <SNSLinks />
+            </footer>
+        </>
+    );
+};
 ```
 
 これは先程のカウンタアプリに少々いろいろなコンポーネントを付け加えたものである。`incrementCount`が呼び出される度にstateが変化し`MyApp`は再レンダリングされる。
@@ -274,9 +276,9 @@ const MyApp = () => {
 
 メモ化には主に3つの方法がある。
 
-- memo
-- useCallback
-- useMemo
+-   memo
+-   useCallback
+-   useMemo
 
 である。まずは簡単なmemoから紹介する。
 
@@ -300,10 +302,10 @@ const Header = () => {
 これに`memo`という関数を挟んでみる。
 
 ```tsx
-const Header = memo(()=>{
+const Header = memo(() => {
     console.log("Header rendered!");
-    return <p>MyHeader</p>
-})
+    return <p>MyHeader</p>;
+});
 ```
 
 こうすることでHeaderコンポーネント全体がメモ化される。memo関数は引数に渡したコンポーネントをそのまま返すため、返り値を通常のコンポーネントと同じように利用できる。

@@ -1,11 +1,11 @@
 import classNames from "clsx";
 import { Metadata } from "next";
-import { Link } from "next-view-transitions";
 import path from "path";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 import Breadcrumbs from "@/components/elements/Breadcrumbs";
 import { BlogHeading } from "@/components/elements/Heading";
+import { Link } from "@/components/elements/Link";
 import { ShareCurrentURL } from "@/components/elements/ShareCurrentURL";
 import Toc from "@/components/elements/Toc";
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";

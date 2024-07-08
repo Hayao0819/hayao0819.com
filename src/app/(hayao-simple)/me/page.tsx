@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { Link } from "next-view-transitions";
 
 import { Heading } from "@/components/elements/Heading";
+import { Link } from "@/components/elements/Link";
 import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 

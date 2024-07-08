@@ -1,5 +1,4 @@
-import { Link } from "next-view-transitions";
-
+import { Link } from "@/components/elements/Link";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { findCategoryInfo, getAllCategories } from "@/lib/blog/categories";
 

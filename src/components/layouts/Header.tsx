@@ -1,7 +1,8 @@
 "use client";
 
-import { Link } from "next-view-transitions";
 import { Navbar } from "react-daisyui";
+
+import { Link } from "@/components/elements/Link";
 
 import { MainManus, OtherLinks } from "./CommonMenu";
 import * as Drawer from "./Drawer";

@@ -1,6 +1,6 @@
 import classNames from "clsx";
-import { Link } from "next-view-transitions";
 
+import { Link } from "@/components/elements/Link";
 import { PostData } from "@/lib/markdown/post";
 
 import PostPreview from "./PostPreview";

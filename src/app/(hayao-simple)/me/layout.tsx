@@ -1,6 +1,7 @@
-import { Link } from "next-view-transitions";
 import { ReactNode } from "react";
 import { FaCircle } from "react-icons/fa6";
+
+import { Link } from "@/components/elements/Link";
 
 export default function MeLayout(props: { children: ReactNode }) {
     return (

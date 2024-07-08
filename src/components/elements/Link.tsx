@@ -3,17 +3,20 @@
 import classNames from "clsx";
 import { motion } from "framer-motion";
 import { default as NextLink } from "next/link";
-import { Link as NextTransitionsLink } from "next-view-transitions";
 import { ComponentPropsWithoutRef } from "react";
 
 //type LinkProps = ComponentPropsWithoutRefAndClassName<"a">;
 type NextLinkProps = ComponentPropsWithoutRef<typeof NextLink>;
 
-export default function Link(props: NextLinkProps) {
+export default function DaisyLink(props: NextLinkProps) {
     const cn = classNames("link", props.className);
 
-    return <NextTransitionsLink {...props} className={cn} />;
+    return <Link {...props} className={cn} />;
 }
+
+export const Link = (props: NextLinkProps) => {
+    return <NextLink {...props} />;
+};
 
 export function AnimatedLink(props: NextLinkProps) {
     const underlineVariants = {

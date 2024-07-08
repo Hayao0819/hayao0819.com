@@ -1,7 +1,7 @@
 import classNames from "clsx";
-import { Link } from "next-view-transitions";
 
 import { Heading } from "@/components/elements/Heading";
+import { Link } from "@/components/elements/Link";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { fetchedBlogPostList as postlist } from "@/lib/blog/post";
 

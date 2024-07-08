@@ -29,7 +29,7 @@ span[data-rehype-pretty-code-figure] {
         @apply px-1 mx-1;
     }
 
-    code[data-language="plaintext"]{
+    code[data-language="plaintext"] {
         @apply !text-sky-600;
         @apply !bg-inherit;
     }

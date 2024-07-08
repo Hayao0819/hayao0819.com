@@ -1,5 +1,4 @@
 import classNames from "clsx";
-import { Link } from "next-view-transitions";
 import React, { FC, ReactNode } from "react";
 import {
     SiArchlinux,
@@ -17,6 +16,7 @@ import {
 } from "react-icons/si";
 
 import { Heading } from "@/components/elements/Heading";
+import { Link } from "@/components/elements/Link";
 import MyLink from "@/components/elements/Link";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { genMetaData } from "@/lib/meta";

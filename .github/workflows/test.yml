@@ -15,7 +15,7 @@ jobs:
                   node-version: 20
             - uses: actions/setup-go@v5
               with:
-                go-version: '1.22'
+                  go-version: "1.22"
             - run: npm install -g pnpm
 
             - name: Install dependencies

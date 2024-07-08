@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { Link } from "next-view-transitions";
 
+import { Link } from "@/components/elements/Link";
 import { PostData } from "@/lib/markdown/post";
 import * as utils from "@/lib/utils";
 
