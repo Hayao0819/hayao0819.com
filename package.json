@@ -15,7 +15,8 @@
         "build": "pnpm run build:blogtool && pnpm run build:next",
         "build:blogtool": "go build blogtool.go ",
         "build:next": "pnpm next build",
-        "fix": "prettier --write . && eslint --fix .",
+        "fix": "pnpm next lint --fix",
+        "lint": "pnpm next lint",
         "blogtool": "./blogtool",
         "newpost": "pnpm run blogtool newpost"
     },
