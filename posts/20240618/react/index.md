@@ -4,6 +4,8 @@ description: ""
 date: 2024-06-18T12:05:44.371936+09:00
 categories:
     - 技術系
+tags:
+    - React
 draft: false
 publish: true
 ---
@@ -153,9 +155,9 @@ React公式が開発しているブラウザ拡張機能で、レンダリング
 
 再レンダリングは結局のところ以下の場合において行われる
 
--   stateやContextをはじめとした値の変化
--   親コンポーネントの再レンダリング
--   カスタムフックの変化
+- stateやContextをはじめとした値の変化
+- 親コンポーネントの再レンダリング
+- カスタムフックの変化
 
 Reactの再レンダリングについての記事でよく見かけるのはpropsの変化であるがこれは間違いである(詳細は[こちら](https://qiita.com/yokoto/items/ee3ed0b3ca905b9016d3#%EF%B8%8F-%E5%86%8D%E3%83%AC%E3%83%B3%E3%83%80%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E7%90%86%E7%94%B1-props-%E3%81%AE%E5%A4%89%E6%9B%B4-%E5%A4%A7%E3%81%8D%E3%81%AA%E9%96%93%E9%81%95%E3%81%84))。
 
@@ -276,9 +278,9 @@ const MyApp = () => {
 
 メモ化には主に3つの方法がある。
 
--   memo
--   useCallback
--   useMemo
+- memo
+- useCallback
+- useMemo
 
 である。まずは簡単なmemoから紹介する。
 

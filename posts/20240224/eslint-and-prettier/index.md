@@ -3,6 +3,11 @@ title: 個人的ESLintとPrettierの最適解2024
 date: 2024-02-24T02:25:55.319088+09:00
 categories:
     - 技術系
+tags:
+    - ESLint
+    - Prettier
+    - React
+    - TypeScript
 draft: false
 publish: true
 ---
@@ -47,8 +52,8 @@ pluginsは列挙されたプラグインのルールを読み込み、ESLintで�
 
 ### Prettierと連携する上で必ず使うプラグイン
 
--   `eslint-config-prettier` ESLintに存在するスタイリングに関する設定を無効化してくれます
--   `eslint-plugin-prettier` ESLint経由でPrettierを実行してくれます
+- `eslint-config-prettier` ESLintに存在するスタイリングに関する設定を無効化してくれます
+- `eslint-plugin-prettier` ESLint経由でPrettierを実行してくれます
 
 Prettier公式より、`prettier-eslint`なるものが公開されていますが、これはPretteir経由でESLintを実行してくれるものです。
 
@@ -60,8 +65,8 @@ ESLintは名前の通りECMA Script用のリンタなのでデフォルトでは
 
 そこで、TypeScript専用のプラグインとルールを設定することでTSでESLintを動かします。
 
--   `@typescript-eslint/eslint-plugin` TS用のルールを追加してくれます
--   `@typescript-eslint/parser` TSの構文を読み込むためのパーサー
+- `@typescript-eslint/eslint-plugin` TS用のルールを追加してくれます
+- `@typescript-eslint/parser` TSの構文を読み込むためのパーサー
 
 ### Config
 
