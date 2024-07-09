@@ -12,13 +12,13 @@ export const metadata: NextMetadata = genMetaData();
 
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
-        <html className="overflow-x-scroll md:overflow-x-auto" lang="ja">
+        <html className="overflow-x-scroll scroll-smooth md:overflow-x-auto" lang="ja">
             <head>
                 <Suspense>
                     <GoogleAnalytics />
                 </Suspense>
             </head>
-            <body className="overflow-x-hidden overscroll-y-none">
+            <body className=" overscroll-y-none">
                 <ViewTransitions>{children}</ViewTransitions>
             </body>
         </html>

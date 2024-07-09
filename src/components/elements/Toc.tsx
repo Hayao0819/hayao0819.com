@@ -1,48 +1,103 @@
 "use client";
 
-import { ComponentPropsWithoutRef, useEffect, useState } from "react";
-import * as tocbot from "tocbot";
-
-import useNoColonId from "@/hooks/useNoColonId";
-
-import Link from "./Link";
+import clsx from "clsx";
+import { default as NextLink } from "next/link";
+import { ComponentPropsWithoutRef, memo, useEffect, useState } from "react";
 
 interface TocProps extends ComponentPropsWithoutRef<"div"> {
     contentSelector: string;
 }
 
-const Toc = ({ contentSelector, ...props }: TocProps) => {
-    const id = useNoColonId();
-    useEffect(() => {
-        // Tocbotの初期化
-        tocbot.init({
-            tocSelector: `#${id}`, // 目次の表示部分
-            contentSelector: contentSelector, // 目次を生成する対象
-            headingSelector: "h2, h3", // 目次に表示する見出しのタグ
-        });
+type HeadingList = {
+    id: string;
+    text: string;
+    level: number;
+}[];
 
-        // コンポーネントがアンマウントされたときにTocbotを破棄
-        return () => tocbot.destroy();
-    }, []);
-
-    return <div id={id} {...props}></div>;
+type HeadingTree = {
+    id: string;
+    text: string;
+    level: number;
+    children: HeadingTree[];
 };
 
-export const TocWithoutTocBot = ({ contentSelector, ...props }: TocProps) => {
-    const [htmlIds, setHtmlIds] = useState<Element[]>([]);
-    useEffect(() => {
-        setHtmlIds(Array.from(document.querySelector(contentSelector)?.querySelectorAll("h2, h3") || []));
-    }, []);
+const genHeadingTree = (list: HeadingList) => {
+    const tree: HeadingTree[] = [];
+    for (const item of list) {
+        // 木が空の場合
+        if (tree.length === 0) {
+            tree.push({ ...item, children: [] });
+            continue;
+        }
 
+        const current = tree[tree.length - 1];
+        // 同じレベルの場合
+        if (current.level === item.level) {
+            tree.push({ ...item, children: [] });
+            continue;
+        }
+
+        // 深い階層の場合
+        if (current.level < item.level) {
+            current.children.push({ ...item, children: [] });
+            continue;
+        }
+    }
+
+    return tree;
+};
+
+const elementsToHeadingList = (elements: Element[]): HeadingList =>
+    elements.map((e) => ({
+        id: e.id,
+        text: e.innerHTML,
+        level: parseInt(e.tagName.slice(1)),
+    }));
+
+const elementsToHeadingTree = (elements: Element[]): HeadingTree[] => genHeadingTree(elementsToHeadingList(elements));
+
+export const RenderHeadingTree = ({ tree }: { tree: HeadingTree[] }) => {
+    const levelClassNames: { [key: number]: string } = {
+        1: "",
+        2: "",
+        3: "ml-4",
+    };
     return (
-        <div {...props}>
-            {htmlIds.map((e) => (
-                <li key={e.id}>
-                    <Link href={`#${e.id}`}>{e.innerHTML}</Link>
+        <ul>
+            {tree.map((e) => (
+                <li key={e.id} className={levelClassNames[e.level]}>
+                    <NextLink href={`#${e.id}`} scroll={true}>
+                        {e.text}
+                    </NextLink>
+                    <RenderHeadingTree tree={e.children} />
                 </li>
             ))}
+        </ul>
+    );
+};
+
+export const useHeadingTree = (contentSelector: string) => {
+    const [tree, setTree] = useState<HeadingTree[]>([]);
+
+    useEffect(() => {
+        const content = document.querySelector(contentSelector);
+        if (!content) return;
+
+        const headingTree = elementsToHeadingTree(Array.from(content.querySelectorAll("h2, h3, h4, h5, h6")));
+        setTree(headingTree);
+    }, []);
+
+    return tree;
+};
+
+export const Toc = ({ contentSelector, ...props }: TocProps) => {
+    const tree = useHeadingTree(contentSelector);
+
+    return (
+        <div {...props} className={clsx(props.className, { hidden: tree.length < 1 })}>
+            <RenderHeadingTree tree={tree} />
         </div>
     );
 };
 
-export default Toc;
+export default memo(Toc);

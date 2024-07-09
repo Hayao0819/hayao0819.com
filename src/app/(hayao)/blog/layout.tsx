@@ -46,7 +46,9 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
                         {tags.map((c) => {
                             return (
                                 <li key={c} role="link" className="cursor-pointer p-2 text-sm hover:underline">
-                                    <Link href={`/blog/tag/${c}`}>{c}</Link>
+                                    <Link href={`/blog/tag/${c}`} className="block size-full">
+                                        {c}
+                                    </Link>
                                 </li>
                             );
                         })}

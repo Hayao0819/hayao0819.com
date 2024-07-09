@@ -37,6 +37,7 @@
         "rehype-stringify": "^10.0.0",
         "sass": "^1.77.6",
         "shiki": "^1.6.4",
+        "tailwind-children": "^0.5.0",
         "tocbot": "^4.28.2",
         "typescript": "5.4.5",
         "usehooks-ts": "^3.1.0"

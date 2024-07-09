@@ -7,8 +7,8 @@ import Breadcrumbs from "@/components/elements/Breadcrumbs";
 import { BlogHeading } from "@/components/elements/Heading";
 import { Link } from "@/components/elements/Link";
 import { ShareCurrentURL } from "@/components/elements/ShareCurrentURL";
-import Toc from "@/components/elements/Toc";
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
+import Toc from "@/components/layouts/blog/Toc";
 import useNoColonId from "@/hooks/useNoColonId";
 import { BLOG_URL_FORMAT } from "@/lib/blog/config";
 import { findPostFromUrl } from "@/lib/blog/fromurl";
@@ -129,7 +129,9 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
                 </BlogHeading>
                 <div className="text-center">{dateToString(postDate)}</div>
             </div>
-            <Toc contentSelector={`#${contentId}`} className="border-y border-accent p-4" />
+            <div className="border-b-2 border-secondary/15">
+                <Toc contentSelector={`#${contentId}`} />
+            </div>
             <div className="grow" id={contentId}>
                 {postData.parsed}
             </div>
