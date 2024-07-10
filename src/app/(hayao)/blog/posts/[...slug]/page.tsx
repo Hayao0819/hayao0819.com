@@ -138,7 +138,7 @@ export default function PostPage({ params }: { params: { slug: string[] } }) {
 
             <div className="mt-4 h-fit border-t-2 border-secondary/15 pt-4">
                 <ShareCurrentURL text={postData.post.meta.title} />
-                <div className="mx-auto size-full items-stretch justify-around py-3 text-sm  md:grid md:grid-cols-2">
+                <div className="items-stretch justify-around py-3 text-sm  md:grid md:grid-cols-2">
                     <MostRecentPostPreview post={mostRecentUpdate.before} type="before" />
                     <MostRecentPostPreview post={mostRecentUpdate.after} type="after" />
                 </div>

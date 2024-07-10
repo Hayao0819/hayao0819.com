@@ -14,6 +14,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html className="overflow-x-scroll scroll-smooth md:overflow-x-auto" lang="ja">
             <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
                 <Suspense>
                     <GoogleAnalytics />
                 </Suspense>
