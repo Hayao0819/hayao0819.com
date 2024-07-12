@@ -1,4 +1,3 @@
-import { Heading } from "@/components/elements/Heading";
 import { Link } from "@/components/elements/Link";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { SUMMARY_LENGTH } from "@/lib/blog/config";
@@ -9,7 +8,6 @@ export default function Projects() {
     //console.log(postlist.map((p) => p.url));
     return (
         <CommonSpacer>
-            <Heading level={1}>Something</Heading>
             <p>今までにつくった色々な何かへのリンクです。</p>
 
             {postlist.map((p) => {
