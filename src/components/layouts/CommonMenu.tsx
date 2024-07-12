@@ -21,7 +21,7 @@ export function MainManus({ horizontal, className, onMenuItemClick }: MenusProps
             <MenuItem href="/" text="トップ" onClick={onMenuItemClick} />
             <MenuItemBlog onMenuItemClick={onMenuItemClick} />
             <MenuItem href="/portfolio" text="ポートフォリオ" onClick={onMenuItemClick} />
-            <MenuItem href="/projects" text="Something" onClick={onMenuItemClick} />
+            <MenuItem href="/projects" text="何か" onClick={onMenuItemClick} />
             <MenuItem href="/social" text="SNS" onClick={onMenuItemClick} />
         </Menu>
     );
@@ -79,7 +79,7 @@ function MenuItemBlog({ onMenuItemClick }: MenusCommonProps) {
 function MenuItem({ href, text, onClick }: { href: string; text: string; onClick?: () => void }) {
     return (
         <Menu.Item onClick={onClick}>
-            <Link href={href} className="!text-inherit">
+            <Link href={href} className="!w-fit !text-nowrap !text-inherit">
                 {text}
             </Link>
         </Menu.Item>

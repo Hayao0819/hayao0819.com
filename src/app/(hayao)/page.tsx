@@ -5,7 +5,9 @@ import Links from "./links";
 export default function Home() {
     return (
         <div className="m-auto flex h-full w-fit  flex-col items-center justify-center gap-4 child:m-2">
-            <h1 className="text-5xl font-bold">山田ハヤオ</h1>
+            <h1 className="text-5xl font-bold">
+                <Link href="/me">山田ハヤオ</Link>
+            </h1>
 
             <div className="flex w-full text-center child:child:mx-auto child:grow child:child:text-xl">
                 <Links />
