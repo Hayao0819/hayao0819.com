@@ -1,5 +1,4 @@
 import "@/style/global.css";
-import "@/style/prism.css";
 
 import { ViewTransitions } from "@hayao/next-view-transitions";
 import { Metadata as NextMetadata } from "next";
