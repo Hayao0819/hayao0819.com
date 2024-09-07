@@ -9,7 +9,7 @@ import (
 
 	"github.com/Hayao0819/hayao0819.com/tools/utils"
 	"github.com/Hayao0819/hayao0819.com/tools/utils/cobrautil"
-	"github.com/Hayao0819/nahi/fputils"
+	"github.com/Hayao0819/nahi/futils"
 	"github.com/spf13/cobra"
 )
 
@@ -50,7 +50,7 @@ func Cmd() *cobra.Command {
 
 			errs := []error{}
 			for _, file := range *files {
-				tp, err := fputils.DetectFileType(file)
+				tp, err := futils.DetectFileType(file)
 				if err != nil {
 					continue
 				}
@@ -63,6 +63,13 @@ func Cmd() *cobra.Command {
 					if err = os.MkdirAll(filepath.Dir(dist), 0755); err != nil {
 						cmd.PrintErrln(err)
 						errs = append(errs, err)
+						continue
+					}
+
+					// 移動先チェック
+					if futils.Exists(dist) {
+						cmd.PrintErrln("already exists", dist)
+						errs = append(errs, errors.New("already exists"))
 						continue
 					}
 

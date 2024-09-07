@@ -8,7 +8,7 @@ import (
 
 	"github.com/Hayao0819/hayao0819.com/tools/utils"
 	"github.com/Hayao0819/hayao0819.com/tools/utils/cobrautil"
-	"github.com/Hayao0819/nahi/fputils"
+	"github.com/Hayao0819/nahi/futils"
 	"github.com/spf13/cobra"
 )
 
@@ -42,7 +42,7 @@ func Cmd() *cobra.Command {
 			}
 
 			for _, file := range *files {
-				filetype, err := fputils.DetectFileType(file)
+				filetype, err := futils.DetectFileType(file)
 				if err != nil {
 					continue
 				}
