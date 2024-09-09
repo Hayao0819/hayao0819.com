@@ -63,18 +63,18 @@ Cobraはサブコマンドを実装するためのライブラリです。`cobra
 package main
 
 import (
- "fmt"
- "os"
+    "fmt"
+    "os"
 
- "myproject/cmd"
- _ "myproject/log"
+    "myproject/cmd"
+    _ "myproject/log"
 )
 
 func main() {
- if err := cmd.Execute(); err != nil {
-  fmt.Fprintf(os.Stderr, "%+v\n", err)
-  os.Exit(-1)
- }
+    if err := cmd.Execute(); err != nil {
+    fmt.Fprintf(os.Stderr, "%+v\n", err)
+    os.Exit(-1)
+    }
 }
 ```
 
@@ -90,15 +90,15 @@ func main() {
 package log
 
 import (
- "log/slog"
+    "log/slog"
 
- "github.com/m-mizutani/clog"
+    "github.com/m-mizutani/clog"
 )
 
 func init() {
- handler := clog.New(clog.WithColor(true))
- logger := slog.New(handler)
- slog.SetDefault(logger)
+    handler := clog.New(clog.WithColor(true))
+    logger := slog.New(handler)
+    slog.SetDefault(logger)
 }
 ```
 
@@ -126,22 +126,22 @@ Cobraにおいてはサブコマンドは`cobra.Command`を入れ子にすると
 package cmd
 
 import (
- "github.com/Hayao0819/nahi/cobrautils"
- "github.com/spf13/cobra"
+    "github.com/Hayao0819/nahi/cobrautils"
+    "github.com/spf13/cobra"
 )
 
 var subCmds = cobrautils.Registory{}
 
 func rootCmd() *cobra.Command {
- root := cobra.Command{
-  Use:           "go-cobra",
-  Short:         "go-cobra command",
-  SilenceUsage:  true,
-  SilenceErrors: true,
- }
+    root := cobra.Command{
+        Use:           "go-cobra",
+        Short:         "go-cobra command",
+        SilenceUsage:  true,
+        SilenceErrors: true,
+    }
 
- subCmds.Bind(&root)
- return &root
+    subCmds.Bind(&root)
+    return &root
 }
 ```
 
@@ -155,7 +155,7 @@ cmdパッケージで唯一パブリックになるのがこの`Execute() error`
 package cmd
 
 func Execute() error {
- return rootCmd().Execute()
+    return rootCmd().Execute()
 }
 ```
 
@@ -169,17 +169,17 @@ package hello
 import "github.com/spf13/cobra"
 
 func Cmd() *cobra.Command {
- cmd := cobra.Command{
-  Use:   "hello",
-  Short: "hello command",
-  RunE: func(cmd *cobra.Command, args []string) error {
-   // Do something
-   cmd.Println("Hello, hoge!")
-   return nil
-  },
- }
+    cmd := cobra.Command{
+        Use:   "hello",
+        Short: "hello command",
+        RunE:  func(cmd *cobra.Command, args []string) error {
+            // Do something
+            cmd.Println("Hello, hoge!")
+            return nil
+        },
+    }
 
- return &cmd
+    return &cmd
 }
 ```
 
@@ -197,7 +197,7 @@ package cmd
 import "github.com/Hayao0819/scaffold/go-cobra/cmd/hoge"
 
 func init() {
- subCmds.Add(hoge.Cmd())
+    subCmds.Add(hoge.Cmd())
 }
 ```
 
@@ -213,33 +213,33 @@ func init() {
 package hoge
 
 import (
- "os"
+    "os"
 
- "github.com/cockroachdb/errors"
- "github.com/spf13/cobra"
+    "github.com/cockroachdb/errors"
+    "github.com/spf13/cobra"
 )
 
 func Cmd() *cobra.Command {
  cmd := cobra.Command{
-  Use:   "hoge",
-  Short: "hoge command",
-  RunE: func(cmd *cobra.Command, args []string) error {
-   // Do something
-   cmd.Println("Hello, hoge!")
+    Use:   "hoge",
+    Short: "hoge command",
+    RunE: func(cmd *cobra.Command, args []string) error {
+        // Do something
+        cmd.Println("Hello, hoge!")
 
-   // Handle error
-   pwd, err := os.Getwd()
-   if err != nil {
-    return errors.Wrap(err, "failed to get current directory")
-   }
+        // Handle error
+        pwd, err := os.Getwd()
+        if err != nil {
+            return errors.Wrap(err, "failed to get current directory")
+        }
 
-   cmd.Println(pwd)
+        cmd.Println(pwd)
 
-   return nil
-  },
- }
+       return nil
+    },
+    }
 
- return &cmd
+    return &cmd
 }
 ```
 
