@@ -24,6 +24,10 @@ module.exports = {
                     "Yu Gothic",
                 ],
             },
+            backgroundImage: {
+                hero: "url('/me/gity.jpg')",
+                "hero-sp": "url('/me/gity-sp.jpg')",
+            },
         },
     },
     daisyui: {
