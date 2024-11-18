@@ -10,12 +10,13 @@ export const generateStaticParams = () => {
         };
     });
 
-    //console.log(postlist);
+    // console.log(postlist);
 
     return params;
 };
 
 export default function Projects(hoge: { params: { slug: string } }) {
+    console.log(hoge);
     const postElement = getProjectFromURL(hoge.params.slug);
 
     return postElement ? <CommonSpacer>{postElement}</CommonSpacer> : <div>404</div>;

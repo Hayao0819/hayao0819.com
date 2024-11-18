@@ -16,11 +16,15 @@ export const getFetchedProjectPostList = () => {
 
 export const getProjectFromURL = (url: string) => {
     const mdFile = findMarkdownFromURL(projectsDir, url);
+    // console.log(mdFile);
 
     if (mdFile) {
-        const projPost = getPostDataFromFile(mdFile);
-        // Todo: basepathは多分間違ってる
-        return <Markdown content={projPost.content} basepath={projPost.url} />;
+        const projPost = getPostDataFromFile(mdFile, {
+            cutHead: process.cwd().split(path.sep).length + 5,
+        });
+        // TODO: basepathがあってるか確認する
+
+        return <Markdown content={projPost.content} basepath={"/something/" + projPost.url} />;
     } else {
         return undefined;
     }
