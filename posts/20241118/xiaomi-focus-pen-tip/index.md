@@ -54,4 +54,4 @@ https://x.com/XiaomiJapan
 
 工場からの流出なのか謎技術での製造なのかわからないが正常に動作した。
 
-<https://ja.aliexpress.com/item/1005007091284050.html>
+https://ja.aliexpress.com/item/1005007091284050.html
