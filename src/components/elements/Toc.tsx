@@ -67,9 +67,9 @@ const RenderHeadingTree = ({ tree, indent }: { tree: HeadingTree[]; indent: numb
 
     return (
         <>
-            <ul className={clsx("ml-8", { "marker:text-accent": isTopLevel })} style={isTopLevel ? { listStyleType: '"-"' } : {}}>
+            <ul className={clsx("ml-8", { "marker:text-accent marker:content-['-']": isTopLevel })}>
                 {tree.map((e) => (
-                    <li key={e.id} className={clsx(levelClassNames[e.level], { "pl-2": isTopLevel })}>
+                    <li key={e.id} className={clsx(levelClassNames[e.level], { "pl-2": isTopLevel }, "py-1")}>
                         <NextLink href={`#${e.id}`} scroll={true}>
                             {e.text}
                         </NextLink>

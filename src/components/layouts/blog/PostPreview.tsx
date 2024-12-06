@@ -57,7 +57,9 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
                             })}
                     </div>
                     <p className="p-1">
-                        <Link href={`/blog/posts/${utils.dateToString(postDate, "")}`}>{utils.dateToString(postDate)}</Link>
+                        <Link className="text-sm" href={`/blog/posts/${utils.dateToString(postDate, "")}`}>
+                            {utils.dateToString(postDate)}
+                        </Link>
                     </p>
                 </div>
 
@@ -77,7 +79,9 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
                 </div>
 
                 <div className="m-2 grow">
-                    <Link href={fullURL}>{contentString}</Link>
+                    <Link href={fullURL} className="text-sm">
+                        {contentString}
+                    </Link>
                 </div>
 
                 <div className="flex justify-end">
