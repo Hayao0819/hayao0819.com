@@ -82,7 +82,7 @@ export default async function Markdown({ content, basepath }: { content: string;
             }
             props = { ...props, src };
 
-            return <img {...props} className="py-4" />;
+            return <img {...props} className="mx-auto w-1/2 py-4" />;
         },
         //code: ({ children }) => <code className="text-sky-600">{children}</code>,
 

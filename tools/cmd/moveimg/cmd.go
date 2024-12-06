@@ -55,7 +55,13 @@ func Cmd() *cobra.Command {
 					continue
 				}
 
-				if strings.HasPrefix(tp, "image") {
+				isImage := strings.HasPrefix(tp, "image")
+
+				// if !isImage {
+				// 	slog.Info("not image", "file", file, "type", tp)
+				// }
+
+				if isImage {
 					// 移動先
 					dist := strings.Replace(file, postsDir, publicDir, 1)
 
@@ -80,18 +86,7 @@ func Cmd() *cobra.Command {
 						cmd.PrintErrln(err)
 						errs = append(errs, err)
 					}
-				} //else if strings.HasPrefix(tp, "text") {
-
-				// 	data, err := os.ReadFile(file)
-				// 	if err != nil {
-				// 		cmd.PrintErrln(err)
-				// 		errs = append(errs, err)
-				// 		continue
-				// 	}
-
-				// 	// 画像のパスを変更
-				// 	data = []byte(strings.ReplaceAll(string(data), "![", "!["+path.Base(postsDir)+"/"))
-				// }
+				}
 
 			}
 			if len(errs) > 0 {
