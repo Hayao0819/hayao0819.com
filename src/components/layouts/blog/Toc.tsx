@@ -3,9 +3,9 @@
 import { clsx } from "clsx";
 
 import { BlogHeading as Heading } from "@/components/elements/Heading";
-import { RenderHeadingTree, useHeadingTree } from "@/components/elements/Toc";
+import Toc, { useHeadingTree } from "@/components/elements/Toc";
 
-const Toc = ({ contentSelector }: { contentSelector: string }) => {
+const BlogToc = ({ contentSelector }: { contentSelector: string }) => {
     const tree = useHeadingTree(contentSelector);
 
     return (
@@ -13,9 +13,9 @@ const Toc = ({ contentSelector }: { contentSelector: string }) => {
             <Heading level={2} className="text-accent">
                 お品書き
             </Heading>
-            <RenderHeadingTree tree={tree} />
+            <Toc contentSelector={contentSelector} />
         </div>
     );
 };
 
-export default Toc;
+export default BlogToc;

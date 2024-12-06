@@ -56,23 +56,28 @@ const elementsToHeadingList = (elements: Element[]): HeadingList =>
 
 const elementsToHeadingTree = (elements: Element[]): HeadingTree[] => genHeadingTree(elementsToHeadingList(elements));
 
-export const RenderHeadingTree = ({ tree }: { tree: HeadingTree[] }) => {
+const RenderHeadingTree = ({ tree, indent }: { tree: HeadingTree[]; indent: number }) => {
     const levelClassNames: { [key: number]: string } = {
         1: "",
         2: "",
-        3: "ml-4",
+        3: "ml-2",
     };
+
+    const isTopLevel = indent === 0;
+
     return (
-        <ul>
-            {tree.map((e) => (
-                <li key={e.id} className={levelClassNames[e.level]}>
-                    <NextLink href={`#${e.id}`} scroll={true}>
-                        {e.text}
-                    </NextLink>
-                    <RenderHeadingTree tree={e.children} />
-                </li>
-            ))}
-        </ul>
+        <>
+            <ul className={clsx("ml-8", { "marker:text-accent": isTopLevel })} style={isTopLevel ? { listStyleType: '"-"' } : {}}>
+                {tree.map((e) => (
+                    <li key={e.id} className={clsx(levelClassNames[e.level], { "pl-2": isTopLevel })}>
+                        <NextLink href={`#${e.id}`} scroll={true}>
+                            {e.text}
+                        </NextLink>
+                        {e.children.length > 0 ? <RenderHeadingTree tree={e.children} indent={indent + 1} /> : null}
+                    </li>
+                ))}
+            </ul>
+        </>
     );
 };
 
@@ -95,7 +100,7 @@ export const Toc = ({ contentSelector, ...props }: TocProps) => {
 
     return (
         <div {...props} className={clsx(props.className, { hidden: tree.length < 1 })}>
-            <RenderHeadingTree tree={tree} />
+            <RenderHeadingTree tree={tree} indent={0} />
         </div>
     );
 };
