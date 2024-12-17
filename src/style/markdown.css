@@ -15,9 +15,9 @@ figure[data-rehype-pretty-code-figure] {
         @apply text-gray-600 mr-5;
     }
 
-    *[data-theme] {
-        background-color: inherit;
-        color: inherit;
+    code {
+        background-color: inherit !important;
+        color: inherit !important;
     }
 }
 

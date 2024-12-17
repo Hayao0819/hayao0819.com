@@ -9,7 +9,7 @@ import (
 
 	"github.com/Hayao0819/hayao0819.com/tools/utils"
 	"github.com/Hayao0819/hayao0819.com/tools/utils/cobrautil"
-	"github.com/Hayao0819/nahi/fputils"
+	"github.com/Hayao0819/nahi/futils"
 	"github.com/spf13/cobra"
 )
 
@@ -50,12 +50,18 @@ func Cmd() *cobra.Command {
 
 			errs := []error{}
 			for _, file := range *files {
-				tp, err := fputils.DetectFileType(file)
+				tp, err := futils.DetectFileType(file)
 				if err != nil {
 					continue
 				}
 
-				if strings.HasPrefix(tp, "image") {
+				isImage := strings.HasPrefix(tp, "image")
+
+				// if !isImage {
+				// 	slog.Info("not image", "file", file, "type", tp)
+				// }
+
+				if isImage {
 					// 移動先
 					dist := strings.Replace(file, postsDir, publicDir, 1)
 
@@ -66,6 +72,13 @@ func Cmd() *cobra.Command {
 						continue
 					}
 
+					// 移動先チェック
+					if futils.Exists(dist) {
+						cmd.PrintErrln("already exists", dist)
+						errs = append(errs, errors.New("already exists"))
+						continue
+					}
+
 					// 移動
 					cmd.Println(file, " => ", dist)
 					err = os.Rename(file, dist)
@@ -73,18 +86,7 @@ func Cmd() *cobra.Command {
 						cmd.PrintErrln(err)
 						errs = append(errs, err)
 					}
-				} //else if strings.HasPrefix(tp, "text") {
-
-				// 	data, err := os.ReadFile(file)
-				// 	if err != nil {
-				// 		cmd.PrintErrln(err)
-				// 		errs = append(errs, err)
-				// 		continue
-				// 	}
-
-				// 	// 画像のパスを変更
-				// 	data = []byte(strings.ReplaceAll(string(data), "![", "!["+path.Base(postsDir)+"/"))
-				// }
+				}
 
 			}
 			if len(errs) > 0 {

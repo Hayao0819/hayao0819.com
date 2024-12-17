@@ -1,11 +1,11 @@
 package utils
 
 import (
-	"github.com/Hayao0819/nahi/fputils"
+	"github.com/Hayao0819/nahi/futils"
 )
 
 func GetPostFiles(dir string) (*[]string, error) {
-	files, err := fputils.RecursionFileList(dir)
+	files, err := futils.RecursionFileList(dir)
 	if err != nil {
 		return nil, err
 	}

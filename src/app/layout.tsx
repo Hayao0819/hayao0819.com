@@ -1,5 +1,4 @@
 import "@/style/global.css";
-import "@/style/prism.css";
 
 import { ViewTransitions } from "@hayao/next-view-transitions";
 import { Metadata as NextMetadata } from "next";
@@ -19,7 +18,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                     <GoogleAnalytics />
                 </Suspense>
             </head>
-            <body className=" overscroll-y-none">
+            <body className="overscroll-y-none">
                 <ViewTransitions>{children}</ViewTransitions>
             </body>
         </html>

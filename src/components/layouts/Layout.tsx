@@ -11,7 +11,7 @@ export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
     const headerMemo = useMemo(() => <Header />, []);
     const footerMemo = useMemo(() => <Footer />, []);
 
-    const defaultClassName = "flex w-full min-h-svh flex-col bg-base-100 text-base-content";
+    const defaultClassName = "flex h-full w-full min-h-svh flex-col bg-base-100 text-base-content";
 
     return (
         <>
@@ -20,7 +20,7 @@ export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
             </Drawer>
             <div {...props} className={classNames(defaultClassName, props.className)}>
                 {headerMemo}
-                <main className={classNames("grow", "flex")}>{props.children}</main>
+                <main className="flex h-full grow">{props.children}</main>
                 {footerMemo}
             </div>
         </>
