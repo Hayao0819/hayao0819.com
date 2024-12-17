@@ -12,9 +12,9 @@ import {
     SiReact,
     SiTailwindcss,
     SiTypescript,
-    SiVisualstudiocode,
     SiVuedotjs,
 } from "react-icons/si";
+import { SiVisualstudiocode } from "react-icons-ms/si";
 
 import { Heading } from "@/components/elements/Heading";
 import { Link } from "@/components/elements/Link";

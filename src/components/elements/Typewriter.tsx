@@ -3,7 +3,7 @@
 import "nextjs-simple-typewriter/dist/index.css";
 
 import { Cursor, CursorProps, TypewriterProps, useTypewriter } from "nextjs-simple-typewriter";
-import { useCallback } from "react";
+import { JSX, useCallback } from "react";
 
 type ComponentProps = {
     /** Show / Hide the cursor */
