@@ -4,8 +4,8 @@ description: ""
 date: 2025-01-01T01:23:05.043066986+09:00
 categories:
     - プライベート
-draft: true
-publish: false
+draft: false
+publish: true
 ---
 
 皆さんあけましておめでとうございます。昨年度は様々な人に迷惑をかけてしまいましたが、今年もよろしくお願いします。
