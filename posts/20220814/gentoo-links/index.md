@@ -14,7 +14,7 @@ share: true
 
 切腹倶楽部に載ってないリンク集
 
--   [mkinitcpioをGentooに移植してみる話 \- Carpe diem](http://carpediemjournal.blog.fc2.com/blog-entry-50.html)
--   [Gentoo Forums :: View topic \- Rebuilding everything](https://forums.gentoo.org/viewtopic-t-1041480.html)
--   [Kernel/Configuration \- Gentoo Wiki](https://wiki.gentoo.org/wiki/Kernel/Configuration#Build)
--   [Gentoo Forums :: View topic \- Find which package owns a file](https://forums.gentoo.org/viewtopic-t-804309.html)
+- [mkinitcpioをGentooに移植してみる話 \- Carpe diem](http://carpediemjournal.blog.fc2.com/blog-entry-50.html)
+- [Gentoo Forums :: View topic \- Rebuilding everything](https://forums.gentoo.org/viewtopic-t-1041480.html)
+- [Kernel/Configuration \- Gentoo Wiki](https://wiki.gentoo.org/wiki/Kernel/Configuration#Build)
+- [Gentoo Forums :: View topic \- Find which package owns a file](https://forums.gentoo.org/viewtopic-t-804309.html)

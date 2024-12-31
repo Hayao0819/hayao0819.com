@@ -5,12 +5,20 @@ import reactPlugin from "eslint-plugin-react";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import tailwindPlugin from "eslint-plugin-tailwindcss";
 import unusedImports from "eslint-plugin-unused-imports";
+import globals from "globals";
 import tsEslint from "typescript-eslint";
 
 /** @type { import("eslint").Linter.Config[] } */
 const flatConfig = [
     {
         files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
+        languageOptions: {
+            globals: {
+                ...globals.browser,
+                ...globals.node,
+                ...globals.es2025,
+            },
+        },
         ignores: [
             "node_modules",
             ".next",
@@ -52,7 +60,8 @@ const flatConfig = [
             "unused-imports": unusedImports,
         },
         rules: {
-            "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
+            "no-unused-vars": "off",
+            "@typescript-eslint/no-unused-vars": "off",
             "unused-imports/no-unused-imports": "error",
             "unused-imports/no-unused-vars": [
                 "warn",
@@ -61,6 +70,8 @@ const flatConfig = [
                     varsIgnorePattern: "^_",
                     args: "after-used",
                     argsIgnorePattern: "^_",
+                    caughtErrorsIgnorePattern: "^_",
+                    destructuredArrayIgnorePattern: "^_",
                 },
             ],
         },

@@ -1,5 +1,11 @@
+import typography from "@tailwindcss/typography";
+import daisyUI from "daisyui";
+import children from "tailwind-children";
+import brandColors from "tailwindcss-brand-colors";
+import textShadow from "tailwindcss-textshadow";
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
     content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
     theme: {
         extend: {
@@ -45,10 +51,15 @@ module.exports = {
         ],
     },
     plugins: [
-        require("daisyui"),
-        require("tailwindcss-textshadow"),
-        require("@tailwindcss/typography"),
-        require("tailwindcss-brand-colors"),
-        require("tailwind-children"),
+        // require("daisyui"),
+        // require("tailwindcss-textshadow"),
+        // require("@tailwindcss/typography"),
+        // require("tailwindcss-brand-colors")
+        // require("tailwind-children"),
+        daisyUI,
+        textShadow,
+        typography,
+        brandColors,
+        children,
     ],
 };

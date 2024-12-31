@@ -21,8 +21,7 @@ export default function Links() {
         github: useRef<HTMLAnchorElement>(null),
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const commonHandler = (site: WebSites) => {
+    const commonHandler = (_site: WebSites) => {
         return {
             onMouseEnter: () => {
                 //setCurrentStatus({ status: site });

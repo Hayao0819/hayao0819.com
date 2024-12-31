@@ -94,18 +94,18 @@ Wi-FiアクセスポイントにはTP-LinkのArcher C6を用いている。ア�
 
 最後に、お願いした項目を以下にまとめておく。盗みに入る直前のおさらいに活用してほしい。
 
--   近隣住民に迷惑をかけない
--   小腹がすいた際には冷蔵庫の中のものをご自由にどうぞ
--   本棚にある書籍に興味がある・趣味が一致する場合にはTwitterのDMかメールで話したい
--   電子機器を売却する際には初期化する
--   侵入した際には一言書き置きをどこかに残しておいてほしい
+- 近隣住民に迷惑をかけない
+- 小腹がすいた際には冷蔵庫の中のものをご自由にどうぞ
+- 本棚にある書籍に興味がある・趣味が一致する場合にはTwitterのDMかメールで話したい
+- 電子機器を売却する際には初期化する
+- 侵入した際には一言書き置きをどこかに残しておいてほしい
 
 それでは、また今度。
 
 ### 参考文献 (2024年1月22日閲覧)
 
--   [ASRock X670E SteelLegend](https://www.asrock.com/mb/AMD/X670E%20Steel%20Legend/index.jp.asp)
--   [NEC UNIVERGE IX3110](https://jpn.nec.com/univerge/ix/Info/ix3110.html)
--   [警視庁 侵入窃盗の防犯対策](https://www.keishicho.metro.tokyo.lg.jp/kurashi/higai/akisu/akisu.html)
--   [政府広報オンライン 空き巣や強盗から命と財産を守る 「住まいの防犯対策」](https://www.gov-online.go.jp/useful/article/202310/1.html)
--   [ラムダ技術部 泥棒向け】うちの家に入ったら盗るべき物10選](https://youtu.be/e6KOKUNu2T4)
+- [ASRock X670E SteelLegend](https://www.asrock.com/mb/AMD/X670E%20Steel%20Legend/index.jp.asp)
+- [NEC UNIVERGE IX3110](https://jpn.nec.com/univerge/ix/Info/ix3110.html)
+- [警視庁 侵入窃盗の防犯対策](https://www.keishicho.metro.tokyo.lg.jp/kurashi/higai/akisu/akisu.html)
+- [政府広報オンライン 空き巣や強盗から命と財産を守る 「住まいの防犯対策」](https://www.gov-online.go.jp/useful/article/202310/1.html)
+- [ラムダ技術部 泥棒向け】うちの家に入ったら盗るべき物10選](https://youtu.be/e6KOKUNu2T4)

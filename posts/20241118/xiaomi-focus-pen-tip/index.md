@@ -38,7 +38,7 @@ Xiaomi Japanカスタマーサービスセンターでございます。
 Twitter@XiaomiJapan ですぐに更新されます。
 https://x.com/XiaomiJapan
 ご確認いただきますようお願い申し上げます。
- 
+
 再び、いつもXiaomi製品を応援して頂き、誠にありがとうございます。
 
 何卒宜しくお願い申し上げます。

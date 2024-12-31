@@ -47,8 +47,8 @@ Googleで検索して出てくるサイトの大半はアフィリエイト（�
 
 次の条件に**合致しない**PCならなんでもOK
 
--   Apple製
--   ChromeBook
+- Apple製
+- ChromeBook
 
 #### → macOS指定がある場合
 

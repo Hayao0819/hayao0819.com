@@ -17,8 +17,8 @@ TailwindCSSを用いて、`<ul>`で表示されるリストをカスタマイズ
 リストの文字はCSSでは`list-style-type`プロパティで変更できる。
 
 ```css
-ul{
-    list-style-type:"-"
+ul {
+    list-style-type: "-";
 }
 ```
 
@@ -29,8 +29,8 @@ https://developer.mozilla.org/ja/docs/Web/CSS/list-style-type
 また、リストの先頭に来るこの要素は`::marker`疑似要素で表されるため、このように記述することもできる。
 
 ```css
-ul::marker{
-    content: "-"
+ul::marker {
+    content: "-";
 }
 ```
 
