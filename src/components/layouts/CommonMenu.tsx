@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { RefObject, useRef, useState } from "react";
 import { Menu } from "react-daisyui";
 import { useOnClickOutside } from "usehooks-ts";
 
@@ -47,9 +47,10 @@ export function OtherLinks({ horizontal, onMenuItemClick }: OtherLinksProps) {
 
 function MenuItemBlog({ onMenuItemClick }: MenusCommonProps) {
     const [isOpened, setIsOpened] = useState(false);
-    const detailsRef = useRef(null);
+    const detailsRef = useRef<HTMLDetailsElement>(null);
 
-    useOnClickOutside(detailsRef, () => {
+    // FIXME: Fix type assertion
+    useOnClickOutside(detailsRef as RefObject<HTMLDetailsElement>, () => {
         setIsOpened(false);
     });
 
