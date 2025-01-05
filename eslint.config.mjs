@@ -8,6 +8,7 @@ import tailwindPlugin from "eslint-plugin-tailwindcss";
 import unusedImportsPlugin from "eslint-plugin-unused-imports";
 import globals from "globals";
 import tsEslint from "typescript-eslint";
+import reactCompiler from "eslint-plugin-react-compiler";
 
 /** @type { import("typescript-eslint").InfiniteDepthConfigWithExtends[] } */
 const importPlugins = [
@@ -39,6 +40,18 @@ const importPlugins = [
         rules: {
             "simple-import-sort/imports": "warn",
             "simple-import-sort/exports": "warn",
+        },
+    },
+];
+
+/** @type { import("typescript-eslint").InfiniteDepthConfigWithExtends[] } */
+const reactCompiler = [
+    {
+        plugins: {
+            "react-compiler": reactCompiler,
+        },
+        rules: {
+            "react-compiler/react-compiler": "error",
         },
     },
 ];
@@ -78,6 +91,7 @@ const flatConfig = [
     ...tailwindPlugin.configs["flat/recommended"],
     ...importPlugins,
     prettierPlugin,
+    ...reactCompiler,
     {
         name: "react/jsx-runtime",
         plugins: {
