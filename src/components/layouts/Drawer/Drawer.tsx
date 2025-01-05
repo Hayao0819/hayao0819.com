@@ -21,10 +21,10 @@ export default function Drawer(props: DrawerProps) {
     };
 
     useEffect(() => {
-        if (props.open === undefined) {
-            props.open = false;
-        }
-        setOpen(props.open);
+        // if (props.open === undefined) {
+        //     props.open = false;
+        // }
+        // setOpen(props.open);
     }, [props.open]);
 
     const leftdrawer_variants: Variants = {
