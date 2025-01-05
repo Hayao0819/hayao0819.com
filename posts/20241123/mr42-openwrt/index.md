@@ -44,9 +44,9 @@ MR42をはじめとした一部の製品では、OpenWRTを書き込むことで
 - 付箋
 - [MR42用のSysupgrade](https://firmware-selector.openwrt.org/?target=ipq806x%2Fgeneric&id=meraki_mr42)
 - [clayface/openwrt-cryptid](https://github.com/clayface/openwrt-cryptid)にある以下のファイル
-  - mr42_u-boot.bin
-  - openwrt-ipq806x-generic-meraki_mr42-initramfs-fit-uImage.itb
-  - ubootwrite.py
+    - mr42_u-boot.bin
+    - openwrt-ipq806x-generic-meraki_mr42-initramfs-fit-uImage.itb
+    - ubootwrite.py
 
 私はRJ45のPCが手元になく、仕方なくRaspberry Pi 5を用いてセットアップを行った。
 

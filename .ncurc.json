@@ -1,7 +1,7 @@
 {
     "packageManager": "pnpm",
     "install": "always",
-    "reject": ["eslint-plugin-unused-imports", "eslint"],
+    "reject": ["react-icons-ms"],
     "cache": true,
     "cacheExpiration": 30
 }
