@@ -1,6 +1,7 @@
 import classNames from "clsx";
 import { Metadata } from "next";
 import path from "path";
+import { use } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 import Breadcrumbs from "@/components/elements/Breadcrumbs";
@@ -30,7 +31,8 @@ export const generateStaticParams = async () => {
     });
 };
 
-export async function generateMetadata({ params }: { params: { slug: string[] } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
+    const params = await props.params;
     const postData = findPostFromUrl(params.slug.join("/"));
     if (postData.isDir === true) {
         return {
@@ -89,7 +91,8 @@ const MostRecentPostPreview = ({ post, type }: { post: PostData | null; type: "b
     );
 };
 
-export default function PostPage({ params }: { params: { slug: string[] } }) {
+export default function PostPage(props: { params: Promise<{ slug: string[] }> }) {
+    const params = use(props.params);
     const contentId = useNoColonId();
 
     // get post data

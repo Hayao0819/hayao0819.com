@@ -6,7 +6,8 @@ import { fetchedBlogPostListWithoutHidden } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 import { genMetaData } from "@/lib/meta";
 
-export default async function BlogTop({ params }: { params: { slug: string } }) {
+export default async function BlogTop(props: { params: Promise<{ slug: string }> }) {
+    const params = await props.params;
     const slug = parseInt(params.slug);
     const postlist = getPostList(slug);
 
@@ -24,7 +25,8 @@ export default async function BlogTop({ params }: { params: { slug: string } }) 
     );
 }
 
-export const generateMetadata = async ({ params }: { params: { slug: string } }): Promise<Metadata> => {
+export const generateMetadata = async (props: { params: Promise<{ slug: string }> }): Promise<Metadata> => {
+    const params = await props.params;
     const title = `記事一覧 ${params.slug}ページ目`;
 
     const base = {

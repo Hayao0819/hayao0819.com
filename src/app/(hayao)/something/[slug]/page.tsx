@@ -15,9 +15,8 @@ export const generateStaticParams = () => {
     return params;
 };
 
-export default function Projects(hoge: { params: { slug: string } }) {
-    console.log(hoge);
-    const postElement = getProjectFromURL(hoge.params.slug);
+export default async function Projects(hoge: { params: Promise<{ slug: string }> }) {
+    const postElement = getProjectFromURL((await hoge.params).slug);
 
     return postElement ? <CommonSpacer>{postElement}</CommonSpacer> : <div>404</div>;
 }

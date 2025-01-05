@@ -1,7 +1,7 @@
 {
     "packageManager": "pnpm",
     "install": "always",
-    "reject": [],
+    "reject": ["react-icons-ms"],
     "cache": true,
     "cacheExpiration": 30
 }

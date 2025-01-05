@@ -20,6 +20,9 @@ const nextConfig = {
         unoptimized: true,
     },
     ...(shouldDeployToGithubPages ? switchNextConfig : {}),
+    experimental: {
+        reactCompiler: true,
+    },
 };
 
 if (shouldDeployToGithubPages) {

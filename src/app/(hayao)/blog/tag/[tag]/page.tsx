@@ -6,7 +6,8 @@ import { SUMMARY_LENGTH } from "@/lib/blog/config";
 import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 
-export default async function Categories({ params }: { params: { tag: string } }) {
+export default async function Categories(props: { params: Promise<{ tag: string }> }) {
+    const params = await props.params;
     const postpost = getPostList(params.tag);
 
     //console.log(params.cat);
