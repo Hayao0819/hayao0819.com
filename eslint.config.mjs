@@ -1,4 +1,5 @@
 import js from "@eslint/js";
+import nextPlugin from "@next/eslint-plugin-next";
 import mdxPlugin from "eslint-plugin-mdx";
 import prettierPlugin from "eslint-plugin-prettier/recommended";
 import reactPlugin from "eslint-plugin-react";
@@ -64,7 +65,17 @@ const flatConfig = [
                 ...globals.es2025,
             },
         },
-        ignores: ["node_modules", ".next", "public", "pnpm-lock.yaml", "Dockerfile", "package.json", "*.md", "out"],
+        ignores: [
+            "**/node_modules",
+            "**/.next",
+            "**/public",
+            "**/pnpm-lock.yaml",
+            "**/Dockerfile",
+            "**/package.json",
+            // "**/*.md",
+            "**/out",
+            "**/.git",
+        ],
     },
     prettierPlugin,
     {
@@ -79,7 +90,16 @@ const flatConfig = [
             },
         },
     },
-
+    {
+        name: "next/core-web-vitals",
+        plugins: {
+            "@next/next": nextPlugin,
+        },
+        rules: {
+            ...nextPlugin.configs.recommended.rules,
+            ...nextPlugin.configs["core-web-vitals"].rules,
+        },
+    },
     {
         name: "mdx/recommended",
         ...mdxPlugin.configs.flat,
