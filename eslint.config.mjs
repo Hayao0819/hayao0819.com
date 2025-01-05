@@ -2,62 +2,17 @@ import js from "@eslint/js";
 import mdxPlugin from "eslint-plugin-mdx";
 import prettierPlugin from "eslint-plugin-prettier/recommended";
 import reactPlugin from "eslint-plugin-react";
-import simpleImportSort from "eslint-plugin-simple-import-sort";
+import simpleImportSortPlugin from "eslint-plugin-simple-import-sort";
 import tailwindPlugin from "eslint-plugin-tailwindcss";
-import unusedImports from "eslint-plugin-unused-imports";
+import unusedImportsPlugin from "eslint-plugin-unused-imports";
 import globals from "globals";
 import tsEslint from "typescript-eslint";
 
-/** @type { import("eslint").Linter.Config[] } */
-const flatConfig = [
-    {
-        files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
-        languageOptions: {
-            globals: {
-                ...globals.browser,
-                ...globals.node,
-                ...globals.es2025,
-            },
-        },
-        ignores: [
-            "node_modules",
-            ".next",
-            "public",
-            "pnpm-lock.yaml",
-            "Dockerfile",
-            "package.json",
-            "*.md",
-            "out",
-            "tools/assets/template.mdx",
-        ],
-    },
-    {
-        name: "eslint/recommended",
-        ...js.configs.recommended,
-    },
-    ...tsEslint.configs.recommended,
-    ...tailwindPlugin.configs["flat/recommended"],
-    prettierPlugin,
-    {
-        name: "react/jsx-runtime",
-        plugins: {
-            react: reactPlugin,
-        },
-        rules: reactPlugin.configs["jsx-runtime"].rules,
-        settings: {
-            react: {
-                version: "detect",
-            },
-        },
-    },
-
-    {
-        name: "mdx/recommended",
-        ...mdxPlugin.configs.flat,
-    },
+/** @type { import("typescript-eslint").InfiniteDepthConfigWithExtends[] } */
+const importPlugins = [
     {
         plugins: {
-            "unused-imports": unusedImports,
+            "unused-imports": unusedImportsPlugin,
         },
         rules: {
             "no-unused-vars": "off",
@@ -78,13 +33,59 @@ const flatConfig = [
     },
     {
         plugins: {
-            "simple-import-sort": simpleImportSort,
+            "simple-import-sort": simpleImportSortPlugin,
         },
         rules: {
             "simple-import-sort/imports": "warn",
             "simple-import-sort/exports": "warn",
         },
     },
+];
+
+/** @type { import("typescript-eslint").InfiniteDepthConfigWithExtends[] } */
+const flatConfig = [
+    // .js に対する設定
+    {
+        files: ["**/*.js", "**/*.jsx"],
+        extends: [js.configs.recommended],
+    },
+    {
+        files: ["*.ts", "*.tsx"],
+        extends: [js.configs.recommended, ...tsEslint.configs.recommended],
+    },
+    ...tailwindPlugin.configs["flat/recommended"],
+    ...importPlugins,
+    {
+        files: ["**/*.js", "**/*.jsx", "*.ts", "*.tsx"],
+        languageOptions: {
+            globals: {
+                ...globals.browser,
+                ...globals.node,
+                ...globals.es2025,
+            },
+        },
+        ignores: ["node_modules", ".next", "public", "pnpm-lock.yaml", "Dockerfile", "package.json", "*.md", "out"],
+    },
+    prettierPlugin,
+    {
+        name: "react/jsx-runtime",
+        plugins: {
+            react: reactPlugin,
+        },
+        rules: reactPlugin.configs["jsx-runtime"].rules,
+        settings: {
+            react: {
+                version: "detect",
+            },
+        },
+    },
+
+    {
+        name: "mdx/recommended",
+        ...mdxPlugin.configs.flat,
+        ignores: ["**/tools/assets/template.mdx"],
+    },
+
     {
         name: "hayao-custom-next",
         rules: {
@@ -101,4 +102,4 @@ const flatConfig = [
     },
 ];
 
-export default flatConfig;
+export default tsEslint.config(flatConfig);
