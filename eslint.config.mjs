@@ -45,17 +45,6 @@ const importPlugins = [
 
 /** @type { import("typescript-eslint").InfiniteDepthConfigWithExtends[] } */
 const flatConfig = [
-    // .js に対する設定
-    {
-        files: ["**/*.js", "**/*.jsx"],
-        extends: [js.configs.recommended],
-    },
-    {
-        files: ["*.ts", "*.tsx"],
-        extends: [js.configs.recommended, ...tsEslint.configs.recommended],
-    },
-    ...tailwindPlugin.configs["flat/recommended"],
-    ...importPlugins,
     {
         files: ["**/*.js", "**/*.jsx", "*.ts", "*.tsx"],
         languageOptions: {
@@ -77,6 +66,17 @@ const flatConfig = [
             "**/.git",
         ],
     },
+    // .js に対する設定
+    {
+        files: ["**/*.js", "**/*.jsx"],
+        extends: [js.configs.recommended],
+    },
+    {
+        files: ["**/*.ts", "**/*.tsx"],
+        extends: [js.configs.recommended, ...tsEslint.configs.recommended],
+    },
+    ...tailwindPlugin.configs["flat/recommended"],
+    ...importPlugins,
     prettierPlugin,
     {
         name: "react/jsx-runtime",

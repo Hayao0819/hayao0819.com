@@ -51,7 +51,7 @@ export const generateStaticParams = async () => {
     const filecount = Math.ceil(files.length / POSTLIST_ONEPAGE);
 
     const params = [...Array(filecount)]
-        .map((v, i) => i + 1)
+        .map((_, i) => i + 1)
         .map((i) => {
             return {
                 slug: i.toString(),
