@@ -5,7 +5,7 @@ date: 2024-06-11T00:05:01.2481875+09:00
 categories:
     - 技術系
 tags:
-    - OSINT
+    - CTF
 draft: false
 publish: true
 ---
