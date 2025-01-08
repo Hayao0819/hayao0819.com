@@ -3,12 +3,12 @@ import nextPlugin from "@next/eslint-plugin-next";
 import mdxPlugin from "eslint-plugin-mdx";
 import prettierPlugin from "eslint-plugin-prettier/recommended";
 import reactPlugin from "eslint-plugin-react";
+import reactCompilerPlugin from "eslint-plugin-react-compiler";
 import simpleImportSortPlugin from "eslint-plugin-simple-import-sort";
 import tailwindPlugin from "eslint-plugin-tailwindcss";
 import unusedImportsPlugin from "eslint-plugin-unused-imports";
 import globals from "globals";
 import tsEslint from "typescript-eslint";
-import reactCompiler from "eslint-plugin-react-compiler";
 
 /** @type { import("typescript-eslint").InfiniteDepthConfigWithExtends[] } */
 const importPlugins = [
@@ -48,7 +48,7 @@ const importPlugins = [
 const reactCompiler = [
     {
         plugins: {
-            "react-compiler": reactCompiler,
+            "react-compiler": reactCompilerPlugin,
         },
         rules: {
             "react-compiler/react-compiler": "error",

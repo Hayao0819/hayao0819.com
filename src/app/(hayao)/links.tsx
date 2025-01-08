@@ -1,7 +1,7 @@
 "use client";
 
 import classNames from "clsx";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 
 import { Link } from "@/components/elements/Link";
@@ -14,12 +14,6 @@ type WebSites = "twitter" | "instagram" | "github";
 
 export default function Links() {
     const [currentStatus, setCurrentStatus] = useState<LinkStatus>({ status: "default" });
-
-    const refs = {
-        twitter: useRef<HTMLAnchorElement>(null),
-        instagram: useRef<HTMLAnchorElement>(null),
-        github: useRef<HTMLAnchorElement>(null),
-    };
 
     const commonHandler = (_site: WebSites) => {
         return {
@@ -46,7 +40,7 @@ export default function Links() {
     };
 
     const commonProps = (site: WebSites) => {
-        return { ...commonHandler(site), ...commonClassName(site), ref: refs[site] };
+        return { ...commonHandler(site), ...commonClassName(site) };
     };
 
     const detailProps = (site: WebSites) => {
