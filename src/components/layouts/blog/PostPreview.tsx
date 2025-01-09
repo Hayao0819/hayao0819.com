@@ -3,15 +3,15 @@
 import { motion, Variants } from "framer-motion";
 
 import { Link } from "@/components/elements/Link";
-import { PostData } from "@/lib/markdown/post";
+import { StaticPostData } from "@/lib/markdown/post";
 import * as utils from "@/lib/utils";
 
-const PostPreview = ({ posts }: { posts: PostData }) => {
-    if (!posts.meta.title || !posts.meta.date) {
+const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
+    if (!post.meta.title || !post.meta.date) {
         return <></>;
     }
 
-    const postDate = new Date(posts.meta.date);
+    const postDate = new Date(post.meta.date);
 
     const animate: Variants = {
         offscreen: {
@@ -27,9 +27,7 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
         },
     };
 
-    const contentString = posts.content.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, "").slice(0, 100) + "...";
-
-    const fullURL = "/blog/posts/" + posts.url;
+    const fullURL = "/blog/posts/" + post.url;
     return (
         <motion.div
             className="border-b p-2"
@@ -41,20 +39,11 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
             <div className="flex h-full flex-col">
                 <div className="flex justify-between">
                     <div className="flex justify-start">
-                        {(posts.meta.categories ? posts.meta.categories : ["その他"])
-                            .filter((c) => {
-                                return c !== "ブログ";
-                            })
-                            .map((c) => {
-                                return c ? c : "その他";
-                            })
-                            .map((s) => {
-                                return (
-                                    <div className="p-1" key={s}>
-                                        <Link href={`/blog/category/${s}`}>{s}</Link>
-                                    </div>
-                                );
-                            })}
+                        {post.categories.map((s) => (
+                            <div className="p-1" key={s}>
+                                <Link href={`/blog/category/${s}`}>{s}</Link>
+                            </div>
+                        ))}
                     </div>
                     <p className="p-1">
                         <Link className="text-sm" href={`/blog/posts/${utils.dateToString(postDate, "")}`}>
@@ -64,11 +53,14 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
                 </div>
 
                 <div className="m-2 flex items-center justify-between">
+                    {/* タイトル */}
                     <Link href={fullURL} className="grow text-xl text-accent underline-offset-8 hover:underline">
-                        {posts.meta.title}
+                        {post.meta.title}
                     </Link>
-                    <div className="flex">
-                        {posts.meta.tags?.map((s) => {
+
+                    {/* タグ一覧 */}
+                    <div className="hidden md:flex">
+                        {post.meta.tags?.map((s) => {
                             return (
                                 <Link href={`/blog/tag/${s}`} className="px-2 text-sm" key={s}>
                                     #{s}
@@ -80,7 +72,7 @@ const PostPreview = ({ posts }: { posts: PostData }) => {
 
                 <div className="m-2 grow">
                     <Link href={fullURL} className="text-sm">
-                        {contentString}
+                        {post.summary}
                     </Link>
                 </div>
 

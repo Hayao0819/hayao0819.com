@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import Markdown from "@/components/elements/Markdown";
 
 import { findMarkdownFromURL } from "../markdown/fromurl";
-import { getPostDataFromFile, PostData } from "../markdown/post";
+import { PostData } from "../markdown/post";
 
 type FoundPost = {
     post?: PostData;
@@ -16,8 +16,7 @@ export function findPostFromUrl(url: string): FoundPost {
     const targetFile = findMarkdownFromURL(path.join(process.cwd(), "posts"), url);
 
     if (targetFile) {
-        const post = getPostDataFromFile(targetFile);
-        //console.log(post);
+        const post = PostData.getFromFile(targetFile);
 
         return {
             post: post,

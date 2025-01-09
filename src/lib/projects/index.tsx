@@ -3,7 +3,7 @@ import path from "path";
 import Markdown from "@/components/elements/Markdown";
 
 import { findMarkdownFromURL } from "../markdown/fromurl";
-import { getPostDataFromFile } from "../markdown/post";
+import { PostData } from "../markdown/post";
 import { PostList } from "../markdown/postlist";
 
 export const projectsDir = path.join(process.cwd(), "src", "app", "(hayao)", "something", "files");
@@ -19,7 +19,7 @@ export const getProjectFromURL = (url: string) => {
     // console.log(mdFile);
 
     if (mdFile) {
-        const projPost = getPostDataFromFile(mdFile, {
+        const projPost = PostData.getFromFile(mdFile, {
             cutHead: process.cwd().split(path.sep).length + 5,
         });
         // TODO: basepathがあってるか確認する

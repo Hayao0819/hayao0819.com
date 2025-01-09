@@ -10,8 +10,8 @@ export type Category = {
 export const getAllCategories = () => fetchedBlogPostList.getAllCategories();
 
 export const findCategoryInfo = (category: string): Category | null => {
-    const catingo = getCategoryInfo();
-    const matched = catingo.filter((c) => c.url === category || c.jp === category);
+    const catinfo = getCategoryInfo();
+    const matched = catinfo.filter((c) => c.url === category || c.jp === category);
 
     if (matched.length === 0) {
         return null;

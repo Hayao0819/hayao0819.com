@@ -13,7 +13,7 @@ export function PostList({ posts }: PostListProps) {
     return (
         <div className="flex flex-col">
             {posts.map((f) => {
-                return <PostPreview posts={f} key={f.file} />;
+                return <PostPreview posts={f.getStaticData()} key={f.file} />;
             })}
         </div>
     );

@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-import { getPostDataFromFile, PostData } from "./post";
+import { PostData } from "./post";
 import { URLFormat } from "./url";
 
 const getMdFilesInDir = (dir: string): string[] => {
@@ -28,12 +28,7 @@ export class PostList {
         this.posts = [];
     }
 
-    fetch(
-        dir: string,
-        format: URLFormat,
-        //includeDraft: boolean | undefined = undefined,
-        //includeHidden: boolean | undefined = undefined,
-    ) {
+    fetch(dir: string, format: URLFormat) {
         if (this.fetched) return this;
 
         const files = getMdFilesInDir(dir);
@@ -41,9 +36,7 @@ export class PostList {
         //console.log(files);
 
         const posts = files
-            .map((file) => {
-                return getPostDataFromFile(file, format);
-            })
+            .map((file) => PostData.getFromFile(file, format))
             .filter((p) => {
                 if (p.meta.publish == undefined) return true;
                 if (p.meta.publish == true) return true;
@@ -169,15 +162,7 @@ export class PostList {
     }
 
     getContentSplitedPosts(perChars: number) {
-        return PostList.fromPostDatas(
-            this.posts.map((p) => {
-                const content = p.content.slice(0, perChars);
-                return {
-                    ...p,
-                    content: content,
-                };
-            }),
-        );
+        return PostList.fromPostDatas(this.posts.map((p) => p.contentSplited(perChars)));
     }
 
     getAllCategories() {
