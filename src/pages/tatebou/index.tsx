@@ -62,9 +62,8 @@ function OriginalURLInput() {
 
 function ActionBtns() {
     return (
-        <div className="flex gap-2 child:btn child:btn-sm  child:!text-white">
+        <div className="flex gap-2 ">
             <CreateBtn />
-
             <ResetBtn />
         </div>
     );
@@ -74,7 +73,7 @@ function ResetBtn() {
     const [, setInputURL] = useAtom(inputAtom);
     return (
         <button
-            className="!btn-error !btn-active"
+            className="btn !btn-error !btn-active  btn-sm !text-white"
             onClick={() => {
                 setInputURL("");
             }}
@@ -118,32 +117,6 @@ function CreateBtn() {
                 }
             }
         };
-        /*
-        const runRequest = (url: string) => {
-            fetch("https://1lil.li/p/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ l: url }),
-            })
-                .then((res) => {
-                    if (!res.ok) {
-                        res.text().then((text) => {
-                            console.log("APIエラー");
-                            openAlert(text, "Error");
-                        });
-                    } else {
-                        res.text().then((text) => {
-                            setFetchedData(text);
-                        });
-                    }
-                })
-                .catch((err) => {
-                    openAlert(err, "Error");
-                });
-        };
-        */
 
         if (inputURL) {
             const url = formatURL(inputURL);
@@ -155,7 +128,7 @@ function CreateBtn() {
     };
 
     return (
-        <button className="!btn-info !btn-active" onClick={SendPOSTToTatebou}>
+        <button className="btn !btn-info !btn-active  btn-sm !text-white" onClick={SendPOSTToTatebou}>
             作成
         </button>
     );
@@ -191,9 +164,9 @@ function TestTools() {
     return (
         <div>
             <p>結果をテスト</p>
-            <div className="flex gap-2 child:btn child:btn-sm  child:!text-white">
+            <div className="flex gap-2">
                 <button
-                    className="!btn-primary !btn-active"
+                    className="btn !btn-primary !btn-active btn-sm !text-white"
                     onClick={() => {
                         if (!fetchedData) {
                             plzMakeURL();
@@ -206,7 +179,7 @@ function TestTools() {
                     コピー
                 </button>
                 <button
-                    className="!btn-secondary !btn-active"
+                    className="btn !btn-secondary !btn-active btn-sm !text-white"
                     onClick={() => {
                         if (!fetchedData) {
                             plzMakeURL();
