@@ -67,7 +67,7 @@ export default async function Markdown({ content, basepath }: { content: string;
             <p
                 // // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
                 // style={{ wordBreak: "auto-phrase" }}
-                className="py-2 leading-6"
+                className="py-2"
                 id={id}
             >
                 {children}

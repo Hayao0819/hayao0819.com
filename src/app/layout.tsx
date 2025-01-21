@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                     <GoogleAnalytics />
                 </Suspense>
             </head>
-            <body className="overscroll-y-none">
+            <body className="overscroll-y-none font-gothic">
                 <ViewTransitions>{children}</ViewTransitions>
             </body>
         </html>

@@ -16,7 +16,7 @@ import (
 func Cmd() *cobra.Command {
 	var postsDir string
 	var publicDir string
-	var currnet_dir string
+	var currentDir string
 
 	cmd := cobra.Command{
 		Use:   "moveimg",
@@ -24,7 +24,7 @@ func Cmd() *cobra.Command {
 		PreRunE: func(cmd *cobra.Command, args []string) error {
 			// カレントディレクトリを取得
 			var err error
-			currnet_dir, err = os.Getwd()
+			currentDir, err = os.Getwd()
 			if err != nil {
 				return err
 			}
@@ -97,8 +97,8 @@ func Cmd() *cobra.Command {
 		},
 	}
 	cobrautil.ApplyTemplate(&cmd)
-	cmd.Flags().StringVarP(&postsDir, "posts-dir", "p", path.Join(currnet_dir, "posts"), "記事のディレクトリ")
-	cmd.Flags().StringVarP(&publicDir, "public-dir", "P", path.Join(currnet_dir, "public", "posts"), "公開ディレクトリ")
+	cmd.Flags().StringVarP(&postsDir, "posts-dir", "p", path.Join(currentDir, "posts"), "記事のディレクトリ")
+	cmd.Flags().StringVarP(&publicDir, "public-dir", "P", path.Join(currentDir, "public", "posts"), "公開ディレクトリ")
 
 	return &cmd
 }

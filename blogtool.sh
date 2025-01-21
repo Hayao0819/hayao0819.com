@@ -6,4 +6,4 @@ if ! type go 2> /dev/null 1>&2; then
 fi
 
 script_path=$(cd "$(dirname "$0")" || exit 1; pwd)
-go run -- "$script_path/." "$@"
+go run -- "$script_path/tools/." "$@"

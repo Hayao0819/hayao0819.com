@@ -3,11 +3,11 @@ package main
 import (
 	"os"
 
-	"github.com/Hayao0819/hayao0819.com/tools"
+	"github.com/Hayao0819/hayao0819.com/tools/cmd"
 )
 
 func main() {
-	cmd := tools.Cmd()
+	cmd := cmd.Root()
 	cmd.SetOutput(os.Stdout)
 	if err := cmd.Execute(); err != nil {
 		cmd.SetOutput(os.Stderr)
