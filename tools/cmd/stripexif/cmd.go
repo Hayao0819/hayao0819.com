@@ -5,9 +5,11 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"sync"
 
 	"github.com/Hayao0819/hayao0819.com/tools/utils/cobrautil"
 	"github.com/Hayao0819/nahi/flist"
+	"github.com/Hayao0819/nahi/futils"
 	"github.com/spf13/cobra"
 )
 
@@ -37,13 +39,29 @@ func Cmd() *cobra.Command {
 			}
 
 			errs := []error{}
+
+			wg := sync.WaitGroup{}
+			wg.Add(len(*files))
+
 			for _, file := range *files {
-				err := stripExif(file)
-				if err != nil {
-					cmd.PrintErrln(err)
-					errs = append(errs, err)
-				}
+				go func() {
+					if futils.IsDir(file) {
+						wg.Done()
+						return
+					}
+
+					cmd.PrintErrln("strip exif from", file)
+					err := stripExif(file)
+					if err != nil {
+						cmd.PrintErrln(err)
+						errs = append(errs, err)
+					}
+
+					wg.Done()
+				}()
 			}
+
+			wg.Wait()
 
 			if len(errs) > 0 {
 				return errors.New("error occurred. see logs")
