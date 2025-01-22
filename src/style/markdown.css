@@ -13,6 +13,12 @@ figure[data-rehype-pretty-code-figure] {
         content: counter(lineNumber);
         counter-increment: lineNumber;
         @apply text-gray-600 mr-5;
+
+        display: inline-block;
+        width: 0.75rem;
+        margin-right: 2rem;
+        text-align: right;
+        color: gray;
     }
 
     code {

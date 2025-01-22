@@ -137,6 +137,12 @@ export default async function Markdown({ content, basepath }: { content: string;
                                     theme: "one-dark-pro",
                                     keepBackground: true,
                                     defaultLang: "plaintext",
+                                    // transformers: [
+                                    //     transformerCopyButton({
+                                    //         visibility: "always",
+                                    //         feedbackDuration: 3_000,
+                                    //     }),
+                                    // ],
                                 },
                             ],
                             rehypeStringify,
