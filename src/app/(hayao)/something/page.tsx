@@ -1,4 +1,5 @@
 import { Link } from "@/components/elements/Link";
+import PageTitle from "@/components/elements/PageTitle";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { SUMMARY_LENGTH } from "@/lib/blog/config";
 import { getFetchedProjectPostList } from "@/lib/projects";
@@ -8,6 +9,7 @@ export default function Projects() {
     //console.log(postlist.map((p) => p.url));
     return (
         <CommonSpacer>
+            <PageTitle>制作物</PageTitle>
             <p>今までにつくった色々な何かへのリンクです。</p>
 
             {postlist.map((p) => {

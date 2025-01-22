@@ -16,8 +16,10 @@ const Card = ({ children }: PropsWithChildren) => (
 );
 
 const Title = ({ children }: PropsWithChildren) => (
-    <div className="flex items-center justify-center text-xl font-bold">{children}</div>
+    <div className="flex items-center justify-center gap-2 text-xl font-bold">{children}</div>
 );
+
+const Icon = ({ children }: PropsWithChildren) => <div className="block">{children}</div>;
 
 const Codes = ({ children }: PropsWithChildren) => (
     <div className="my-2">
@@ -29,4 +31,4 @@ const Description = ({ children }: PropsWithChildren) => <p className=" text-cen
 
 const CodeItem = ({ children }: { children: string }) => <li>{children}</li>;
 
-export default Object.assign(Card, { Container, Title, Codes, Description, CodeItem });
+export default Object.assign(Card, { Container, Title, Codes, Description, CodeItem, Icon });

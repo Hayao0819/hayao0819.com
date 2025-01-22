@@ -5,7 +5,9 @@ import Card from "./Card";
 const ReactJS = () => (
     <Card>
         <Card.Title>
-            <SiReact />
+            <Card.Icon>
+                <SiReact />
+            </Card.Icon>
             <span>React.js</span>
         </Card.Title>
         <Card.Codes>
@@ -19,7 +21,9 @@ const ReactJS = () => (
 const NextJS = () => (
     <Card>
         <Card.Title>
-            <SiNextdotjs />
+            <Card.Icon>
+                <SiNextdotjs />
+            </Card.Icon>
             <span>Next.js</span>
         </Card.Title>
         <Card.Codes>
@@ -33,7 +37,9 @@ const NextJS = () => (
 const VueJS = () => (
     <Card>
         <Card.Title>
-            <SiVuedotjs />
+            <Card.Icon>
+                <SiVuedotjs />
+            </Card.Icon>
             <span>Vue.js</span>
         </Card.Title>
         <Card.Codes>

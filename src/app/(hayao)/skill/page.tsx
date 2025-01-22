@@ -1,18 +1,15 @@
 "use client";
 
-import { Heading } from "@/components/elements/Heading";
+import PageTitle from "@/components/elements/PageTitle";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import Card from "@/features/portfolio/Card";
-import { GoAndGin, NestJS } from "@/features/portfolio/server";
+import { ArchLinux, NixOS } from "@/features/portfolio/os";
+import { GoAndGin, Hono, NestJS } from "@/features/portfolio/server";
 import { MaterialUI, NextJS, ReactJS, TailwindCSS, VueJS } from "@/features/portfolio/web";
 
 const Portfolio = () => (
     <CommonSpacer>
-        <div className="text-center">
-            <Heading level={2} className="inline-block border-b border-accent text-3xl text-accent">
-                PORTFOLIO
-            </Heading>
-        </div>
+        <PageTitle>SKILL</PageTitle>
 
         <Card.Container title="Web">
             <NextJS />
@@ -25,15 +22,19 @@ const Portfolio = () => (
         <Card.Container title="Server">
             <GoAndGin />
             <NestJS />
+            <Hono />
         </Card.Container>
 
-        <Card.Container title="GUI"></Card.Container>
+        {/* <Card.Container title="GUI"></Card.Container>
 
         <Card.Container title="CLI"></Card.Container>
 
-        <Card.Container title="Network"></Card.Container>
+        <Card.Container title="Network"></Card.Container> */}
 
-        <Card.Container title="OS"></Card.Container>
+        <Card.Container title="OS">
+            <ArchLinux />
+            <NixOS />
+        </Card.Container>
     </CommonSpacer>
 );
 

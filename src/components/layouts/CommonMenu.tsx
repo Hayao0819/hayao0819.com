@@ -20,7 +20,7 @@ export function MainManus({ horizontal, className, onMenuItemClick }: MenusProps
         <Menu horizontal={horizontal} className={className}>
             <MenuItem href="/" text="トップ" onClick={onMenuItemClick} />
             <MenuItemBlog onMenuItemClick={onMenuItemClick} />
-            <MenuItem href="/portfolio" text="ポートフォリオ" onClick={onMenuItemClick} />
+            <MenuItem href="/skill" text="スキルセット" onClick={onMenuItemClick} />
             <MenuItem href="/projects" text="何か" onClick={onMenuItemClick} />
             <MenuItem href="/social" text="SNS" onClick={onMenuItemClick} />
         </Menu>

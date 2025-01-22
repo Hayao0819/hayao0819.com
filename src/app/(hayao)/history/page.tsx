@@ -1,12 +1,12 @@
-import { Heading } from "@/components/elements/Heading";
 import Link from "@/components/elements/Link";
+import PageTitle from "@/components/elements/PageTitle";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 
 export default function History() {
     return (
         <CommonSpacer>
+            <PageTitle>History</PageTitle>
             <div>
-                <Heading level={2}>過去のページ</Heading>
                 <p>過去のハヤオのホームページです</p>
                 <ul>
                     <li>

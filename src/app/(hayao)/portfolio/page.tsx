@@ -19,6 +19,7 @@ import { SiVisualstudiocode } from "react-icons-ms/si";
 import { Heading } from "@/components/elements/Heading";
 import { Link } from "@/components/elements/Link";
 import MyLink from "@/components/elements/Link";
+import PageTitle from "@/components/elements/PageTitle";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
 import { genMetaData } from "@/lib/meta";
 
@@ -35,6 +36,7 @@ export const metadata = genMetaData({ title: "Portfolio" });
 export default function Portfolio() {
     return (
         <CommonSpacer>
+            <PageTitle>ポートフォリオ的な何か</PageTitle>
             <div>
                 <PortfolioHeading>制作物について</PortfolioHeading>
                 <p>
@@ -43,7 +45,6 @@ export default function Portfolio() {
                 <p>
                     大学生になってからはGolangやRust、C++等も書き始め、またプロダクション規模のウェブサイトの開発も行うようになりました。更にいくつかの企業でプロダクションのコードも書き始めました。
                 </p>
-                <p>最近の個人的な流行は</p>
             </div>
             <div>
                 <PortfolioHeading>作ったもの</PortfolioHeading>
