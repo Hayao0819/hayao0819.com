@@ -1,6 +1,5 @@
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
 import { getAllCategories } from "@/lib/blog/categories";
-import { SUMMARY_LENGTH } from "@/lib/blog/config";
 import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 
@@ -31,7 +30,7 @@ export const generateStaticParams = async () => {
 const getPostList = (category: string): PostData[] => {
     const categoryFilteredPageList = fetchedBlogPostList.getByCategory(category).excludeHidden();
     // console.log(category);
-    const currentPagePosts = categoryFilteredPageList.getContentSplitedPosts(SUMMARY_LENGTH).getPosts();
+    const currentPagePosts = categoryFilteredPageList.getPosts();
 
     return currentPagePosts;
 };

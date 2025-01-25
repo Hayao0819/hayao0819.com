@@ -8,6 +8,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
+import remarkStrip from "strip-markdown";
 
 import { ComponentPropsWithoutRefAndClassName } from "@/lib/type";
 
@@ -15,7 +16,12 @@ import { BlogHeading as Heading } from "./Heading";
 import Link from "./Link";
 import Tweet from "./Tweet";
 
-export default async function Markdown({ content, basepath }: { content: string; basepath: string }) {
+interface MarkdownProps {
+    content: string;
+    basepath: string;
+    onlyText?: boolean;
+}
+export default async function Markdown({ content, basepath, onlyText }: MarkdownProps) {
     // PropsにidがないとrehypeSlugが動かない
     // https://stackoverflow.com/questions/78294682/rehype-slug-is-not-adding-ids-to-headings
     const components: MDXComponents = {
@@ -122,7 +128,7 @@ export default async function Markdown({ content, basepath }: { content: string;
                 source={content}
                 options={{
                     mdxOptions: {
-                        remarkPlugins: [remarkGfm],
+                        remarkPlugins: onlyText ? [remarkGfm, remarkStrip] : [remarkGfm],
                         rehypePlugins: [
                             [
                                 rehypeSlug,

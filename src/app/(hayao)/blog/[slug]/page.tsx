@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 import { PostList as PostListElement, PostPageSwitch } from "@/components/layouts/blog/PostPreviewList";
-import { POSTLIST_ONEPAGE, SUMMARY_LENGTH } from "@/lib/blog/config";
+import { POSTLIST_ONEPAGE } from "@/lib/blog/config";
 import { fetchedBlogPostListWithoutHidden } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 import { genMetaData } from "@/lib/meta";
@@ -72,7 +72,6 @@ type BlogTopProps = {
 const getPostList = (currentPage: number) => {
     const currentPagePosts: PostData[] = fetchedBlogPostListWithoutHidden
         .getSplitedPosts(currentPage, POSTLIST_ONEPAGE)
-        .getContentSplitedPosts(SUMMARY_LENGTH)
         .getPosts();
 
     const returnProps: BlogTopProps = {

@@ -5,7 +5,7 @@ import { Category } from "./categories";
 
 export const POSTLIST_ONEPAGE = 9;
 export const MDFILE_DIR = path.join(process.cwd(), "posts");
-export const SUMMARY_LENGTH = 200;
+export const SUMMARY_LENGTH = 300;
 
 export const BLOG_URL_FORMAT: URLFormat = {
     cutHead: path.join(process.cwd()).replaceAll(path.sep, "/").split("/").length + 1,

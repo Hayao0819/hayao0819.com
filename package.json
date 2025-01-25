@@ -43,6 +43,7 @@
         "remark-gfm": "^4.0.0",
         "sass": "^1.83.1",
         "shiki": "^1.26.1",
+        "strip-markdown": "^6.0.0",
         "tailwind-children": "^0.5.0",
         "tocbot": "^4.32.2",
         "typescript": "5.7.2",

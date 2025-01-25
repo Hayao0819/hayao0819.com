@@ -2,7 +2,6 @@ import { FaArrowLeft } from "react-icons/fa6";
 
 import { Link } from "@/components/elements/Link";
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
-import { SUMMARY_LENGTH } from "@/lib/blog/config";
 import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 
@@ -36,7 +35,7 @@ export const generateStaticParams = async () => {
 
 const getPostList = (tag: string): PostData[] => {
     const categoryFilteredPageList = fetchedBlogPostList.getByTag(tag).excludeHidden();
-    const currentPagePosts = categoryFilteredPageList.getContentSplitedPosts(SUMMARY_LENGTH).getPosts();
+    const currentPagePosts = categoryFilteredPageList.getPosts();
 
     return currentPagePosts;
 };

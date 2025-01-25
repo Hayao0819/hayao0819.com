@@ -3,6 +3,7 @@
 import { motion, Variants } from "framer-motion";
 
 import { Link } from "@/components/elements/Link";
+import { SUMMARY_LENGTH } from "@/lib/blog/config";
 import { StaticPostData } from "@/lib/markdown/post";
 import * as utils from "@/lib/utils";
 
@@ -72,7 +73,8 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
 
                 <div className="m-2 grow">
                     <Link href={fullURL} className="text-sm">
-                        {post.summary}
+                        {/* <Markdown content={post.content.slice(0, SUMMARY_LENGTH)} onlyText basepath={"/posts/" + post.url} /> */}
+                        {post.content.slice(0, SUMMARY_LENGTH)}
                     </Link>
                 </div>
 

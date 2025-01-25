@@ -161,10 +161,6 @@ export class PostList {
         return PostList.fromPostDatas(filtered);
     }
 
-    getContentSplitedPosts(perChars: number) {
-        return PostList.fromPostDatas(this.posts.map((p) => p.contentSplited(perChars)));
-    }
-
     getAllCategories() {
         const posts = this.getPosts();
         const categories = posts

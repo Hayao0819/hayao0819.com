@@ -11,7 +11,6 @@ export interface StaticPostData {
     url: string;
     meta: PostMeta;
     content: string;
-    summary: string;
     categories: string[];
 }
 
@@ -50,15 +49,11 @@ export class PostData {
                   });
     }
 
-    constructor(file: string, url: string, meta: PostMeta, content: string) {
+    constructor(file: string, url: string, meta: PostMeta, rawText: string) {
         this.#file = file;
         this.#url = url;
         this.#meta = meta;
-        this.#content = content;
-    }
-
-    contentSplited(chars: number) {
-        return new PostData(this.#file, this.#url, this.#meta, this.#content.slice(0, chars));
+        this.#content = rawText;
     }
 
     getStaticData(): StaticPostData {
@@ -67,7 +62,6 @@ export class PostData {
             url: this.#url,
             meta: this.#meta,
             content: this.#content,
-            summary: this.summary,
             categories: this.categories,
         };
     }

@@ -1,7 +1,6 @@
 import { Link } from "@/components/elements/Link";
 import PageTitle from "@/components/elements/PageTitle";
 import CommonSpacer from "@/components/layouts/CommonSpacer";
-import { SUMMARY_LENGTH } from "@/lib/blog/config";
 import { getFetchedProjectPostList } from "@/lib/projects";
 
 export default function Projects() {
@@ -25,9 +24,4 @@ export default function Projects() {
     );
 }
 
-const getPJList = () => {
-    const postlist = getFetchedProjectPostList().getContentSplitedPosts(SUMMARY_LENGTH);
-    //console.log(postlist.getPosts());
-
-    return postlist.getPosts();
-};
+const getPJList = () => getFetchedProjectPostList().getPosts();
