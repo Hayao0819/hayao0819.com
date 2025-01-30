@@ -1,30 +1,20 @@
 import "@/style/markdown.css";
 
+import clsx from "clsx";
 import { MDXComponents } from "mdx/types";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { ComponentPropsWithoutRef } from "react";
-import rehypeCodeTitles from "rehype-code-titles";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
-import rehypeStringify from "rehype-stringify";
-import remarkGfm from "remark-gfm";
-import remarkStrip from "strip-markdown";
+import { ComponentPropsWithoutRef, useMemo } from "react";
 
 import { ComponentPropsWithoutRefAndClassName } from "@/lib/type";
 
-import { BlogHeading as Heading } from "./Heading";
-import Link from "./Link";
-import Tweet from "./Tweet";
+import { BlogHeading as Heading } from "../Heading";
+import { Link } from "../Link";
+import Tweet from "../Tweet";
 
-interface MarkdownProps {
-    content: string;
-    basepath: string;
-    onlyText?: boolean;
-}
-export default async function Markdown({ content, basepath, onlyText }: MarkdownProps) {
-    // PropsにidがないとrehypeSlugが動かない
-    // https://stackoverflow.com/questions/78294682/rehype-slug-is-not-adding-ids-to-headings
-    const components: MDXComponents = {
+// https://stackoverflow.com/questions/78294682/rehype-slug-is-not-adding-ids-to-headings
+export const getComponents = (basepath: string, toc: boolean = false): MDXComponents => {
+    return {
+        // PropsにidがないとrehypeSlugが動かない
+
         h1: ({ children, id }) => {
             return (
                 <Heading id={id} level={1}>
@@ -64,7 +54,7 @@ export default async function Markdown({ content, basepath, onlyText }: Markdown
         a: ({ href, children, id }) => {
             if (!href) return <span>{children}</span>;
             return (
-                <Link href={href} id={id} className=" text-blue-900">
+                <Link href={href} id={id} className="border-b border-blue-900 text-blue-900">
                     {children}
                 </Link>
             );
@@ -73,7 +63,7 @@ export default async function Markdown({ content, basepath, onlyText }: Markdown
             <p
                 // // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
                 // style={{ wordBreak: "auto-phrase" }}
-                className="py-2"
+                className={clsx({ "py-2": !toc, "leading-none py-1": toc })}
                 id={id}
             >
                 {children}
@@ -96,6 +86,10 @@ export default async function Markdown({ content, basepath, onlyText }: Markdown
             <ul id={id} className="list-disc pl-8">
                 {children}
             </ul>
+        ),
+
+        blockquote: ({ children }) => (
+            <blockquote className="border-l-2 border-accent bg-gray-200 py-4 pl-8 italic">{children}</blockquote>
         ),
 
         //pre: ({ children, className }) => <pre className={classNames(className, "p-2")}>{children}</pre>,
@@ -121,42 +115,8 @@ export default async function Markdown({ content, basepath, onlyText }: Markdown
             );
         },
     };
+};
 
-    return (
-        <div>
-            <MDXRemote
-                source={content}
-                options={{
-                    mdxOptions: {
-                        remarkPlugins: onlyText ? [remarkGfm, remarkStrip] : [remarkGfm],
-                        rehypePlugins: [
-                            [
-                                rehypeSlug,
-                                {
-                                    prefix: "",
-                                },
-                            ],
-                            rehypeCodeTitles,
-                            [
-                                rehypePrettyCode,
-                                {
-                                    theme: "one-dark-pro",
-                                    keepBackground: true,
-                                    defaultLang: "plaintext",
-                                    // transformers: [
-                                    //     transformerCopyButton({
-                                    //         visibility: "always",
-                                    //         feedbackDuration: 3_000,
-                                    //     }),
-                                    // ],
-                                },
-                            ],
-                            rehypeStringify,
-                        ],
-                    },
-                }}
-                components={components}
-            />
-        </div>
-    );
-}
+export const useComponents = (basepath: string, toc?: boolean) => {
+    return useMemo(() => getComponents(basepath, toc), [basepath, toc]);
+};

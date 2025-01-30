@@ -1,6 +1,6 @@
 import path from "path";
 
-import Markdown from "@/components/elements/Markdown";
+import Markdown from "@/components/elements/Markdown/server";
 
 import { findMarkdownFromURL } from "../markdown/fromurl";
 import { PostData } from "../markdown/post";

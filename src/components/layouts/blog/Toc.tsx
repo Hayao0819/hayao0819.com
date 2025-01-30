@@ -3,7 +3,7 @@
 import { clsx } from "clsx";
 
 import { BlogHeading as Heading } from "@/components/elements/Heading";
-import Toc, { useHeadingTree } from "@/components/elements/Toc";
+import Toc, { useHeadingTree } from "@/components/elements/Markdown/Toc";
 
 const BlogToc = ({ contentSelector }: { contentSelector: string }) => {
     const tree = useHeadingTree(contentSelector);

@@ -23,6 +23,8 @@ const nextConfig = {
     experimental: {
         reactCompiler: true,
     },
+
+    reactStrictMode: true,
 };
 
 if (shouldDeployToGithubPages) {

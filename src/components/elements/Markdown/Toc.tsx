@@ -4,6 +4,8 @@ import clsx from "clsx";
 import { default as NextLink } from "next/link";
 import { ComponentPropsWithoutRef, memo, useEffect, useState } from "react";
 
+import Markdown from "./client";
+
 interface TocProps extends ComponentPropsWithoutRef<"div"> {
     contentSelector: string;
 }
@@ -76,7 +78,10 @@ const RenderHeadingTree = ({ tree, indent }: { tree: HeadingTree[]; indent: numb
                 {tree.map((e) => (
                     <li key={e.id} className={clsx(levelClassNames[e.level], { "pl-2": isTopLevel }, "py-1")}>
                         <NextLink href={`#${e.id}`} scroll={true}>
-                            {e.text}
+                            {/* {e.text} */}
+                            <div>
+                                <Markdown basepath="" content={e.text} toc />
+                            </div>
                         </NextLink>
                         {e.children.length > 0 ? <RenderHeadingTree tree={e.children} indent={indent + 1} /> : null}
                     </li>
