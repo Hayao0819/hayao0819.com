@@ -39,7 +39,6 @@ export const rehypePlugins: PluggableList = [
 export interface MarkdownProps {
     content: string;
     basepath: string;
-    toc?: boolean;
     // onlyText?: boolean;
     // render?: "server" | "client";
 }

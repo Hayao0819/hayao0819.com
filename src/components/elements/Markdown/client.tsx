@@ -18,7 +18,7 @@ const getSerializedResult = (content: string, onlyText: boolean) =>
         },
     });
 
-const Markdown = ({ content, basepath, toc }: MarkdownProps) => {
+const Markdown = ({ content, basepath }: MarkdownProps) => {
     const [serialized, setSerialized] = useState<SerializedResult | null>(null);
     useEffect(() => {
         getSerializedResult(content, false).then(
@@ -31,7 +31,7 @@ const Markdown = ({ content, basepath, toc }: MarkdownProps) => {
         );
     }, []);
 
-    const components = useComponents(basepath, toc);
+    const components = useComponents(basepath);
     return serialized === null ? <p>Loading...</p> : <MDXRemote {...serialized} components={components} />;
 };
 

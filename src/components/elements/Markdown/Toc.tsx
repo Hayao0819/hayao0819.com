@@ -4,8 +4,6 @@ import clsx from "clsx";
 import { default as NextLink } from "next/link";
 import { ComponentPropsWithoutRef, memo, useEffect, useState } from "react";
 
-import Markdown from "./client";
-
 interface TocProps extends ComponentPropsWithoutRef<"div"> {
     contentSelector: string;
 }
@@ -63,25 +61,27 @@ const RenderHeadingTree = ({ tree, indent }: { tree: HeadingTree[]; indent: numb
         1: "",
         2: "",
         3: "ml-2",
+        4: "ml-4",
     };
 
     const isTopLevel = indent === 0;
+    console.log(tree);
 
     return (
         <>
             <ul
-                className={clsx("ml-8", {
+                className={clsx({
                     "marker:text-accent marker:content-['-']": isTopLevel,
                     "marker:content-none": !isTopLevel,
                 })}
+                style={{ marginLeft: `${2 * indent}rem` }}
             >
                 {tree.map((e) => (
                     <li key={e.id} className={clsx(levelClassNames[e.level], { "pl-2": isTopLevel }, "py-1")}>
                         <NextLink href={`#${e.id}`} scroll={true}>
                             {/* {e.text} */}
-                            <div>
-                                <Markdown basepath="" content={e.text} toc />
-                            </div>
+                            {/* <Markdown basepath="" content={e.text} toc /> */}
+                            <span dangerouslySetInnerHTML={{ __html: e.text }} />
                         </NextLink>
                         {e.children.length > 0 ? <RenderHeadingTree tree={e.children} indent={indent + 1} /> : null}
                     </li>
@@ -98,7 +98,10 @@ export const useHeadingTree = (contentSelector: string) => {
         const content = document.querySelector(contentSelector);
         if (!content) return;
 
-        const headingTree = elementsToHeadingTree(Array.from(content.querySelectorAll("h2, h3, h4, h5, h6")));
+        const headingTree = elementsToHeadingTree(Array.from(content.querySelectorAll(
+            // "h2, h3, h4, h5, h6"
+            "h2, h3"
+        )));
         setTree(headingTree);
     }, []);
 

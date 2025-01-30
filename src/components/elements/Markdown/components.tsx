@@ -1,6 +1,5 @@
 import "@/style/markdown.css";
 
-import clsx from "clsx";
 import { MDXComponents } from "mdx/types";
 import { ComponentPropsWithoutRef, useMemo } from "react";
 
@@ -11,7 +10,7 @@ import { Link } from "../Link";
 import Tweet from "../Tweet";
 
 // https://stackoverflow.com/questions/78294682/rehype-slug-is-not-adding-ids-to-headings
-export const getComponents = (basepath: string, toc: boolean = false): MDXComponents => {
+export const getComponents = (basepath: string): MDXComponents => {
     return {
         // PropsにidがないとrehypeSlugが動かない
 
@@ -63,7 +62,7 @@ export const getComponents = (basepath: string, toc: boolean = false): MDXCompon
             <p
                 // // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
                 // style={{ wordBreak: "auto-phrase" }}
-                className={clsx({ "py-2": !toc, "leading-none py-1": toc })}
+                className="py-2"
                 id={id}
             >
                 {children}
@@ -117,6 +116,6 @@ export const getComponents = (basepath: string, toc: boolean = false): MDXCompon
     };
 };
 
-export const useComponents = (basepath: string, toc?: boolean) => {
-    return useMemo(() => getComponents(basepath, toc), [basepath, toc]);
+export const useComponents = (basepath: string) => {
+    return useMemo(() => getComponents(basepath), [basepath]);
 };

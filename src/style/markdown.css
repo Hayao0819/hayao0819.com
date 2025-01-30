@@ -32,7 +32,7 @@ span[data-rehype-pretty-code-figure] {
         /* background-color: inherit !important;
         @apply !text-sky-600; */
 
-        @apply px-1 mx-1;
+        /* @apply px-1 mx-1; */
     }
 
     code[data-language="plaintext"] {

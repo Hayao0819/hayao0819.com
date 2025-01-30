@@ -5,7 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { MarkdownProps, rehypePlugins, remarkPlugins } from "./common";
 import { getComponents } from "./components";
 
-export default async function Markdown({ content, basepath, toc }: MarkdownProps) {
+export default async function Markdown({ content, basepath }: MarkdownProps) {
     // console.log(content);
 
     return (
@@ -17,7 +17,7 @@ export default async function Markdown({ content, basepath, toc }: MarkdownProps
                     rehypePlugins,
                 },
             }}
-            components={getComponents(basepath, toc)}
+            components={getComponents(basepath)}
         />
     );
 }
