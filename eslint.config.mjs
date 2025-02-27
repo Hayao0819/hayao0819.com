@@ -125,7 +125,7 @@ const flatConfig = [
         rules: {
             "@next/next/no-img-element": "off",
             "react/react-in-jsx-scope": "off",
-            "tailwindcss/no-custom-classname": "warn",
+            // "tailwindcss/no-custom-classname": "warn",
         },
     },
     {
