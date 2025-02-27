@@ -7,7 +7,7 @@ const Container = ({ children, title }: PropsWithChildren<{ title: string }>) =>
         <Heading level={3} className="my-8 inline-block border-l-2 border-accent p-2 font-bold text-accent">
             {title}
         </Heading>
-        {children ? <div className="flex flex-wrap justify-around gap-2">{children}</div> : <div>現在工事中</div>}
+        {children ? <div className=" flex flex-wrap justify-start gap-2">{children}</div> : <div>現在工事中</div>}
     </div>
 );
 

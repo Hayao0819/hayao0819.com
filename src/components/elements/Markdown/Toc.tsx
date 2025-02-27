@@ -65,13 +65,13 @@ const RenderHeadingTree = ({ tree, indent }: { tree: HeadingTree[]; indent: numb
     };
 
     const isTopLevel = indent === 0;
-    console.log(tree);
+    // console.log(tree);
 
     return (
         <>
             <ul
                 className={clsx({
-                    "marker:text-accent marker:content-['-']": isTopLevel,
+                    // "marker:text-accent marker:content-['-']": isTopLevel,
                     "marker:content-none": !isTopLevel,
                 })}
                 style={{ marginLeft: `${2 * indent}rem` }}
