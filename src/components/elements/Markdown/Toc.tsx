@@ -98,10 +98,14 @@ export const useHeadingTree = (contentSelector: string) => {
         const content = document.querySelector(contentSelector);
         if (!content) return;
 
-        const headingTree = elementsToHeadingTree(Array.from(content.querySelectorAll(
-            // "h2, h3, h4, h5, h6"
-            "h2, h3"
-        )));
+        const headingTree = elementsToHeadingTree(
+            Array.from(
+                content.querySelectorAll(
+                    // "h2, h3, h4, h5, h6"
+                    "h2, h3",
+                ),
+            ),
+        );
         setTree(headingTree);
     }, []);
 

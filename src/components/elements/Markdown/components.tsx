@@ -117,7 +117,7 @@ export const getComponents = (basepath: string): MDXComponents => {
 
         Warn: ({ children, id }) => (
             <div>
-                <div className="rounded-md bg-red-200 p-4 text-red-900" id={id}>
+                <div className="my-8 rounded-md bg-red-200 p-4 text-red-900" id={id}>
                     <div className="flex items-center gap-4 font-bold">
                         <FaExclamationCircle />
                         <span>Warning</span>
