@@ -5,7 +5,7 @@ import prettierPlugin from "eslint-plugin-prettier/recommended";
 import reactPlugin from "eslint-plugin-react";
 import reactCompilerPlugin from "eslint-plugin-react-compiler";
 import simpleImportSortPlugin from "eslint-plugin-simple-import-sort";
-import tailwindPlugin from "eslint-plugin-tailwindcss";
+// import tailwindPlugin from "eslint-plugin-tailwindcss";
 import unusedImportsPlugin from "eslint-plugin-unused-imports";
 import globals from "globals";
 import tsEslint from "typescript-eslint";
@@ -88,7 +88,7 @@ const flatConfig = [
         files: ["**/*.ts", "**/*.tsx"],
         extends: [js.configs.recommended, ...tsEslint.configs.recommended],
     },
-    ...tailwindPlugin.configs["flat/recommended"],
+    // ...tailwindPlugin.configs["flat/recommended"],
     ...importPlugins,
     prettierPlugin,
     ...reactCompiler,

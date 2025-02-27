@@ -7,5 +7,5 @@ export default {
     endOfLine: "lf",
     printWidth: 130,
     htmlWhitespaceSensitivity: "ignore",
-    plugins: ["tailwindcss"],
+    plugins: ["prettier-plugin-tailwindcss"],
 };
