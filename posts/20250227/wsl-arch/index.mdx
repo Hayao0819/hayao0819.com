@@ -1,0 +1,156 @@
+---
+title: WSLによる開発環境の最適解
+description: ""
+date: 2025-02-27T02:05:46.373375129+09:00
+categories:
+    - 技術系
+tags:
+    - Windows
+    - Linux
+draft: false
+publish: true
+---
+
+Linuxは最高のOSです。しかし私のCore Ultra 2 Serial搭載のXPSのように、Linuxカーネルによるデバイスのサポートが不完全な場合もあると思います。
+
+常用に耐えうるレベルでない場合にはWindowsを使わざるを得ない場面もあるでしょう。
+
+<Warn>
+Linuxを入れたくない言い訳としてWSLを推奨するわけではありません。
+
+正常にLinuxが動作する環境においては直にLinuxをインストールする方が良いでしょう。
+
+</Warn>
+
+## WSLのインストール方法
+
+ストアからディストリビューションを検索して……なんというチンツな方法は利用しません。
+
+yuk7氏が公開している[wsldl](https://github.com/yuk7/wsldl)を利用します。
+
+https://github.com/yuk7/wsldl
+
+## インストールするディストリビューション
+
+私の宗教的な理由で、以下のディストリビューション以外の利用は推奨しないと言わざるを得ません。
+
+- [ArchLinux](https://github.com/yuk7/ArchWSL)
+- [ManjaroWSL2](https://github.com/sileshn/ManjaroWSL2)
+- [NixOS](https://github.com/nix-community/NixOS-WSL)
+
+NixOS以外はすべてyuk7/wsldlを利用しています。
+
+## インストール先
+
+様々な権限の問題を回避するために`%USERPROFILE%`直下にWSLというディレクトリを作成します。
+
+```txt
+Microsoft Windows [Version 10.0.26100.3194]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Hayao>tree WSL
+フォルダー パスの一覧:  ボリューム Windows11
+ボリューム シリアル番号は AA02-21A7 です
+C:\USERS\HAYAO\WSL
+├─Arch
+└─Nix
+```
+
+私の環境ではこんな感じになっています。
+
+## ArchWSL
+
+### インストール
+
+[最新のArchWSLのリリースページ](https://github.com/yuk7/ArchWSL/releases/latest)から、`Arch.zip`をダウンロードします。
+
+それ以外の方法でもインストールできますが、面倒な認証の手順があったり任意の場所にインストールできなかったりするのでzip形式が最適です。
+
+入手した圧縮ファイルを任意の場所(今回は`%USERPROFILE%\WSL\Arch`)以下に展開します。
+
+```txt
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\Hayao> cd .\WSL\Arch2\
+PS C:\Users\Hayao\WSL\Arch2> .\Arch2.exe
+Using: C:\Users\Hayao\WSL\Arch2\rootfs.tar.gz
+Installing...
+Installation complete
+Press enter to continue...
+```
+
+### 必要なパッケージのインストール
+
+インストール直後では最小限のパッケージしか入っておらず、AURのパッケージすら使えないので`base`と`base-devel`を入れ直します。
+
+まずはKeyringとデータベースを更新。その後にシステム全体を更新します。
+
+```bash
+curl -sL https://0u0.biz/YNhG | sed "s/^#Server/Server/g" > /etc/pacman.d/mirrorlist
+pacman-key --init
+pacman-key --populate
+pacman-key --refresh-keys
+pacman -Syy
+pacman -S archlinux-keyring
+pacman -Su
+pacman -S base base-devel
+```
+
+### 一般ユーザーをセットアップ
+
+一般ユーザーをセットアップします。ついでにシェルをFishにします。
+
+```bash
+pacman -S fish
+useradd -U -m -s /usr/bin/fish hayao
+passwd hayao
+```
+
+sudoを使えるようにします。
+
+```bash
+groupadd sudo
+gpasswd -a hayao sudo
+echo "%sudo ALL=(ALL:ALL) ALL" > /etc/sudoers.d/allow-sudo-group
+```
+
+WSLのデフォルトユーザーを変更します。
+
+```powershell
+.\Arch2.exe config --default-user hayao
+```
+
+### AUR Helperをセットアップ
+
+```bash
+sudo pacman -S git
+git clone "https://aur.archlinux.org/yay-bin.git"
+cd yay-bin
+makepkg -siA
+```
+
+### GUI環境をセットアップ
+
+```bash
+sudo pacman -S xorg-server xorg-xeyes
+xeyes
+```
+
+目玉が出てくれば成功です。
+
+### 開発環境のセットアップ
+
+Windows側にVisual Studio CodeをインストールしRemote WSLを用います。
+
+詳細は[こちらの公式ガイド](https://learn.microsoft.com/ja-jp/windows/wsl/tutorials/wsl-vscode)を。
+
+Windows側にはGitやNode.js等の開発環境、実行環境は一切インストールせず全てWSL内で解決することでホストOSをクリーンに保つことができます。
+
+## 終わり
+
+巷に溢れているWSLでArchを使う記事と大きな違いはありませんが、WSLの実体を`%USERPROFILE%\WSL`に置く等の小さな拘りがあります。
+
+また、WSLでUSBを使うのも色々と試してはいるのですがイマイチ安定していません。また環境に変化があった際には記事を更新しようと思います。
+
+それでは、また今度。

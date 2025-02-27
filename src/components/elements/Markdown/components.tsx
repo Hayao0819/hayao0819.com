@@ -2,6 +2,7 @@ import "@/style/markdown.css";
 
 import { MDXComponents } from "mdx/types";
 import { ComponentPropsWithoutRef, useMemo } from "react";
+import { FaExclamationCircle } from "react-icons/fa";
 
 import { ComponentPropsWithoutRefAndClassName } from "@/lib/type";
 
@@ -113,6 +114,18 @@ export const getComponents = (basepath: string): MDXComponents => {
                 </div>
             );
         },
+
+        Warn: ({ children, id }) => (
+            <div>
+                <div className="rounded-md bg-red-200 p-4 text-red-900" id={id}>
+                    <div className="flex items-center gap-4 font-bold">
+                        <FaExclamationCircle />
+                        <span>Warning</span>
+                    </div>
+                    {children}
+                </div>
+            </div>
+        ),
     };
 };
 
