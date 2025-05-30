@@ -70,7 +70,9 @@ https://maps.app.goo.gl/sQM1JivgD1WMHbV78
 
 この店舗の見た目が一致したので、ストリートビューで立ち位置を微調整して提出完了。
 
-最終的な立ち位置はここ。<https://x.gd/osX4k
+最終的な立ち位置はここ。
+
+https://x.gd/osX4k
 
 回答にかかった時間は20分弱。
 
@@ -149,8 +151,8 @@ Telegramのページで開発者ツールを開き、高画質な画像をダウ
 
 見つけたが有益ではなかったサイトは↓
 
-- <https://ua.korrespondent.net/ukraine/4548351-viiska-rf-obstrilialy-dva-sela-pid-zaporizhzhiam?__cf_chl_tk=TxD78iBJT60TcflYhsp4OMSsLPnSzCclh.wZElUBwsQ-1746278270-1.0.1.1-7OFFrdsHo5n9jqeboQs.CiXlqw2lRaXi6YObc4UdiiA
-- <https://zp.vgorode.ua/news/sobytyia/a1228996-starukh-pokazal-foto-posledstvij-raketnoj-ataki-po-zaporozhskomu-rajonu#gallery
+- https://ua.korrespondent.net/ukraine/4548351-viiska-rf-obstrilialy-dva-sela-pid-zaporizhzhiam?__cf_chl_tk=TxD78iBJT60TcflYhsp4OMSsLPnSzCclh.wZElUBwsQ-1746278270-1.0.1.1-7OFFrdsHo5n9jqeboQs.CiXlqw2lRaXi6YObc4UdiiA
+- https://zp.vgorode.ua/news/sobytyia/a1228996-starukh-pokazal-foto-posledstvij-raketnoj-ataki-po-zaporozhskomu-rajonu#gallery
 
 他にもニュースサイトを10個ほど見た気がするが、リンクを発見できなかった。
 
