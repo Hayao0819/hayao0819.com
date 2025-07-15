@@ -11,7 +11,7 @@ export interface PostListProps {
 
 export function PostList({ posts }: PostListProps) {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-5">
             {posts.map((f) => {
                 return <PostPreview posts={f.getStaticData()} key={f.file} />;
             })}
@@ -34,7 +34,7 @@ export function PostPageSwitch({ allpages, currentPage, linktemplate }: PostPage
                     <span
                         key={i}
                         className={classNames("px-2 text-lg", {
-                            " underline underline-offset-2 text-accent font-bold": isCurrent,
+                            "mx-1 bg-accent font-bold text-accent underline underline-offset-2 shadow-md": isCurrent,
                         })}
                     >
                         {isCurrent ? <p>{i}</p> : <Link href={linktemplate(i)}>{i}</Link>}

@@ -12,7 +12,7 @@ figure[data-rehype-pretty-code-figure] {
         text-align: right;
         content: counter(lineNumber);
         counter-increment: lineNumber;
-        @apply text-gray-600 mr-5;
+        @apply mr-5 text-gray-600;
 
         display: inline-block;
         width: 0.75rem;
@@ -28,12 +28,12 @@ figure[data-rehype-pretty-code-figure] {
 }
 
 span[data-rehype-pretty-code-figure] {
-    code {
+    /* code { */
         /* background-color: inherit !important;
         @apply !text-sky-600; */
 
         /* @apply px-1 mx-1; */
-    }
+    /* } */
 
     code[data-language="plaintext"] {
         @apply !text-sky-600;

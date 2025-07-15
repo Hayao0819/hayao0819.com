@@ -10,12 +10,12 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
     const tags = postlist.getAllTags();
     const posts = postlist.getPosts().slice(undefined, 10);
 
-    const sectionClassName = classNames("p-5", { "shadow-lg": false, "": true });
+    const sectionClassName = classNames("p-5", "pt-0");
 
     return (
         <CommonSpacer className="md:flex md:gap-2">
             <div className="mx-auto md:w-9/12 xl:w-2/3">{children}</div>
-            <div className="flex flex-col gap-12 md:w-3/12 ">
+            <div className="flex flex-col md:w-3/12">
                 {/* Categories */}
                 <div className={sectionClassName}>
                     <Link href="/blog/category">
