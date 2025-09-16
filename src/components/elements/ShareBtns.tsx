@@ -9,7 +9,7 @@ export interface ShareProps {
 }
 export default function ShareBtns({ url, text }: ShareProps) {
     return (
-        <div className="flex w-full flex-wrap items-center justify-center ">
+        <div className="flex w-full flex-wrap items-center justify-center">
             <div className="flex flex-wrap justify-center child:btn child:tooltip child:tooltip-bottom child:m-2 child:flex child:justify-center child:p-3 child:!text-base-100 child:shadow-lg">
                 <ShareTwitter url={url} text={text} />
                 <ShareFacebook url={url} />

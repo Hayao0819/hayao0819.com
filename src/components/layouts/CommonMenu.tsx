@@ -29,16 +29,17 @@ export function MainManus({ horizontal, className, onMenuItemClick }: MenusProps
 
 export interface OtherLinksProps extends MenusCommonProps {
     horizontal?: boolean;
+    className?: string;
 }
-export function OtherLinks({ horizontal, onMenuItemClick }: OtherLinksProps) {
+export function OtherLinks({ horizontal, onMenuItemClick, className }: OtherLinksProps) {
     return (
-        <Menu horizontal={horizontal}>
+        <Menu horizontal={horizontal} className={className}>
             <Menu.Item onClick={onMenuItemClick}>
                 <Link href="/tatebou">縦棒</Link>
             </Menu.Item>
             <Menu.Item onClick={onMenuItemClick}>
-                <Link className="!text-accent" href="https://seppuku.club/">
-                    Let&apos;s get Seppukued!
+                <Link className="" href="https://seppuku.club/">
+                    切腹
                 </Link>
             </Menu.Item>
         </Menu>

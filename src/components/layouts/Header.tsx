@@ -1,30 +1,26 @@
 "use client";
 
-import { Navbar } from "react-daisyui";
-
 import { Link } from "@/components/elements/Link";
 
 import { MainManus, OtherLinks } from "./CommonMenu";
 import * as Drawer from "./Drawer";
 
-export default function Header({ onMouseEnter, onMouseLeave }: { onMouseEnter?: () => void; onMouseLeave?: () => void }) {
+export default function Header() {
     return (
-        <Navbar className="bg-base-100" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+        <nav className="my-0 flex items-center border-y-4 border-base-content bg-base-100 py-0 child:h-full">
             <Drawer.ToggleSwitch />
-            <div>
-                <Link className="btn btn-ghost text-lg text-accent" href="/" role="button">
+            <div className="h-full border-r-4 border-base-content">
+                <Link className="h-full! btn btn-ghost text-lg" href="/" role="button">
                     Yamada Hayao
                 </Link>
             </div>
-            <div className="hidden grow md:flex">
-                <Navbar.Start>
-                    <MainManus horizontal />
-                </Navbar.Start>
+            <div className="flex h-full grow items-center justify-start">
+                <MainManus horizontal className="flex items-center p-0" />
             </div>
 
-            <Navbar.End className="hidden sm:flex">
-                <OtherLinks horizontal />
-            </Navbar.End>
-        </Navbar>
+            <div className="hidden h-full sm:flex">
+                <OtherLinks horizontal className="h-full p-0" />
+            </div>
+        </nav>
     );
 }
