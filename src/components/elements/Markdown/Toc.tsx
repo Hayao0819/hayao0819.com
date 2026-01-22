@@ -57,37 +57,27 @@ const elementsToHeadingList = (elements: Element[]): HeadingList =>
 const elementsToHeadingTree = (elements: Element[]): HeadingTree[] => genHeadingTree(elementsToHeadingList(elements));
 
 const RenderHeadingTree = ({ tree, indent }: { tree: HeadingTree[]; indent: number }) => {
-    const levelClassNames: { [key: number]: string } = {
-        1: "",
-        2: "",
-        3: "ml-2",
-        4: "ml-4",
-    };
-
     const isTopLevel = indent === 0;
-    // console.log(tree);
 
     return (
-        <>
-            <ul
-                className={clsx({
-                    // "marker:text-accent marker:content-['-']": isTopLevel,
-                    "marker:content-none": !isTopLevel,
-                })}
-                style={{ marginLeft: `${2 * indent}rem` }}
-            >
-                {tree.map((e) => (
-                    <li key={e.id} className={clsx(levelClassNames[e.level], { "pl-2": isTopLevel }, "py-1")}>
-                        <NextLink href={`#${e.id}`} scroll={true}>
-                            {/* {e.text} */}
-                            {/* <Markdown basepath="" content={e.text} toc /> */}
-                            <span dangerouslySetInnerHTML={{ __html: e.text }} />
-                        </NextLink>
-                        {e.children.length > 0 ? <RenderHeadingTree tree={e.children} indent={indent + 1} /> : null}
-                    </li>
-                ))}
-            </ul>
-        </>
+        <ul
+            className={clsx("list-none", {
+                "space-y-1": isTopLevel,
+                "mt-1 space-y-0.5 border-l-2 border-base-content/30 pl-3": !isTopLevel,
+            })}
+        >
+            {tree.map((e, index) => (
+                <li key={e.id} className="leading-relaxed">
+                    <NextLink href={`#${e.id}`} scroll={true} className="group flex items-start gap-2 hover:text-accent">
+                        <span className="font-mono text-xs text-base-content/50 group-hover:text-accent">
+                            {isTopLevel ? `${(index + 1).toString().padStart(2, "0")}` : "─"}
+                        </span>
+                        <span dangerouslySetInnerHTML={{ __html: e.text }} />
+                    </NextLink>
+                    {e.children.length > 0 ? <RenderHeadingTree tree={e.children} indent={indent + 1} /> : null}
+                </li>
+            ))}
+        </ul>
     );
 };
 

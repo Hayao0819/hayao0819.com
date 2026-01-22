@@ -39,7 +39,7 @@ export function BlogHeading(props: HeadingProps) {
         level == 1 ? (
             <Heading {...propsWithoutClassName} className={classNames(cn, "text-4xl", "text-center", "tect-accent")} />
         ) : level == 2 ? (
-            <Heading {...propsWithoutClassName} className={classNames(cn, "text-accent border-l-2 border-accent pl-2 text-xl")} />
+            <Heading {...propsWithoutClassName} className={classNames(cn, "border-l-2 border-accent pl-2 text-xl text-accent")} />
         ) : level == 3 ? (
             <Heading {...propsWithoutClassName} className={classNames(cn, "text-accent")} />
         ) : level == 4 ? (

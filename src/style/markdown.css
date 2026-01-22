@@ -12,13 +12,12 @@ figure[data-rehype-pretty-code-figure] {
         text-align: right;
         content: counter(lineNumber);
         counter-increment: lineNumber;
-        @apply mr-5 text-gray-600;
+        @apply mr-5 text-base-content/50;
 
         display: inline-block;
         width: 0.75rem;
         margin-right: 2rem;
         text-align: right;
-        color: gray;
     }
 
     code {
@@ -28,15 +27,12 @@ figure[data-rehype-pretty-code-figure] {
 }
 
 span[data-rehype-pretty-code-figure] {
-    /* code { */
-        /* background-color: inherit !important;
-        @apply !text-sky-600; */
-
-        /* @apply px-1 mx-1; */
-    /* } */
-
     code[data-language="plaintext"] {
-        @apply !text-sky-600;
-        @apply !bg-inherit;
+        @apply border border-base-content bg-base-200 px-1 text-accent;
     }
+}
+
+/* Remove extra padding from paragraphs inside blockquote */
+blockquote p {
+    @apply py-0;
 }

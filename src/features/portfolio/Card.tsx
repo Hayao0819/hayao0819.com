@@ -7,12 +7,12 @@ const Container = ({ children, title }: PropsWithChildren<{ title: string }>) =>
         <Heading level={3} className="my-8 inline-block border-l-2 border-accent p-2 font-bold text-accent">
             {title}
         </Heading>
-        {children ? <div className=" flex flex-wrap justify-start gap-2">{children}</div> : <div>現在工事中</div>}
+        {children ? <div className="flex flex-wrap justify-start gap-2">{children}</div> : <div>現在工事中</div>}
     </div>
 );
 
 const Card = ({ children }: PropsWithChildren) => (
-    <div className=" flex w-1/6 flex-col  rounded-xl border border-base-200 p-4">{children}</div>
+    <div className="flex w-1/6 flex-col rounded-xl border border-base-200 p-4">{children}</div>
 );
 
 const Title = ({ children }: PropsWithChildren) => (
@@ -27,7 +27,7 @@ const Codes = ({ children }: PropsWithChildren) => (
     </div>
 );
 
-const Description = ({ children }: PropsWithChildren) => <p className=" text-center text-sm">{children}</p>;
+const Description = ({ children }: PropsWithChildren) => <p className="text-center text-sm">{children}</p>;
 
 const CodeItem = ({ children }: { children: string }) => <li>{children}</li>;
 

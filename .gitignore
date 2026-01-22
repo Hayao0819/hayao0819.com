@@ -31,3 +31,5 @@ next-env.d.ts
 # blogtool
 /blogtool
 /blogtool.exe
+
+.playwright-mcp

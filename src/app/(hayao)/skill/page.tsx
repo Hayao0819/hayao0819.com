@@ -1,41 +1,54 @@
-"use client";
+import { ReactNode } from "react";
+import { SiArchlinux, SiGo, SiMui, SiNestjs, SiNextdotjs, SiNixos, SiReact, SiTailwindcss, SiVuedotjs } from "react-icons/si";
 
-import PageTitle from "@/components/elements/PageTitle";
-import CommonSpacer from "@/components/layouts/CommonSpacer";
-import Card from "@/features/portfolio/Card";
-import { ArchLinux, NixOS } from "@/features/portfolio/os";
-import { GoAndGin, Hono, NestJS } from "@/features/portfolio/server";
-import { MaterialUI, NextJS, ReactJS, TailwindCSS, VueJS } from "@/features/portfolio/web";
+import { genMetaData } from "@/lib/meta";
 
-const Portfolio = () => (
-    <CommonSpacer>
-        <PageTitle>SKILL</PageTitle>
+export const metadata = genMetaData({ title: "Skill" });
 
-        <Card.Container title="Web">
-            <NextJS />
-            <ReactJS />
-            <VueJS />
-            <TailwindCSS />
-            <MaterialUI />
-        </Card.Container>
+export default function Skill() {
+    return (
+        <div className="m-auto flex w-fit items-start justify-center border-4 border-base-content">
+            <div className="grid grid-cols-[auto_1fr] gap-0">
+                <h1 className="row-span-1 border-r-4 border-base-content p-4 text-3xl font-bold [writing-mode:vertical-lr]">
+                    Skill
+                </h1>
+                <div className="flex flex-col">
+                    <Section title="Web">
+                        <SkillItem icon={<SiNextdotjs />} name="Next.js" />
+                        <SkillItem icon={<SiReact />} name="React.js" />
+                        <SkillItem icon={<SiVuedotjs />} name="Vue.js" />
+                        <SkillItem icon={<SiTailwindcss />} name="Tailwind" />
+                        <SkillItem icon={<SiMui />} name="MUI" />
+                    </Section>
+                    <Section title="Server">
+                        <SkillItem icon={<SiGo />} name="Go + Gin" />
+                        <SkillItem icon={<SiNestjs />} name="NestJS" />
+                        <SkillItem icon={<span className="text-lg">🔥</span>} name="Hono" />
+                    </Section>
+                    <Section title="OS" isLast>
+                        <SkillItem icon={<SiArchlinux />} name="Arch Linux" />
+                        <SkillItem icon={<SiNixos />} name="NixOS" />
+                    </Section>
+                </div>
+            </div>
+        </div>
+    );
+}
 
-        <Card.Container title="Server">
-            <GoAndGin />
-            <NestJS />
-            <Hono />
-        </Card.Container>
+function Section({ title, children, isLast }: { title: string; children: ReactNode; isLast?: boolean }) {
+    return (
+        <div className={`p-4 ${isLast ? "" : "border-b-4 border-base-content"}`}>
+            <p className="mb-2 font-bold">{title}</p>
+            <div className="grid grid-cols-3 gap-2 md:grid-cols-5">{children}</div>
+        </div>
+    );
+}
 
-        {/* <Card.Container title="GUI"></Card.Container>
-
-        <Card.Container title="CLI"></Card.Container>
-
-        <Card.Container title="Network"></Card.Container> */}
-
-        <Card.Container title="OS">
-            <ArchLinux />
-            <NixOS />
-        </Card.Container>
-    </CommonSpacer>
-);
-
-export default Portfolio;
+function SkillItem({ icon, name }: { icon: ReactNode; name: string }) {
+    return (
+        <div className="flex flex-col items-center border border-base-content p-2">
+            <span className="text-2xl">{icon}</span>
+            <span className="text-xs">{name}</span>
+        </div>
+    );
+}

@@ -12,15 +12,22 @@ export default async function BlogTop(props: { params: Promise<{ slug: string }>
     const postlist = getPostList(slug);
 
     return (
-        <div className="flex flex-col">
-            <div className="grow">
-                <PostListElement posts={postlist.posts} />
+        <div className="border-4 border-base-content">
+            <div className="grid grid-cols-[auto_1fr] gap-0">
+                <h1 className="border-r-4 border-base-content p-4 text-3xl font-bold [writing-mode:vertical-lr]">Blog</h1>
+                <div className="flex flex-col">
+                    <div className="grow">
+                        <PostListElement posts={postlist.posts} />
+                    </div>
+                    <div className="border-t-4 border-base-content p-4">
+                        <PostPageSwitch
+                            allpages={postlist.allpages}
+                            currentPage={postlist.currentPage}
+                            linktemplate={(page) => `/blog/${page}`}
+                        />
+                    </div>
+                </div>
             </div>
-            <PostPageSwitch
-                allpages={postlist.allpages}
-                currentPage={postlist.currentPage}
-                linktemplate={(page) => `/blog/${page}`}
-            />
         </div>
     );
 }

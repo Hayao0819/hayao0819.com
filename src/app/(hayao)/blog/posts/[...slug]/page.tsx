@@ -113,37 +113,62 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
     const mostRecentUpdate = fetchedBlogPostList.getMostRecentPostByURL(postData.post.url);
 
     return (
-        <div className="mx-5 flex h-full flex-col">
-            <div className="flex items-center justify-between">
-                <Breadcrumbs start={2} className="hidden md:block" />
+        <div className="flex h-full flex-col border-4 border-base-content">
+            {/* Header Section */}
+            <div className="grid grid-cols-[auto_1fr] border-b-4 border-base-content">
+                <div className="flex items-center border-r-4 border-base-content p-3 text-sm font-bold [writing-mode:vertical-lr]">
+                    Post
+                </div>
+                <div className="flex flex-col">
+                    <div className="border-b-4 border-base-content p-4">
+                        <BlogHeading level={1} className="break-phrase">
+                            {postData.post?.meta.title}
+                        </BlogHeading>
+                    </div>
+                    <div className="flex items-center justify-between p-3">
+                        <div className="text-sm">{dateToString(postDate)}</div>
+                        <div className="flex gap-2">
+                            {postData.post?.meta.categories?.map((c) => {
+                                return (
+                                    <Link
+                                        key={c}
+                                        href={`/blog/category/${c}`}
+                                        className="border border-base-content px-2 py-0.5 text-xs hover:bg-base-content hover:text-base-100"
+                                    >
+                                        {c}
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <ul className="flex justify-end gap-4 text-sm text-accent">
-                {postData.post?.meta.categories?.map((c) => {
-                    return (
-                        <li key={c}>
-                            <Link href={`/blog/category/${c}`}>{c}</Link>
-                        </li>
-                    );
-                })}
-            </ul>
-            <div className="my-6">
-                <BlogHeading level={1} className="break-phrase">
-                    {postData.post?.meta.title}
-                </BlogHeading>
-                <div className="text-center">{dateToString(postDate)}</div>
+
+            {/* Breadcrumbs */}
+            <div className="border-b-4 border-base-content p-2">
+                <Breadcrumbs start={2} />
             </div>
-            <div className="border-b-2 border-secondary/15">
-                <Toc contentSelector={`#${contentId}`} />
-            </div>
-            <div className="grow" id={contentId}>
+
+            {/* Table of Contents */}
+            <Toc contentSelector={`#${contentId}`} />
+
+            {/* Main Content */}
+            <div className="grow p-4" id={contentId}>
                 {postData.parsed}
             </div>
 
-            <div className="mt-4 h-fit border-t-2 border-secondary/15 pt-4">
-                <ShareCurrentURL text={postData.post.meta.title} />
-                <div className="items-stretch justify-around py-3 text-sm  md:grid md:grid-cols-2">
-                    <MostRecentPostPreview post={mostRecentUpdate.before} type="before" />
-                    <MostRecentPostPreview post={mostRecentUpdate.after} type="after" />
+            {/* Footer Section */}
+            <div className="border-t-4 border-base-content">
+                <div className="border-b-4 border-base-content p-4">
+                    <ShareCurrentURL text={postData.post.meta.title} />
+                </div>
+                <div className="grid grid-cols-1 text-sm md:grid-cols-2">
+                    <div className="border-b-4 border-base-content md:border-b-0 md:border-r-4">
+                        <MostRecentPostPreview post={mostRecentUpdate.before} type="before" />
+                    </div>
+                    <div>
+                        <MostRecentPostPreview post={mostRecentUpdate.after} type="after" />
+                    </div>
                 </div>
             </div>
         </div>

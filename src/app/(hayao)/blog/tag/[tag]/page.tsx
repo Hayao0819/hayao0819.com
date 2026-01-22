@@ -5,20 +5,27 @@ import { PostList as PostListElement } from "@/components/layouts/blog/PostPrevi
 import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 
-export default async function Categories(props: { params: Promise<{ tag: string }> }) {
+export default async function TagPage(props: { params: Promise<{ tag: string }> }) {
     const params = await props.params;
-    const postpost = getPostList(params.tag);
-
-    //console.log(params.cat);
+    const postpost = getPostList(decodeURI(params.tag));
+    const tagName = decodeURI(params.tag);
 
     return (
-        <>
-            <Link href="/blog/tag" className="mb-2 flex items-center p-2 hover:text-accent">
-                <FaArrowLeft />
-                <p>タグ一覧に戻る</p>
-            </Link>
-            <PostListElement posts={postpost} />
-        </>
+        <div className="border-4 border-base-content">
+            <div className="grid grid-cols-[auto_1fr] gap-0">
+                <h1 className="border-r-4 border-base-content p-4 text-3xl font-bold [writing-mode:vertical-lr]">#{tagName}</h1>
+                <div className="flex flex-col">
+                    <Link
+                        href="/blog/tag"
+                        className="flex items-center gap-2 border-b-4 border-base-content p-4 hover:bg-base-200"
+                    >
+                        <FaArrowLeft />
+                        <span>タグ一覧に戻る</span>
+                    </Link>
+                    <PostListElement posts={postpost} />
+                </div>
+            </div>
+        </div>
     );
 }
 

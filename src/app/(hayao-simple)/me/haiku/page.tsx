@@ -9,7 +9,7 @@ export default async function Haiku() {
             <p>ページの共有もしないでいただけると助かります。</p>
 
             <Heading level={3}>俳句</Heading>
-            <ul className=" list-disc">
+            <ul className="list-disc">
                 <li>
                     <p>ひいばあちゃん あじさい見てきて 104歳</p>
                     <p>小学生の高学年の頃に詠んだ</p>

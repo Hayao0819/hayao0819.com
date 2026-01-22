@@ -31,7 +31,7 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
     const fullURL = "/blog/posts/" + post.url;
     return (
         <motion.div
-            className="border-b p-2"
+            className="border-b-4 border-base-content p-4 last:border-b-0"
             variants={animate}
             initial="offscreen"
             whileInView="onscreen"
@@ -55,7 +55,7 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
 
                 <div className="m-2 flex items-center justify-between">
                     {/* タイトル */}
-                    <Link href={fullURL} className="grow text-xl text-accent underline-offset-8 hover:underline">
+                    <Link href={fullURL} className="grow text-xl font-bold underline-offset-8 hover:underline">
                         {post.meta.title}
                     </Link>
 
@@ -79,7 +79,10 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
                 </div>
 
                 <div className="flex justify-end">
-                    <Link href={fullURL} className="btn btn-ghost p-1 text-accent">
+                    <Link
+                        href={fullURL}
+                        className="border border-base-content px-2 py-1 text-sm hover:bg-base-content hover:text-base-100"
+                    >
                         Read More
                     </Link>
                 </div>

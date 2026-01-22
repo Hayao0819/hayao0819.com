@@ -54,7 +54,7 @@ export const getComponents = (basepath: string): MDXComponents => {
         a: ({ href, children, id }) => {
             if (!href) return <span>{children}</span>;
             return (
-                <Link href={href} id={id} className="border-b border-blue-900 text-blue-900">
+                <Link href={href} id={id} className="border-b border-accent text-accent hover:bg-accent hover:text-base-100">
                     {children}
                 </Link>
             );
@@ -76,21 +76,69 @@ export const getComponents = (basepath: string): MDXComponents => {
             if (!src?.startsWith("http")) {
                 src = basepath + "/" + src;
             }
-            props = { ...props, src };
 
-            return <img {...props} className="mx-auto w-1/2 py-4" />;
+            // Use span instead of figure to avoid hydration error when img is inside <p>
+            return (
+                <span className="my-4 block">
+                    <span className="mx-auto block w-fit border-4 border-base-content">
+                        <img src={src} alt={props.alt || ""} className="block max-w-full" />
+                    </span>
+                    {props.alt && (
+                        <span className="mt-2 block text-center text-sm text-base-content/70">{props.alt}</span>
+                    )}
+                </span>
+            );
         },
         //code: ({ children }) => <code className="text-sky-600">{children}</code>,
 
         ul: ({ children, id }) => (
-            <ul id={id} className="list-disc pl-8">
+            <ul id={id} className="my-2 border-l-4 border-base-content pl-4">
                 {children}
             </ul>
         ),
 
-        blockquote: ({ children }) => (
-            <blockquote className="border-l-2 border-accent bg-gray-200 py-4 pl-8 italic">{children}</blockquote>
+        ol: ({ children, id }) => (
+            <ol id={id} className="my-2 border-l-4 border-base-content pl-4">
+                {children}
+            </ol>
         ),
+
+        li: ({ children, id }) => (
+            <li id={id} className="py-1">
+                {children}
+            </li>
+        ),
+
+        blockquote: ({ children }) => (
+            <blockquote className="my-4 border-4 border-base-content">
+                <div className="grid grid-cols-[auto_1fr]">
+                    <div className="border-r-4 border-base-content bg-base-content p-2 text-xs font-bold text-base-100 [writing-mode:vertical-lr]">
+                        Quote
+                    </div>
+                    <div className="p-4">{children}</div>
+                </div>
+            </blockquote>
+        ),
+
+        hr: () => <hr className="my-8 border-t-4 border-base-content" />,
+
+        table: ({ children }) => (
+            <div className="my-4 border-4 border-base-content">
+                <table className="w-full">{children}</table>
+            </div>
+        ),
+
+        thead: ({ children }) => (
+            <thead className="border-b-4 border-base-content bg-base-content text-base-100">{children}</thead>
+        ),
+
+        th: ({ children }) => (
+            <th className="border-r border-base-100/30 p-2 text-left last:border-r-0">{children}</th>
+        ),
+
+        tr: ({ children }) => <tr className="border-b border-base-content last:border-b-0">{children}</tr>,
+
+        td: ({ children }) => <td className="border-r border-base-content/30 p-2 last:border-r-0">{children}</td>,
 
         //pre: ({ children, className }) => <pre className={classNames(className, "p-2")}>{children}</pre>,
 
@@ -116,13 +164,13 @@ export const getComponents = (basepath: string): MDXComponents => {
         },
 
         Warn: ({ children, id }) => (
-            <div>
-                <div className="my-8 rounded-md bg-red-200 p-4 text-red-900" id={id}>
-                    <div className="flex items-center gap-4 font-bold">
+            <div className="my-8 border-4 border-base-content" id={id}>
+                <div className="grid grid-cols-[auto_1fr]">
+                    <div className="flex items-center gap-2 border-r-4 border-base-content bg-base-content p-3 font-bold text-base-100 [writing-mode:vertical-lr]">
                         <FaExclamationCircle />
                         <span>Warning</span>
                     </div>
-                    {children}
+                    <div className="p-4">{children}</div>
                 </div>
             </div>
         ),
