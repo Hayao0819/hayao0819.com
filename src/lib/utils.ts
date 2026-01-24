@@ -1,3 +1,9 @@
+import { type ClassValue, clsx } from "clsx";
+
+export function cn(...inputs: ClassValue[]) {
+    return clsx(inputs);
+}
+
 export const dateToString = (date: Date, delimiter: string = "/") => {
     const year = date.getFullYear();
     const month = ("0" + (date.getMonth() + 1)).slice(-2);

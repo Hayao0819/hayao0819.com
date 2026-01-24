@@ -43,7 +43,7 @@ export default {
                 mono: {
                     primary: "#131313",
                     secondary: "#2b2b2b",
-                    accent: "#e0002d",
+                    accent: "#00838F",
                     neutral: "#333333",
                     "base-100": "#FCFCFC",
                 },

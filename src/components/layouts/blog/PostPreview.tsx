@@ -38,19 +38,21 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
             viewport={{ once: true }}
         >
             <div className="flex h-full flex-col">
-                <div className="flex justify-between">
-                    <div className="flex justify-start">
+                <div className="flex items-center justify-between">
+                    <div className="flex gap-2">
                         {post.categories.map((s) => (
-                            <div className="p-1" key={s}>
-                                <Link href={`/blog/category/${s}`}>{s}</Link>
-                            </div>
+                            <Link
+                                key={s}
+                                href={`/blog/category/${s}`}
+                                className="border border-base-content px-2 py-0.5 text-xs hover:bg-base-content hover:text-base-100"
+                            >
+                                {s}
+                            </Link>
                         ))}
                     </div>
-                    <p className="p-1">
-                        <Link className="text-sm" href={`/blog/posts/${utils.dateToString(postDate, "")}`}>
-                            {utils.dateToString(postDate)}
-                        </Link>
-                    </p>
+                    <Link className="text-sm text-base-content/70" href={`/blog/posts/${utils.dateToString(postDate, "")}`}>
+                        {utils.dateToString(postDate)}
+                    </Link>
                 </div>
 
                 <div className="m-2 flex items-center justify-between">

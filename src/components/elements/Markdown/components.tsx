@@ -54,7 +54,11 @@ export const getComponents = (basepath: string): MDXComponents => {
         a: ({ href, children, id }) => {
             if (!href) return <span>{children}</span>;
             return (
-                <Link href={href} id={id} className="border-b border-accent text-accent hover:bg-accent hover:text-base-100">
+                <Link
+                    href={href}
+                    id={id}
+                    className="relative text-accent transition-all after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-accent after:transition-all hover:after:h-1"
+                >
                     {children}
                 </Link>
             );
@@ -83,13 +87,22 @@ export const getComponents = (basepath: string): MDXComponents => {
                     <span className="mx-auto block w-fit border-4 border-base-content">
                         <img src={src} alt={props.alt || ""} className="block max-w-full" />
                     </span>
-                    {props.alt && (
-                        <span className="mt-2 block text-center text-sm text-base-content/70">{props.alt}</span>
-                    )}
+                    {props.alt && <span className="mt-2 block text-center text-sm text-base-content/70">{props.alt}</span>}
                 </span>
             );
         },
-        //code: ({ children }) => <code className="text-sky-600">{children}</code>,
+        code: ({ children, className }) => {
+            // If it has a className, it's a code block (handled by shiki), not inline code
+            if (className) {
+                return <code className={className}>{children}</code>;
+            }
+            // Inline code style
+            return (
+                <code className="mx-0.5 border border-base-content/30 bg-base-content/5 px-1.5 py-0.5 font-mono text-[0.9em] text-accent">
+                    {children}
+                </code>
+            );
+        },
 
         ul: ({ children, id }) => (
             <ul id={id} className="my-2 border-l-4 border-base-content pl-4">
@@ -132,9 +145,7 @@ export const getComponents = (basepath: string): MDXComponents => {
             <thead className="border-b-4 border-base-content bg-base-content text-base-100">{children}</thead>
         ),
 
-        th: ({ children }) => (
-            <th className="border-r border-base-100/30 p-2 text-left last:border-r-0">{children}</th>
-        ),
+        th: ({ children }) => <th className="border-r border-base-100/30 p-2 text-left last:border-r-0">{children}</th>,
 
         tr: ({ children }) => <tr className="border-b border-base-content last:border-b-0">{children}</tr>,
 

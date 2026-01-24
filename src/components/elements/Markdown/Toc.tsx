@@ -62,17 +62,31 @@ const RenderHeadingTree = ({ tree, indent }: { tree: HeadingTree[]; indent: numb
     return (
         <ul
             className={clsx("list-none", {
-                "space-y-1": isTopLevel,
-                "mt-1 space-y-0.5 border-l-2 border-base-content/30 pl-3": !isTopLevel,
+                "space-y-2": isTopLevel,
+                "mt-2 space-y-1 border-l-2 border-base-content/20 pl-4": !isTopLevel,
             })}
         >
             {tree.map((e, index) => (
                 <li key={e.id} className="leading-relaxed">
-                    <NextLink href={`#${e.id}`} scroll={true} className="group flex items-start gap-2 hover:text-accent">
-                        <span className="font-mono text-xs text-base-content/50 group-hover:text-accent">
-                            {isTopLevel ? `${(index + 1).toString().padStart(2, "0")}` : "─"}
+                    <NextLink
+                        href={`#${e.id}`}
+                        scroll={true}
+                        className={clsx(
+                            "group flex items-start gap-3 transition-colors",
+                            isTopLevel
+                                ? "border-l-2 border-transparent py-1 pl-3 hover:border-accent hover:text-accent"
+                                : "py-0.5 text-sm hover:text-accent",
+                        )}
+                    >
+                        <span
+                            className={clsx(
+                                "shrink-0 font-mono transition-colors group-hover:text-accent",
+                                isTopLevel ? "text-sm text-base-content/40" : "text-xs text-base-content/30",
+                            )}
+                        >
+                            {isTopLevel ? `${(index + 1).toString().padStart(2, "0")}` : "•"}
                         </span>
-                        <span dangerouslySetInnerHTML={{ __html: e.text }} />
+                        <span className="group-hover:underline" dangerouslySetInnerHTML={{ __html: e.text }} />
                     </NextLink>
                     {e.children.length > 0 ? <RenderHeadingTree tree={e.children} indent={indent + 1} /> : null}
                 </li>

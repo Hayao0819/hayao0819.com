@@ -32,27 +32,37 @@ export default function Drawer(props: DrawerProps) {
             opacity: 1,
             x: 0,
             transition: {
-                y: {
-                    stiffness: 1000,
-                },
+                type: "tween",
+                duration: 0.2,
+                ease: "easeOut",
             },
         },
         closed: {
             opacity: 0,
             x: "-100%",
             transition: {
-                y: {
-                    stiffness: 1000,
-                },
+                type: "tween",
+                duration: 0.2,
+                ease: "easeIn",
             },
         },
     };
 
     const rightoverlay_variants: Variants = {
-        ...leftdrawer_variants,
-        ...{
-            closed: {
-                x: "100%",
+        open: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                type: "tween",
+                duration: 0.2,
+            },
+        },
+        closed: {
+            opacity: 0,
+            x: "100%",
+            transition: {
+                type: "tween",
+                duration: 0.2,
             },
         },
     };

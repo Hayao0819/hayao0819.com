@@ -32,20 +32,25 @@ export function BlogHeading(props: HeadingProps) {
     const level = props.level;
     const propsWithoutClassName = { ...props, className: undefined };
 
-    const cn = classNames(props.className, "my-5");
-    //console.log(cn);
+    const cn = classNames(props.className, "my-6");
 
     const headingTag =
         level == 1 ? (
-            <Heading {...propsWithoutClassName} className={classNames(cn, "text-4xl", "text-center", "tect-accent")} />
+            <Heading {...propsWithoutClassName} className={classNames(cn, "text-4xl", "text-center")} />
         ) : level == 2 ? (
-            <Heading {...propsWithoutClassName} className={classNames(cn, "border-l-2 border-accent pl-2 text-xl text-accent")} />
+            <div className="my-8 border-b-4 border-base-content pb-2">
+                <Heading {...propsWithoutClassName} className="text-xl font-bold" />
+            </div>
         ) : level == 3 ? (
-            <Heading {...propsWithoutClassName} className={classNames(cn, "text-accent")} />
+            <div className="my-6 border-l-4 border-base-content pl-3">
+                <Heading {...propsWithoutClassName} className="text-lg font-bold" />
+            </div>
         ) : level == 4 ? (
-            <Heading {...propsWithoutClassName} className={classNames(cn)} />
+            <div className="my-4 border-l-2 border-base-content/50 pl-3">
+                <Heading {...propsWithoutClassName} className="text-base font-bold" />
+            </div>
         ) : level == 5 ? (
-            <Heading {...propsWithoutClassName} className={classNames(cn)} />
+            <Heading {...propsWithoutClassName} className={classNames(cn, "text-sm font-bold")} />
         ) : (
             <></>
         );
