@@ -5,9 +5,9 @@ import { Link } from "@/components/elements/Link";
 
 export default function MeLayout(props: { children: ReactNode }) {
     return (
-        <div className="flex h-full w-svw  font-gothic !text-black">
+        <div className="flex h-full w-svw font-gothic !text-black">
             <MeSideBar />
-            <div className="grow border-l border-black pl-2 ">
+            <div className="grow border-l border-black pl-2">
                 <div className="child:mx-auto">{props.children}</div>
             </div>
         </div>
@@ -20,15 +20,15 @@ const MeSideBar = () => {
     };
 
     return (
-        <div className="border-r-[5px] border-[#aaaaaa] bg-[#F0F0FF] ">
+        <div className="border-r-[5px] border-[#aaaaaa] bg-[#F0F0FF]">
             <input type="checkbox" className="peer hidden" id="menu-open-btn" />
             <label
                 htmlFor="menu-open-btn"
-                className=" block h-full w-8 peer-checked:h-6 peer-checked:w-full peer-checked:after:content-['✕'] md:hidden "
+                className="block h-full w-8 peer-checked:h-6 peer-checked:w-full peer-checked:after:content-['✕'] md:hidden"
             />
 
-            <div className="hidden h-svh w-1/5 min-w-48  peer-checked:!block md:block">
-                <ul className=" ml-6 flex h-full flex-col text-blue-600 underline child:my-4 child:child:flex child:child:items-center child:child:gap-2 ">
+            <div className="hidden h-svh w-1/5 min-w-48 peer-checked:!block md:block">
+                <ul className="ml-6 flex h-full flex-col text-blue-600 underline child:my-4 child:child:flex child:child:items-center child:child:gap-2">
                     <span></span>
                     <li>
                         <Link rel="prefetch" href="/me">

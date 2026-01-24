@@ -2,17 +2,28 @@
 
 import { memo } from "react";
 
-import CommonSpacer from "@/components/layouts/CommonSpacer";
+import { Link } from "@/components/elements/Link";
 
 const Page = () => (
-    <CommonSpacer>
+    <>
         <title>ニコニコRe:仮 非公式検索</title>
         <meta name="description" content="ニコニコ動画の非公式検索サイトです。" />
-        <div>
-            <p>APIの提供が終了したため公開を停止しました。</p>
-            <p>今後は公式様の[https://nicorekari.nanasi-rasi.net/](https://nicorekari.nanasi-rasi.net/)を御覧ください。</p>
+        <div className="m-auto flex w-fit items-start justify-center border-4 border-base-content">
+            <div className="grid grid-cols-[auto_1fr] gap-0">
+                <h1 className="border-r-4 border-base-content p-4 text-2xl font-bold [writing-mode:vertical-lr]">ニコニコ検索</h1>
+                <div className="flex flex-col items-center justify-center p-6">
+                    <p>APIの提供が終了したため公開を停止しました。</p>
+                    <p className="mt-2">
+                        今後は公式様の
+                        <Link href="https://nicorekari.nanasi-rasi.net/" className="underline">
+                            nicorekari.nanasi-rasi.net
+                        </Link>
+                        を御覧ください。
+                    </p>
+                </div>
+            </div>
         </div>
-    </CommonSpacer>
+    </>
 );
 
 export default memo(Page);

@@ -1,13 +1,13 @@
-import classNames from "clsx";
-import React, { FC, ReactNode } from "react";
 import { BsRouter } from "react-icons/bs";
 import {
     SiArchlinux,
-    SiBootstrap,
     SiDocker,
     SiGnubash,
     SiGo,
+    SiMui,
+    SiNestjs,
     SiNextdotjs,
+    SiNixos,
     SiPython,
     SiReact,
     SiTailwindcss,
@@ -16,195 +16,93 @@ import {
 } from "react-icons/si";
 import { SiVisualstudiocode } from "react-icons-ms/si";
 
-import { Heading } from "@/components/elements/Heading";
 import { Link } from "@/components/elements/Link";
-import MyLink from "@/components/elements/Link";
-import PageTitle from "@/components/elements/PageTitle";
-import CommonSpacer from "@/components/layouts/CommonSpacer";
+import { PortfolioItem } from "@/components/elements/PortfolioItem";
+import { Section } from "@/components/elements/Section";
+import { SkillItem } from "@/components/elements/SkillItem";
+import { VerticalLabel } from "@/components/elements/VerticalLabel";
 import { genMetaData } from "@/lib/meta";
 
-const PortfolioHeading: FC<{ children?: ReactNode }> = ({ children }) => {
-    return (
-        <Heading level={2} className="my-5 w-fit px-5 py-3 text-center text-4xl text-accent">
-            {children}
-        </Heading>
-    );
-};
-
-export const metadata = genMetaData({ title: "Portfolio" });
+export const metadata = genMetaData({ title: "Portfolio & Skills" });
 
 export default function Portfolio() {
     return (
-        <CommonSpacer>
-            <PageTitle>ポートフォリオ的な何か</PageTitle>
-            <div>
-                <PortfolioHeading>制作物について</PortfolioHeading>
-                <p>
-                    私は小学生の頃からLinuxが非常に好きだったので、それらに関連するものが多くあります。中学校や高校に在籍していた頃はシェルスクリプトやPython等のスクリプト言語を使うことが多かったです。
-                </p>
-                <p>
-                    大学生になってからはGolangやRust、C++等も書き始め、またプロダクション規模のウェブサイトの開発も行うようになりました。更にいくつかの企業でプロダクションのコードも書き始めました。
-                </p>
-            </div>
-            <div>
-                <PortfolioHeading>作ったもの</PortfolioHeading>
-                <p className="px-5">
-                    <MyLink href="/something">こちら</MyLink>でこれまでに作ったものの一部を掲載しています。
-                </p>
-            </div>
-            <div>
-                <PortfolioHeading>Languages</PortfolioHeading>
-                <div className="flex flex-col  gap-5 md:grid md:grid-cols-2">
-                    <SkillCard icon={<SiGo />} title="Golang" side="left">
-                        <SkillCardLinkList>
-                            <SkillCardLink href="https://github.com/Hayao0819/lico">lico</SkillCardLink>
-                            <SkillCardLink href="https://github.com/Hayao0819/ayaka">ayaka</SkillCardLink>
-                            <SkillCardLink href="https://github.com/Hayao0819/stargazy">stargazy</SkillCardLink>
-                        </SkillCardLinkList>
-                    </SkillCard>
-                    <SkillCard icon={<SiTypescript />} title="TypeScript" side="left">
-                        <SkillCardLinkList>
-                            <SkillCardLink href="https://github.com/Hayao0819/hayao0819.com">hayao0819.com</SkillCardLink>
-                        </SkillCardLinkList>
-                    </SkillCard>
-                    <SkillCard icon={<SiGnubash />} title="ShellScript" side="left">
-                        <SkillCardLinkList>
-                            <SkillCardLink href="https://github.com/Hayao0819/nm-vpngate">nm-vpngate</SkillCardLink>
-                            <SkillCardLink href="https://github.com/Hayao0819/Hayao-Tools">Tools</SkillCardLink>
-                        </SkillCardLinkList>
-                    </SkillCard>
-                    <SkillCard icon={<SiPython />} title="Python" side="left">
-                        <SkillCardLinkList>
-                            <SkillCardLink href="https://github.com/Hayao0819/Hayao-Tools/tree/master/archnews">
-                                archnews
-                            </SkillCardLink>
-                        </SkillCardLinkList>
-                    </SkillCard>
-                </div>
-            </div>
+        <div className="m-auto flex w-fit items-start justify-center p-4">
+            <div className="border-4 border-base-content">
+                <div className="grid grid-cols-[auto_1fr] gap-0">
+                    <VerticalLabel as="h1" className="text-2xl font-black">
+                        Portfolio
+                    </VerticalLabel>
+                    <div className="flex flex-col">
+                        {/* Introduction */}
+                        <Section>
+                            <p className="text-sm leading-relaxed">
+                                小学生の頃からLinuxが好きで、それに関連する制作物が多くあります。
+                                大学生になってからはGolang、Rust、C++等も書き始め、プロダクション規模のウェブ開発も行っています。
+                            </p>
+                            <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                                <Link href="/something" className="border-b-2 border-base-content hover:border-b-4">
+                                    その他の制作物一覧 →
+                                </Link>
+                                <Link href="/events" className="border-b-2 border-base-content hover:border-b-4">
+                                    イベント参加記録 →
+                                </Link>
+                            </div>
+                        </Section>
 
-            <div>
-                <PortfolioHeading>Frameworks</PortfolioHeading>
-                <div className="flex flex-col  gap-5 md:grid md:grid-cols-2">
-                    <SkillCard
-                        icon={<SiReact />}
-                        title="React.js"
-                        side="left"
-                        link={[["https://github.com/Hayao0819/hayao0819.com", "hayao0819.com"]]}
-                    >
-                        ちょっと複雑だなぁと思いつつもTypeScriptとの相性が非常に良いのでよく使っています。
-                    </SkillCard>
-                    <SkillCard
-                        icon={<SiVuedotjs />}
-                        title="Vue.js"
-                        side="left"
-                        link={[["https://www.spotwork.net/", "SpotWORK"]]}
-                    >
-                        Propsの記号が特徴的でいつも忘れてしまいます。HTMLに近いのでReactよりも書きやすいです。
-                    </SkillCard>
-                    <SkillCard icon={<SiTailwindcss />} title="Tailwind CSS" side="left">
-                        <SkillCardLinkList>
-                            <SkillCardLink href="https://github.com/Hayao0819/hayao0819.com">hayao0819.com</SkillCardLink>
-                        </SkillCardLinkList>
-                    </SkillCard>
-                    <SkillCard icon={<SiNextdotjs />} title="Next.js" side="left">
-                        <SkillCardLinkList>
-                            <SkillCardLink href="https://github.com/Hayao0819/hayao0819.com">hayao0819.com</SkillCardLink>
-                        </SkillCardLinkList>
-                    </SkillCard>
-                    <SkillCard icon={<SiBootstrap />} title="Bootstrap" side="left">
-                        <SkillCardLinkList>
-                            <SkillCardLink href="https://github.com/Hayao0819/hayao-old-website/blob/master/index.html">
-                                Old Website
-                            </SkillCardLink>
-                        </SkillCardLinkList>
-                    </SkillCard>
-                </div>
-            </div>
+                        {/* Skills Section */}
+                        <Section title="Skills" description="得意な技術スタック">
+                            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+                                <SkillItem icon={<SiNextdotjs />} name="Next.js" level="main" />
+                                <SkillItem icon={<SiReact />} name="React" level="main" />
+                                <SkillItem icon={<SiGo />} name="Go" level="main" />
+                                <SkillItem icon={<SiTypescript />} name="TypeScript" level="main" />
+                                <SkillItem icon={<SiTailwindcss />} name="Tailwind" level="sub" />
+                                <SkillItem icon={<SiVuedotjs />} name="Vue.js" level="sub" />
+                                <SkillItem icon={<SiNestjs />} name="NestJS" level="sub" />
+                                <SkillItem icon={<SiGnubash />} name="Shell" level="sub" />
+                            </div>
+                        </Section>
 
-            <div>
-                <PortfolioHeading>Tools</PortfolioHeading>
-                <div className="flex flex-col  gap-5 md:grid md:grid-cols-2">
-                    <SkillCard icon={<SiArchlinux />} title="Linux" side="left">
-                        <p className="">btw, I use Arch Linux.</p>
-                    </SkillCard>
-                    <SkillCard icon={<SiVisualstudiocode />} title="VSCode" side="left">
-                        <p>無難</p>
-                    </SkillCard>
+                        {/* Languages & Frameworks */}
+                        <Section title="Languages" description="使用言語と制作物">
+                            <div className="grid gap-3 md:grid-cols-2">
+                                <PortfolioItem icon={<SiGo />} name="Golang" projects={["lico", "ayaka", "stargazy"]} />
+                                <PortfolioItem
+                                    icon={<SiTypescript />}
+                                    name="TypeScript"
+                                    projects={["hayao0819.com", "Minskey"]}
+                                />
+                                <PortfolioItem icon={<SiGnubash />} name="ShellScript" projects={["nm-vpngate", "Tools"]} />
+                                <PortfolioItem icon={<SiPython />} name="Python" projects={["archnews"]} />
+                            </div>
+                        </Section>
 
-                    <SkillCard icon={<SiDocker />} title="Docker" side="left">
-                        <p>いろんな開発やデプロイに</p>
-                    </SkillCard>
-                </div>
-            </div>
+                        {/* Frameworks */}
+                        <Section title="Frameworks" description="使用フレームワーク">
+                            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+                                <SkillItem icon={<SiReact />} name="React.js" />
+                                <SkillItem icon={<SiVuedotjs />} name="Vue.js" />
+                                <SkillItem icon={<SiNextdotjs />} name="Next.js" />
+                                <SkillItem icon={<SiNestjs />} name="NestJS" />
+                                <SkillItem icon={<SiTailwindcss />} name="Tailwind" />
+                                <SkillItem icon={<SiMui />} name="MUI" />
+                            </div>
+                        </Section>
 
-            <div>
-                <PortfolioHeading>Network</PortfolioHeading>
-                <div className="flex flex-col  gap-5 md:grid md:grid-cols-2">
-                    <SkillCard icon={<BsRouter />} title="NEC IX2215" side="left">
-                        中古で入手したNECのエンタープライズ向けルーター。自宅サーバのネットワークを管理しています。
-                    </SkillCard>
+                        {/* Tools & Environment */}
+                        <Section title="Environment" description="開発環境" isLast>
+                            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+                                <SkillItem icon={<SiArchlinux />} name="Arch Linux" />
+                                <SkillItem icon={<SiNixos />} name="NixOS" />
+                                <SkillItem icon={<SiVisualstudiocode />} name="VSCode" />
+                                <SkillItem icon={<SiDocker />} name="Docker" />
+                                <SkillItem icon={<BsRouter />} name="NEC IX2215" />
+                            </div>
+                        </Section>
+                    </div>
                 </div>
-            </div>
-        </CommonSpacer>
-    );
-}
-
-interface SkillCardProps {
-    icon?: ReactNode;
-    title: string;
-    children?: ReactNode;
-    side: "left" | "right";
-    link?: [URL | string, string][];
-}
-function SkillCard(props: SkillCardProps) {
-    const side = props.side ?? "left";
-
-    return (
-        <div
-            className={classNames("flex w-full border-y ", {
-                "flex-row-reverse": side === "right",
-            })}
-        >
-            <div className=" flex w-1/2 flex-col  px-10 py-12">
-                <div className="flex items-center justify-center child:px-2">
-                    <span className="text-2xl">{props.icon}</span>
-                    <p className="text-2xl">{props.title}</p>
-                </div>
-                <div className="flex items-center justify-center child:px-2">
-                    {props.link && (
-                        <ul className="list-none">
-                            {props.link.map(([href, text], i) => (
-                                <li key={i} className="py-1">
-                                    <Link href={href}>{text}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
-            </div>
-            <div
-                className={classNames("w-1/2  p-6 flex flex-col items-center justify-center", {
-                    "text-left": side === "left",
-                    "text-right": side === "right",
-                })}
-            >
-                {props.children}
             </div>
         </div>
-    );
-}
-
-function SkillCardLinkList(props: { children: ReactNode }) {
-    return <ul className="list-none">{props.children}</ul>;
-}
-
-function SkillCardLink(props: { href: string; children: ReactNode }) {
-    return (
-        <li className="py-1">
-            <Link className="" href={props.href}>
-                {props.children}
-            </Link>
-        </li>
     );
 }

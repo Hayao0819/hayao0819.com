@@ -53,7 +53,7 @@ export default function Alert(): React.ReactNode {
         }
     }, [alertInfo.isHidden, alertInfo.type]);
     return (
-        <div className={"m-2 flex rounded-md p-2 items-center " + alertClass}>
+        <div className={"m-2 flex items-center rounded-md p-2 " + alertClass}>
             <div className="grow">{alertInfo.text}</div>
 
             <div onClick={closeAlert} role="button" className="mx-2">

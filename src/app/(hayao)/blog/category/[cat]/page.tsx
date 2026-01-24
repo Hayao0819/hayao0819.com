@@ -5,11 +5,19 @@ import { PostData } from "@/lib/markdown/post";
 
 export default async function Categories(props: { params: Promise<{ cat: string }> }) {
     const params = await props.params;
-    const postpost = getPostList(params.cat);
+    const postpost = getPostList(decodeURI(params.cat));
+    const categoryName = decodeURI(params.cat);
 
     return (
-        <div>
-            <PostListElement posts={postpost} />
+        <div className="border-4 border-base-content">
+            <div className="grid grid-cols-[auto_1fr] gap-0">
+                <h1 className="border-r-4 border-base-content p-4 text-3xl font-bold [writing-mode:vertical-lr]">
+                    {categoryName}
+                </h1>
+                <div className="flex flex-col">
+                    <PostListElement posts={postpost} />
+                </div>
+            </div>
         </div>
     );
 }
@@ -22,14 +30,11 @@ export const generateStaticParams = async () => {
         };
     });
 
-    //console.log({ categories, params });
-
     return params;
 };
 
 const getPostList = (category: string): PostData[] => {
     const categoryFilteredPageList = fetchedBlogPostList.getByCategory(category).excludeHidden();
-    // console.log(category);
     const currentPagePosts = categoryFilteredPageList.getPosts();
 
     return currentPagePosts;

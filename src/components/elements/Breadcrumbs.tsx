@@ -20,7 +20,7 @@ export default function Breadcrumbs({ className, start = 0 }: { className?: stri
                     //console.log(link, index);
                     return (
                         <li key={path}>
-                            <Link href={link} className=" text-gray-600">
+                            <Link href={link} className="text-gray-600">
                                 {path}
                             </Link>
                         </li>

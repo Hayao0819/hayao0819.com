@@ -52,7 +52,7 @@ function OriginalURLInput() {
                 />
                 <label className="label">
                     <span className="label-text-alt">
-                        <code className=" text-sm text-pink-600">http</code>から始まるURLを入力して下さい
+                        <code className="text-sm text-pink-600">http</code>から始まるURLを入力して下さい
                     </span>
                 </label>
             </div>
@@ -62,7 +62,7 @@ function OriginalURLInput() {
 
 function ActionBtns() {
     return (
-        <div className="flex gap-2 ">
+        <div className="flex gap-2">
             <CreateBtn />
             <ResetBtn />
         </div>
@@ -73,7 +73,7 @@ function ResetBtn() {
     const [, setInputURL] = useAtom(inputAtom);
     return (
         <button
-            className="btn !btn-error !btn-active  btn-sm !text-white"
+            className="btn !btn-error !btn-active btn-sm !text-white"
             onClick={() => {
                 setInputURL("");
             }}
@@ -128,7 +128,7 @@ function CreateBtn() {
     };
 
     return (
-        <button className="btn !btn-info !btn-active  btn-sm !text-white" onClick={SendPOSTToTatebou}>
+        <button className="btn !btn-info !btn-active btn-sm !text-white" onClick={SendPOSTToTatebou}>
             作成
         </button>
     );

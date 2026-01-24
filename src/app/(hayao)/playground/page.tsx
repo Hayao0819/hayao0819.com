@@ -2,23 +2,38 @@ import { AnimatedLink } from "@/components/elements/Link";
 
 export default function Playground() {
     return (
-        <div className="container mx-auto">
-            <h1 className="text-3xl">Playground</h1>
-            <ColorList />
-            <ClassTest />
-            <LinkTest />
+        <div className="m-auto flex w-fit items-start justify-center border-4 border-base-content">
+            <div className="grid grid-cols-[auto_1fr] gap-0">
+                <h1 className="border-r-4 border-base-content p-4 text-3xl font-bold [writing-mode:vertical-lr]">Playground</h1>
+                <div className="flex flex-col">
+                    <div className="border-b-4 border-base-content p-4">
+                        <p className="mb-2 font-bold">Colors</p>
+                        <ColorList />
+                    </div>
+                    <div className="border-b-4 border-base-content p-4">
+                        <p className="mb-2 font-bold">Class Test</p>
+                        <ClassTest />
+                    </div>
+                    <div className="p-4">
+                        <p className="mb-2 font-bold">Link Test</p>
+                        <LinkTest />
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
 
 function ColorList() {
-    return ["bg-primary", "bg-secondary", "bg-accent", "bg-neutral"].map((c) => {
-        return (
-            <div className={"flex items-center justify-center h-12 w-48 m-4 " + c} key={c}>
-                <p className="text-center text-base-100">{c}</p>
-            </div>
-        );
-    });
+    return (
+        <div className="flex flex-wrap gap-2">
+            {["bg-primary", "bg-secondary", "bg-accent", "bg-neutral"].map((c) => (
+                <div className={"flex h-10 w-24 items-center justify-center " + c} key={c}>
+                    <p className="text-center text-xs text-base-100">{c}</p>
+                </div>
+            ))}
+        </div>
+    );
 }
 
 function ClassTest() {

@@ -22,15 +22,9 @@ export const rehypePlugins: PluggableList = [
     [
         rehypePrettyCode,
         {
-            theme: "one-dark-pro",
-            keepBackground: true,
+            theme: "github-light",
+            keepBackground: false,
             defaultLang: "plaintext",
-            // transformers: [
-            //     transformerCopyButton({
-            //         visibility: "always",
-            //         feedbackDuration: 3_000,
-            //     }),
-            // ],
         },
     ],
     rehypeStringify,
