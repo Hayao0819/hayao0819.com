@@ -78,7 +78,7 @@ export default function Drawer(props: DrawerProps) {
             />
 
             <motion.div
-                className={classNames("fixed z-20 h-svh w-4/5 bg-base-100 text-base-content md:w-1/3", {
+                className={classNames("bg-base-100 text-base-content fixed z-20 h-svh w-4/5 md:w-1/3", {
                     //hidden: isFirstRender,
                 })}
                 animate={open ? "open" : "closed"}

@@ -8,7 +8,7 @@ export default function MeLayout(props: { children: ReactNode }) {
         <div className="flex h-full w-svw font-gothic !text-black">
             <MeSideBar />
             <div className="grow border-l border-black pl-2">
-                <div className="child:mx-auto">{props.children}</div>
+                <div className="*:mx-auto">{props.children}</div>
             </div>
         </div>
     );
@@ -28,7 +28,7 @@ const MeSideBar = () => {
             />
 
             <div className="hidden h-svh w-1/5 min-w-48 peer-checked:!block md:block">
-                <ul className="ml-6 flex h-full flex-col text-blue-600 underline child:my-4 child:child:flex child:child:items-center child:child:gap-2">
+                <ul className="ml-6 flex h-full flex-col text-blue-600 underline *:my-4 *:*:flex *:*:items-center *:*:gap-2">
                     <span></span>
                     <li>
                         <Link rel="prefetch" href="/me">

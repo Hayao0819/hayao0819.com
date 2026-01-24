@@ -1,8 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
 
 @import "./markdown.css";
+
+/* Brand colors (replacement for tailwindcss-brand-colors) */
+/* Source: https://github.com/praveenjuge/tailwindcss-brand-colors */
+@theme inline {
+    --color-adobe: #ff0000;
+    --color-airbnb: #fd5c63;
+    --color-algolia: #050f2c;
+    --color-amazon: #ff9900;
+    --color-android: #a4c639;
+    --color-atlassian: #003366;
+    --color-behance: #1769ff;
+    --color-binance: #f3ba2f;
+    --color-codepen: #0ebeff;
+    --color-dailymotion: #00aaff;
+    --color-deviantart: #05cc47;
+    --color-discord: #5865F2;
+    --color-dribbble: #ea4c89;
+    --color-dropbox: #007ee5;
+    --color-duolingo: #7ac70c;
+    --color-etsy: #d5641c;
+    --color-evernote: #2dbe60;
+    --color-facebook: #3b5998;
+    --color-feedly: #2bb24c;
+    --color-github: #333;
+    --color-gitlab: #fc6d26;
+    --color-google: #4285f4;
+    --color-instagram: #e1306c;
+    --color-linkedin: #0077b5;
+    --color-medium: #00ab6c;
+    --color-messenger: #0084ff;
+    --color-microsoft: #f65314;
+    --color-netflix: #e50914;
+    --color-pinterest: #e60023;
+    --color-pocket: #ef4056;
+    --color-react: #00d8ff;
+    --color-reddit: #ff4500;
+    --color-shopify: #96bf48;
+    --color-skype: #00aff0;
+    --color-slack: #611f69;
+    --color-snapchat: #fffc00;
+    --color-spotify: #1db954;
+    --color-stackoverflow: #f48024;
+    --color-stripe: #6772e5;
+    --color-telegram: #0088cc;
+    --color-trello: #0079bf;
+    --color-tumblr: #35465c;
+    --color-twitch: #6441a5;
+    --color-twitter: #1da1f2;
+    --color-uber: #09091a;
+    --color-ubuntu: #dd4814;
+    --color-vimeo: #162221;
+    --color-vue: #42b883;
+    --color-whatsapp: #075e54;
+    --color-wikipedia: #000000;
+    --color-youtube: #ff0000;
+    --color-x: #000000;
+}
 
 @layer components {
     p {

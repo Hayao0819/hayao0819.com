@@ -1,8 +1,4 @@
-import typography from "@tailwindcss/typography";
 import daisyUI from "daisyui";
-import children from "tailwind-children";
-import brandColors from "tailwindcss-brand-colors";
-import textShadow from "tailwindcss-textshadow";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -51,15 +47,6 @@ export default {
         ],
     },
     plugins: [
-        // require("daisyui"),
-        // require("tailwindcss-textshadow"),
-        // require("@tailwindcss/typography"),
-        // require("tailwindcss-brand-colors")
-        // require("tailwind-children"),
         daisyUI,
-        textShadow,
-        typography,
-        brandColors,
-        children,
     ],
 };

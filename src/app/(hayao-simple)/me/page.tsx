@@ -11,7 +11,7 @@ const Separator = () => <hr className="my-3 border-t border-[#9a9a9a]" />;
 export default function Me() {
     return (
         <div className="w-fit">
-            <div className="text-center child:mx-auto">
+            <div className="text-center *:mx-auto">
                 <Heading level={1} className="my-12 block text-3xl font-bold">
                     山田ハヤオのホームページ
                 </Heading>
@@ -36,7 +36,7 @@ export default function Me() {
                         <Separator />
                         <News />
                         <Separator />
-                        <div className="text-balance text-left font-bold child:leading-tight">
+                        <div className="text-balance text-left font-bold *:leading-tight">
                             <p>当サイトの内容、テキスト、画像等はMITライセンスの基で自由に再利用できます。</p>
                             <p>
                                 ソースコードは

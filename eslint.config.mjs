@@ -1,6 +1,6 @@
 import js from "@eslint/js";
 import nextPlugin from "@next/eslint-plugin-next";
-import mdxPlugin from "eslint-plugin-mdx";
+import { flat as mdxFlat } from "eslint-plugin-mdx";
 import prettierPlugin from "eslint-plugin-prettier/recommended";
 import reactPlugin from "eslint-plugin-react";
 import reactCompilerPlugin from "eslint-plugin-react-compiler";
@@ -116,7 +116,7 @@ const flatConfig = [
     },
     {
         name: "mdx/recommended",
-        ...mdxPlugin.configs.flat,
+        ...mdxFlat,
         ignores: ["**/tools/assets/template.mdx"],
     },
 

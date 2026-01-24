@@ -1,3 +1,6 @@
+@reference "tailwindcss";
+@config "../../tailwind.config.mjs";
+
 figure[data-rehype-pretty-code-figure] {
     @apply my-4 border-4 border-base-content bg-base-100;
 

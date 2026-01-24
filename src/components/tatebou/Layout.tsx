@@ -26,7 +26,7 @@ function Drawer({ children }: { children: ReactNode }) {
                     <MenuContents />
                 </NavBar>
 
-                <main className="mx-auto w-4/5 grow py-12 child:leading-10 md:w-3/5">{children}</main>
+                <main className="mx-auto w-4/5 grow py-12 *:leading-10 md:w-3/5">{children}</main>
                 <TatebouFooter />
             </div>
             <DrawerSide>
@@ -77,7 +77,7 @@ function MenuContents() {
 }
 function MenuItem({ name, link }: { name: string; link: string }) {
     return (
-        <li className="child:text-gray-500">
+        <li className="*:text-gray-500">
             <NextLink href={link}>{name}</NextLink>
         </li>
     );
