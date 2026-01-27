@@ -19,11 +19,11 @@ export function Section({ title, description, children, isLast, className, paddi
     }[padding];
 
     return (
-        <div className={cn(paddingClass, !isLast && "border-b-4 border-base-content", className)}>
+        <div className={cn(paddingClass, !isLast && "border-border border-b-4", className)}>
             {title && (
                 <div className="mb-4">
                     <p className="text-lg font-bold">{title}</p>
-                    {description && <p className="text-xs text-base-content/60">{description}</p>}
+                    {description && <p className="text-foreground/60 text-xs">{description}</p>}
                 </div>
             )}
             {children}

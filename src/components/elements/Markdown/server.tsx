@@ -1,5 +1,3 @@
-import "@/style/markdown.css";
-
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 import { MarkdownProps, rehypePlugins, remarkPlugins } from "./common";

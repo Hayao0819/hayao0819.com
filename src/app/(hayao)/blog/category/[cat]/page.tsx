@@ -5,15 +5,15 @@ import { PostData } from "@/lib/markdown/post";
 
 export default async function Categories(props: { params: Promise<{ cat: string }> }) {
     const params = await props.params;
-    const postpost = getPostList(decodeURI(params.cat));
-    const categoryName = decodeURI(params.cat);
+    // params.cat may be URL-encoded or raw depending on how accessed
+    const categoryName = decodeURIComponent(params.cat);
+    const postpost = getPostList(decodeURIComponent(params.cat));
 
     return (
-        <div className="border-4 border-base-content">
-            <div className="grid grid-cols-[auto_1fr] gap-0">
-                <h1 className="border-r-4 border-base-content p-4 text-3xl font-bold [writing-mode:vertical-lr]">
-                    {categoryName}
-                </h1>
+        <div className="border-border w-full border-4">
+            <div className="grid w-full grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
+                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">{categoryName}</h1>
+                <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">{categoryName}</h1>
                 <div className="flex flex-col">
                     <PostListElement posts={postpost} />
                 </div>
@@ -26,7 +26,7 @@ export const generateStaticParams = async () => {
     const categories = getAllCategories();
     const params = categories.map((c) => {
         return {
-            cat: encodeURI(c),
+            cat: c,
         };
     });
 

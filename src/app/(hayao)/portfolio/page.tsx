@@ -27,9 +27,9 @@ export const metadata = genMetaData({ title: "Portfolio & Skills" });
 
 export default function Portfolio() {
     return (
-        <div className="m-auto flex w-fit items-start justify-center p-4">
-            <div className="border-4 border-base-content">
-                <div className="grid grid-cols-[auto_1fr] gap-0">
+        <div className="m-auto flex w-full max-w-4xl items-start justify-center p-4">
+            <div className="border-border w-full border-4">
+                <div className="grid grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
                     <VerticalLabel as="h1" className="text-2xl font-black">
                         Portfolio
                     </VerticalLabel>
@@ -41,10 +41,10 @@ export default function Portfolio() {
                                 大学生になってからはGolang、Rust、C++等も書き始め、プロダクション規模のウェブ開発も行っています。
                             </p>
                             <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-                                <Link href="/something" className="border-b-2 border-base-content hover:border-b-4">
+                                <Link href="/something" className="border-border border-b-2 hover:border-b-4">
                                     その他の制作物一覧 →
                                 </Link>
-                                <Link href="/events" className="border-b-2 border-base-content hover:border-b-4">
+                                <Link href="/events" className="border-border border-b-2 hover:border-b-4">
                                     イベント参加記録 →
                                 </Link>
                             </div>

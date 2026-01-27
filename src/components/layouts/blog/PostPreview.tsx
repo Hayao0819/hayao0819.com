@@ -31,7 +31,7 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
     const fullURL = "/blog/posts/" + post.url;
     return (
         <motion.div
-            className="border-b-4 border-base-content p-4 last:border-b-0"
+            className="border-border border-b-4 p-4 last:border-b-0"
             variants={animate}
             initial="offscreen"
             whileInView="onscreen"
@@ -44,13 +44,13 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
                             <Link
                                 key={s}
                                 href={`/blog/category/${s}`}
-                                className="border border-base-content px-2 py-0.5 text-xs hover:bg-base-content hover:text-base-100"
+                                className="border-border hover:bg-foreground hover:text-background border px-2 py-0.5 text-xs"
                             >
                                 {s}
                             </Link>
                         ))}
                     </div>
-                    <Link className="text-sm text-base-content/70" href={`/blog/posts/${utils.dateToString(postDate, "")}`}>
+                    <Link className="text-foreground/70 text-sm" href={`/blog/posts/${utils.dateToString(postDate, "")}`}>
                         {utils.dateToString(postDate)}
                     </Link>
                 </div>
@@ -83,7 +83,7 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
                 <div className="flex justify-end">
                     <Link
                         href={fullURL}
-                        className="border border-base-content px-2 py-1 text-sm hover:bg-base-content hover:text-base-100"
+                        className="border-border hover:bg-foreground hover:text-background border px-2 py-1 text-sm"
                     >
                         Read More
                     </Link>

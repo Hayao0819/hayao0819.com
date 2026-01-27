@@ -113,14 +113,14 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
     const mostRecentUpdate = fetchedBlogPostList.getMostRecentPostByURL(postData.post.url);
 
     return (
-        <div className="flex h-full flex-col border-4 border-base-content">
+        <div className="border-border flex h-full w-full flex-col border-4">
             {/* Header Section */}
-            <div className="grid grid-cols-[auto_1fr] border-b-4 border-base-content">
-                <div className="flex items-center border-r-4 border-base-content p-3 text-sm font-bold [writing-mode:vertical-lr]">
+            <div className="border-border grid grid-cols-1 border-b-4 md:grid-cols-[auto_1fr]">
+                <div className="border-border hidden items-center border-r-4 p-3 text-sm font-bold [writing-mode:vertical-lr] md:flex">
                     Post
                 </div>
                 <div className="flex flex-col">
-                    <div className="border-b-4 border-base-content p-4">
+                    <div className="border-border border-b-4 p-4">
                         <BlogHeading level={1} className="break-phrase">
                             {postData.post?.meta.title}
                         </BlogHeading>
@@ -133,7 +133,7 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
                                     <Link
                                         key={c}
                                         href={`/blog/category/${c}`}
-                                        className="border border-base-content px-2 py-0.5 text-xs hover:bg-base-content hover:text-base-100"
+                                        className="border-border hover:bg-foreground hover:text-background border px-2 py-0.5 text-xs"
                                     >
                                         {c}
                                     </Link>
@@ -145,7 +145,7 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
             </div>
 
             {/* Breadcrumbs */}
-            <div className="border-b-4 border-base-content p-2">
+            <div className="border-border border-b-4 p-2">
                 <Breadcrumbs start={2} />
             </div>
 
@@ -158,12 +158,12 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
             </div>
 
             {/* Footer Section */}
-            <div className="border-t-4 border-base-content">
-                <div className="border-b-4 border-base-content p-4">
+            <div className="border-border border-t-4">
+                <div className="border-border border-b-4 p-4">
                     <ShareCurrentURL text={postData.post.meta.title} />
                 </div>
                 <div className="grid grid-cols-1 text-sm md:grid-cols-2">
-                    <div className="border-b-4 border-base-content md:border-b-0 md:border-r-4">
+                    <div className="border-border border-b-4 md:border-r-4 md:border-b-0">
                         <MostRecentPostPreview post={mostRecentUpdate.before} type="before" />
                     </div>
                     <div>

@@ -16,11 +16,11 @@ export function NavItem({ href, icon, title, description, className }: NavItemPr
         <Link
             href={href}
             className={cn(
-                "group flex items-center gap-4 p-6 transition-all hover:bg-base-content hover:text-base-100",
+                "group hover:bg-foreground hover:text-background flex items-center gap-4 p-6 transition-all",
                 className,
             )}
         >
-            <span className="flex h-12 w-12 items-center justify-center border-2 border-current text-xl transition-all group-hover:border-base-100">
+            <span className="group-hover:border-background flex h-12 w-12 items-center justify-center border-2 border-current text-xl transition-all">
                 {icon}
             </span>
             <div>

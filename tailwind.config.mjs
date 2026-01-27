@@ -1,5 +1,3 @@
-import daisyUI from "daisyui";
-
 /** @type {import('tailwindcss').Config} */
 export default {
     content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
@@ -32,21 +30,5 @@ export default {
             },
         },
     },
-    daisyui: {
-        logs: false,
-        themes: [
-            {
-                mono: {
-                    primary: "#131313",
-                    secondary: "#2b2b2b",
-                    accent: "#00838F",
-                    neutral: "#333333",
-                    "base-100": "#FCFCFC",
-                },
-            },
-        ],
-    },
-    plugins: [
-        daisyUI,
-    ],
+    plugins: [],
 };

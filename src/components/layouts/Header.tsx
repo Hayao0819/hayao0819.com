@@ -7,13 +7,13 @@ import * as Drawer from "./Drawer";
 
 export default function Header() {
     return (
-        <nav className="border-base-content bg-base-100 flex items-stretch border-b-4">
+        <nav className="border-border bg-background flex items-stretch border-b-4">
             {/* Hamburger Menu */}
             <Drawer.ToggleSwitch />
 
             {/* Logo */}
             <Link
-                className="border-base-content bg-base-content text-base-100 hover:bg-base-content/90 flex items-center border-r-4 px-6 py-3 text-xl font-black tracking-tight transition-all"
+                className="border-border bg-foreground text-background hover:bg-foreground/90 flex items-center border-r-4 px-6 py-3 text-xl font-black tracking-tight transition-all"
                 href="/"
             >
                 <span>Yamada Hayao</span>
@@ -25,7 +25,7 @@ export default function Header() {
             </div>
 
             {/* Separator */}
-            <div className="bg-base-content ml-auto hidden h-full w-1 sm:block" />
+            <div className="bg-foreground ml-auto hidden h-full w-1 sm:block" />
 
             {/* Other Links */}
             <div className="hidden items-center sm:flex">

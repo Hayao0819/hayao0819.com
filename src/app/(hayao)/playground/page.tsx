@@ -2,15 +2,16 @@ import { AnimatedLink } from "@/components/elements/Link";
 
 export default function Playground() {
     return (
-        <div className="m-auto flex w-fit items-start justify-center border-4 border-base-content">
-            <div className="grid grid-cols-[auto_1fr] gap-0">
-                <h1 className="border-r-4 border-base-content p-4 text-3xl font-bold [writing-mode:vertical-lr]">Playground</h1>
+        <div className="border-border m-auto flex w-full max-w-2xl items-start justify-center border-4">
+            <div className="grid w-full grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
+                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">Playground</h1>
+                <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">Playground</h1>
                 <div className="flex flex-col">
-                    <div className="border-b-4 border-base-content p-4">
+                    <div className="border-border border-b-4 p-4">
                         <p className="mb-2 font-bold">Colors</p>
                         <ColorList />
                     </div>
-                    <div className="border-b-4 border-base-content p-4">
+                    <div className="border-border border-b-4 p-4">
                         <p className="mb-2 font-bold">Class Test</p>
                         <ClassTest />
                     </div>
@@ -29,7 +30,7 @@ function ColorList() {
         <div className="flex flex-wrap gap-2">
             {["bg-primary", "bg-secondary", "bg-accent", "bg-neutral"].map((c) => (
                 <div className={"flex h-10 w-24 items-center justify-center " + c} key={c}>
-                    <p className="text-center text-xs text-base-100">{c}</p>
+                    <p className="text-background text-center text-xs">{c}</p>
                 </div>
             ))}
         </div>

@@ -13,8 +13,8 @@ export function VerticalLabel({ children, className, inverted = true, as: Compon
     return (
         <Component
             className={cn(
-                "border-r-4 border-base-content p-4 [writing-mode:vertical-lr]",
-                inverted && "bg-base-content text-base-100",
+                "border-border hidden border-r-4 p-4 [writing-mode:vertical-lr] md:block",
+                inverted && "bg-foreground text-background",
                 className,
             )}
         >

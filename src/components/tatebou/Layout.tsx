@@ -1,7 +1,11 @@
+"use client";
+
 import NextLink from "next/link";
 import { ReactNode } from "react";
 import { FaBars } from "react-icons/fa";
 
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Meta from "@/const/tatebou";
 
 import TatebouFooter from "./Footer";
@@ -12,16 +16,7 @@ export default function TatebouLayout({ children }: { children: ReactNode }) {
         <>
             <Head title="迫真縦棒短縮URL" description="縦な短縮URLを作成するサービスです" />
 
-            <Drawer>{children}</Drawer>
-        </>
-    );
-}
-
-function Drawer({ children }: { children: ReactNode }) {
-    return (
-        <div className="drawer">
-            <input id="drawer-checkbox" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex h-screen flex-col">
+            <div className="flex h-screen flex-col">
                 <NavBar>
                     <MenuContents />
                 </NavBar>
@@ -29,37 +24,34 @@ function Drawer({ children }: { children: ReactNode }) {
                 <main className="mx-auto w-4/5 grow py-12 *:leading-10 md:w-3/5">{children}</main>
                 <TatebouFooter />
             </div>
-            <DrawerSide>
-                <MenuContents />
-            </DrawerSide>
-        </div>
-    );
-}
-
-function DrawerSide({ children }: { children: ReactNode }) {
-    return (
-        <div className="drawer-side md:hidden">
-            <label htmlFor="drawer-checkbox" className="drawer-overlay"></label>
-            <ul className="menu h-full w-80 bg-base-200 p-4">{children}</ul>
-        </div>
+        </>
     );
 }
 
 function NavBar({ children }: { children: ReactNode }) {
     return (
-        <div className="navbar w-full bg-base-200">
+        <nav className="bg-muted flex w-full items-center px-4 py-2">
             <div className="md:hidden">
-                <label htmlFor="drawer-checkbox" className="btn btn-square btn-ghost">
-                    <FaBars />
-                </label>
+                <Sheet>
+                    <SheetTrigger asChild>
+                        <Button variant="ghost" size="icon">
+                            <FaBars />
+                        </Button>
+                    </SheetTrigger>
+                    <SheetContent side="left" className="bg-muted w-80 p-4">
+                        <nav className="mt-8 flex flex-col space-y-2">
+                            <MenuContents />
+                        </nav>
+                    </SheetContent>
+                </Sheet>
             </div>
             <div className="mx-2 px-2 text-xl">
                 <NextLink href="/tatebou">{Meta.title}</NextLink>
             </div>
             <div className="hidden md:flex">
-                <ul className="menu menu-horizontal">{children}</ul>
+                <nav className="flex items-center space-x-4">{children}</nav>
             </div>
-        </div>
+        </nav>
     );
 }
 
@@ -75,10 +67,11 @@ function MenuContents() {
         </>
     );
 }
+
 function MenuItem({ name, link }: { name: string; link: string }) {
     return (
-        <li className="*:text-gray-500">
-            <NextLink href={link}>{name}</NextLink>
-        </li>
+        <NextLink href={link} className="text-muted-foreground hover:text-foreground transition-colors">
+            {name}
+        </NextLink>
     );
 }

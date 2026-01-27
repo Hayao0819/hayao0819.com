@@ -16,7 +16,7 @@ export function SocialLink({ href, icon, name, handle, className }: SocialLinkPr
         <Link
             href={href}
             className={cn(
-                "flex items-center justify-center gap-3 p-6 transition-all hover:bg-base-content hover:text-base-100",
+                "hover:bg-foreground hover:text-background flex items-center justify-center gap-3 p-6 transition-all",
                 className,
             )}
         >

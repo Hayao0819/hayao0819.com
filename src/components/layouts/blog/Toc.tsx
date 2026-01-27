@@ -8,9 +8,9 @@ const BlogToc = ({ contentSelector }: { contentSelector: string }) => {
     const tree = useHeadingTree(contentSelector);
 
     return (
-        <div className={clsx("w-full border-b-4 border-base-content text-sm", { hidden: tree.length < 1 })}>
+        <div className={clsx("border-border w-full border-b-4 text-sm", { hidden: tree.length < 1 })}>
             <div className="grid grid-cols-[auto_1fr]">
-                <div className="flex items-center border-r-4 border-base-content p-3 text-xs font-bold [writing-mode:vertical-lr]">
+                <div className="border-border flex items-center border-r-4 p-3 text-xs font-bold [writing-mode:vertical-lr]">
                     Contents
                 </div>
                 <div className="p-4">

@@ -4,7 +4,7 @@ import { Heading } from "@/components/elements/Heading";
 
 const Container = ({ children, title }: PropsWithChildren<{ title: string }>) => (
     <div className="my-4">
-        <Heading level={3} className="my-8 inline-block border-l-2 border-accent p-2 font-bold text-accent">
+        <Heading level={3} className="border-accent text-accent my-8 inline-block border-l-2 p-2 font-bold">
             {title}
         </Heading>
         {children ? <div className="flex flex-wrap justify-start gap-2">{children}</div> : <div>現在工事中</div>}
@@ -12,7 +12,7 @@ const Container = ({ children, title }: PropsWithChildren<{ title: string }>) =>
 );
 
 const Card = ({ children }: PropsWithChildren) => (
-    <div className="flex w-1/6 flex-col rounded-xl border border-base-200 p-4">{children}</div>
+    <div className="border-muted flex w-1/6 flex-col rounded-xl border p-4">{children}</div>
 );
 
 const Title = ({ children }: PropsWithChildren) => (

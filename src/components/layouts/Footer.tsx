@@ -14,15 +14,13 @@ export default function Footer() {
     }
 
     return (
-        <footer className="border-t-4 border-base-content bg-base-100">
+        <footer className="border-border bg-background border-t-4">
             <div className="mx-auto max-w-6xl">
                 <div className="grid gap-0 md:grid-cols-[1fr_auto]">
                     {/* Author Info */}
-                    <div className="border-b-4 border-base-content p-6 md:border-b-0 md:border-r-4">
+                    <div className="border-border border-b-4 p-6 md:border-r-4 md:border-b-0">
                         <p className="text-lg font-bold">Yamada Hayao</p>
-                        <p className="mt-1 text-sm text-base-content/70">
-                            パソコンをカタカタ触るのが趣味の底辺大学生
-                        </p>
+                        <p className="text-foreground/70 mt-1 text-sm">パソコンをカタカタ触るのが趣味の底辺大学生</p>
                     </div>
 
                     {/* Social Links */}
@@ -33,7 +31,7 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="flex flex-wrap items-center justify-between gap-4 border-t-4 border-base-content p-4">
+                <div className="border-border flex flex-wrap items-center justify-between gap-4 border-t-4 p-4">
                     <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
                         <Link href="/blog/1" className="hover:underline">
                             Blog
@@ -48,7 +46,7 @@ export default function Footer() {
                             Contact
                         </Link>
                     </div>
-                    <p className="text-sm text-base-content/60">&copy; {new Date().getFullYear()} Yamada Hayao</p>
+                    <p className="text-foreground/60 text-sm">&copy; {new Date().getFullYear()} Yamada Hayao</p>
                 </div>
             </div>
         </footer>

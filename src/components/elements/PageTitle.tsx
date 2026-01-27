@@ -10,7 +10,7 @@ export default function PageTitle(
     const propsWithoutChildren = { ...props, children: undefined, className: mergedClassName };
     return (
         <div {...propsWithoutChildren}>
-            <Heading level={2} className="inline-block border-b border-accent text-3xl text-accent">
+            <Heading level={2} className="border-accent text-accent inline-block border-b text-3xl">
                 {props.children}
             </Heading>
         </div>

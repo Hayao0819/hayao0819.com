@@ -34,7 +34,7 @@ export function PostPageSwitch({ allpages, currentPage, linktemplate }: PostPage
                     <span
                         key={i}
                         className={classNames("px-2 text-lg", {
-                            "mx-1 bg-accent font-bold text-accent underline underline-offset-2 shadow-md": isCurrent,
+                            "bg-accent text-accent mx-1 font-bold underline underline-offset-2 shadow-md": isCurrent,
                         })}
                     >
                         {isCurrent ? <p>{i}</p> : <Link href={linktemplate(i)}>{i}</Link>}

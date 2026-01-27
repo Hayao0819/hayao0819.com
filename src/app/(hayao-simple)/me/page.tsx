@@ -36,7 +36,7 @@ export default function Me() {
                         <Separator />
                         <News />
                         <Separator />
-                        <div className="text-balance text-left font-bold *:leading-tight">
+                        <div className="text-left font-bold text-balance *:leading-tight">
                             <p>当サイトの内容、テキスト、画像等はMITライセンスの基で自由に再利用できます。</p>
                             <p>
                                 ソースコードは

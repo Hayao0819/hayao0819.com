@@ -1,5 +1,3 @@
-import "@/style/markdown.css";
-
 import { MDXComponents } from "mdx/types";
 import { ComponentPropsWithoutRef, useMemo } from "react";
 import { FaExclamationCircle } from "react-icons/fa";
@@ -57,7 +55,7 @@ export const getComponents = (basepath: string): MDXComponents => {
                 <Link
                     href={href}
                     id={id}
-                    className="relative text-accent transition-all after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-accent after:transition-all hover:after:h-1"
+                    className="text-accent after:bg-accent relative transition-all after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:transition-all hover:after:h-1"
                 >
                     {children}
                 </Link>
@@ -84,10 +82,10 @@ export const getComponents = (basepath: string): MDXComponents => {
             // Use span instead of figure to avoid hydration error when img is inside <p>
             return (
                 <span className="my-4 block">
-                    <span className="mx-auto block w-fit border-4 border-base-content">
+                    <span className="border-border mx-auto block w-fit border-4">
                         <img src={src} alt={props.alt || ""} className="block max-w-full" />
                     </span>
-                    {props.alt && <span className="mt-2 block text-center text-sm text-base-content/70">{props.alt}</span>}
+                    {props.alt && <span className="text-foreground/70 mt-2 block text-center text-sm">{props.alt}</span>}
                 </span>
             );
         },
@@ -98,20 +96,20 @@ export const getComponents = (basepath: string): MDXComponents => {
             }
             // Inline code style
             return (
-                <code className="mx-0.5 border border-base-content/30 bg-base-content/5 px-1.5 py-0.5 font-mono text-[0.9em] text-accent">
+                <code className="border-border/30 bg-foreground/5 text-accent mx-0.5 border px-1.5 py-0.5 font-mono text-[0.9em]">
                     {children}
                 </code>
             );
         },
 
         ul: ({ children, id }) => (
-            <ul id={id} className="my-2 border-l-4 border-base-content pl-4">
+            <ul id={id} className="border-border my-2 border-l-4 pl-4">
                 {children}
             </ul>
         ),
 
         ol: ({ children, id }) => (
-            <ol id={id} className="my-2 border-l-4 border-base-content pl-4">
+            <ol id={id} className="border-border my-2 border-l-4 pl-4">
                 {children}
             </ol>
         ),
@@ -123,9 +121,9 @@ export const getComponents = (basepath: string): MDXComponents => {
         ),
 
         blockquote: ({ children }) => (
-            <blockquote className="my-4 border-4 border-base-content">
+            <blockquote className="border-border my-4 border-4">
                 <div className="grid grid-cols-[auto_1fr]">
-                    <div className="border-r-4 border-base-content bg-base-content p-2 text-xs font-bold text-base-100 [writing-mode:vertical-lr]">
+                    <div className="border-border bg-foreground text-background border-r-4 p-2 text-xs font-bold [writing-mode:vertical-lr]">
                         Quote
                     </div>
                     <div className="p-4">{children}</div>
@@ -133,23 +131,21 @@ export const getComponents = (basepath: string): MDXComponents => {
             </blockquote>
         ),
 
-        hr: () => <hr className="my-8 border-t-4 border-base-content" />,
+        hr: () => <hr className="border-border my-8 border-t-4" />,
 
         table: ({ children }) => (
-            <div className="my-4 border-4 border-base-content">
+            <div className="border-border my-4 border-4">
                 <table className="w-full">{children}</table>
             </div>
         ),
 
-        thead: ({ children }) => (
-            <thead className="border-b-4 border-base-content bg-base-content text-base-100">{children}</thead>
-        ),
+        thead: ({ children }) => <thead className="border-border bg-foreground text-background border-b-4">{children}</thead>,
 
-        th: ({ children }) => <th className="border-r border-base-100/30 p-2 text-left last:border-r-0">{children}</th>,
+        th: ({ children }) => <th className="border-background/30 border-r p-2 text-left last:border-r-0">{children}</th>,
 
-        tr: ({ children }) => <tr className="border-b border-base-content last:border-b-0">{children}</tr>,
+        tr: ({ children }) => <tr className="border-border border-b last:border-b-0">{children}</tr>,
 
-        td: ({ children }) => <td className="border-r border-base-content/30 p-2 last:border-r-0">{children}</td>,
+        td: ({ children }) => <td className="border-border/30 border-r p-2 last:border-r-0">{children}</td>,
 
         //pre: ({ children, className }) => <pre className={classNames(className, "p-2")}>{children}</pre>,
 
@@ -175,9 +171,9 @@ export const getComponents = (basepath: string): MDXComponents => {
         },
 
         Warn: ({ children, id }) => (
-            <div className="my-8 border-4 border-base-content" id={id}>
+            <div className="border-border my-8 border-4" id={id}>
                 <div className="grid grid-cols-[auto_1fr]">
-                    <div className="flex items-center gap-2 border-r-4 border-base-content bg-base-content p-3 font-bold text-base-100 [writing-mode:vertical-lr]">
+                    <div className="border-border bg-foreground text-background flex items-center gap-2 border-r-4 p-3 font-bold [writing-mode:vertical-lr]">
                         <FaExclamationCircle />
                         <span>Warning</span>
                     </div>

@@ -33,7 +33,7 @@ export function FramePage({
                 containerClassName,
             )}
         >
-            <div className={cn("border-4 border-base-content", className)}>
+            <div className={cn("border-border border-4", className)}>
                 <div className="grid grid-cols-[auto_1fr] gap-0">
                     <VerticalLabel
                         as={titleAs}

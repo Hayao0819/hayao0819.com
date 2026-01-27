@@ -55,7 +55,12 @@ export class PostList {
                 if (!aMeta.date || !bMeta.date) {
                     return 0;
                 }
-                return new Date(bMeta.date).getTime() - new Date(aMeta.date).getTime();
+                const dateDiff = new Date(bMeta.date).getTime() - new Date(aMeta.date).getTime();
+                if (dateDiff !== 0) {
+                    return dateDiff;
+                }
+                // 同じ日付の場合はファイルパスで安定したソートを行う
+                return a.file.localeCompare(b.file);
             });
 
         this.posts = posts;

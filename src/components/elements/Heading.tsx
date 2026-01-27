@@ -38,15 +38,15 @@ export function BlogHeading(props: HeadingProps) {
         level == 1 ? (
             <Heading {...propsWithoutClassName} className={classNames(cn, "text-4xl", "text-center")} />
         ) : level == 2 ? (
-            <div className="my-8 border-b-4 border-base-content pb-2">
+            <div className="border-border my-8 border-b-4 pb-2">
                 <Heading {...propsWithoutClassName} className="text-xl font-bold" />
             </div>
         ) : level == 3 ? (
-            <div className="my-6 border-l-4 border-base-content pl-3">
+            <div className="border-border my-6 border-l-4 pl-3">
                 <Heading {...propsWithoutClassName} className="text-lg font-bold" />
             </div>
         ) : level == 4 ? (
-            <div className="my-4 border-l-2 border-base-content/50 pl-3">
+            <div className="border-border/50 my-4 border-l-2 pl-3">
                 <Heading {...propsWithoutClassName} className="text-base font-bold" />
             </div>
         ) : level == 5 ? (

@@ -12,9 +12,9 @@ export default function Home() {
     const recentPosts = postlist.getPosts().slice(0, 3);
 
     return (
-        <div className="m-auto flex min-h-[calc(100vh-120px)] w-fit items-center justify-center p-4">
-            <div className="border-4 border-base-content">
-                <div className="grid grid-cols-[auto_1fr] gap-0">
+        <div className="m-auto flex min-h-[calc(100vh-120px)] w-full max-w-4xl items-center justify-center p-4">
+            <div className="border-border w-full border-4">
+                <div className="grid grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
                     <VerticalLabel className="row-span-4 p-3">
                         <h1 className="text-lg font-black tracking-tight">Yamada Hayao</h1>
                     </VerticalLabel>
@@ -24,10 +24,10 @@ export default function Home() {
                         <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12">
                             <div className="flex-1">
                                 <h2 className="text-3xl font-black tracking-tight md:text-4xl">山田ハヤオ</h2>
-                                <p className="mt-2 text-sm text-base-content/70 md:text-base">
+                                <p className="text-foreground/70 mt-2 text-sm md:text-base">
                                     Web Developer / Security Enthusiast
                                 </p>
-                                <p className="mt-4 text-sm leading-relaxed text-base-content/80">
+                                <p className="text-foreground/80 mt-4 text-sm leading-relaxed">
                                     パソコンが好きな大学生。Webやセキュリティに興味があります。
                                     主にLinuxやWebフロントエンドをメインに活動しています。
                                 </p>
@@ -41,28 +41,28 @@ export default function Home() {
                     </Section>
 
                     {/* Navigation Grid */}
-                    <div className="grid border-b-4 border-base-content md:grid-cols-2">
+                    <div className="border-border grid border-b-4 md:grid-cols-2">
                         <NavItem href="/me" icon={<FaUser />} title="About Me" description="自己紹介" />
                         <NavItem
                             href="/blog/1"
                             icon={<FaBlog />}
                             title="Blog"
                             description="技術記事など"
-                            className="border-t-4 border-base-content md:border-l-4 md:border-t-0"
+                            className="border-border border-t-4 md:border-t-0 md:border-l-4"
                         />
                         <NavItem
                             href="/portfolio"
                             icon={<FaBriefcase />}
                             title="Portfolio"
                             description="スキル・制作物"
-                            className="border-t-4 border-base-content"
+                            className="border-border border-t-4"
                         />
                         <NavItem
                             href="/social"
                             icon={<FaUsers />}
                             title="Social"
                             description="SNS・連絡先"
-                            className="border-l-4 border-t-4 border-base-content"
+                            className="border-border border-t-4 md:border-l-4"
                         />
                     </div>
 
@@ -70,12 +70,12 @@ export default function Home() {
                     <Section padding="lg">
                         <div className="mb-4 flex items-center justify-between">
                             <p className="flex items-center gap-2 font-bold">
-                                <FaBlog className="text-base-content/70" />
+                                <FaBlog className="text-foreground/70" />
                                 <span>Recent Posts</span>
                             </p>
                             <Link
                                 href="/blog/1"
-                                className="flex items-center gap-1 text-sm text-base-content/70 transition-colors hover:text-base-content"
+                                className="text-foreground/70 hover:text-foreground flex items-center gap-1 text-sm transition-colors"
                             >
                                 <span>View All</span>
                                 <FaArrowRight className="text-xs" />
@@ -86,10 +86,10 @@ export default function Home() {
                                 <Link
                                     key={post.file}
                                     href={`/blog/posts/${post.url}`}
-                                    className="group block border-2 border-base-content/30 p-4 transition-all hover:border-base-content hover:bg-base-content/5"
+                                    className="group border-border/30 hover:border-border hover:bg-foreground/5 block border-2 p-4 transition-all"
                                 >
                                     <p className="truncate text-sm font-medium group-hover:underline">{post.meta.title}</p>
-                                    <p className="mt-1 text-xs text-base-content/50">{post.meta.category}</p>
+                                    <p className="text-foreground/50 mt-1 text-xs">{post.meta.category}</p>
                                 </Link>
                             ))}
                         </div>
@@ -98,7 +98,7 @@ export default function Home() {
                     {/* Quick Links */}
                     <Section isLast padding="lg">
                         <div className="flex flex-wrap items-center gap-4">
-                            <p className="flex items-center gap-2 text-sm font-bold text-base-content/70">
+                            <p className="text-foreground/70 flex items-center gap-2 text-sm font-bold">
                                 <FaLink />
                                 <span>Quick Links:</span>
                             </p>

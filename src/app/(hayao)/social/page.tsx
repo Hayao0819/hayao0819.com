@@ -9,9 +9,9 @@ export const metadata = genMetaData({ title: "SNS Links" });
 
 export default function Links() {
     return (
-        <div className="m-auto flex w-fit items-start justify-center p-4">
-            <div className="border-4 border-base-content">
-                <div className="grid grid-cols-[auto_1fr] gap-0">
+        <div className="m-auto flex w-full max-w-2xl items-start justify-center p-4">
+            <div className="border-border w-full border-4">
+                <div className="grid grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
                     <VerticalLabel as="h1" className="text-2xl font-black">
                         Social
                     </VerticalLabel>
@@ -21,27 +21,27 @@ export default function Links() {
                                 href="https://github.com/Hayao0819"
                                 icon={<FaGithub />}
                                 name="GitHub"
-                                className="border-b-4 border-base-content md:border-r-4"
+                                className="border-border border-b-4 md:border-r-4"
                             />
                             <SocialLink
                                 href="https://twitter.com/Hayao0819"
                                 icon={<FaTwitter />}
                                 name="Twitter"
                                 handle="@Hayao0819"
-                                className="border-b-4 border-base-content"
+                                className="border-border border-b-4"
                             />
                             <SocialLink
                                 href="https://instagram.com/Hayao0819"
                                 icon={<FaInstagram />}
                                 name="Instagram"
-                                className="border-b-4 border-base-content md:border-r-4"
+                                className="border-border border-b-4 md:border-r-4"
                             />
                             <SocialLink
                                 href="https://twitter.com/YamadaHayao"
                                 icon={<FaTwitter />}
                                 name="Twitter"
                                 handle="@YamadaHayao"
-                                className="border-b-4 border-base-content"
+                                className="border-border border-b-4"
                             />
                             <SocialLink
                                 href="https://keybase.io/hayao0819"

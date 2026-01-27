@@ -13,8 +13,11 @@ export default function DrawerToggle() {
     };
 
     return (
-        <span className="btn btn-square btn-ghost text-2xl" onClick={toggle}>
+        <button
+            className="border-border hover:bg-accent flex items-center justify-center border-r-4 px-4 py-3 text-2xl transition-colors"
+            onClick={toggle}
+        >
             <FaBars />
-        </span>
+        </button>
     );
 }

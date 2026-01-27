@@ -11,9 +11,9 @@ export const metadata = genMetaData({ title: "Events" });
 
 export default function Events() {
     return (
-        <div className="m-auto flex w-fit items-start justify-center p-4">
-            <div className="border-4 border-base-content">
-                <div className="grid grid-cols-[auto_1fr] gap-0">
+        <div className="m-auto flex w-full max-w-4xl items-start justify-center p-4">
+            <div className="border-border w-full border-4">
+                <div className="grid grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
                     <VerticalLabel as="h1" className="text-2xl font-black">
                         Events
                     </VerticalLabel>
@@ -35,7 +35,7 @@ export default function Events() {
                                     date="2026年1月26日〜30日"
                                     location="函館アリーナ"
                                     href="https://www.iwsec.org/scis/2026/"
-                                    className="border-b-2 border-base-content/30"
+                                    className="border-border/30 border-b-2"
                                 />
                                 <ConferenceItem
                                     icon={<MdSecurity />}
@@ -44,7 +44,7 @@ export default function Events() {
                                     date="2025年10月27日〜31日"
                                     location="岡山コンベンションセンター"
                                     href="https://www.iwsec.org/css/"
-                                    className="border-b-2 border-base-content/30"
+                                    className="border-border/30 border-b-2"
                                 />
                                 <ConferenceItem
                                     icon={<FaTrophy />}
@@ -53,7 +53,7 @@ export default function Events() {
                                     date="2025年"
                                     location=""
                                     href="https://c2c-ctf-2025.org/"
-                                    className="border-b-2 border-base-content/30"
+                                    className="border-border/30 border-b-2"
                                 />
                                 <ConferenceItem
                                     icon={<MdSecurity />}
@@ -62,7 +62,7 @@ export default function Events() {
                                     date="2024年10月22日〜25日"
                                     location="神戸国際会議場"
                                     href="https://www.iwsec.org/css/"
-                                    className="border-b-2 border-base-content/30"
+                                    className="border-border/30 border-b-2"
                                 />
                                 <ConferenceItem
                                     icon={<FaShieldAlt />}
@@ -85,7 +85,7 @@ export default function Events() {
                                     date="2025年11月19日〜21日, 25日〜26日"
                                     location="NTT武蔵野研究開発センタ"
                                     href="https://www.rd.ntt/forum/2025/"
-                                    className="border-b-2 border-base-content/30"
+                                    className="border-border/30 border-b-2"
                                 />
                                 <ConferenceItem
                                     icon={<FaBuilding />}
@@ -94,7 +94,7 @@ export default function Events() {
                                     date="2025年8月"
                                     location="さくらインターネット"
                                     href="https://www.sakura.ad.jp/recruit/internship/"
-                                    className="border-b-2 border-base-content/30"
+                                    className="border-border/30 border-b-2"
                                 />
                                 <ConferenceItem
                                     icon={<FaAws />}
@@ -117,7 +117,7 @@ export default function Events() {
                                     date="2024年12月29日〜30日"
                                     location="東京ビッグサイト"
                                     href="https://www.comiket.co.jp/"
-                                    className="border-b-2 border-base-content/30"
+                                    className="border-border/30 border-b-2"
                                 />
                                 <ConferenceItem
                                     icon={<FaBook />}
@@ -126,7 +126,7 @@ export default function Events() {
                                     date="2024年11月3日"
                                     location="池袋サンシャインシティ"
                                     href="https://techbookfest.org/event/tbf17"
-                                    className="border-b-2 border-base-content/30"
+                                    className="border-border/30 border-b-2"
                                 />
                                 <ConferenceItem
                                     icon={<FaStore />}
@@ -135,7 +135,7 @@ export default function Events() {
                                     date="2023年12月30日〜31日"
                                     location="東京ビッグサイト"
                                     href="https://www.comiket.co.jp/"
-                                    className="border-b-2 border-base-content/30"
+                                    className="border-border/30 border-b-2"
                                 />
                                 <ConferenceItem
                                     icon={<FaBook />}
@@ -144,7 +144,7 @@ export default function Events() {
                                     date="2023年11月12日"
                                     location="池袋サンシャインシティ"
                                     href="https://techbookfest.org/event/tbf15"
-                                    className="border-b-2 border-base-content/30"
+                                    className="border-border/30 border-b-2"
                                 />
                                 <ConferenceItem
                                     icon={<GiSunflower />}
@@ -153,7 +153,7 @@ export default function Events() {
                                     date="2023年5月7日"
                                     location="東京ビッグサイト"
                                     href="https://reitaisai.com/"
-                                    className="border-b-2 border-base-content/30"
+                                    className="border-border/30 border-b-2"
                                 />
                                 <ConferenceItem
                                     icon={<FaStore />}
@@ -162,7 +162,7 @@ export default function Events() {
                                     date="2022年5月3日"
                                     location="川口フレンディア"
                                     href="https://prireco.com/"
-                                    className="border-b-2 border-base-content/30"
+                                    className="border-border/30 border-b-2"
                                 />
                                 <ConferenceItem
                                     icon={<GiSunflower />}

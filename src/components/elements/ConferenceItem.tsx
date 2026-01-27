@@ -17,7 +17,7 @@ export function ConferenceItem({ title, event, date, location, href, icon, class
     return (
         <Link
             href={href}
-            className={cn("flex items-start gap-4 p-5 transition-all hover:bg-base-content hover:text-base-100", className)}
+            className={cn("hover:bg-foreground hover:text-background flex items-start gap-4 p-5 transition-all", className)}
         >
             {icon && <span className="mt-1 text-2xl">{icon}</span>}
             <div className="flex flex-col gap-1">

@@ -5,7 +5,7 @@ import { Link } from "@/components/elements/Link";
 
 export default function MeLayout(props: { children: ReactNode }) {
     return (
-        <div className="flex h-full w-svw font-gothic !text-black">
+        <div className="font-gothic flex h-full w-svw !text-black">
             <MeSideBar />
             <div className="grow border-l border-black pl-2">
                 <div className="*:mx-auto">{props.children}</div>

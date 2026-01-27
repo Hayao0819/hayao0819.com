@@ -11,15 +11,15 @@ export const metadata: NextMetadata = genMetaData();
 
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
-        <html className="overflow-x-scroll scroll-smooth md:overflow-x-auto" lang="ja" data-theme="mono" suppressHydrationWarning>
+        <html className="scroll-smooth" lang="ja" data-theme="mono" suppressHydrationWarning>
             <head>
                 <meta name="google-adsense-account" content="ca-pub-3718986298951255" />
-                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <Suspense>
                     <GoogleAnalytics />
                 </Suspense>
             </head>
-            <body className="overscroll-y-none font-gothic" suppressHydrationWarning>
+            <body className="font-gothic overscroll-y-none" suppressHydrationWarning>
                 <ViewTransitions>{children}</ViewTransitions>
             </body>
         </html>

@@ -14,7 +14,7 @@ export function SkillItem({ icon, name, level, className }: SkillItemProps) {
         <div
             className={cn(
                 "flex flex-col items-center border-2 p-4 transition-colors",
-                level === "main" ? "border-base-content bg-base-content/5" : "border-base-content/50 hover:border-base-content",
+                level === "main" ? "border-border bg-foreground/5" : "border-border/50 hover:border-border",
                 className,
             )}
         >

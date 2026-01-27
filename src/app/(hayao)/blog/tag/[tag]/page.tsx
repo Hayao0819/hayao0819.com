@@ -7,18 +7,17 @@ import { PostData } from "@/lib/markdown/post";
 
 export default async function TagPage(props: { params: Promise<{ tag: string }> }) {
     const params = await props.params;
-    const postpost = getPostList(decodeURI(params.tag));
-    const tagName = decodeURI(params.tag);
+    // params.tag may be URL-encoded or raw depending on how accessed
+    const tagName = decodeURIComponent(params.tag);
+    const postpost = getPostList(decodeURIComponent(params.tag));
 
     return (
-        <div className="border-4 border-base-content">
-            <div className="grid grid-cols-[auto_1fr] gap-0">
-                <h1 className="border-r-4 border-base-content p-4 text-3xl font-bold [writing-mode:vertical-lr]">#{tagName}</h1>
+        <div className="border-border w-full border-4">
+            <div className="grid w-full grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
+                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">#{tagName}</h1>
+                <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">#{tagName}</h1>
                 <div className="flex flex-col">
-                    <Link
-                        href="/blog/tag"
-                        className="flex items-center gap-2 border-b-4 border-base-content p-4 hover:bg-base-200"
-                    >
+                    <Link href="/blog/tag" className="border-border hover:bg-muted flex items-center gap-2 border-b-4 p-4">
                         <FaArrowLeft />
                         <span>タグ一覧に戻る</span>
                     </Link>
@@ -33,7 +32,7 @@ export const generateStaticParams = async () => {
     const tags = fetchedBlogPostList.getAllTags();
     const params = tags.map((c) => {
         return {
-            tag: encodeURI(c),
+            tag: c,
         };
     });
 
