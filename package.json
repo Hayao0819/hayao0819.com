@@ -34,7 +34,7 @@
         "jotai": "^2.17.0",
         "lucide-react": "^0.563.0",
         "next": "16.1.6",
-        "next-mdx-remote": "5.0.0",
+        "next-mdx-remote-client": "^2.1.7",
         "nextjs-simple-typewriter": "^5.2.2",
         "react": "19.2.4",
         "react-dom": "19.2.4",
