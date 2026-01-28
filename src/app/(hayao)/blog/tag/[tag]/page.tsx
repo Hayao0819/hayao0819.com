@@ -14,14 +14,22 @@ export default async function TagPage(props: { params: Promise<{ tag: string }> 
     return (
         <div className="border-border w-full border-4">
             <div className="grid w-full grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
-                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">#{tagName}</h1>
+                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
+                    #{tagName}
+                </h1>
                 <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">#{tagName}</h1>
                 <div className="flex flex-col">
-                    <Link href="/blog/tag" className="border-border hover:bg-muted flex items-center gap-2 border-b-4 p-4">
+                    <Link
+                        href="/blog/tag"
+                        className="border-border/60 hover:bg-foreground/5 flex items-center gap-2 border-b-2 p-4 transition-colors"
+                    >
                         <FaArrowLeft />
                         <span>タグ一覧に戻る</span>
                     </Link>
-                    <PostListElement posts={postpost} />
+                    {/* Post List - 余白で分離 */}
+                    <div className="flex flex-col gap-4 p-4">
+                        <PostListElement posts={postpost} />
+                    </div>
                 </div>
             </div>
         </div>

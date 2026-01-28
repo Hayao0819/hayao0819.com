@@ -14,127 +14,130 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
             {/* Main Content */}
             <div className="min-w-0 flex-1">{children}</div>
 
-            {/* Sidebar */}
-            <div className="border-border hidden w-72 shrink-0 overflow-hidden border-4 md:block">
-                <div className="grid grid-cols-[auto_1fr] gap-0">
-                    <div className="border-border row-span-6 border-r-4 p-2 text-sm font-bold [writing-mode:vertical-lr]">
-                        Menu
+            {/* Sidebar - Secondary, lighter style */}
+            <aside className="border-border/60 hidden w-72 shrink-0 overflow-hidden rounded-sm border-2 md:block">
+                <div className="flex flex-col">
+                    {/* Profile Section - 背景色で区別 */}
+                    <div className="bg-foreground/5 p-4">
+                        <p className="font-bold">Yamada Hayao</p>
+                        <p className="text-foreground/60 mt-1 text-xs leading-relaxed">
+                            パソコンが好きな大学生。Webやセキュリティに興味あり。
+                        </p>
+                        <div className="mt-3 flex gap-2">
+                            <Link
+                                href="https://twitter.com/Hayao0819"
+                                aria-label="Twitter"
+                                className="hover:bg-foreground hover:text-background flex items-center justify-center rounded-sm p-2 transition-colors"
+                            >
+                                <FaTwitter className="text-lg" />
+                            </Link>
+                            <Link
+                                href="https://github.com/Hayao0819"
+                                aria-label="GitHub"
+                                className="hover:bg-foreground hover:text-background flex items-center justify-center rounded-sm p-2 transition-colors"
+                            >
+                                <FaGithub className="text-lg" />
+                            </Link>
+                        </div>
                     </div>
-                    <div className="flex min-w-0 flex-col overflow-hidden">
-                        {/* About */}
-                        <div className="border-border border-b-4 p-4">
-                            <p className="mb-3 text-lg font-bold">Yamada Hayao</p>
-                            <p className="text-foreground/70 mb-3 text-xs leading-relaxed">
-                                パソコンが好きな大学生。Webやセキュリティに興味あり。
-                            </p>
-                            <div className="flex gap-2">
-                                <Link
-                                    href="https://twitter.com/Hayao0819"
-                                    className="border-border hover:bg-foreground hover:text-background flex items-center justify-center border-2 p-2 transition-all"
-                                >
-                                    <FaTwitter className="text-lg" />
-                                </Link>
-                                <Link
-                                    href="https://github.com/Hayao0819"
-                                    className="border-border hover:bg-foreground hover:text-background flex items-center justify-center border-2 p-2 transition-all"
-                                >
-                                    <FaGithub className="text-lg" />
-                                </Link>
-                            </div>
-                        </div>
 
-                        {/* Categories */}
-                        <div className="border-border border-b-4 p-4">
-                            <Link href="/blog/category" className="mb-3 flex items-center gap-2 font-bold">
-                                <FaFolder className="text-foreground/70" />
-                                <span>Categories</span>
+                    {/* Categories */}
+                    <div className="border-border/30 border-t p-4">
+                        <Link
+                            href="/blog/category"
+                            className="text-foreground/50 mb-3 flex items-center gap-2 text-xs font-bold tracking-wide uppercase"
+                        >
+                            <FaFolder />
+                            <span>Categories</span>
+                        </Link>
+                        <div className="flex flex-wrap gap-1.5">
+                            {categories.map((c) => (
+                                <Link
+                                    key={c}
+                                    href={`/blog/category/${c}`}
+                                    className="text-foreground/70 hover:text-foreground text-xs transition-colors hover:underline"
+                                >
+                                    {c}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Tags */}
+                    <div className="border-border/30 border-t p-4">
+                        <Link
+                            href="/blog/tag"
+                            className="text-foreground/50 mb-3 flex items-center gap-2 text-xs font-bold tracking-wide uppercase"
+                        >
+                            <FaTags />
+                            <span>Tags</span>
+                        </Link>
+                        <div className="flex flex-wrap gap-1.5">
+                            {tags.slice(0, 15).map((c) => (
+                                <Link
+                                    key={c}
+                                    href={`/blog/tag/${c}`}
+                                    className="text-foreground/70 hover:text-foreground text-xs transition-colors hover:underline"
+                                >
+                                    #{c}
+                                </Link>
+                            ))}
+                            {tags.length > 15 && (
+                                <Link
+                                    href="/blog/tag"
+                                    className="text-foreground/70 hover:text-foreground text-xs transition-colors hover:underline"
+                                >
+                                    +{tags.length - 15} more
+                                </Link>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Links */}
+                    <div className="border-border/30 border-t p-4">
+                        <p className="text-foreground/50 mb-3 flex items-center gap-2 text-xs font-bold tracking-wide uppercase">
+                            <FaLink />
+                            <span>Links</span>
+                        </p>
+                        <div className="flex flex-col gap-1.5">
+                            <Link
+                                href="https://blog.fascode.net/"
+                                className="text-foreground/70 hover:text-foreground truncate text-xs transition-colors hover:underline"
+                            >
+                                Fascode Network Blog
                             </Link>
-                            <div className="flex flex-wrap gap-1.5">
-                                {categories.map((c) => (
-                                    <Link
-                                        key={c}
-                                        href={`/blog/category/${c}`}
-                                        className="border-border hover:bg-foreground hover:text-background max-w-full truncate border-2 px-2.5 py-1 text-xs font-medium transition-all"
-                                    >
-                                        {c}
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Tags */}
-                        <div className="border-border border-b-4 p-4">
-                            <Link href="/blog/tag" className="mb-3 flex items-center gap-2 font-bold">
-                                <FaTags className="text-foreground/70" />
-                                <span>Tags</span>
+                            <Link
+                                href="https://seppuku.club/"
+                                className="text-foreground/70 hover:text-foreground truncate text-xs transition-colors hover:underline"
+                            >
+                                切腹倶楽部
                             </Link>
-                            <div className="flex flex-wrap gap-1.5">
-                                {tags.slice(0, 15).map((c) => (
-                                    <Link
-                                        key={c}
-                                        href={`/blog/tag/${c}`}
-                                        className="border-border/50 hover:border-border hover:bg-foreground hover:text-background max-w-full truncate border px-2 py-0.5 text-xs transition-all"
-                                    >
-                                        #{c}
-                                    </Link>
-                                ))}
-                                {tags.length > 15 && (
-                                    <Link
-                                        href="/blog/tag"
-                                        className="text-foreground/50 hover:text-foreground px-2 py-0.5 text-xs"
-                                    >
-                                        +{tags.length - 15} more
-                                    </Link>
-                                )}
-                            </div>
                         </div>
+                    </div>
 
-                        {/* Links */}
-                        <div className="border-border border-b-4 p-4">
-                            <p className="mb-3 flex items-center gap-2 font-bold">
-                                <FaLink className="text-foreground/70" />
-                                <span>Links</span>
-                            </p>
-                            <div className="flex flex-col gap-2">
+                    {/* Recent Posts */}
+                    <div className="border-border/30 border-t p-4">
+                        <Link
+                            href="/blog/1"
+                            className="text-foreground/50 mb-3 flex items-center gap-2 text-xs font-bold tracking-wide uppercase"
+                        >
+                            <FaClock />
+                            <span>Recent Posts</span>
+                        </Link>
+                        <div className="flex flex-col gap-1.5">
+                            {posts.map((p) => (
                                 <Link
-                                    href="https://blog.fascode.net/"
-                                    className="group flex items-center gap-2 text-sm transition-all"
+                                    key={p.file}
+                                    href={`/blog/posts/${p.url}`}
+                                    className="text-foreground/70 hover:text-foreground block min-w-0 truncate text-xs transition-colors hover:underline"
                                 >
-                                    <span className="bg-foreground/30 group-hover:bg-foreground h-1.5 w-1.5 shrink-0 transition-all" />
-                                    <span className="truncate group-hover:underline">Fascode Network Blog</span>
+                                    {p.meta.title}
                                 </Link>
-                                <Link
-                                    href="https://seppuku.club/"
-                                    className="group flex items-center gap-2 text-sm transition-all"
-                                >
-                                    <span className="bg-foreground/30 group-hover:bg-foreground h-1.5 w-1.5 shrink-0 transition-all" />
-                                    <span className="truncate group-hover:underline">切腹倶楽部</span>
-                                </Link>
-                            </div>
-                        </div>
-
-                        {/* Recent Posts */}
-                        <div className="p-4">
-                            <Link href="/blog/1" className="mb-3 flex items-center gap-2 font-bold">
-                                <FaClock className="text-foreground/70" />
-                                <span>Recent Posts</span>
-                            </Link>
-                            <div className="flex flex-col gap-2">
-                                {posts.map((p) => (
-                                    <Link
-                                        key={p.file}
-                                        href={`/blog/posts/${p.url}`}
-                                        className="group border-border/20 hover:border-border block min-w-0 border-l-2 pl-3 transition-all"
-                                    >
-                                        <p className="truncate text-sm group-hover:underline">{p.meta.title}</p>
-                                        <p className="text-foreground/50 truncate text-xs">{p.meta.category}</p>
-                                    </Link>
-                                ))}
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
-            </div>
+            </aside>
         </div>
     );
 }

@@ -20,21 +20,85 @@ Key principles:
 - **Systematic organization**: Structure emerges from the same principles used in timetables and charts
 - **Functional beauty**: Aesthetic value comes from clarity and structured information display, not ornamentation
 
+## Visual Hierarchy System
+
+### 問題点と改善方針
+
+従来のデザインでは全ての要素に同じ太さのボーダー（`border-4`）を使用していたため、視覚的階層が不明確でした。特にブログ記事一覧や個別記事ページでは情報量が多く、どこに注目すべきか分かりにくい状態でした。
+
+**改善方針**: ボーダーの太さと色を階層化し、要素の重要度に応じて視覚的な重みを変える。
+
+### Border Weight Hierarchy
+
+| レベル | ボーダー太さ | 用途 | クラス |
+|--------|------------|------|--------|
+| **Primary** | 4px | メインコンテナの外枠、ページタイトル | `border-4 border-border` |
+| **Secondary** | 2px | サブセクション、カード、サイドバー | `border-2 border-border` |
+| **Tertiary** | 1px | 軽い区切り、リスト項目 | `border border-border/60` |
+| **Subtle** | 1px (薄い) | ホバー前の状態、装飾的な区切り | `border border-border/30` |
+
+### Border Color Hierarchy
+
+| レベル | 色 | 用途 |
+|--------|-----|------|
+| **Full** | `border-border` | 重要な境界、メインフレーム |
+| **Medium** | `border-border/60` | 中程度の区切り |
+| **Light** | `border-border/30` | 軽い区切り、ホバー前 |
+| **Subtle** | `border-border/20` | 最小限の区切り |
+
+### Content Priority Levels
+
+ページ内の要素は以下の優先度で視覚的重みを持たせる：
+
+1. **Primary Content (メインコンテンツ)**
+   - 記事本文、ページのメインセクション
+   - 最も目立つ位置、十分な余白
+   - ボーダー: Primary または なし
+
+2. **Secondary Content (補助コンテンツ)**
+   - サイドバー、ナビゲーション、メタ情報
+   - Primary より軽いスタイル
+   - ボーダー: Secondary または Tertiary
+
+3. **Tertiary Content (三次的コンテンツ)**
+   - タグ、カテゴリ、関連リンク
+   - 控えめなスタイル
+   - ボーダー: Tertiary または Subtle
+
 ## Core Design Patterns
 
 ### 1. Border System
 
-Use **4px solid borders** (`border-4`) as the primary visual element:
+ボーダーは要素の重要度に応じて使い分ける：
 
 ```tsx
-// Outer frame
-<div className="border-4 border-foreground">
+// Primary: メインコンテナの外枠
+<div className="border-4 border-border">
 
-// Section dividers
-<div className="border-b-4 border-foreground">
+// Secondary: サブセクション、カード
+<div className="border-2 border-border">
 
-// Vertical dividers
-<div className="border-r-4 border-foreground">
+// Tertiary: 軽い区切り
+<div className="border border-border/60">
+
+// Subtle: 最小限の区切り（ホバーで強調）
+<div className="border border-border/30 hover:border-border/60">
+```
+
+### セクション区切りの階層化
+
+```tsx
+// Primary divider: ページ内の主要セクション間
+<div className="border-b-4 border-border">
+
+// Secondary divider: サブセクション間
+<div className="border-b-2 border-border/60">
+
+// Tertiary divider: リスト項目など
+<div className="border-b border-border/30">
+
+// Spacing only: ボーダーなしで余白のみ
+<div className="mb-6">
 ```
 
 ### 2. Grid Layout with Vertical Label
@@ -44,7 +108,7 @@ A distinctive pattern: vertical text label on the left side with content on the 
 ```tsx
 <div className="grid grid-cols-[auto_1fr]">
     {/* Vertical Label */}
-    <div className="border-r-4 border-foreground p-3 text-sm font-bold [writing-mode:vertical-lr]">
+    <div className="border-r-4 border-border p-3 text-sm font-bold [writing-mode:vertical-lr]">
         Label
     </div>
     {/* Content */}
@@ -56,15 +120,21 @@ A distinctive pattern: vertical text label on the left side with content on the 
 
 ### 3. Section Organization
 
-Sections are stacked vertically with bold bottom borders:
+セクションは重要度に応じたボーダーで区切る：
 
 ```tsx
 <div className="flex flex-col">
-    <div className="border-b-4 border-foreground p-4">
-        Section 1
+    {/* Primary section with bold border */}
+    <div className="border-b-4 border-border p-4">
+        Primary Section
     </div>
-    <div className="border-b-4 border-foreground p-4">
-        Section 2
+    {/* Secondary sections with lighter border */}
+    <div className="border-b-2 border-border/60 p-4">
+        Secondary Section
+    </div>
+    {/* Tertiary with minimal border */}
+    <div className="border-b border-border/30 p-4">
+        Tertiary Section
     </div>
     <div className="p-4">
         Last Section (no bottom border)
@@ -77,10 +147,25 @@ Sections are stacked vertically with bold bottom borders:
 Buttons and links use border-based hover states:
 
 ```tsx
+// Primary button
 <Link
-    className="border border-foreground px-2 py-0.5 text-xs hover:bg-foreground hover:text-background"
+    className="border-2 border-border px-3 py-1.5 text-sm font-medium hover:bg-foreground hover:text-background transition-colors"
 >
-    Button Text
+    Primary Action
+</Link>
+
+// Secondary/subtle button
+<Link
+    className="border border-border/50 px-2 py-1 text-xs hover:border-border hover:bg-foreground/5 transition-colors"
+>
+    Secondary Action
+</Link>
+
+// Text link with underline
+<Link
+    className="text-foreground/70 hover:text-foreground underline-offset-2 hover:underline transition-colors"
+>
+    Text Link
 </Link>
 ```
 
@@ -239,10 +324,12 @@ interface SocialLinkProps {
 
 ### Page Container
 
+ページコンテナは Primary border を使用：
+
 ```tsx
-<div className="border-4 border-foreground">
+<div className="border-4 border-border">
     <div className="grid grid-cols-[auto_1fr]">
-        <h1 className="border-r-4 border-foreground p-4 text-3xl font-bold [writing-mode:vertical-lr]">
+        <h1 className="border-r-4 border-border p-4 text-3xl font-bold [writing-mode:vertical-lr]">
             Page Title
         </h1>
         <div className="flex flex-col">
@@ -252,37 +339,86 @@ interface SocialLinkProps {
 </div>
 ```
 
-### Blog Post Layout
+### Blog List Page Layout - 改善版
+
+ブログ記事一覧ページは、メインコンテンツとサイドバーの視覚的重みを差別化：
 
 ```tsx
-<div className="flex flex-col border-4 border-foreground">
-    {/* Header with vertical label */}
-    <div className="grid grid-cols-[auto_1fr] border-b-4 border-foreground">
-        <div className="border-r-4 border-foreground p-3 [writing-mode:vertical-lr]">
+<div className="flex items-start gap-6">
+    {/* Main Content - Primary */}
+    <main className="min-w-0 flex-1">
+        <div className="border-4 border-border">
+            {/* Page Title with Vertical Label */}
+            <div className="grid grid-cols-[auto_1fr]">
+                <h1 className="border-r-4 border-border p-4 text-3xl font-bold [writing-mode:vertical-lr]">
+                    Blog
+                </h1>
+                <div className="flex flex-col">
+                    {/* Post List - 余白で分離、太いボーダーは使わない */}
+                    <div className="flex flex-col gap-4 p-4">
+                        {posts.map((post) => (
+                            <PostPreview key={post.id} post={post} />
+                        ))}
+                    </div>
+
+                    {/* Pagination - Secondary border */}
+                    <div className="border-t-2 border-border/60 p-4">
+                        <Pagination />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {/* Sidebar - Secondary, lighter style */}
+    <aside className="hidden w-72 shrink-0 md:block">
+        <BlogSidebar />
+    </aside>
+</div>
+```
+
+### Blog Post Detail Layout - 改善版
+
+個別記事ページはコンテンツを最も目立たせ、メタ情報は控えめに：
+
+```tsx
+<div className="flex flex-col border-4 border-border">
+    {/* Header - Primary border for main section */}
+    <div className="grid grid-cols-[auto_1fr] border-b-2 border-border/60">
+        <div className="border-r-4 border-border p-3 [writing-mode:vertical-lr]">
             Post
         </div>
         <div className="flex flex-col">
-            <div className="border-b-4 border-foreground p-4">
-                {/* Title */}
+            {/* Title - 最も目立つ */}
+            <div className="p-6">
+                <h1 className="text-2xl font-bold leading-tight md:text-3xl">
+                    {title}
+                </h1>
             </div>
-            <div className="p-3">
-                {/* Date & Categories */}
+            {/* Meta info - 控えめ */}
+            <div className="border-t border-border/30 px-6 py-3">
+                <div className="flex items-center gap-4 text-sm text-foreground/60">
+                    <span>{date}</span>
+                    <span>{category}</span>
+                </div>
             </div>
         </div>
     </div>
 
-    {/* Table of Contents */}
-    <div className="border-b-4 border-foreground">
+    {/* Table of Contents - Secondary border */}
+    <div className="border-b border-border/30">
         {/* TOC content */}
     </div>
 
-    {/* Main Content */}
-    <div className="grow p-4">
-        {/* Article */}
+    {/* Main Content - 余白を十分に確保 */}
+    <div className="grow p-6 md:p-8">
+        <article className="prose">
+            {/* Article content */}
+        </article>
     </div>
 
-    {/* Footer */}
-    <div className="border-t-4 border-foreground">
+    {/* Footer - Tertiary border */}
+    <div className="border-t border-border/30 p-4">
         {/* Share, Navigation */}
     </div>
 </div>
@@ -381,14 +517,38 @@ The design uses shadcn/ui semantic color tokens:
 
 ## Implementation Checklist
 
-When creating new components, ensure:
+新しいコンポーネントを作成する際のチェックリスト：
 
-- [ ] Outer container has `border-4 border-foreground`
-- [ ] Sections use `border-b-4 border-foreground` (except last)
+### 視覚的階層
+
+- [ ] 要素の重要度に応じたボーダー太さを選択
+  - Primary: `border-4 border-border`
+  - Secondary: `border-2 border-border/60`
+  - Tertiary: `border border-border/30`
+- [ ] セクション区切りは重要度に応じて選択
+  - Primary: `border-b-4 border-border`
+  - Secondary: `border-b-2 border-border/60`
+  - Tertiary: `border-b border-border/30`
+  - なし: 余白のみで分離
+
+### 基本パターン
+
 - [ ] Vertical labels use `[writing-mode:vertical-lr]`
-- [ ] Interactive elements have border-based hover states
 - [ ] Grid layout uses `grid-cols-[auto_1fr]` pattern
-- [ ] Colors use semantic tokens (`foreground`, `accent`)
+- [ ] Colors use semantic tokens (`foreground`, `background`, `accent`, `border`)
+
+### インタラクティブ要素
+
+- [ ] ボタン/リンクにホバー状態を設定
+- [ ] フォーカスインジケーターを設定 (`focus-visible:outline`)
+- [ ] 最小タッチターゲット 44x44px を確保
+
+### アクセシビリティ
+
+- [ ] テキストのコントラスト比 4.5:1 以上
+- [ ] 適切なHTML要素を使用（`<nav>`, `<main>`, `<article>` など）
+- [ ] アイコンボタンに `aria-label` を設定
+- [ ] `motion-reduce:` でアニメーション無効化オプション
 
 ## Markdown Components
 
@@ -711,56 +871,112 @@ Section labels use consistent styling:
 
 ## Home Page
 
-The home page uses Frame Design with a vertical label and rich content sections. It uses reusable components for consistency.
+ホームページは視覚的階層を明確にし、主要なナビゲーション要素を強調する。
 
 **File:** `src/app/(hayao)/page.tsx`
 
-### Structure
+### 設計原則
+
+1. **Hero Section (プロフィール)** - 最も目立つ位置、大きなタイポグラフィ
+2. **Navigation Grid** - ユーザーが次にアクションを取るべき主要エリア
+3. **Recent Posts** - Secondary content、控えめなスタイル
+4. **Quick Links** - Tertiary content、最小限のスタイル
+
+### Structure - 改善版
 
 ```tsx
-<div className="border-4 border-foreground">
+<div className="border-4 border-border">
     <div className="grid grid-cols-[auto_1fr] gap-0">
-        {/* Vertical Label - uses VerticalLabel component */}
+        {/* Vertical Label */}
         <VerticalLabel className="row-span-4 p-3">
             <h1 className="text-lg font-black tracking-tight">Yamada Hayao</h1>
         </VerticalLabel>
 
-        {/* Hero Section - uses Section component */}
-        <Section padding="lg" className="md:p-8">
+        {/* Hero Section - Primary, 最も目立つ */}
+        <section className="p-6 md:p-8">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12">
                 <div className="flex-1">
-                    <h2 className="text-3xl font-black tracking-tight">山田ハヤオ</h2>
-                    <p className="mt-2 text-sm text-foreground/70">Web Developer / Security Enthusiast</p>
+                    <h2 className="text-3xl font-black tracking-tight md:text-4xl">山田ハヤオ</h2>
+                    <p className="text-foreground/60 mt-2">Web Developer / Security Enthusiast</p>
+                    <p className="text-foreground/70 mt-4 text-sm leading-relaxed">
+                        自己紹介文...
+                    </p>
                 </div>
                 <div className="flex gap-3">
-                    <IconButton href="https://twitter.com/Hayao0819" icon={<FaTwitter />} label="Twitter" />
-                    <IconButton href="https://github.com/Hayao0819" icon={<FaGithub />} label="GitHub" />
+                    <IconButton href="..." icon={<FaTwitter />} label="Twitter" />
+                    <IconButton href="..." icon={<FaGithub />} label="GitHub" />
                 </div>
             </div>
-        </Section>
+        </section>
 
-        {/* Navigation Grid - uses NavItem component */}
-        <div className="grid border-b-4 border-foreground md:grid-cols-2">
+        {/* Navigation Grid - Primary border between items */}
+        <div className="grid border-y-4 border-border md:grid-cols-2">
             <NavItem href="/me" icon={<FaUser />} title="About Me" description="自己紹介" />
             <NavItem
                 href="/blog/1"
                 icon={<FaBlog />}
                 title="Blog"
                 description="技術記事など"
-                className="border-t-4 border-foreground md:border-l-4 md:border-t-0"
+                className="border-t-4 border-border md:border-l-4 md:border-t-0"
             />
-            {/* ... */}
+            <NavItem
+                href="/portfolio"
+                icon={<FaBriefcase />}
+                title="Portfolio"
+                description="スキル・制作物"
+                className="border-t-4 border-border"
+            />
+            <NavItem
+                href="/social"
+                icon={<FaUsers />}
+                title="Social"
+                description="SNS・連絡先"
+                className="border-t-4 border-border md:border-l-4"
+            />
         </div>
 
-        {/* Recent Posts - uses Section component */}
-        <Section padding="lg">
-            {/* Post cards */}
-        </Section>
+        {/* Recent Posts - Secondary, 控えめなスタイル */}
+        <section className="border-b border-border/30 p-6">
+            <div className="mb-4 flex items-center justify-between">
+                <h3 className="flex items-center gap-2 font-bold">
+                    <FaBlog className="text-foreground/50" />
+                    <span>Recent Posts</span>
+                </h3>
+                <Link href="/blog/1" className="text-foreground/50 hover:text-foreground text-sm">
+                    View All →
+                </Link>
+            </div>
+            {/* Post cards with subtle borders */}
+            <div className="grid gap-3 md:grid-cols-3">
+                {recentPosts.map((post) => (
+                    <Link
+                        key={post.id}
+                        href={post.url}
+                        className="group border border-border/30 hover:border-border/60 p-4 transition-all"
+                    >
+                        <p className="truncate font-medium group-hover:underline">{post.title}</p>
+                        <p className="text-foreground/40 mt-1 text-xs">{post.category}</p>
+                    </Link>
+                ))}
+            </div>
+        </section>
 
-        {/* Quick Links */}
-        <Section isLast padding="lg">
-            {/* Quick link items */}
-        </Section>
+        {/* Quick Links - Tertiary, 最小限のスタイル */}
+        <section className="p-6">
+            <div className="flex flex-wrap items-center gap-4">
+                <span className="text-foreground/50 flex items-center gap-2 text-sm">
+                    <FaLink />
+                    Quick Links:
+                </span>
+                <Link href="/social" className="text-foreground/70 hover:text-foreground text-sm hover:underline">
+                    Social
+                </Link>
+                <Link href="/history" className="text-foreground/70 hover:text-foreground text-sm hover:underline">
+                    History
+                </Link>
+                {/* ... */}
+            </div>
+        </section>
     </div>
 </div>
 ```
@@ -892,72 +1108,165 @@ The Social page displays social media links in a grid layout.
 
 ## Blog Post List
 
+ブログ記事一覧は情報量が多いため、視覚的階層を明確にすることが重要。
+
+### 設計原則
+
+1. **記事カードは余白で分離** - 太いボーダーで区切らず、余白（gap）で分離
+2. **カードは控えめなスタイル** - 薄いボーダーまたはホバー時のみボーダー表示
+3. **タイトルを最も目立たせる** - フォントサイズとウェイトで階層化
+4. **メタ情報は控えめに** - 色を薄く、サイズを小さく
+
+### Post Card (PostPreview) - 改善版
+
+```tsx
+<article className="group">
+    <div className="border border-border/30 hover:border-border/60 rounded-sm p-5 transition-all">
+        {/* Header: Category & Date - 最も控えめ */}
+        <div className="mb-3 flex items-center justify-between">
+            <Link
+                href={`/blog/category/${category}`}
+                className="bg-foreground/5 hover:bg-foreground hover:text-background rounded-sm px-2.5 py-1 text-xs font-medium transition-colors"
+            >
+                {category}
+            </Link>
+            <span className="text-foreground/50 text-xs tabular-nums">
+                {date}
+            </span>
+        </div>
+
+        {/* Title - 最も目立つ */}
+        <Link href={fullURL}>
+            <h2 className="text-foreground mb-2 text-lg font-bold leading-snug">
+                {title}
+            </h2>
+        </Link>
+
+        {/* Tags - 控えめ */}
+        <div className="mb-3 flex flex-wrap gap-1.5">
+            {tags.map((tag) => (
+                <Link
+                    href={`/blog/tag/${tag}`}
+                    className="text-foreground/40 hover:text-foreground text-xs transition-colors"
+                >
+                    #{tag}
+                </Link>
+            ))}
+        </div>
+
+        {/* Summary - 中程度 */}
+        <p className="text-foreground/60 mb-4 line-clamp-3 text-sm leading-relaxed">
+            {summary}
+        </p>
+
+        {/* Read More - 控えめなアクション */}
+        <Link
+            href={fullURL}
+            className="text-foreground/60 hover:text-foreground inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
+        >
+            <span>Read More</span>
+            <FaArrowRight className="text-xs" />
+        </Link>
+    </div>
+</article>
+```
+
 ### Category Badge
 
-Categories in the blog post list use bordered badge style consistent with other pages:
+カテゴリバッジは背景色で区別し、ボーダーを使わない：
 
 ```tsx
 <Link
     href={`/blog/category/${category}`}
-    className="border border-foreground px-2 py-0.5 text-xs hover:bg-foreground hover:text-background"
+    className="bg-foreground/5 hover:bg-foreground hover:text-background rounded-sm px-2.5 py-1 text-xs font-medium transition-colors"
 >
     {category}
 </Link>
 ```
 
-- **Border**: `border border-foreground`
-- **Padding**: `px-2 py-0.5` for compact badge
-- **Font**: `text-xs` for small size
-- **Hover**: Background inversion
-
-This style is unified across:
-- Blog post detail page (category display)
-- Blog sidebar (category list)
-- Blog post list (category badges)
+- **背景**: `bg-foreground/5` で軽く区別
+- **ホバー**: 色反転で強調
+- **ボーダー**: なし（軽量化）
 
 ## Blog Sidebar
 
-The blog sidebar handles overflow gracefully with truncation.
+サイドバーはSecondary Contentとして、メインコンテンツより軽いスタイルにする。
 
-### Overflow Handling
+### 設計原則
+
+1. **外枠は`border-2`** - メインより細い
+2. **セクション区切りは`border-b`** - 最小限のボーダー
+3. **背景色で区切り** - ボーダーの代わりに微妙な背景色
+4. **縦書きラベルはオプション** - 情報密度が高いページでは省略可
+
+### Sidebar Container - 改善版
 
 ```tsx
-{/* Sidebar Container */}
-<div className="w-72 shrink-0 overflow-hidden border-4 border-foreground">
-    <div className="grid grid-cols-[auto_1fr] gap-0">
-        {/* Vertical Label */}
-        <div className="row-span-6 border-r-4 border-foreground p-2 [writing-mode:vertical-lr]">
-            Menu
+{/* Sidebar Container - Secondary border */}
+<aside className="w-72 shrink-0 overflow-hidden border-2 border-border/60 rounded-sm">
+    <div className="flex flex-col">
+        {/* Profile Section - 背景色で区別 */}
+        <div className="bg-foreground/5 p-4">
+            <p className="font-bold">Yamada Hayao</p>
+            <p className="text-foreground/60 mt-1 text-xs">Profile description</p>
         </div>
-        {/* Content with overflow handling */}
-        <div className="flex min-w-0 flex-col overflow-hidden">
+
+        {/* Categories - Tertiary border */}
+        <div className="border-t border-border/30 p-4">
+            <p className="mb-3 text-xs font-bold uppercase tracking-wide text-foreground/50">
+                Categories
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+                {/* Category links */}
+            </div>
+        </div>
+
+        {/* Tags */}
+        <div className="border-t border-border/30 p-4">
+            {/* ... */}
+        </div>
+
+        {/* Recent Posts */}
+        <div className="border-t border-border/30 p-4">
             {/* ... */}
         </div>
     </div>
-</div>
+</aside>
 ```
 
-Key classes for overflow prevention:
-- **Container**: `shrink-0 overflow-hidden` prevents sidebar from shrinking and clips overflow
-- **Content column**: `min-w-0 overflow-hidden` allows flex children to shrink below content size
-- **Text items**: `truncate` or `max-w-full truncate` for long text
-
-### Category/Tag Links
+### Category/Tag Links in Sidebar
 
 ```tsx
-<Link className="max-w-full truncate border-2 border-foreground px-2.5 py-1 text-xs font-medium">
+{/* Category - より目立つ */}
+<Link className="bg-foreground/5 hover:bg-foreground hover:text-background max-w-full truncate rounded-sm px-2.5 py-1 text-xs font-medium transition-colors">
     {category}
 </Link>
-```
 
-### Recent Posts
-
-```tsx
-<Link className="group block min-w-0 border-l-2 border-foreground/20 pl-3">
-    <p className="truncate text-sm group-hover:underline">{title}</p>
-    <p className="truncate text-xs text-foreground/50">{category}</p>
+{/* Tag - 控えめ */}
+<Link className="text-foreground/50 hover:text-foreground text-xs transition-colors">
+    #{tag}
 </Link>
 ```
+
+### Recent Posts in Sidebar
+
+```tsx
+<Link className="group block min-w-0 py-2 transition-colors">
+    <p className="truncate text-sm group-hover:text-foreground/80 group-hover:underline">
+        {title}
+    </p>
+    <p className="text-foreground/40 truncate text-xs">
+        {category}
+    </p>
+</Link>
+```
+
+### Overflow Handling
+
+Key classes for overflow prevention:
+- **Container**: `shrink-0 overflow-hidden` prevents sidebar from shrinking
+- **Content column**: `min-w-0` allows flex children to shrink below content size
+- **Text items**: `truncate` for long text
 
 ## Blog Article Links
 
@@ -1035,6 +1344,120 @@ const leftdrawer_variants: Variants = {
 - **Animation type**: `tween` (not spring) for predictable motion
 - **Duration**: 0.2s for snappy feel
 - **Easing**: `easeOut` for opening, `easeIn` for closing
+
+## Accessibility Guidelines
+
+アクセシビリティを考慮したデザインガイドライン。
+
+### Color Contrast
+
+| 要素 | 最小コントラスト比 | 推奨クラス |
+|------|------------------|-----------|
+| 本文テキスト | 4.5:1 (WCAG AA) | `text-foreground` |
+| 大きな見出し | 3:1 (WCAG AA) | `text-foreground` |
+| プレースホルダ/補助テキスト | 4.5:1 | `text-foreground/70` 以上 |
+| リンク | 4.5:1 | `text-accent` または `text-foreground` |
+| 無効状態 | - | `text-foreground/50`（操作不可を示す） |
+
+**注意**: `text-foreground/40` 以下は補助的な装飾にのみ使用し、重要な情報には使用しない。
+
+### Focus Indicators
+
+インタラクティブ要素には明確なフォーカスインジケーターを設定：
+
+```tsx
+// ボタン・リンクのフォーカス
+<Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground">
+
+// フォーム要素のフォーカス
+<input className="focus:border-foreground focus:ring-1 focus:ring-foreground">
+```
+
+- **outline**: `outline-2 outline-offset-2` で十分な視認性
+- **色**: `outline-foreground` で一貫性
+- **`:focus-visible`**: キーボードフォーカス時のみ表示
+
+### Semantic HTML
+
+適切なHTML要素を使用：
+
+| 目的 | 要素 | 例 |
+|------|------|-----|
+| ナビゲーション | `<nav>` | メニュー、サイドバー |
+| メインコンテンツ | `<main>` | ページの主要コンテンツ |
+| 記事 | `<article>` | ブログ記事、ポストカード |
+| セクション | `<section>` | 論理的なセクション |
+| 補助コンテンツ | `<aside>` | サイドバー |
+| 見出し階層 | `<h1>`〜`<h6>` | 適切な階層を維持 |
+
+### Touch Targets
+
+タッチデバイスでの操作性を確保：
+
+```tsx
+// 最小タッチターゲット: 44x44px (WCAG 2.2)
+<button className="min-h-[44px] min-w-[44px] p-3">
+
+// リストアイテム
+<Link className="block py-3 px-4">
+```
+
+- **最小サイズ**: 44x44px
+- **余白**: 十分なパディングでターゲット拡大
+
+### Motion & Animation
+
+動きに敏感なユーザーへの配慮：
+
+```tsx
+// reduced-motion対応
+<motion.div
+    variants={variants}
+    initial="offscreen"
+    whileInView="onscreen"
+    className="motion-reduce:transform-none motion-reduce:transition-none"
+>
+```
+
+- **`prefers-reduced-motion`**: アニメーションを無効化
+- **Tailwind**: `motion-reduce:` プレフィックスを使用
+
+### Screen Reader
+
+スクリーンリーダー対応：
+
+```tsx
+// 視覚的に隠すが読み上げ可能
+<span className="sr-only">メニューを開く</span>
+
+// アイコンボタンにラベル
+<button aria-label="Twitter">
+    <FaTwitter />
+</button>
+
+// 現在のページを示す
+<nav aria-label="メインナビゲーション">
+    <Link aria-current="page">...</Link>
+</nav>
+```
+
+### Keyboard Navigation
+
+キーボード操作のサポート：
+
+1. **Tab順序**: 論理的な順序で移動
+2. **フォーカストラップ**: モーダル/ドロワー内でフォーカスを維持
+3. **Escape**: モーダル/ドロワーを閉じる
+4. **Enter/Space**: ボタン/リンクのアクティベート
+
+### 視覚的階層とアクセシビリティ
+
+視覚的階層の改善はアクセシビリティにも貢献：
+
+1. **明確なコントラスト** - 重要な要素は濃い色、補助的な要素は薄い色
+2. **十分な余白** - 要素間の区別を明確に
+3. **一貫したパターン** - 同じ機能には同じスタイルを適用
+4. **段階的な強調** - Primary → Secondary → Tertiary の段階で重要度を表現
 
 ## Files Updated
 

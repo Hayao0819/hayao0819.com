@@ -22,6 +22,7 @@ const nextConfig = {
     ...(shouldDeployToGithubPages ? switchNextConfig : {}),
     reactCompiler: true,
     reactStrictMode: true,
+    transpilePackages: ["jotai"],
 };
 
 if (shouldDeployToGithubPages) {

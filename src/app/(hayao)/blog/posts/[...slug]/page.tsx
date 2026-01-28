@@ -114,26 +114,28 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
 
     return (
         <div className="border-border flex h-full w-full flex-col border-4">
-            {/* Header Section */}
-            <div className="border-border grid grid-cols-1 border-b-4 md:grid-cols-[auto_1fr]">
+            {/* Header Section - Primary border for main section */}
+            <div className="border-border/60 grid grid-cols-1 border-b-2 md:grid-cols-[auto_1fr]">
                 <div className="border-border hidden items-center border-r-4 p-3 text-sm font-bold [writing-mode:vertical-lr] md:flex">
                     Post
                 </div>
                 <div className="flex flex-col">
-                    <div className="border-border border-b-4 p-4">
-                        <BlogHeading level={1} className="break-phrase">
+                    {/* Title - 最も目立つ */}
+                    <div className="p-6">
+                        <BlogHeading level={1} className="break-phrase text-2xl leading-tight font-bold md:text-3xl">
                             {postData.post?.meta.title}
                         </BlogHeading>
                     </div>
-                    <div className="flex items-center justify-between p-3">
-                        <div className="text-sm">{dateToString(postDate)}</div>
+                    {/* Meta info - 控えめ */}
+                    <div className="border-border/30 flex items-center justify-between border-t px-6 py-3">
+                        <div className="text-foreground/60 text-sm">{dateToString(postDate)}</div>
                         <div className="flex gap-2">
                             {postData.post?.meta.categories?.map((c) => {
                                 return (
                                     <Link
                                         key={c}
                                         href={`/blog/category/${c}`}
-                                        className="border-border hover:bg-foreground hover:text-background border px-2 py-0.5 text-xs"
+                                        className="bg-foreground/5 hover:bg-foreground hover:text-background rounded-sm px-2.5 py-1 text-xs font-medium transition-colors"
                                     >
                                         {c}
                                     </Link>
@@ -144,26 +146,26 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
                 </div>
             </div>
 
-            {/* Breadcrumbs */}
-            <div className="border-border border-b-4 p-2">
+            {/* Breadcrumbs - Tertiary border */}
+            <div className="border-border/30 border-b p-2">
                 <Breadcrumbs start={2} />
             </div>
 
-            {/* Table of Contents */}
+            {/* Table of Contents - Secondary border */}
             <Toc contentSelector={`#${contentId}`} />
 
-            {/* Main Content */}
-            <div className="grow p-4" id={contentId}>
+            {/* Main Content - 余白を十分に確保 */}
+            <div className="grow p-6 md:p-8" id={contentId}>
                 {postData.parsed}
             </div>
 
-            {/* Footer Section */}
-            <div className="border-border border-t-4">
-                <div className="border-border border-b-4 p-4">
+            {/* Footer Section - Tertiary border */}
+            <div className="border-border/30 border-t">
+                <div className="border-border/30 border-b p-4">
                     <ShareCurrentURL text={postData.post.meta.title} />
                 </div>
                 <div className="grid grid-cols-1 text-sm md:grid-cols-2">
-                    <div className="border-border border-b-4 md:border-r-4 md:border-b-0">
+                    <div className="border-border/30 border-b md:border-r md:border-b-0">
                         <MostRecentPostPreview post={mostRecentUpdate.before} type="before" />
                     </div>
                     <div>

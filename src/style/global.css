@@ -118,29 +118,39 @@
 
     /* Code block styling for rehype-pretty-code */
     figure[data-rehype-pretty-code-figure] {
-        @apply my-4 border-4 border-foreground bg-background;
+        @apply my-4 rounded-sm border border-border/30 bg-foreground/5;
 
         pre {
-            @apply overflow-auto p-4;
+            @apply overflow-auto px-4 py-3;
+            line-height: 1 !important;
         }
 
         code {
             counter-reset: lineNumber;
-            @apply text-sm;
+            @apply text-sm flex flex-col;
+            line-height: 1.6 !important;
         }
 
         code > span[data-line] {
-            @apply block border-0 leading-snug;
+            @apply border-0;
         }
 
         code > span[data-line]::before {
             content: counter(lineNumber);
             counter-increment: lineNumber;
-            @apply mr-3 inline-block w-4 text-right text-foreground/40 md:mr-6;
+            @apply mr-3 inline-block w-4 text-right text-foreground/30 md:mr-6;
         }
 
         code {
             background-color: inherit !important;
+        }
+
+        /* Hide bracket artifacts from rehype-pretty-code */
+        code > span:first-child:empty,
+        code > span:last-child:empty,
+        code::before,
+        code::after {
+            display: none;
         }
     }
 

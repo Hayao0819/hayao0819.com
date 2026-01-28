@@ -12,10 +12,15 @@ export default async function Categories(props: { params: Promise<{ cat: string 
     return (
         <div className="border-border w-full border-4">
             <div className="grid w-full grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
-                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">{categoryName}</h1>
+                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
+                    {categoryName}
+                </h1>
                 <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">{categoryName}</h1>
                 <div className="flex flex-col">
-                    <PostListElement posts={postpost} />
+                    {/* Post List - 余白で分離 */}
+                    <div className="flex flex-col gap-4 p-4">
+                        <PostListElement posts={postpost} />
+                    </div>
                 </div>
             </div>
         </div>

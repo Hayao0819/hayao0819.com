@@ -51,7 +51,7 @@ export default function DrawerContent() {
             <div className="border-border border-b-4">
                 <div className="px-2 py-4">
                     <p className="text-foreground/50 mb-2 px-4 text-xs font-bold tracking-wider uppercase">Other</p>
-                    <OtherLinks onMenuItemClick={toggleDrawer} className="border-l-0" />
+                    <OtherLinks onMenuItemClick={toggleDrawer} />
                 </div>
             </div>
 

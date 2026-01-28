@@ -33,9 +33,7 @@ export interface OtherLinksProps extends MenusCommonProps {
 }
 export function OtherLinks({ horizontal, onMenuItemClick, className }: OtherLinksProps) {
     return (
-        <nav
-            className={classNames("flex", horizontal ? "flex-row items-center" : "border-border flex-col border-l-4", className)}
-        >
+        <nav className={classNames("flex", horizontal ? "flex-row items-center" : "flex-col", className)}>
             <MenuItem href="/tatebou" text="縦棒" onClick={onMenuItemClick} horizontal={horizontal} />
             <MenuItem href="https://seppuku.club/" text="切腹" onClick={onMenuItemClick} horizontal={horizontal} />
         </nav>
@@ -89,8 +87,10 @@ function MenuItemWithDropdown({
             </summary>
             <nav
                 className={classNames(
-                    "border-border bg-background z-50 min-w-[180px] border-4 shadow-[4px_4px_0_0_rgba(0,0,0,1)]",
-                    horizontal ? "absolute top-full left-0" : "mt-1 ml-4 shadow-none",
+                    "bg-background z-50 min-w-[180px]",
+                    horizontal
+                        ? "border-border absolute top-full left-0 border-4 shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
+                        : "mt-1 ml-4",
                 )}
             >
                 {items.map((item) => (

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import { FaArrowRight } from "react-icons/fa";
 
 import { Link } from "@/components/elements/Link";
 import { SUMMARY_LENGTH } from "@/lib/blog/config";
@@ -16,80 +17,78 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
 
     const animate: Variants = {
         offscreen: {
-            y: 100,
+            y: 50,
             opacity: 0,
         },
         onscreen: {
             y: 0,
             opacity: 1,
             transition: {
-                duration: 0.5,
+                duration: 0.4,
             },
         },
     };
 
     const fullURL = "/blog/posts/" + post.url;
     return (
-        <motion.div
-            className="border-border border-b-4 p-4 last:border-b-0"
-            variants={animate}
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true }}
-        >
-            <div className="flex h-full flex-col">
-                <div className="flex items-center justify-between">
+        <motion.article className="group" variants={animate} initial="offscreen" whileInView="onscreen" viewport={{ once: true }}>
+            <div className="border-border/30 hover:border-border/60 rounded-sm border p-5 transition-all">
+                {/* Header: Category & Date - 最も控えめ */}
+                <div className="mb-3 flex items-center justify-between">
                     <div className="flex gap-2">
                         {post.categories.map((s) => (
                             <Link
                                 key={s}
                                 href={`/blog/category/${s}`}
-                                className="border-border hover:bg-foreground hover:text-background border px-2 py-0.5 text-xs"
+                                className="bg-foreground/5 hover:bg-foreground hover:text-background rounded-sm px-2.5 py-1 text-xs font-medium transition-colors"
                             >
                                 {s}
                             </Link>
                         ))}
                     </div>
-                    <Link className="text-foreground/70 text-sm" href={`/blog/posts/${utils.dateToString(postDate, "")}`}>
+                    <Link
+                        className="text-foreground/50 text-xs tabular-nums"
+                        href={`/blog/posts/${utils.dateToString(postDate, "")}`}
+                    >
                         {utils.dateToString(postDate)}
                     </Link>
                 </div>
 
-                <div className="m-2 flex items-center justify-between">
-                    {/* タイトル */}
-                    <Link href={fullURL} className="grow text-xl font-bold underline-offset-8 hover:underline">
-                        {post.meta.title}
-                    </Link>
+                {/* Title - 最も目立つ */}
+                <Link href={fullURL}>
+                    <h2 className="text-foreground mb-2 text-lg leading-snug font-bold">{post.meta.title}</h2>
+                </Link>
 
-                    {/* タグ一覧 */}
-                    <div className="hidden md:flex">
-                        {post.meta.tags?.map((s) => {
-                            return (
-                                <Link href={`/blog/tag/${s}`} className="px-2 text-sm" key={s}>
-                                    #{s}
-                                </Link>
-                            );
-                        })}
+                {/* Tags - 控えめ */}
+                {post.meta.tags && post.meta.tags.length > 0 && (
+                    <div className="mb-3 flex flex-wrap gap-1.5">
+                        {post.meta.tags.map((s) => (
+                            <Link
+                                href={`/blog/tag/${s}`}
+                                className="text-foreground/40 hover:text-foreground text-xs transition-colors"
+                                key={s}
+                            >
+                                #{s}
+                            </Link>
+                        ))}
                     </div>
-                </div>
+                )}
 
-                <div className="m-2 grow">
-                    <Link href={fullURL} className="text-sm">
-                        {/* <Markdown content={post.content.slice(0, SUMMARY_LENGTH)} onlyText basepath={"/posts/" + post.url} /> */}
-                        {post.content.slice(0, SUMMARY_LENGTH)}
-                    </Link>
-                </div>
+                {/* Summary - 中程度 */}
+                <p className="text-foreground/60 mb-4 line-clamp-3 text-sm leading-relaxed">
+                    {post.content.slice(0, SUMMARY_LENGTH)}
+                </p>
 
-                <div className="flex justify-end">
-                    <Link
-                        href={fullURL}
-                        className="border-border hover:bg-foreground hover:text-background border px-2 py-1 text-sm"
-                    >
-                        Read More
-                    </Link>
-                </div>
+                {/* Read More - 控えめなアクション */}
+                <Link
+                    href={fullURL}
+                    className="text-foreground/60 hover:text-foreground inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
+                >
+                    <span>Read More</span>
+                    <FaArrowRight className="text-xs" />
+                </Link>
             </div>
-        </motion.div>
+        </motion.article>
     );
 };
 

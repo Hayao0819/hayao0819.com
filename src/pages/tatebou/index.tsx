@@ -104,7 +104,7 @@ function CreateBtn() {
 
                 if (!res.ok) {
                     const text = await res.text();
-                    console.log("APIエラー");
+                    console.error("APIエラー:", text);
                     openAlert(text, "Error");
                     return;
                 } else {

@@ -46,7 +46,7 @@ export class PostList {
                 if (p.meta.title && p.meta.date) {
                     return true;
                 } else {
-                    console.log(`[WARN] ${p.file} is invalid post file.`);
+                    console.warn(`${p.file} is invalid post file.`);
                     return false;
                 }
             })

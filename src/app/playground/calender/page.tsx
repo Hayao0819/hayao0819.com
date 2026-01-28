@@ -86,8 +86,6 @@ const useYearMonth = () => {
 };
 
 const useCalenderDays = (targetDate: YearMonth) => {
-    console.log(new _Date(2024, 7, 1));
-
     const generateDays = useMemo((): _Date[] => {
         const currentYearMonth = targetDate;
         const prevYearMonth = targetDate.getPrevious();
@@ -98,7 +96,6 @@ const useCalenderDays = (targetDate: YearMonth) => {
 
         // 求める月の最初の日の曜日番号の個数だけ前月の日付を生成
         const prevMonthDays = range(prevYearMonth.getLastDay() - currentMonthFirstDay.day + 1, prevYearMonth.getLastDay());
-        console.log(prevYearMonth.getLastDay(), currentMonthFirstDay.day, prevYearMonth.getLastDay());
 
         // 現在の月
         const currentMonthDays = range(1, currentMonthLastDay.date);

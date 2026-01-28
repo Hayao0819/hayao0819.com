@@ -89,9 +89,11 @@ export const getComponents = (basepath: string): MDXComponents => {
                 </span>
             );
         },
-        code: ({ children, className }) => {
-            // If it has a className, it's a code block (handled by shiki), not inline code
-            if (className) {
+        code: ({ children, className, ...rest }) => {
+            // Code blocks have data-language attribute from rehype-pretty-code, or className from other highlighters
+            // Check for data-language or className to identify code blocks
+            const isCodeBlock = className || "data-language" in rest || "data-theme" in rest;
+            if (isCodeBlock) {
                 return <code className={className}>{children}</code>;
             }
             // Inline code style

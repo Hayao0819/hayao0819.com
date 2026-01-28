@@ -6,7 +6,9 @@ export default function CategoryTop() {
     return (
         <div className="border-border w-full border-4">
             <div className="grid w-full grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
-                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">Category</h1>
+                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
+                    Category
+                </h1>
                 <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">Category</h1>
                 <div className="flex flex-col">
                     {categories.map((c, i) => (
@@ -24,9 +26,12 @@ const Category = ({ category, isLast }: { category: string; isLast: boolean }) =
     const link = `/blog/category/${category}`;
 
     return (
-        <Link href={link} className={`flex flex-col p-4 ${isLast ? "" : "border-border border-b-4"}`}>
+        <Link
+            href={link}
+            className={`hover:bg-foreground/5 flex flex-col p-4 transition-colors ${isLast ? "" : "border-border/30 border-b"}`}
+        >
             <div className="font-bold">{category}</div>
-            <div className="text-sm">{desc}</div>
+            <div className="text-foreground/60 text-sm">{desc}</div>
         </Link>
     );
 };

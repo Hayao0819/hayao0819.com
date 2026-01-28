@@ -8,13 +8,12 @@ export default function DrawerToggle() {
     const [open, setOpen] = useDrawerAtom();
 
     const toggle = () => {
-        console.log("toggle");
         setOpen(!open);
     };
 
     return (
         <button
-            className="border-border hover:bg-accent flex items-center justify-center border-r-4 px-4 py-3 text-2xl transition-colors"
+            className="border-border hover:bg-foreground/5 flex items-center justify-center border-r-4 px-4 py-3 text-2xl transition-colors"
             onClick={toggle}
         >
             <FaBars />

@@ -14,13 +14,17 @@ export default async function BlogTop(props: { params: Promise<{ slug: string }>
     return (
         <div className="border-border w-full border-4">
             <div className="grid w-full grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
-                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">Blog</h1>
+                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
+                    Blog
+                </h1>
                 <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">Blog</h1>
                 <div className="flex flex-col">
-                    <div className="grow">
+                    {/* Post List - 余白で分離 */}
+                    <div className="flex grow flex-col gap-4 p-4">
                         <PostListElement posts={postlist.posts} />
                     </div>
-                    <div className="border-border border-t-4 p-4">
+                    {/* Pagination - Secondary border */}
+                    <div className="border-border/60 border-t-2 p-4">
                         <PostPageSwitch
                             allpages={postlist.allpages}
                             currentPage={postlist.currentPage}
