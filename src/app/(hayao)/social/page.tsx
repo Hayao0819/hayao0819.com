@@ -1,5 +1,13 @@
 import { FaGithub, FaTwitter } from "react-icons/fa";
-import { FaInstagram, FaKeybase } from "react-icons/fa6";
+import { FaInstagram, FaKeybase, FaReddit, FaSpotify } from "react-icons/fa6";
+import {
+    SiQiita,
+    SiGitlab,
+    SiBluesky,
+    SiMisskey,
+    SiZenn,
+    SiMihoyo,
+} from "react-icons/si";
 
 import { SocialLink } from "@/components/elements/SocialLink";
 import { VerticalLabel } from "@/components/elements/VerticalLabel";
@@ -21,6 +29,7 @@ export default function Links() {
                                 href="https://github.com/Hayao0819"
                                 icon={<FaGithub />}
                                 name="GitHub"
+                                handle="@Hayao0819"
                                 className="border-border border-b-4 md:border-r-4"
                             />
                             <SocialLink
@@ -34,6 +43,7 @@ export default function Links() {
                                 href="https://instagram.com/Hayao0819"
                                 icon={<FaInstagram />}
                                 name="Instagram"
+                                handle="@Hayao0819"
                                 className="border-border border-b-4 md:border-r-4"
                             />
                             <SocialLink
@@ -47,6 +57,63 @@ export default function Links() {
                                 href="https://keybase.io/hayao0819"
                                 icon={<FaKeybase />}
                                 name="Keybase"
+                                handle="@hayao0819"
+                                className="border-border border-b-4 md:border-r-4"
+                            />
+                            <SocialLink
+                                href="https://qiita.com/Hayao0819"
+                                icon={<SiQiita />}
+                                name="Qiita"
+                                handle="@Hayao0819"
+                                className="border-border border-b-4"
+                            />
+                            <SocialLink
+                                href="https://gitlab.manjaro.org/Hayao0819"
+                                icon={<SiGitlab />}
+                                name="GitLab"
+                                handle="Manjaro"
+                                className="border-border border-b-4 md:border-r-4"
+                            />
+                            <SocialLink
+                                href="https://bsky.app/profile/hayao.bsky.social"
+                                icon={<SiBluesky />}
+                                name="Bluesky"
+                                handle="@hayao.bsky.social"
+                                className="border-border border-b-4"
+                            />
+                            <SocialLink
+                                href="https://msk.seppuku.club/@hayao"
+                                icon={<SiMisskey />}
+                                name="Misskey"
+                                handle="@hayao"
+                                className="border-border border-b-4 md:border-r-4"
+                            />
+                            <SocialLink
+                                href="https://zenn.dev/hayao"
+                                icon={<SiZenn />}
+                                name="Zenn"
+                                handle="@hayao"
+                                className="border-border border-b-4"
+                            />
+                            <SocialLink
+                                href="https://www.hoyolab.com/accountCenter/postList?id=176843313"
+                                icon={<SiMihoyo />}
+                                name="HoYoLAB"
+                                handle="Hayao"
+                                className="border-border border-b-4 md:border-r-4"
+                            />
+                            <SocialLink
+                                href="https://www.reddit.com/user/Hayao0819/"
+                                icon={<FaReddit />}
+                                name="Reddit"
+                                handle="u/Hayao0819"
+                                className="border-border border-b-4"
+                            />
+                            <SocialLink
+                                href="https://open.spotify.com/user/31l7ja2thmgpttj27kdf6m73irpa"
+                                icon={<FaSpotify />}
+                                name="Spotify"
+                                handle="Hayao"
                                 className="md:col-span-2"
                             />
                         </div>
