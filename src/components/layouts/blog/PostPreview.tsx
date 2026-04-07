@@ -32,7 +32,7 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
     const fullURL = "/blog/posts/" + post.url;
     return (
         <motion.article className="group" variants={animate} initial="offscreen" whileInView="onscreen" viewport={{ once: true }}>
-            <div className="border-border/30 hover:border-border/60 rounded-sm border p-5 transition-all">
+            <div className="border-border/30 hover:border-border/60 overflow-hidden rounded-sm border p-5 transition-all">
                 {/* Header: Category & Date - 最も控えめ */}
                 <div className="mb-3 flex items-center justify-between">
                     <div className="flex gap-2">
@@ -75,7 +75,7 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
                 )}
 
                 {/* Summary - 中程度 */}
-                <p className="text-foreground/60 mb-4 line-clamp-3 text-sm leading-relaxed">
+                <p className="text-foreground/60 mb-4 line-clamp-3 break-all text-sm leading-relaxed">
                     {post.content.slice(0, SUMMARY_LENGTH)}
                 </p>
 
