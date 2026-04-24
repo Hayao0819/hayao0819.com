@@ -115,11 +115,11 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
     return (
         <div className="border-border flex h-full w-full flex-col border-4">
             {/* Header Section - Primary border for main section */}
-            <div className="border-border/60 grid grid-cols-1 border-b-2 md:grid-cols-[auto_1fr]">
-                <div className="border-border hidden items-center border-r-4 p-3 text-sm font-bold [writing-mode:vertical-lr] md:flex">
+            <div className="border-border/60 flex border-b-2">
+                <div className="border-border hidden items-center self-stretch border-r-4 p-3 text-sm font-bold [writing-mode:vertical-lr] md:flex">
                     Post
                 </div>
-                <div className="flex flex-col">
+                <div className="flex min-w-0 flex-1 flex-col">
                     {/* Title - 最も目立つ */}
                     <div className="p-6">
                         <BlogHeading level={1} className="break-phrase text-2xl leading-tight font-bold md:text-3xl">

@@ -13,12 +13,11 @@ export default function Home() {
 
     return (
         <div className="m-auto flex min-h-[calc(100vh-120px)] w-full max-w-4xl items-center justify-center p-4">
-            <div className="border-border w-full border-4">
-                <div className="grid grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
-                    <VerticalLabel className="row-span-4 p-3">
-                        <h1 className="text-lg font-black tracking-tight">Yamada Hayao</h1>
-                    </VerticalLabel>
-
+            <div className="border-border flex w-full border-4">
+                <VerticalLabel className="self-stretch p-3">
+                    <h1 className="text-lg font-black tracking-tight">Yamada Hayao</h1>
+                </VerticalLabel>
+                <div className="flex min-w-0 flex-1 flex-col">
                     {/* Hero Section */}
                     <Section padding="lg" className="md:p-8">
                         <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12">
@@ -86,7 +85,7 @@ export default function Home() {
                                 <Link
                                     key={post.file}
                                     href={`/blog/posts/${post.url}`}
-                                    className="group border-border/30 hover:border-border hover:bg-foreground/5 block border-2 p-4 transition-all"
+                                    className="border-border/30 hover:border-border hover:bg-foreground/5 group block border-2 p-4 transition-all"
                                 >
                                     <p className="truncate text-sm font-medium group-hover:underline">{post.meta.title}</p>
                                     <p className="text-foreground/50 mt-1 text-xs">{post.meta.category}</p>

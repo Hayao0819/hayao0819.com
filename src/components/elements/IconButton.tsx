@@ -22,7 +22,7 @@ export function IconButton({ href, icon, label, size = "md", className }: IconBu
         <Link
             href={href}
             className={cn(
-                "border-border hover:bg-foreground hover:text-background flex items-center justify-center border-2 transition-all",
+                "icon-btn-ink border-border hover:text-background flex items-center justify-center border-2",
                 sizeClasses,
                 className,
             )}

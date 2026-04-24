@@ -82,7 +82,7 @@ export const getComponents = (basepath: string): MDXComponents => {
             // Use span instead of figure to avoid hydration error when img is inside <p>
             return (
                 <span className="my-4 block">
-                    <span className="border-border mx-auto block w-fit border-4">
+                    <span className="border-border/60 mx-auto block w-fit border-2">
                         <img src={src} alt={props.alt || ""} className="block max-w-full" />
                     </span>
                     {props.alt && <span className="text-foreground/70 mt-2 block text-center text-sm">{props.alt}</span>}
@@ -105,13 +105,13 @@ export const getComponents = (basepath: string): MDXComponents => {
         },
 
         ul: ({ children, id }) => (
-            <ul id={id} className="border-border my-2 border-l-4 pl-4">
+            <ul id={id} className="border-border/60 my-2 border-l-2 pl-4">
                 {children}
             </ul>
         ),
 
         ol: ({ children, id }) => (
-            <ol id={id} className="border-border my-2 border-l-4 pl-4">
+            <ol id={id} className="border-border/60 my-2 border-l-2 pl-4">
                 {children}
             </ol>
         ),
@@ -123,9 +123,9 @@ export const getComponents = (basepath: string): MDXComponents => {
         ),
 
         blockquote: ({ children }) => (
-            <blockquote className="border-border my-4 border-4">
-                <div className="grid grid-cols-[auto_1fr]">
-                    <div className="border-border bg-foreground text-background border-r-4 p-2 text-xs font-bold [writing-mode:vertical-lr]">
+            <blockquote className="border-border/60 my-4 border-2">
+                <div className="flex">
+                    <div className="border-border/60 bg-foreground text-background border-r-2 p-2 text-xs font-bold [writing-mode:vertical-lr]">
                         Quote
                     </div>
                     <div className="p-4">{children}</div>
@@ -136,12 +136,12 @@ export const getComponents = (basepath: string): MDXComponents => {
         hr: () => <hr className="border-border my-8 border-t-4" />,
 
         table: ({ children }) => (
-            <div className="border-border my-4 border-4">
+            <div className="border-border/60 my-4 border-2">
                 <table className="w-full">{children}</table>
             </div>
         ),
 
-        thead: ({ children }) => <thead className="border-border bg-foreground text-background border-b-4">{children}</thead>,
+        thead: ({ children }) => <thead className="border-border/60 bg-foreground text-background border-b-2">{children}</thead>,
 
         th: ({ children }) => <th className="border-background/30 border-r p-2 text-left last:border-r-0">{children}</th>,
 
@@ -173,9 +173,9 @@ export const getComponents = (basepath: string): MDXComponents => {
         },
 
         Warn: ({ children, id }) => (
-            <div className="border-border my-8 border-4" id={id}>
-                <div className="grid grid-cols-[auto_1fr]">
-                    <div className="border-border bg-foreground text-background flex items-center gap-2 border-r-4 p-3 font-bold [writing-mode:vertical-lr]">
+            <div className="border-border/60 my-8 border-2" id={id}>
+                <div className="flex">
+                    <div className="border-border/60 bg-foreground text-background flex items-center gap-2 border-r-2 p-3 font-bold [writing-mode:vertical-lr]">
                         <FaExclamationCircle />
                         <span>Warning</span>
                     </div>

@@ -20,7 +20,9 @@ const nextConfig = {
         unoptimized: true,
     },
     ...(shouldDeployToGithubPages ? switchNextConfig : {}),
-    reactCompiler: true,
+    experimental: {
+        reactCompiler: true,
+    },
     reactStrictMode: true,
     transpilePackages: ["jotai"],
 };

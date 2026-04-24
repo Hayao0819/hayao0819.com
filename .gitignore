@@ -33,3 +33,6 @@ next-env.d.ts
 /blogtool.exe
 
 .playwright-mcp
+
+# direnv
+.direnv

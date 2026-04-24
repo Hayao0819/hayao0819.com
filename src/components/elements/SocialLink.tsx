@@ -15,10 +15,7 @@ export function SocialLink({ href, icon, name, handle, className }: SocialLinkPr
     return (
         <Link
             href={href}
-            className={cn(
-                "hover:bg-foreground hover:text-background flex items-center justify-center gap-3 p-6 transition-all",
-                className,
-            )}
+            className={cn("social-link-roller hover:text-background flex items-center justify-center gap-3 p-6", className)}
         >
             <span className="text-4xl">{icon}</span>
             <div className="flex flex-col">

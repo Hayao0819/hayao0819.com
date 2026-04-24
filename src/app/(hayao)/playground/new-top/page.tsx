@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const Home = () => (
     <div className="flex grow flex-col">
-        <div className="bg-hero-sp text-background md:bg-hero flex h-auto w-screen grow items-center justify-center bg-[rgba(0,0,0,0.7)] object-center bg-blend-darken md:justify-start">
+        <div className="text-background bg-hero-sp md:bg-hero flex h-auto w-screen grow items-center justify-center bg-[rgba(0,0,0,0.7)] object-center bg-blend-darken md:justify-start">
             <div className="mx-12 flex flex-col justify-center gap-8 text-center text-xl font-bold md:w-1/2 md:text-left md:text-4xl">
                 <Typewriter
                     words={[

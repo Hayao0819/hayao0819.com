@@ -42,7 +42,7 @@ export function BlogHeading(props: HeadingProps) {
                 <Heading {...propsWithoutClassName} className="text-xl font-bold" />
             </div>
         ) : level == 3 ? (
-            <div className="border-border my-6 border-l-4 pl-3">
+            <div className="border-border/60 my-6 border-l-2 pl-3">
                 <Heading {...propsWithoutClassName} className="text-lg font-bold" />
             </div>
         ) : level == 4 ? (

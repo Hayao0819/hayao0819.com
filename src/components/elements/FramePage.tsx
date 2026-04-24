@@ -21,7 +21,7 @@ export function FramePage({
     className,
     containerClassName,
     labelClassName,
-    rowSpan = 1,
+    rowSpan: _rowSpan = 1,
     titleAs = "h1",
     centered = false,
 }: FramePageProps) {
@@ -33,16 +33,11 @@ export function FramePage({
                 containerClassName,
             )}
         >
-            <div className={cn("border-border border-4", className)}>
-                <div className="grid grid-cols-[auto_1fr] gap-0">
-                    <VerticalLabel
-                        as={titleAs}
-                        className={cn(rowSpan > 1 && `row-span-${rowSpan}`, "text-2xl font-black", labelClassName)}
-                    >
-                        {title}
-                    </VerticalLabel>
-                    <div className="flex flex-col">{children}</div>
-                </div>
+            <div className={cn("border-border flex border-4", className)}>
+                <VerticalLabel as={titleAs} className={cn("self-stretch text-2xl font-black", labelClassName)}>
+                    {title}
+                </VerticalLabel>
+                <div className="flex min-w-0 flex-1 flex-col">{children}</div>
             </div>
         </div>
     );

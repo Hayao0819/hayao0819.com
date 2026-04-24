@@ -39,7 +39,7 @@ export default function ShareBtns({ url, text }: ShareProps) {
 
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button asChild className="bg-line text-background hover:bg-line/90 shadow-lg">
+                            <Button asChild className="text-background bg-line hover:bg-line/90 shadow-lg">
                                 <Link href={generateLineShareUrl(url)}>
                                     <FaLine className="mr-2" />
                                     <span>Send</span>

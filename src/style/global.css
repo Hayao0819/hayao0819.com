@@ -164,34 +164,34 @@
     /* Frame Design: no border-radius */
     --radius: 0rem;
 
-    /* Map DaisyUI tokens to shadcn/ui variables */
-    --background: #FCFCFC;            /* was base-100 */
-    --foreground: #131313;            /* was base-content */
+    /* Frame Design palette — 藍色 ai-iro accent, warm washi paper */
+    --background: #F2EFE4;            /* warm off-white washi */
+    --foreground: #131313;            /* 墨 ink */
 
-    --card: #FCFCFC;
+    --card: #F2EFE4;
     --card-foreground: #131313;
 
-    --popover: #FCFCFC;
+    --popover: #F2EFE4;
     --popover-foreground: #131313;
 
-    --primary: #131313;               /* was primary */
+    --primary: #131313;
     --primary-foreground: #FCFCFC;
 
-    --secondary: #2b2b2b;             /* was secondary */
+    --secondary: #1f1f1f;
     --secondary-foreground: #FCFCFC;
 
-    --muted: #F5F5F5;                 /* was base-200 */
-    --muted-foreground: #666666;
+    --muted: #E8E4D5;                /* warm muted surface */
+    --muted-foreground: #6b6657;     /* warm gray */
 
-    --accent: #00838F;                /* was accent */
+    --accent: #1F4E8C;               /* 藍色 ai-iro — Edo indigo */
     --accent-foreground: #FCFCFC;
 
-    --destructive: #EF4444;
+    --destructive: #8A2A24;          /* muted brick */
     --destructive-foreground: #FCFCFC;
 
-    --border: #131313;                /* Match base-content for Frame Design */
+    --border: #131313;
     --input: #131313;
-    --ring: #00838F;                  /* accent color */
+    --ring: #1F4E8C;                 /* accent color */
 
     --chart-1: oklch(0.646 0.222 41.116);
     --chart-2: oklch(0.6 0.118 184.704);
@@ -199,14 +199,14 @@
     --chart-4: oklch(0.828 0.189 84.429);
     --chart-5: oklch(0.769 0.188 70.08);
 
-    --sidebar: #FCFCFC;
+    --sidebar: #F2EFE4;
     --sidebar-foreground: #131313;
     --sidebar-primary: #131313;
     --sidebar-primary-foreground: #FCFCFC;
-    --sidebar-accent: #F5F5F5;
+    --sidebar-accent: #E8E4D5;
     --sidebar-accent-foreground: #131313;
     --sidebar-border: #131313;
-    --sidebar-ring: #00838F;
+    --sidebar-ring: #1F4E8C;
 }
 
 .dark {
@@ -229,15 +229,15 @@
     --muted: #2b2b2b;
     --muted-foreground: #999999;
 
-    --accent: #00838F;
+    --accent: #1F4E8C;
     --accent-foreground: #FCFCFC;
 
-    --destructive: #EF4444;
+    --destructive: #8A2A24;
     --destructive-foreground: #FCFCFC;
 
     --border: #FCFCFC;
     --input: #FCFCFC;
-    --ring: #00838F;
+    --ring: #1F4E8C;
 
     --chart-1: oklch(0.488 0.243 264.376);
     --chart-2: oklch(0.696 0.17 162.48);
@@ -252,7 +252,7 @@
     --sidebar-accent: #2b2b2b;
     --sidebar-accent-foreground: #FCFCFC;
     --sidebar-border: #FCFCFC;
-    --sidebar-ring: #00838F;
+    --sidebar-ring: #1F4E8C;
 }
 
 @layer base {
@@ -261,5 +261,63 @@
     }
   body {
     @apply bg-background text-foreground;
+    }
+}
+
+/* =========================================================
+   Frame Design Animations — 機械的 / 印刷機
+   ========================================================= */
+
+/* Social link hover — roller sweeps black L→R */
+.social-link-roller {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    transition: color 140ms 80ms linear;
+}
+.social-link-roller::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--foreground);
+    transform: translateX(-101%);
+    transition: transform 200ms cubic-bezier(.2,.7,.2,1);
+    z-index: -1;
+}
+.social-link-roller:hover {
+    background: transparent;
+}
+.social-link-roller:hover::before {
+    transform: translateX(0);
+}
+
+/* IconButton hover — vertical ink fill from bottom */
+.icon-btn-ink {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    transition: color 120ms 60ms linear;
+}
+.icon-btn-ink::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--foreground);
+    transform: translateY(101%);
+    transition: transform 180ms cubic-bezier(.2,.7,.2,1);
+    z-index: -1;
+}
+.icon-btn-ink:hover {
+    background: transparent;
+}
+.icon-btn-ink:hover::before {
+    transform: translateY(0);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .social-link-roller::before,
+    .icon-btn-ink::before {
+        transition: none !important;
     }
 }

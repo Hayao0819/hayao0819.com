@@ -12,25 +12,23 @@ export default async function BlogTop(props: { params: Promise<{ slug: string }>
     const postlist = getPostList(slug);
 
     return (
-        <div className="border-border w-full border-4">
-            <div className="grid w-full grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
-                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                    Blog
-                </h1>
-                <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">Blog</h1>
-                <div className="flex flex-col">
-                    {/* Post List - 余白で分離 */}
-                    <div className="flex grow flex-col gap-4 p-4">
-                        <PostListElement posts={postlist.posts} />
-                    </div>
-                    {/* Pagination - Secondary border */}
-                    <div className="border-border/60 border-t-2 p-4">
-                        <PostPageSwitch
-                            allpages={postlist.allpages}
-                            currentPage={postlist.currentPage}
-                            linktemplate={(page) => `/blog/${page}`}
-                        />
-                    </div>
+        <div className="border-border flex w-full border-4">
+            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
+                Blog
+            </h1>
+            <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">Blog</h1>
+            <div className="flex min-w-0 flex-1 flex-col">
+                {/* Post List - 余白で分離 */}
+                <div className="flex grow flex-col gap-4 p-4">
+                    <PostListElement posts={postlist.posts} />
+                </div>
+                {/* Pagination - Secondary border */}
+                <div className="border-border/60 border-t-2 p-4">
+                    <PostPageSwitch
+                        allpages={postlist.allpages}
+                        currentPage={postlist.currentPage}
+                        linktemplate={(page) => `/blog/${page}`}
+                    />
                 </div>
             </div>
         </div>

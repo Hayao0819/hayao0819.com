@@ -11,7 +11,7 @@ export interface SectionProps {
     padding?: "sm" | "md" | "lg";
 }
 
-export function Section({ title, description, children, isLast, className, padding = "lg" }: SectionProps) {
+export function Section({ title, description, children, isLast: _isLast, className, padding = "lg" }: SectionProps) {
     const paddingClass = {
         sm: "p-4",
         md: "p-5",
@@ -19,11 +19,11 @@ export function Section({ title, description, children, isLast, className, paddi
     }[padding];
 
     return (
-        <div className={cn(paddingClass, !isLast && "border-border border-b-4", className)}>
+        <div className={cn(paddingClass, className)}>
             {title && (
                 <div className="mb-4">
                     <p className="text-lg font-bold">{title}</p>
-                    {description && <p className="text-foreground/60 text-xs">{description}</p>}
+                    {description && <p className="text-muted-foreground text-xs">{description}</p>}
                 </div>
             )}
             {children}

@@ -10,17 +10,15 @@ export default async function Categories(props: { params: Promise<{ cat: string 
     const postpost = getPostList(decodeURIComponent(params.cat));
 
     return (
-        <div className="border-border w-full border-4">
-            <div className="grid w-full grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
-                <h1 className="border-border hidden border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                    {categoryName}
-                </h1>
-                <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">{categoryName}</h1>
-                <div className="flex flex-col">
-                    {/* Post List - 余白で分離 */}
-                    <div className="flex flex-col gap-4 p-4">
-                        <PostListElement posts={postpost} />
-                    </div>
+        <div className="border-border flex w-full border-4">
+            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
+                {categoryName}
+            </h1>
+            <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">{categoryName}</h1>
+            <div className="flex min-w-0 flex-1 flex-col">
+                {/* Post List - 余白で分離 */}
+                <div className="flex flex-col gap-4 p-4">
+                    <PostListElement posts={postpost} />
                 </div>
             </div>
         </div>
