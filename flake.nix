@@ -18,8 +18,8 @@
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
-              nodejs_20
-              nodejs_20.pkgs.pnpm
+              nodejs_22
+              pnpm
               go
             ];
 
