@@ -24,6 +24,10 @@
             ];
 
             shellHook = ''
+              # 外部環境の GOROOT (system の /usr/lib/go 等) が nix の go と食い違い
+              # コンパイラ不整合を起こすため、devshell 内では go に合わせて固定する
+              export GOROOT="${pkgs.go}/share/go"
+
               echo "hayao0819.com dev environment"
               echo "  node: $(node --version)"
               echo "  pnpm: $(pnpm --version)"
