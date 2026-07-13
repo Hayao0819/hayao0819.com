@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  eslint-plugin-markdown@3.0.1>eslint: ^9 || ^10
-  usehooks-ts@3.1.0>react: ^16.8.0 || ^17 || ^18 || ^19
-  react-twitter-widgets@1.11.0>react: ^16.8.0 || ^17 || ^18 || ^19
-
 importers:
 
   .:
@@ -3594,7 +3589,7 @@ packages:
   react-twitter-widgets@1.11.0:
     resolution: {integrity: sha512-PMCLJQc30iqy01y1b2+HnMfCX+ZkOxWaPKJb4BhHgOgjSjoZb68K5T0nq3q+3YbX9K7OH0bhptgDihtBG/BqRQ==}
     peerDependencies:
-      react: ^16.8.0 || ^17 || ^18 || ^19
+      react: ^16.8.0 || ^17 || ^18
 
   react@19.2.7:
     resolution: {integrity: sha512-HNe9WslTbXmFK8o8cmwgAeJFSBvt1bPdHCVKtaaV+WlAN36mpT4hcRpwbf3fY56ar2oIXzsBpOAiIRHAdY0OlQ==}
