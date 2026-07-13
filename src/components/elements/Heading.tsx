@@ -34,23 +34,25 @@ export function BlogHeading(props: HeadingProps) {
 
     const cn = classNames(props.className, "my-6");
 
+    // Mono Signature: text-only chrome, hairline accent, no chunky boxes.
+    // Body h2/h3 carry mono `##`/`###` markers via CSS ([data-prose="body"]).
     const headingTag =
         level == 1 ? (
-            <Heading {...propsWithoutClassName} className={classNames(cn, "text-4xl", "text-center")} />
+            <Heading {...propsWithoutClassName} className={classNames(cn, "text-3xl font-medium tracking-tight md:text-4xl")} />
         ) : level == 2 ? (
-            <div className="border-border my-8 border-b-4 pb-2">
-                <Heading {...propsWithoutClassName} className="text-xl font-bold" />
+            <div className="border-foreground/20 mt-14 mb-6 border-b pb-2">
+                <Heading {...propsWithoutClassName} className="text-[22px] font-semibold tracking-tight" />
             </div>
         ) : level == 3 ? (
-            <div className="border-border/60 my-6 border-l-2 pl-3">
-                <Heading {...propsWithoutClassName} className="text-lg font-bold" />
+            <div className="mt-10 mb-4">
+                <Heading {...propsWithoutClassName} className="text-[18px] font-semibold tracking-tight" />
             </div>
         ) : level == 4 ? (
-            <div className="border-border/50 my-4 border-l-2 pl-3">
-                <Heading {...propsWithoutClassName} className="text-base font-bold" />
+            <div className="border-foreground/25 mt-8 mb-3 border-l pl-3">
+                <Heading {...propsWithoutClassName} className="text-base font-semibold tracking-tight" />
             </div>
         ) : level == 5 ? (
-            <Heading {...propsWithoutClassName} className={classNames(cn, "text-sm font-bold")} />
+            <Heading {...propsWithoutClassName} className={classNames(cn, "text-sm font-semibold")} />
         ) : (
             <></>
         );

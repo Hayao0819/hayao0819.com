@@ -11,14 +11,14 @@ export interface PortfolioItemProps {
 
 export function PortfolioItem({ icon, name, projects, className }: PortfolioItemProps) {
     return (
-        <div className={cn("border-border flex items-start gap-4 border-2 p-4", className)}>
-            <span className="text-3xl">{icon}</span>
+        <div className={cn("border-foreground/15 flex items-baseline gap-4 border-t py-4", className)}>
+            <span className="text-foreground/70 shrink-0 pt-0.5 text-xl">{icon}</span>
             <div className="min-w-0 flex-1">
-                <p className="font-bold">{name}</p>
-                <div className="mt-1 flex flex-wrap gap-1">
+                <p className="font-body-prose text-[15px] font-medium">{name}</p>
+                <div className="mono-eyebrow mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px]">
                     {projects.map((project) => (
-                        <span key={project} className="border-border/40 text-foreground/70 border px-2 py-0.5 text-xs">
-                            {project}
+                        <span key={project} className="text-foreground/65">
+                            #{project}
                         </span>
                     ))}
                 </div>

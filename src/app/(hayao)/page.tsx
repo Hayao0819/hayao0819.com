@@ -1,125 +1,143 @@
-import { FaArrowRight, FaBlog, FaGithub, FaInstagram, FaTwitter, FaUser, FaUsers } from "react-icons/fa";
-import { FaBriefcase, FaLink } from "react-icons/fa6";
+import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa6";
 
-import { IconButton } from "@/components/elements/IconButton";
 import { Link } from "@/components/elements/Link";
-import { NavItem } from "@/components/elements/NavItem";
-import { Section } from "@/components/elements/Section";
-import { VerticalLabel } from "@/components/elements/VerticalLabel";
-import { fetchedBlogPostList as postlist } from "@/lib/blog/post";
+import PromptLine from "@/components/elements/PromptLine";
+import { fetchedBlogPostListWithoutHidden as postlist } from "@/lib/blog/post";
+import * as utils from "@/lib/utils";
+
+const SECTIONS = [
+    { href: "/me", title: "About Me", description: "自己紹介" },
+    { href: "/blog/1", title: "Blog", description: "技術記事など" },
+    { href: "/portfolio", title: "Portfolio", description: "スキル・制作物" },
+    { href: "/social", title: "Social", description: "SNS・連絡先" },
+];
+
+const QUICK_LINKS = [
+    { href: "/social", text: "Social" },
+    { href: "/history", text: "History" },
+    { href: "/something", text: "Something" },
+    { href: "/events", text: "Events" },
+    { href: "/contact", text: "Contact" },
+];
 
 export default function Home() {
-    const recentPosts = postlist.getPosts().slice(0, 3);
+    const recentPosts = postlist.getPosts().slice(0, 8);
 
     return (
-        <div className="m-auto flex min-h-[calc(100vh-120px)] w-full max-w-4xl items-center justify-center p-4">
-            <div className="border-border flex w-full border-4">
-                <VerticalLabel className="self-stretch p-3">
-                    <h1 className="text-lg font-black tracking-tight">Yamada Hayao</h1>
-                </VerticalLabel>
-                <div className="flex min-w-0 flex-1 flex-col">
-                    {/* Hero Section */}
-                    <Section padding="lg" className="md:p-8">
-                        <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12">
-                            <div className="flex-1">
-                                <h2 className="text-3xl font-black tracking-tight md:text-4xl">山田ハヤオ</h2>
-                                <p className="text-foreground/70 mt-2 text-sm md:text-base">
-                                    Web Developer / Security Enthusiast
-                                </p>
-                                <p className="text-foreground/80 mt-4 text-sm leading-relaxed">
-                                    パソコンが好きな大学生。Webやセキュリティに興味があります。
-                                    主にLinuxやWebフロントエンドをメインに活動しています。
-                                </p>
-                            </div>
-                            <div className="flex gap-3">
-                                <IconButton href="https://twitter.com/Hayao0819" icon={<FaTwitter />} label="Twitter" />
-                                <IconButton href="https://github.com/Hayao0819" icon={<FaGithub />} label="GitHub" />
-                                <IconButton href="https://instagram.com/Hayao0819" icon={<FaInstagram />} label="Instagram" />
-                            </div>
-                        </div>
-                    </Section>
-
-                    {/* Navigation Grid */}
-                    <div className="border-border grid border-b-4 md:grid-cols-2">
-                        <NavItem href="/me" icon={<FaUser />} title="About Me" description="自己紹介" />
-                        <NavItem
-                            href="/blog/1"
-                            icon={<FaBlog />}
-                            title="Blog"
-                            description="技術記事など"
-                            className="border-border border-t-4 md:border-t-0 md:border-l-4"
-                        />
-                        <NavItem
-                            href="/portfolio"
-                            icon={<FaBriefcase />}
-                            title="Portfolio"
-                            description="スキル・制作物"
-                            className="border-border border-t-4"
-                        />
-                        <NavItem
-                            href="/social"
-                            icon={<FaUsers />}
-                            title="Social"
-                            description="SNS・連絡先"
-                            className="border-border border-t-4 md:border-l-4"
-                        />
-                    </div>
-
-                    {/* Recent Posts */}
-                    <Section padding="lg">
-                        <div className="mb-4 flex items-center justify-between">
-                            <p className="flex items-center gap-2 font-bold">
-                                <FaBlog className="text-foreground/70" />
-                                <span>Recent Posts</span>
-                            </p>
-                            <Link
-                                href="/blog/1"
-                                className="text-foreground/70 hover:text-foreground flex items-center gap-1 text-sm transition-colors"
-                            >
-                                <span>View All</span>
-                                <FaArrowRight className="text-xs" />
-                            </Link>
-                        </div>
-                        <div className="grid gap-3 md:grid-cols-3">
-                            {recentPosts.map((post) => (
-                                <Link
-                                    key={post.file}
-                                    href={`/blog/posts/${post.url}`}
-                                    className="border-border/30 hover:border-border hover:bg-foreground/5 group block border-2 p-4 transition-all"
-                                >
-                                    <p className="truncate text-sm font-medium group-hover:underline">{post.meta.title}</p>
-                                    <p className="text-foreground/50 mt-1 text-xs">{post.meta.category}</p>
-                                </Link>
-                            ))}
-                        </div>
-                    </Section>
-
-                    {/* Quick Links */}
-                    <Section isLast padding="lg">
-                        <div className="flex flex-wrap items-center gap-4">
-                            <p className="text-foreground/70 flex items-center gap-2 text-sm font-bold">
-                                <FaLink />
-                                <span>Quick Links:</span>
-                            </p>
-                            <Link href="/social" className="text-sm hover:underline">
-                                Social
-                            </Link>
-                            <Link href="/history" className="text-sm hover:underline">
-                                History
-                            </Link>
-                            <Link href="/something" className="text-sm hover:underline">
-                                Something
-                            </Link>
-                            <Link href="/events" className="text-sm hover:underline">
-                                Events
-                            </Link>
-                            <Link href="/contact" className="text-sm hover:underline">
-                                Contact
-                            </Link>
-                        </div>
-                    </Section>
+        <div>
+            {/* Intro */}
+            <section>
+                <PromptLine>whoami</PromptLine>
+                <h1 className="font-body-prose text-foreground mt-4 text-3xl leading-tight tracking-tight md:text-4xl">
+                    山田ハヤオ
+                </h1>
+                <p className="text-foreground/70 mt-3 text-[12px] tracking-[0.14em]">Web Developer / Security Enthusiast</p>
+                <p className="font-body-prose text-foreground/90 mt-7 max-w-[46rem] text-[17px] leading-[1.9]">
+                    パソコンが好きな大学生。Webやセキュリティに興味があります。
+                    主にLinuxやWebフロントエンドをメインに活動しています。
+                </p>
+                <div className="mt-7 flex items-center gap-5 text-[14px]">
+                    <Link
+                        href="https://twitter.com/Hayao0819"
+                        aria-label="Twitter"
+                        className="text-foreground/70 hover:text-foreground -m-2.5 inline-flex p-2.5"
+                    >
+                        <FaTwitter />
+                    </Link>
+                    <Link
+                        href="https://github.com/Hayao0819"
+                        aria-label="GitHub"
+                        className="text-foreground/70 hover:text-foreground -m-2.5 inline-flex p-2.5"
+                    >
+                        <FaGithub />
+                    </Link>
+                    <Link
+                        href="https://instagram.com/Hayao0819"
+                        aria-label="Instagram"
+                        className="text-foreground/70 hover:text-foreground -m-2.5 inline-flex p-2.5"
+                    >
+                        <FaInstagram />
+                    </Link>
                 </div>
-            </div>
+            </section>
+
+            <hr className="hairline my-12" />
+
+            {/* Section links — original labels & descriptions */}
+            <section>
+                <ul className="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
+                    {SECTIONS.map((s) => (
+                        <li key={s.href}>
+                            <Link href={s.href} className="group flex items-baseline gap-3 py-1">
+                                <span className="font-body-prose text-foreground group-hover:text-accent text-[16px] font-medium">
+                                    {s.title}
+                                </span>
+                                <span className="text-foreground/70 text-[12px]">{s.description}</span>
+                                <span className="text-foreground/30 group-hover:text-foreground/70 ml-auto" aria-hidden="true">
+                                    &rarr;
+                                </span>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+
+            <hr className="hairline my-12" />
+
+            {/* Recent posts — date + title list */}
+            <section>
+                <h2 className="mono-eyebrow">// Recent Posts</h2>
+                <ul className="mt-6 flex flex-col gap-1.5">
+                    {recentPosts.map((p) => {
+                        const d = new Date(p.meta.date || 0);
+                        return (
+                            <li key={p.file}>
+                                <Link
+                                    href={`/blog/posts/${p.url}`}
+                                    className="group grid grid-cols-[6.5rem_1fr] items-baseline gap-4 py-1"
+                                >
+                                    <span className="text-foreground/65 text-[12px] tabular-nums">
+                                        {utils.dateToString(d, "-")}
+                                    </span>
+                                    <span className="font-body-prose text-foreground/90 group-hover:text-accent break-phrase text-[15px] leading-snug text-pretty">
+                                        {p.meta.title}
+                                    </span>
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </ul>
+                <p className="mt-7 text-[12px]">
+                    <Link
+                        href="/blog/1"
+                        className="text-foreground/70 hover:text-accent -my-2 inline-flex items-center py-2 tracking-[0.14em]"
+                    >
+                        View All&nbsp;
+                        <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                </p>
+            </section>
+
+            <hr className="hairline my-12" />
+
+            {/* Quiet links row */}
+            <section>
+                <h2 className="mono-eyebrow">// Quick Links</h2>
+                <div className="text-foreground/65 mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[12px] tracking-[0.14em]">
+                    {QUICK_LINKS.map((l) => (
+                        <Link
+                            key={l.href}
+                            href={l.href}
+                            className="hover:text-foreground -my-1.5 inline-flex items-center py-1.5"
+                        >
+                            <span className="text-foreground/45" aria-hidden="true">
+                                ./
+                            </span>
+                            {l.text}
+                        </Link>
+                    ))}
+                </div>
+            </section>
         </div>
     );
 }

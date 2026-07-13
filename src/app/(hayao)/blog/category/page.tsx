@@ -1,35 +1,40 @@
 import { Link } from "@/components/elements/Link";
+import PromptLine from "@/components/elements/PromptLine";
 import { findCategoryInfo, getAllCategories } from "@/lib/blog/categories";
+import { fetchedBlogPostListWithoutHidden } from "@/lib/blog/post";
 
 export default function CategoryTop() {
     const categories = getAllCategories().filter((c) => c !== "ブログ");
     return (
-        <div className="border-border flex w-full border-4">
-            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                Category
-            </h1>
-            <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">Category</h1>
-            <div className="flex min-w-0 flex-1 flex-col">
-                {categories.map((c, i) => (
-                    <Category key={c} category={c} isLast={i === categories.length - 1} />
-                ))}
-            </div>
+        <div>
+            <header className="mb-10">
+                <PromptLine path="~/blog/category">ls</PromptLine>
+                <h1 className="font-body-prose mt-4 text-3xl leading-tight tracking-tight">Category</h1>
+            </header>
+            <hr className="hairline mb-2" />
+            <ul className="flex flex-col">
+                {categories.map((c, i) => {
+                    const info = findCategoryInfo(c);
+                    const desc = info?.desc ?? "";
+                    const count = fetchedBlogPostListWithoutHidden.getByCategory(c).getPosts().length;
+                    return (
+                        <li key={c}>
+                            {i > 0 && <hr className="hairline" />}
+                            <Link href={`/blog/category/${c}`} className="group block py-5">
+                                <div className="flex items-baseline justify-between gap-4">
+                                    <span className="font-body-prose text-foreground group-hover:text-accent text-[18px] font-medium">
+                                        {c}
+                                    </span>
+                                    <span className="text-foreground/65 text-[11px] tracking-[0.14em] tabular-nums">
+                                        {String(count).padStart(2, "0")} posts
+                                    </span>
+                                </div>
+                                {desc && <p className="font-body-prose text-foreground/70 mt-1 text-[16px]">{desc}</p>}
+                            </Link>
+                        </li>
+                    );
+                })}
+            </ul>
         </div>
     );
 }
-
-const Category = ({ category, isLast }: { category: string; isLast: boolean }) => {
-    const catInfo = findCategoryInfo(category);
-    const desc = catInfo ? catInfo.desc : "";
-    const link = `/blog/category/${category}`;
-
-    return (
-        <Link
-            href={link}
-            className={`hover:bg-foreground/5 flex flex-col p-4 transition-colors ${isLast ? "" : "border-border/30 border-b"}`}
-        >
-            <div className="font-bold">{category}</div>
-            <div className="text-foreground/60 text-sm">{desc}</div>
-        </Link>
-    );
-};

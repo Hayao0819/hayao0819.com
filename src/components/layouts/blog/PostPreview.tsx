@@ -1,8 +1,5 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import { FaArrowRight } from "react-icons/fa";
-
 import { Link } from "@/components/elements/Link";
 import { SUMMARY_LENGTH } from "@/lib/blog/config";
 import { StaticPostData } from "@/lib/markdown/post";
@@ -14,81 +11,33 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
     }
 
     const postDate = new Date(post.meta.date);
-
-    const animate: Variants = {
-        offscreen: {
-            y: 50,
-            opacity: 0,
-        },
-        onscreen: {
-            y: 0,
-            opacity: 1,
-            transition: {
-                duration: 0.4,
-            },
-        },
-    };
-
     const fullURL = "/blog/posts/" + post.url;
+
     return (
-        <motion.article className="group" variants={animate} initial="offscreen" whileInView="onscreen" viewport={{ once: true }}>
-            <div className="border-border/30 hover:border-border/60 overflow-hidden rounded-sm border p-5 transition-all">
-                {/* Header: Category & Date - 最も控えめ */}
-                <div className="mb-3 flex items-center justify-between">
-                    <div className="flex gap-2">
-                        {post.categories.map((s) => (
-                            <Link
-                                key={s}
-                                href={`/blog/category/${s}`}
-                                className="bg-foreground/5 hover:bg-foreground hover:text-background rounded-sm px-2.5 py-1 text-xs font-medium transition-colors"
-                            >
-                                {s}
-                            </Link>
-                        ))}
-                    </div>
+        <article className="group">
+            <div className="mono-eyebrow flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[11px]">
+                <span className="tabular-nums">{utils.dateToString(postDate, "-")}</span>
+                {post.categories.map((s) => (
                     <Link
-                        className="text-foreground/50 text-xs tabular-nums"
-                        href={`/blog/posts/${utils.dateToString(postDate, "")}`}
+                        key={s}
+                        href={`/blog/category/${s}`}
+                        className="text-foreground/70 hover:text-accent -my-2 inline-flex py-2"
                     >
-                        {utils.dateToString(postDate)}
+                        /{s}
                     </Link>
-                </div>
-
-                {/* Title - 最も目立つ */}
-                <Link href={fullURL}>
-                    <h2 className="text-foreground mb-2 text-lg leading-snug font-bold">{post.meta.title}</h2>
-                </Link>
-
-                {/* Tags - 控えめ */}
-                {post.meta.tags && post.meta.tags.length > 0 && (
-                    <div className="mb-3 flex flex-wrap gap-1.5">
-                        {post.meta.tags.map((s) => (
-                            <Link
-                                href={`/blog/tag/${s}`}
-                                className="text-foreground/40 hover:text-foreground text-xs transition-colors"
-                                key={s}
-                            >
-                                #{s}
-                            </Link>
-                        ))}
-                    </div>
-                )}
-
-                {/* Summary - 中程度 */}
-                <p className="text-foreground/60 mb-4 line-clamp-3 break-all text-sm leading-relaxed">
-                    {post.content.slice(0, SUMMARY_LENGTH)}
-                </p>
-
-                {/* Read More - 控えめなアクション */}
-                <Link
-                    href={fullURL}
-                    className="text-foreground/60 hover:text-foreground inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
-                >
-                    <span>Read More</span>
-                    <FaArrowRight className="text-xs" />
-                </Link>
+                ))}
             </div>
-        </motion.article>
+
+            <Link href={fullURL} className="tui-cursor mt-2 block">
+                <h2 className="font-body-prose text-foreground group-hover:text-accent break-phrase text-[19px] leading-snug font-medium text-pretty transition-colors">
+                    {post.meta.title}
+                </h2>
+            </Link>
+
+            <p className="font-body-prose text-foreground/70 mt-2 line-clamp-2 text-[16px] leading-[1.8]">
+                {utils.markdownToPlainText(post.content).slice(0, SUMMARY_LENGTH)}
+            </p>
+        </article>
     );
 };
 

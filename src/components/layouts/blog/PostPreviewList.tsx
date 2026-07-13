@@ -1,5 +1,3 @@
-import classNames from "clsx";
-
 import { Link } from "@/components/elements/Link";
 import { PostData } from "@/lib/markdown/post";
 
@@ -11,10 +9,13 @@ export interface PostListProps {
 
 export function PostList({ posts }: PostListProps) {
     return (
-        <div className="flex flex-col gap-5">
-            {posts.map((f) => {
-                return <PostPreview posts={f.getStaticData()} key={f.file} />;
-            })}
+        <div className="flex flex-col">
+            {posts.map((f, i) => (
+                <div key={f.file}>
+                    {i > 0 && <hr className="hairline my-8" />}
+                    <PostPreview posts={f.getStaticData()} />
+                </div>
+            ))}
         </div>
     );
 }
@@ -25,25 +26,58 @@ export interface PostPageSwitchProps {
     linktemplate: (page: number) => string;
 }
 export function PostPageSwitch({ allpages, currentPage, linktemplate }: PostPageSwitchProps) {
+    const hasPrev = currentPage > 1;
+    const hasNext = currentPage < allpages;
+
     return (
-        <div className="flex items-center justify-center gap-1">
-            {[...Array(allpages)].map((v, i) => {
-                i = i + 1;
-                const isCurrent = i === currentPage;
-                return (
-                    <span
-                        key={i}
-                        className={classNames(
-                            "flex h-9 w-9 items-center justify-center text-sm font-medium transition-colors",
-                            isCurrent
-                                ? "bg-foreground text-background"
-                                : "text-foreground/60 hover:bg-foreground/5 hover:text-foreground",
-                        )}
-                    >
-                        {isCurrent ? <span>{i}</span> : <Link href={linktemplate(i)}>{i}</Link>}
-                    </span>
-                );
-            })}
-        </div>
+        <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12px]" aria-label="pagination">
+            {hasPrev ? (
+                <Link
+                    href={linktemplate(currentPage - 1)}
+                    className="text-foreground/70 hover:text-accent inline-flex min-h-11 items-center px-1 tracking-[0.14em]"
+                >
+                    &larr; prev
+                </Link>
+            ) : (
+                <span className="text-foreground/35 inline-flex min-h-11 items-center px-1 tracking-[0.14em]" aria-hidden="true">
+                    &larr; prev
+                </span>
+            )}
+            <span className="flex items-center gap-1">
+                {[...Array(allpages)].map((_, idx) => {
+                    const i = idx + 1;
+                    const isCurrent = i === currentPage;
+                    const num = String(i).padStart(2, "0");
+                    return (
+                        <span key={i} aria-current={isCurrent ? "page" : undefined} className="tabular-nums">
+                            {isCurrent ? (
+                                <span className="text-accent inline-flex h-11 w-8 items-center justify-center">
+                                    <span className="border-accent border-b">{num}</span>
+                                </span>
+                            ) : (
+                                <Link
+                                    href={linktemplate(i)}
+                                    className="text-foreground/65 hover:text-foreground inline-flex h-11 w-8 items-center justify-center"
+                                >
+                                    {num}
+                                </Link>
+                            )}
+                        </span>
+                    );
+                })}
+            </span>
+            {hasNext ? (
+                <Link
+                    href={linktemplate(currentPage + 1)}
+                    className="text-foreground/70 hover:text-accent inline-flex min-h-11 items-center px-1 tracking-[0.14em]"
+                >
+                    next &rarr;
+                </Link>
+            ) : (
+                <span className="text-foreground/35 inline-flex min-h-11 items-center px-1 tracking-[0.14em]" aria-hidden="true">
+                    next &rarr;
+                </span>
+            )}
+        </nav>
     );
 }

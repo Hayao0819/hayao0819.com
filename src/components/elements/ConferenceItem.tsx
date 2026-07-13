@@ -13,21 +13,18 @@ export interface ConferenceItemProps {
     className?: string;
 }
 
-export function ConferenceItem({ title, event, date, location, href, icon, className }: ConferenceItemProps) {
+export function ConferenceItem({ title, event, date, location, href, className }: ConferenceItemProps) {
     return (
         <Link
             href={href}
-            className={cn("hover:bg-foreground hover:text-background flex items-start gap-4 p-5 transition-all", className)}
+            className={cn("group border-foreground/15 flex flex-col gap-1 border-t py-4 transition-colors", className)}
         >
-            {icon && <span className="mt-1 text-2xl">{icon}</span>}
-            <div className="flex flex-col gap-1">
-                <p className="text-lg font-bold">{title}</p>
-                <p className="text-sm font-medium">{event}</p>
-                <div className="mt-1 flex flex-wrap gap-x-4 text-xs opacity-70">
-                    <span>{date}</span>
-                    <span>{location}</span>
-                </div>
+            <div className="mono-eyebrow flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[11px]">
+                <span className="tabular-nums">{date}</span>
+                <span className="text-foreground/65">{location}</span>
             </div>
+            <p className="font-body-prose text-foreground group-hover:text-accent mt-1 text-[16px] font-medium">{title}</p>
+            <p className="text-foreground/70 text-[13px]">{event}</p>
         </Link>
     );
 }

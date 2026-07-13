@@ -1,7 +1,5 @@
 "use client";
 
-import { FaBars } from "react-icons/fa6";
-
 import useDrawerAtom from "@/hooks/useDrawerAtom";
 
 export default function DrawerToggle() {
@@ -13,10 +11,14 @@ export default function DrawerToggle() {
 
     return (
         <button
-            className="border-border hover:bg-foreground/5 flex items-center justify-center border-r-4 px-4 py-3 text-2xl transition-colors"
+            className="font-mono-chrome text-foreground/70 hover:text-foreground -mx-2 inline-flex min-h-11 items-center gap-1 px-2 text-[11px] tracking-[0.14em]"
             onClick={toggle}
+            aria-label="menu"
+            aria-expanded={open}
         >
-            <FaBars />
+            <span className="text-foreground/35">[</span>
+            <span>{open ? "close" : "menu"}</span>
+            <span className="text-foreground/35">]</span>
         </button>
     );
 }

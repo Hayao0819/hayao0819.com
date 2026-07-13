@@ -26,3 +26,22 @@ export const recursivePath = (pathName: string) => {
 export function removeTrailingSlash(url: string) {
     return url.endsWith("/") ? url.substring(0, url.length - 1) : url;
 }
+
+// Strip markdown/MDX syntax for plain-text excerpts
+export function markdownToPlainText(src: string): string {
+    return src
+        .replace(/^---[\s\S]*?---/, " ")
+        .replace(/```[\s\S]*?(```|$)/g, " ")
+        .replace(/~~~[\s\S]*?(~~~|$)/g, " ")
+        .replace(/<[^<>]+>/g, " ")
+        .replace(/!\[([^\]]*)\]\([^()]*\)/g, "$1")
+        .replace(/\[([^\]]*)\]\([^()]*\)/g, "$1")
+        .replace(/^#{1,6}\s+/gm, "")
+        .replace(/^>\s?/gm, "")
+        .replace(/^[-*+]\s+/gm, "")
+        .replace(/`([^`]*)`/g, "$1")
+        .replace(/\*\*([^*]+)\*\*/g, "$1")
+        .replace(/\*([^*]+)\*/g, "$1")
+        .replace(/\s+/g, " ")
+        .trim();
+}

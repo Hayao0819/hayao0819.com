@@ -1,25 +1,25 @@
 import { Link } from "@/components/elements/Link";
+import PromptLine from "@/components/elements/PromptLine";
 import { fetchedBlogPostList } from "@/lib/blog/post";
 
 export default function TagTop() {
     const tags = fetchedBlogPostList.getAllTags();
     return (
-        <div className="border-border flex w-full border-4">
-            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                Tags
-            </h1>
-            <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">Tags</h1>
-            <div className="flex min-w-0 flex-1 flex-wrap gap-2 p-4">
+        <div>
+            <header className="mb-10">
+                <PromptLine path="~/blog/tag">ls</PromptLine>
+                <h1 className="font-body-prose mt-4 text-3xl leading-tight tracking-tight">Tags</h1>
+            </header>
+            <hr className="hairline mb-10" />
+            <ul className="flex flex-wrap gap-x-4 gap-y-2 text-[13px]">
                 {tags.map((tag) => (
-                    <Link
-                        key={tag}
-                        href={`/blog/tag/${tag}`}
-                        className="bg-foreground/5 hover:bg-foreground hover:text-background rounded-sm px-3 py-1.5 text-sm transition-colors"
-                    >
-                        #{tag}
-                    </Link>
+                    <li key={tag}>
+                        <Link href={`/blog/tag/${tag}`} className="text-foreground/75 hover:text-accent">
+                            #{tag}
+                        </Link>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </div>
     );
 }

@@ -63,7 +63,7 @@ const RenderHeadingTree = ({ tree, indent }: { tree: HeadingTree[]; indent: numb
         <ul
             className={clsx("list-none", {
                 "space-y-2": isTopLevel,
-                "border-border/20 mt-2 space-y-1 border-l-2 pl-4": !isTopLevel,
+                "border-foreground/15 mt-2 space-y-1 border-l pl-4": !isTopLevel,
             })}
         >
             {tree.map((e, index) => (
@@ -74,14 +74,14 @@ const RenderHeadingTree = ({ tree, indent }: { tree: HeadingTree[]; indent: numb
                         className={clsx(
                             "group flex items-start gap-3 transition-colors",
                             isTopLevel
-                                ? "hover:border-accent hover:text-accent border-l-2 border-transparent py-1 pl-3"
+                                ? "hover:border-accent hover:text-accent border-l border-transparent py-1 pl-3"
                                 : "hover:text-accent py-0.5 text-sm",
                         )}
                     >
                         <span
                             className={clsx(
                                 "group-hover:text-accent shrink-0 font-mono transition-colors",
-                                isTopLevel ? "text-foreground/40 text-sm" : "text-foreground/30 text-xs",
+                                isTopLevel ? "text-foreground/65 text-sm" : "text-foreground/30 text-xs",
                             )}
                         >
                             {isTopLevel ? `${(index + 1).toString().padStart(2, "0")}` : "•"}

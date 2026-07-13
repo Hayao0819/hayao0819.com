@@ -13,20 +13,20 @@ export interface SectionProps {
 
 export function Section({ title, description, children, isLast: _isLast, className, padding = "lg" }: SectionProps) {
     const paddingClass = {
-        sm: "p-4",
-        md: "p-5",
-        lg: "p-6",
+        sm: "py-4",
+        md: "py-6",
+        lg: "py-8",
     }[padding];
 
     return (
-        <div className={cn(paddingClass, className)}>
+        <section className={cn(paddingClass, className)}>
             {title && (
-                <div className="mb-4">
-                    <p className="text-lg font-bold">{title}</p>
-                    {description && <p className="text-muted-foreground text-xs">{description}</p>}
+                <div className="mb-5">
+                    <p className="mono-eyebrow text-[11px]">// {title.toLowerCase()}</p>
+                    {description && <p className="text-foreground/70 mt-2 text-[13px]">{description}</p>}
                 </div>
             )}
             {children}
-        </div>
+        </section>
     );
 }

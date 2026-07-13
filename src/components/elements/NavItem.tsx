@@ -15,18 +15,16 @@ export function NavItem({ href, icon, title, description, className }: NavItemPr
     return (
         <Link
             href={href}
-            className={cn(
-                "hover:bg-foreground hover:text-background group flex items-center gap-4 p-6 transition-all",
-                className,
-            )}
+            className={cn("group border-foreground/15 flex items-baseline gap-4 border-t py-4 transition-colors", className)}
         >
-            <span className="group-hover:border-background flex h-12 w-12 items-center justify-center border-2 border-current text-xl transition-all">
-                {icon}
-            </span>
-            <div>
-                <p className="text-lg font-bold">{title}</p>
-                <p className="text-sm opacity-70">{description}</p>
+            <span className="mono-eyebrow text-foreground/65 group-hover:text-accent shrink-0 pt-1 text-[13px]">{icon}</span>
+            <div className="min-w-0">
+                <p className="font-body-prose text-foreground group-hover:text-accent text-[16px] font-medium">{title}</p>
+                <p className="text-foreground/70 mt-1 text-[13px]">{description}</p>
             </div>
+            <span className="text-foreground/30 group-hover:text-accent ml-auto self-center transition-colors" aria-hidden="true">
+                &rarr;
+            </span>
         </Link>
     );
 }

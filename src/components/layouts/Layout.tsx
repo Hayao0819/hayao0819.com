@@ -18,9 +18,11 @@ export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
             <Drawer>
                 <DrawerContent />
             </Drawer>
-            <div {...props} className={classNames(defaultClassName, props.className)}>
+            <div {...props} data-page-root className={classNames(defaultClassName, props.className)}>
                 {headerMemo}
-                <main className="flex h-full grow">{props.children}</main>
+                <main id="main" className="flex h-full grow">
+                    {props.children}
+                </main>
                 {footerMemo}
             </div>
         </>

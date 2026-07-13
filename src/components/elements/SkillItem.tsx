@@ -11,15 +11,13 @@ export interface SkillItemProps {
 
 export function SkillItem({ icon, name, level, className }: SkillItemProps) {
     return (
-        <div
-            className={cn(
-                "flex flex-col items-center border-2 p-4 transition-colors",
-                level === "main" ? "border-border bg-foreground/5" : "border-border/50 hover:border-border",
-                className,
-            )}
-        >
-            <span className="text-3xl">{icon}</span>
-            <span className="mt-2 text-sm font-medium">{name}</span>
+        <div className={cn("group flex items-baseline gap-3 py-2", className)}>
+            <span className={cn("text-xl transition-colors", level === "main" ? "text-foreground" : "text-foreground/70")}>
+                {icon}
+            </span>
+            <span className={cn("text-[14px]", level === "main" ? "text-foreground font-medium" : "text-foreground/70")}>
+                {name}
+            </span>
         </div>
     );
 }

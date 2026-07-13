@@ -1,27 +1,41 @@
 import { Link } from "@/components/elements/Link";
+import PromptLine from "@/components/elements/PromptLine";
 import { getFetchedProjectPostList } from "@/lib/projects";
 
-export default function Projects() {
+export default function Something() {
     const postlist = getPJList();
     return (
-        <div className="border-border m-auto flex w-full max-w-2xl items-start justify-center border-4">
-            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                制作物
-            </h1>
-            <div className="flex min-w-0 flex-1 flex-col">
-                <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">制作物</h1>
-                <p className="border-border border-b-4 p-4 text-center">今までにつくった色々な何かへのリンクです。</p>
-                {postlist.map((p, i) => (
-                    <Link
-                        href={`/something/${p.url}`}
-                        key={p.url}
-                        className={`flex flex-col p-4 ${i < postlist.length - 1 ? "border-border border-b-4" : ""}`}
-                    >
-                        <span className="font-bold">{p.meta.title}</span>
-                        <span className="text-sm">{p.meta.description}</span>
-                    </Link>
+        <div>
+            <header>
+                <PromptLine path="~/something">ls</PromptLine>
+                <h1 className="font-body-prose mt-4 text-3xl leading-tight tracking-tight md:text-4xl">制作物</h1>
+                <p className="font-body-prose text-foreground/90 mt-6 max-w-[46rem] text-[17px] leading-[1.9]">
+                    今までにつくった色々な何かへのリンクです。
+                </p>
+            </header>
+
+            <hr className="hairline my-12" />
+
+            <ul className="flex flex-col gap-1 text-[13px]">
+                {postlist.map((p) => (
+                    <li key={p.url}>
+                        <Link
+                            href={`/something/${p.url}`}
+                            className="group text-foreground/85 hover:text-foreground grid grid-cols-1 items-baseline gap-1 py-3 md:grid-cols-[1fr_auto]"
+                        >
+                            <span className="flex flex-col gap-0.5">
+                                <span className="font-body-prose group-hover:text-accent text-[15px] leading-snug">
+                                    {p.meta.title}
+                                </span>
+                                <span className="text-foreground/70 text-[11.5px]">{p.meta.description}</span>
+                            </span>
+                            <span className="text-foreground/30 group-hover:text-foreground/70 md:self-start" aria-hidden="true">
+                                &rarr;
+                            </span>
+                        </Link>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </div>
     );
 }

@@ -1,6 +1,5 @@
 import { MDXComponents } from "mdx/types";
 import { ComponentPropsWithoutRef, useMemo } from "react";
-import { FaExclamationCircle } from "react-icons/fa";
 
 import { ComponentPropsWithoutRefAndClassName } from "@/lib/type";
 
@@ -13,174 +12,128 @@ export const getComponents = (basepath: string): MDXComponents => {
     return {
         // PropsにidがないとrehypeSlugが動かない
 
-        h1: ({ children, id }) => {
-            return (
-                <Heading id={id} level={1}>
-                    {children}
-                </Heading>
-            );
-        },
-
-        h2: ({ children, id }) => {
-            return (
-                <Heading id={id} level={2}>
-                    {children}
-                </Heading>
-            );
-        },
-        h3: ({ children, id }) => {
-            return (
-                <Heading id={id} level={3}>
-                    {children}
-                </Heading>
-            );
-        },
-        h4: ({ children, id }) => {
-            return (
-                <Heading id={id} level={4}>
-                    {children}
-                </Heading>
-            );
-        },
-        h5: ({ children, id }) => {
-            return (
-                <Heading id={id} level={5}>
-                    {children}
-                </Heading>
-            );
-        },
+        h1: ({ children, id }) => (
+            <Heading id={id} level={1}>
+                {children}
+            </Heading>
+        ),
+        h2: ({ children, id }) => (
+            <Heading id={id} level={2}>
+                {children}
+            </Heading>
+        ),
+        h3: ({ children, id }) => (
+            <Heading id={id} level={3}>
+                {children}
+            </Heading>
+        ),
+        h4: ({ children, id }) => (
+            <Heading id={id} level={4}>
+                {children}
+            </Heading>
+        ),
+        h5: ({ children, id }) => (
+            <Heading id={id} level={5}>
+                {children}
+            </Heading>
+        ),
         a: ({ href, children, id }) => {
             if (!href) return <span>{children}</span>;
             return (
-                <Link
-                    href={href}
-                    id={id}
-                    className="text-accent after:bg-accent relative transition-all after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:transition-all hover:after:h-1"
-                >
+                <Link href={href} id={id} className="link-ai">
                     {children}
                 </Link>
             );
         },
-        p: ({ children, id }) => (
-            <p
-                // // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
-                // style={{ wordBreak: "auto-phrase" }}
-                className="py-2"
-                id={id}
-            >
-                {children}
-            </p>
-        ),
+        p: ({ children, id }) => <p id={id}>{children}</p>,
 
         Tweet: Tweet,
         img: (props) => {
             let src = props.src;
             if (!src?.startsWith("http")) {
-                src = basepath + "/" + src;
+                // basepath ends with a slash — collapse duplicates for canonical URLs
+                src = (basepath + "/" + src).replaceAll(/\/{2,}/g, "/");
             }
 
             // Use span instead of figure to avoid hydration error when img is inside <p>
             return (
-                <span className="my-4 block">
-                    <span className="border-border/60 mx-auto block w-fit border-2">
-                        <img src={src} alt={props.alt || ""} className="block max-w-full" />
-                    </span>
-                    {props.alt && <span className="text-foreground/70 mt-2 block text-center text-sm">{props.alt}</span>}
+                <span className="my-7 block">
+                    <img src={src} alt={props.alt || ""} className="mx-auto block max-w-full" />
+                    {props.alt && <span className="mono-eyebrow mt-3 block text-center text-[11px]">{props.alt}</span>}
                 </span>
             );
         },
         code: ({ children, className, ...rest }) => {
-            // Code blocks have data-language attribute from rehype-pretty-code, or className from other highlighters
-            // Check for data-language or className to identify code blocks
+            // Code blocks have data-language attribute from rehype-pretty-code
             const isCodeBlock = className || "data-language" in rest || "data-theme" in rest;
             if (isCodeBlock) {
                 return <code className={className}>{children}</code>;
             }
-            // Inline code style
+            // Inline code — mono, quiet paper-shifted chip, ink text
             return (
-                <code className="border-border/30 bg-foreground/5 text-accent mx-0.5 border px-1.5 py-0.5 font-mono text-[0.9em]">
+                <code className="bg-foreground/[0.07] text-foreground/90 mx-0.5 px-[0.4em] py-[0.15em] font-mono text-[0.9em]">
                     {children}
                 </code>
             );
         },
 
         ul: ({ children, id }) => (
-            <ul id={id} className="border-border/60 my-2 border-l-2 pl-4">
+            <ul id={id} className="my-3 list-none pl-1">
                 {children}
             </ul>
         ),
-
         ol: ({ children, id }) => (
-            <ol id={id} className="border-border/60 my-2 border-l-2 pl-4">
+            <ol id={id} className="marker:text-foreground/65 my-3 list-decimal pl-6 marker:font-mono marker:text-[0.85em]">
                 {children}
             </ol>
         ),
-
         li: ({ children, id }) => (
-            <li id={id} className="py-1">
+            <li
+                id={id}
+                className="before:text-foreground/40 my-1 pl-5 -indent-5 before:mr-3 before:font-mono before:content-['—'] [&>ol]:mt-1 [&>ul]:mt-1"
+            >
                 {children}
             </li>
         ),
 
         blockquote: ({ children }) => (
-            <blockquote className="border-border/60 my-4 border-2">
-                <div className="flex">
-                    <div className="border-border/60 bg-foreground text-background border-r-2 p-2 text-xs font-bold [writing-mode:vertical-lr]">
-                        Quote
-                    </div>
-                    <div className="p-4">{children}</div>
-                </div>
-            </blockquote>
+            <blockquote className="border-foreground/25 text-foreground/70 my-7 border-l pl-5 not-italic">{children}</blockquote>
         ),
 
-        hr: () => <hr className="border-border my-8 border-t-4" />,
+        hr: () => <hr className="border-foreground/25 my-10 border-t" />,
 
         table: ({ children }) => (
-            <div className="border-border/60 my-4 border-2">
-                <table className="w-full">{children}</table>
+            // Same treatment as <pre>: a focusable, named scroll region so
+            // keyboard users can scroll wide tables
+            <div className="my-7 overflow-x-auto" tabIndex={0} role="region" aria-label="table">
+                <table className="w-full border-collapse text-[14px]">{children}</table>
+            </div>
+        ),
+        thead: ({ children }) => <thead className="border-foreground/30 border-b">{children}</thead>,
+        th: ({ children }) => <th className="mono-eyebrow px-3 py-2 text-left text-[11px]">{children}</th>,
+        tr: ({ children }) => <tr className="border-foreground/10 border-b last:border-b-0">{children}</tr>,
+        td: ({ children }) => <td className="px-3 py-2 align-top">{children}</td>,
+
+        Flex: ({ children, id, ...props }: ComponentPropsWithoutRefAndClassName<"div">) => (
+            <div id={id} {...props} className="mx-auto flex flex-wrap justify-center">
+                {children}
+            </div>
+        ),
+        Grid: ({ children, col, id, ...props }: Omit<ComponentPropsWithoutRef<"div">, "className"> & { col: number }) => (
+            <div
+                className="mx-auto grid justify-center"
+                id={id}
+                style={{ gridTemplateColumns: `repeat(${col}, minmax(0, 1fr))` }}
+                {...props}
+            >
+                {children}
             </div>
         ),
 
-        thead: ({ children }) => <thead className="border-border/60 bg-foreground text-background border-b-2">{children}</thead>,
-
-        th: ({ children }) => <th className="border-background/30 border-r p-2 text-left last:border-r-0">{children}</th>,
-
-        tr: ({ children }) => <tr className="border-border border-b last:border-b-0">{children}</tr>,
-
-        td: ({ children }) => <td className="border-border/30 border-r p-2 last:border-r-0">{children}</td>,
-
-        //pre: ({ children, className }) => <pre className={classNames(className, "p-2")}>{children}</pre>,
-
-        Flex: ({ children, id, ...props }: ComponentPropsWithoutRefAndClassName<"div">) => {
-            return (
-                <div id={id} {...props} className="mx-auto flex flex-wrap justify-center">
-                    {children}
-                </div>
-            );
-        },
-
-        Grid: ({ children, col, id, ...props }: Omit<ComponentPropsWithoutRef<"div">, "className"> & { col: number }) => {
-            return (
-                <div
-                    className="mx-auto grid justify-center"
-                    id={id}
-                    style={{ gridTemplateColumns: `repeat(${col}, minmax(0, 1fr))` }}
-                    {...props}
-                >
-                    {children}
-                </div>
-            );
-        },
-
         Warn: ({ children, id }) => (
-            <div className="border-border/60 my-8 border-2" id={id}>
-                <div className="flex">
-                    <div className="border-border/60 bg-foreground text-background flex items-center gap-2 border-r-2 p-3 font-bold [writing-mode:vertical-lr]">
-                        <FaExclamationCircle />
-                        <span>Warning</span>
-                    </div>
-                    <div className="p-4">{children}</div>
-                </div>
+            <div className="border-foreground/50 bg-foreground/[0.04] my-7 border-l-2 py-4 pr-5 pl-5" id={id}>
+                <p className="mono-eyebrow mb-2 text-[11px]">// warning</p>
+                <div className="text-foreground/85">{children}</div>
             </div>
         ),
     };

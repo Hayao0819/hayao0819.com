@@ -1,53 +1,37 @@
-import { FaArrowLeft } from "react-icons/fa6";
-
 import { Link } from "@/components/elements/Link";
+import PromptLine from "@/components/elements/PromptLine";
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
 import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
 
 export default async function TagPage(props: { params: Promise<{ tag: string }> }) {
     const params = await props.params;
-    // params.tag may be URL-encoded or raw depending on how accessed
     const tagName = decodeURIComponent(params.tag);
-    const postpost = getPostList(decodeURIComponent(params.tag));
+    const posts = getPostList(decodeURIComponent(params.tag));
 
     return (
-        <div className="border-border flex w-full border-4">
-            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                #{tagName}
-            </h1>
-            <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">#{tagName}</h1>
-            <div className="flex min-w-0 flex-1 flex-col">
-                <Link
-                    href="/blog/tag"
-                    className="border-border/60 hover:bg-foreground/5 flex items-center gap-2 border-b-2 p-4 transition-colors"
-                >
-                    <FaArrowLeft />
-                    <span>タグ一覧に戻る</span>
-                </Link>
-                {/* Post List - 余白で分離 */}
-                <div className="flex flex-col gap-4 p-4">
-                    <PostListElement posts={postpost} />
-                </div>
-            </div>
+        <div>
+            <header className="mb-8">
+                <PromptLine path="~/blog/tag">ls {tagName}/</PromptLine>
+                <h1 className="font-body-prose mt-4 text-3xl leading-tight tracking-tight">#{tagName}</h1>
+            </header>
+            <Link href="/blog/tag" className="text-foreground/70 hover:text-foreground mb-10 inline-block text-[12px]">
+                &larr; Tags
+            </Link>
+            <hr className="hairline mb-6" />
+            <p className="mono-eyebrow mb-8 tabular-nums">total {posts.length}</p>
+            <PostListElement posts={posts} />
         </div>
     );
 }
 
 export const generateStaticParams = async () => {
     const tags = fetchedBlogPostList.getAllTags();
-    const params = tags.map((c) => {
-        return {
-            tag: c,
-        };
-    });
-
-    return params;
+    // raw + encoded for the same reason as the category page
+    const all = new Set(tags.flatMap((t) => [t, encodeURIComponent(t)]));
+    return [...all].map((tag) => ({ tag }));
 };
 
 const getPostList = (tag: string): PostData[] => {
-    const categoryFilteredPageList = fetchedBlogPostList.getByTag(tag).excludeHidden();
-    const currentPagePosts = categoryFilteredPageList.getPosts();
-
-    return currentPagePosts;
+    return fetchedBlogPostList.getByTag(tag).excludeHidden().getPosts();
 };

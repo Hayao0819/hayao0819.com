@@ -1,15 +1,15 @@
-import classNames from "clsx";
 import { Metadata } from "next";
 import path from "path";
 import { use } from "react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 import Breadcrumbs from "@/components/elements/Breadcrumbs";
 import { BlogHeading } from "@/components/elements/Heading";
+import KeyboardNav from "@/components/elements/KeyboardNav";
 import { Link } from "@/components/elements/Link";
 import { ShareCurrentURL } from "@/components/elements/ShareCurrentURL";
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
-import Toc from "@/components/layouts/blog/Toc";
+import Toc, { SideToc } from "@/components/layouts/blog/Toc";
+import { PROSE_TIER } from "@/components/layouts/PageShell";
 import useNoColonId from "@/hooks/useNoColonId";
 import { BLOG_URL_FORMAT } from "@/lib/blog/config";
 import { findPostFromUrl } from "@/lib/blog/fromurl";
@@ -61,33 +61,25 @@ export async function generateMetadata(props: { params: Promise<{ slug: string[]
 }
 
 const MostRecentPostPreview = ({ post, type }: { post: PostData | null; type: "before" | "after" }) => {
-    const TopLevelLink = ({ children, className }: { children: React.ReactNode; className: string }) => {
-        if (!post) {
-            return <div className={className}>{children}</div>;
-        } else {
-            return (
-                <Link href={`/blog/posts/${post.url}`} className={className}>
-                    {children}
-                </Link>
-            );
-        }
-    };
-
-    return (
-        <TopLevelLink
-            className={classNames("flex items-center p-3", { "justify-end": type == "after" }, { "hover:text-accent": post })}
-        >
-            <span>{type == "before" && post ? <FaArrowLeft /> : null}</span>
-            <span
-                className={classNames("grow", "md:text-center", "mx-2", {
-                    "text-left": type == "before",
-                    "text-right": type == "after",
-                })}
-            >
-                {post && post.meta.title ? post.meta.title : "ハヤオの次回作にご期待ください"}
+    const placeholder = "ハヤオの次回作にご期待ください";
+    if (!post) {
+        return (
+            <span className="font-body-prose text-foreground/65 block text-[14px]">
+                {type === "before" ? "← " : ""}
+                {placeholder}
+                {type === "after" ? " →" : ""}
             </span>
-            <span>{type == "after" || !post ? <FaArrowRight /> : null}</span>
-        </TopLevelLink>
+        );
+    }
+    return (
+        <Link
+            href={`/blog/posts/${post.url}`}
+            className="font-body-prose text-foreground/80 hover:text-accent break-phrase block text-[15px] text-pretty"
+        >
+            {type === "before" ? "← " : ""}
+            {post.meta.title}
+            {type === "after" ? " →" : ""}
+        </Link>
     );
 };
 
@@ -113,66 +105,88 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
     const mostRecentUpdate = fetchedBlogPostList.getMostRecentPostByURL(postData.post.url);
 
     return (
-        <div className="border-border flex h-full w-full flex-col border-4">
-            {/* Header Section - Primary border for main section */}
-            <div className="border-border/60 flex border-b-2">
-                <div className="border-border hidden items-center self-stretch border-r-4 p-3 text-sm font-bold [writing-mode:vertical-lr] md:flex">
-                    Post
+        <article className={`relative w-full ${PROSE_TIER}`}>
+            {/* Pager keys (j/k, gg/G) — article pages only */}
+            <KeyboardNav />
+
+            {/* Margin index — sticky in the right margin at ≥1280px */}
+            <aside className="absolute top-0 bottom-0 left-full hidden xl:ml-8 xl:block xl:w-48 2xl:ml-12 2xl:w-60">
+                <div className="sticky top-24 max-h-[calc(100vh-11rem)] overflow-y-auto overscroll-contain">
+                    <SideToc contentSelector={`#${contentId}`} />
                 </div>
-                <div className="flex min-w-0 flex-1 flex-col">
-                    {/* Title - 最も目立つ */}
-                    <div className="p-6">
-                        <BlogHeading level={1} className="break-phrase text-2xl leading-tight font-bold md:text-3xl">
-                            {postData.post?.meta.title}
-                        </BlogHeading>
-                    </div>
-                    {/* Meta info - 控えめ */}
-                    <div className="border-border/30 flex items-center justify-between border-t px-6 py-3">
-                        <div className="text-foreground/60 text-sm">{dateToString(postDate)}</div>
-                        <div className="flex gap-2">
-                            {postData.post?.meta.categories?.map((c) => {
-                                return (
-                                    <Link
-                                        key={c}
-                                        href={`/blog/category/${c}`}
-                                        className="bg-foreground/5 hover:bg-foreground hover:text-background rounded-sm px-2.5 py-1 text-xs font-medium transition-colors"
-                                    >
-                                        {c}
-                                    </Link>
-                                );
-                            })}
-                        </div>
-                    </div>
-                </div>
+            </aside>
+
+            {/* Breadcrumb as prompt: ~/blog/posts $ cat ./<path> */}
+            <div className="mono-eyebrow mb-8 flex flex-wrap items-baseline gap-x-[1ch] gap-y-1 text-[11px]">
+                <span aria-hidden="true">~/blog/posts</span>
+                <span className="text-accent" aria-hidden="true">
+                    $
+                </span>
+                <span className="inline-flex flex-wrap items-baseline">
+                    <span className="text-foreground/80" aria-hidden="true">
+                        cat&nbsp;.
+                    </span>
+                    <Breadcrumbs start={2} />
+                </span>
+                <span className="term-caret self-center" aria-hidden="true" />
             </div>
 
-            {/* Breadcrumbs - Tertiary border */}
-            <div className="border-border/30 border-b p-2">
-                <Breadcrumbs start={2} />
+            {/* Meta line */}
+            <div className="mono-eyebrow flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[11px]">
+                <span className="tabular-nums">{dateToString(postDate, "-")}</span>
+                {postData.post?.meta.categories?.map((c) => (
+                    <Link key={c} href={`/blog/category/${c}`} className="text-foreground/70 hover:text-accent">
+                        <span aria-hidden="true">/</span>
+                        {c}
+                    </Link>
+                ))}
             </div>
 
-            {/* Table of Contents - Secondary border */}
+            {/* Title — body face; a deliberate beat between mono meta and serif title */}
+            <div className="mt-6 mb-10">
+                <BlogHeading
+                    level={1}
+                    className="font-body-prose break-phrase text-3xl leading-[1.3] font-medium tracking-tight text-pretty md:text-4xl"
+                >
+                    {postData.post?.meta.title}
+                </BlogHeading>
+            </div>
+
+            <hr className="hairline mb-6" />
+
+            {/* TOC */}
             <Toc contentSelector={`#${contentId}`} />
 
-            {/* Main Content - 余白を十分に確保 */}
-            <div className="grow p-6 md:p-8" id={contentId}>
+            {/* Content — body face for prose */}
+            <div
+                className="prose font-body-prose text-foreground/90 prose-headings:font-body-prose prose-a:text-accent prose-strong:text-foreground prose-code:font-mono max-w-none py-6 text-[17px] leading-[1.9] md:text-[18px]"
+                id={contentId}
+                data-prose="body"
+            >
                 {postData.parsed}
             </div>
 
-            {/* Footer Section - Tertiary border */}
-            <div className="border-border/30 border-t">
-                <div className="border-border/30 border-b p-4">
-                    <ShareCurrentURL text={postData.post.meta.title} />
-                </div>
-                <div className="grid grid-cols-1 text-sm md:grid-cols-2">
-                    <div className="border-border/30 border-b md:border-r md:border-b-0">
-                        <MostRecentPostPreview post={mostRecentUpdate.before} type="before" />
-                    </div>
-                    <div>
-                        <MostRecentPostPreview post={mostRecentUpdate.after} type="after" />
-                    </div>
-                </div>
+            <hr className="hairline my-10" />
+
+            {/* Share */}
+            <div className="text-[12px]">
+                <p className="mono-eyebrow mb-3">// share</p>
+                <ShareCurrentURL text={postData.post.meta.title} />
             </div>
-        </div>
+
+            <hr className="hairline my-10" />
+
+            {/* Prev/Next */}
+            <nav className="grid grid-cols-1 gap-6 text-[13px] md:grid-cols-2">
+                <div>
+                    <p className="mono-eyebrow mb-2">// prev</p>
+                    <MostRecentPostPreview post={mostRecentUpdate.before} type="before" />
+                </div>
+                <div className="md:text-right">
+                    <p className="mono-eyebrow mb-2">// next</p>
+                    <MostRecentPostPreview post={mostRecentUpdate.after} type="after" />
+                </div>
+            </nav>
+        </article>
     );
 }
