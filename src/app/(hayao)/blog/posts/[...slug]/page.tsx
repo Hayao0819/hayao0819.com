@@ -128,7 +128,10 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
                     </span>
                     <Breadcrumbs start={2} />
                 </span>
-                <span className="term-caret self-center" aria-hidden="true" />
+                <span
+                    className="bg-accent animate-term-caret inline-block h-[1.05em] w-[0.55em] self-center align-text-bottom motion-reduce:animate-none"
+                    aria-hidden="true"
+                />
             </div>
 
             {/* Meta line */}

@@ -44,7 +44,7 @@ export default function Header() {
                                 href={item.href}
                                 aria-current={active ? "page" : undefined}
                                 className={classNames(
-                                    "nav-path",
+                                    "before:inline-block before:w-[1.15ch] before:opacity-0 before:transition-opacity before:duration-150 before:ease-[ease] before:content-['>'_/_''] hover:before:opacity-100 focus-visible:before:opacity-100 motion-reduce:before:transition-none [&[aria-current]]:before:opacity-100",
                                     active ? "text-accent" : "text-foreground/65 hover:text-foreground",
                                 )}
                             >

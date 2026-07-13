@@ -13,18 +13,25 @@
         sans-serif;
 }
 
-.font-mono-chrome {
-    font-family: var(--font-mono);
-    font-feature-settings: "ss01", "ss02", "calt";
-    letter-spacing: 0.01em;
-}
-
-.font-body-prose {
-    font-family: var(--font-body);
-    letter-spacing: 0.005em;
-}
-
 @custom-variant dark (&:is(.dark *));
+
+/* Font-family tokens — expose the mono/body faces as real Tailwind
+   `font-*` utilities so .font-mono-chrome / .font-body-prose source their
+   family from Tailwind. The extra features (font-feature-settings, the
+   tracking) stay in the class bodies below. */
+@theme {
+    --font-mono-chrome: var(--font-mono);
+    --font-body-prose: var(--font-body);
+
+    /* Terminal caret blink — a hard on/off (steps(1)) cursor, distinct from
+       tw-animate-css's smoother caret-blink. Exposed as animate-term-caret. */
+    --animate-term-caret: term-caret 1.1s steps(1) infinite;
+    @keyframes term-caret {
+        50% {
+            opacity: 0;
+        }
+    }
+}
 
 /* Brand colors (replacement for tailwindcss-brand-colors) */
 /* Source: https://github.com/praveenjuge/tailwindcss-brand-colors */
@@ -139,6 +146,18 @@
     /* Remove extra padding from paragraphs inside blockquote */
     blockquote p {
         @apply py-0;
+    }
+
+    /* Chrome mono face + its OpenType features. Family + tracking come from
+       Tailwind; font-feature-settings has no clean utility so it stays raw. */
+    .font-mono-chrome {
+        @apply font-mono-chrome tracking-[0.01em];
+        font-feature-settings: "ss01", "ss02", "calt";
+    }
+
+    /* Readable body/serif face for prose. */
+    .font-body-prose {
+        @apply font-body-prose tracking-[0.005em];
     }
 }
 
@@ -266,6 +285,12 @@
    pinned at the bottom-right with live clock, path & scroll %.
    This is the one quirk.
 
+   KEPT AS RAW CSS: this is a self-contained component block with two
+   @keyframes (enter + blink), several __cell sub-parts wired by `+`
+   sibling rules, and four responsive breakpoints that drop cells.
+   Inlining it would scatter that logic across StatusLine.tsx and read
+   worse than the scoped block — so it stays here.
+
    v2 fixes:
    - Smaller, lower-contrast cells.
    - Hide path cell at tablet sizes (only show on lg+).
@@ -367,6 +392,15 @@ body {
     .status-line__dot { animation: none; }
 }
 
+/* =========================================================
+   Prose (markdown-generated bodies) — KEPT AS RAW CSS.
+   These rules target markup emitted by the typography plugin /
+   remark-rehype at build time (.prose headings, <em>/<i>, inline
+   <code>, the `##`/`###` heading markers), not JSX we author — so
+   Tailwind utilities have no element to attach to. They also drive
+   the prose design tokens (--tw-prose-*). Leave them in CSS.
+   ========================================================= */
+
 /* Typography plugin adds literal backticks around inline code;
    the chip treatment replaces them. Unlayered so it wins over utilities. */
 .prose code::before,
@@ -449,71 +483,32 @@ h5.prose {
     color: var(--tw-prose-headings);
 }
 
-/* Hairline horizontal rule helper — chrome rules are dashed (ASCII-rule
-   read); prose hr inside articles stays solid via the typography plugin. */
-.hairline {
-    border: 0;
-    border-top: 1px dashed var(--foreground);
-    opacity: 0.34;
+@layer components {
+    /* Hairline horizontal rule helper — chrome rules are dashed (ASCII-rule
+       read); prose hr inside articles stays solid via the typography plugin. */
+    .hairline {
+        @apply border-foreground border-0 border-t border-dashed opacity-[0.34];
+    }
+
+    /* Mono lowercase tracked label — the one eyebrow idiom.
+       Lowercase like a terminal; tracking carries the "label" read. */
+    .mono-eyebrow {
+        @apply font-mono text-[11px] leading-none tracking-[0.14em] tabular-nums;
+        color: color-mix(in oklab, var(--foreground) 70%, transparent);
+    }
 }
 
-/* Mono lowercase tracked label — the one eyebrow idiom.
-   Lowercase like a terminal; tracking carries the "label" read. */
-.mono-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    line-height: 1;
-    letter-spacing: 0.14em;
-    font-variant-numeric: tabular-nums;
-    color: color-mix(in oklab, var(--foreground) 70%, transparent);
-}
-
-/* Prompt line — page-level eyebrow idiom: `path $ cmd` with a blinking
-   block cursor. Section eyebrows keep the `//` comment form. */
-.term-caret {
-    display: inline-block;
-    width: 0.55em;
-    height: 1.05em;
-    background: var(--accent);
-    vertical-align: text-bottom;
-    animation: caret-blink 1.1s steps(1) infinite;
-}
-@keyframes caret-blink {
-    50% { opacity: 0; }
-}
-@media (prefers-reduced-motion: reduce) {
-    .term-caret { animation: none; }
-}
-
-/* Nav links read as paths; hover/active/focus gains a `>` prompt caret.
-   Width is reserved so nothing shifts. */
-.nav-path::before {
-    content: ">" / "";
-    display: inline-block;
-    width: 1.15ch;
-    opacity: 0;
-    transition: opacity 150ms ease;
-}
-.nav-path:hover::before,
-.nav-path:focus-visible::before,
-.nav-path[aria-current]::before {
-    opacity: 1;
-}
-@media (prefers-reduced-motion: reduce) {
-    .nav-path::before { transition: none; }
-}
-
-/* Accent (single 藍 highlight) link style */
-.link-ai {
-    color: var(--accent);
-    text-decoration: underline;
-    text-decoration-color: color-mix(in oklab, var(--accent) 35%, transparent);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-    transition: text-decoration-color 150ms ease;
-}
-.link-ai:hover {
-    text-decoration-color: var(--accent);
+@layer components {
+    /* Accent (single 藍 highlight) link style. Underline color uses a
+       color-mix tint with no clean utility, so it stays raw. */
+    .link-ai {
+        @apply text-accent underline decoration-1 underline-offset-[3px];
+        text-decoration-color: color-mix(in oklab, var(--accent) 35%, transparent);
+        transition: text-decoration-color 150ms ease;
+    }
+    .link-ai:hover {
+        text-decoration-color: var(--accent);
+    }
 }
 
 /* Chrome links settle into hover within a beat, never snap */
@@ -525,67 +520,17 @@ a {
         opacity 150ms ease;
 }
 
-/* =========================================================
-   Frame Design Animations — 機械的 / 印刷機
-   ========================================================= */
-
-/* Social link hover — roller sweeps black L→R */
-.social-link-roller {
-    position: relative;
-    overflow: hidden;
-    z-index: 0;
-    transition: color 140ms 80ms linear;
-}
-.social-link-roller::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--foreground);
-    transform: translateX(-101%);
-    transition: transform 200ms cubic-bezier(.2,.7,.2,1);
-    z-index: -1;
-}
-.social-link-roller:hover {
-    background: transparent;
-}
-.social-link-roller:hover::before {
-    transform: translateX(0);
-}
-
-/* IconButton hover — vertical ink fill from bottom */
-.icon-btn-ink {
-    position: relative;
-    overflow: hidden;
-    z-index: 0;
-    transition: color 120ms 60ms linear;
-}
-.icon-btn-ink::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--foreground);
-    transform: translateY(101%);
-    transition: transform 180ms cubic-bezier(.2,.7,.2,1);
-    z-index: -1;
-}
-.icon-btn-ink:hover {
-    background: transparent;
-}
-.icon-btn-ink:hover::before {
-    transform: translateY(0);
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .social-link-roller::before,
-    .icon-btn-ink::before {
-        transition: none !important;
-    }
-}
-
 /* Unlayered so it wins over the typography plugin's utilities-layer
    `.prose pre` rules (layer order beats specificity). */
 /* =====================================================
+   Code blocks — KEPT AS RAW CSS.
+   Every selector below targets markup generated at build time by
+   rehype-pretty-code / rehype-code-titles / shiki (the figure, the
+   pre title-bar ::before/::after, per-line spans + line-number
+   ::before counters, highlight marks, the scrollbar). None of it is
+   authored in JSX, so there is nothing to hang a Tailwind utility on.
+   Token colors live in the shiki theme (common.tsx). Leave in CSS.
+
    Code blocks — terminal-window read.
    Pipeline structure:
      [div.rehype-code-title]?          filename (rehype-code-titles)

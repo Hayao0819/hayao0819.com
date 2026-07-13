@@ -74,7 +74,7 @@ export default function DrawerContent() {
                                     onClick={toggleDrawer}
                                     aria-current={active ? "page" : undefined}
                                     className={classNames(
-                                        "nav-path flex min-h-11 items-center py-2 text-[14px] tracking-[0.14em] lowercase",
+                                        "flex min-h-11 items-center py-2 text-[14px] tracking-[0.14em] lowercase before:inline-block before:w-[1.15ch] before:opacity-0 before:transition-opacity before:duration-150 before:ease-[ease] before:content-['>'_/_''] hover:before:opacity-100 focus-visible:before:opacity-100 motion-reduce:before:transition-none [&[aria-current]]:before:opacity-100",
                                         active ? "text-accent" : "text-foreground/85 hover:text-accent",
                                     )}
                                 >

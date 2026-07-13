@@ -21,7 +21,10 @@ export default function PromptLine({ path = "~", comment, className, children }:
             <span className="text-accent">$</span>
             <span className="text-foreground/80">{children}</span>
             {comment && <span># {comment}</span>}
-            <span className="term-caret self-center" aria-hidden="true" />
+            <span
+                className="bg-accent animate-term-caret inline-block h-[1.05em] w-[0.55em] self-center align-text-bottom motion-reduce:animate-none"
+                aria-hidden="true"
+            />
         </p>
     );
 }
