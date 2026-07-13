@@ -29,7 +29,9 @@ export default function History() {
                             href={h.href}
                             className="group text-foreground/80 hover:text-foreground grid grid-cols-[1.5rem_1fr_auto] items-baseline gap-4 py-2.5"
                         >
-                            <span className="tui-cursor text-foreground/65 tabular-nums">{HISTORY.length - i}</span>
+                            <span className="text-foreground/65 before:bg-accent relative tabular-nums before:pointer-events-none before:absolute before:top-[0.82em] before:left-[-1.1em] before:h-[0.42em] before:w-[0.42em] before:-translate-y-1/2 before:opacity-0 before:transition-opacity before:duration-[120ms] before:content-[''] group-focus-within:before:opacity-100 group-hover:before:opacity-100 motion-reduce:before:transition-none">
+                                {HISTORY.length - i}
+                            </span>
                             <span className="font-body-prose group-hover:text-accent text-[15px] leading-snug">{h.label}</span>
                             <span className="text-foreground/30 group-hover:text-foreground/70" aria-hidden="true">
                                 &rarr;

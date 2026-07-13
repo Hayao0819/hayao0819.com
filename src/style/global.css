@@ -503,35 +503,6 @@ h5.prose {
     .nav-path::before { transition: none; }
 }
 
-/* TUI selection cursor — a ▊ block hangs in the left margin of the
-   hovered/focused row, like the cursor row of a file picker. Absolutely
-   positioned so the content left edge never moves. */
-.tui-cursor {
-    position: relative;
-}
-.tui-cursor::before {
-    content: "▊" / "";
-    position: absolute;
-    top: 0.12em;
-    left: -1.8ch;
-    font-family: var(--font-mono);
-    font-size: 0.85em;
-    line-height: 1;
-    color: var(--accent);
-    opacity: 0;
-    transition: opacity 120ms ease;
-    pointer-events: none;
-}
-.tui-cursor:hover::before,
-.tui-cursor:focus-visible::before,
-.group:hover .tui-cursor::before,
-.group:focus-within .tui-cursor::before {
-    opacity: 1;
-}
-@media (prefers-reduced-motion: reduce) {
-    .tui-cursor::before { transition: none; }
-}
-
 /* Accent (single 藍 highlight) link style */
 .link-ai {
     color: var(--accent);

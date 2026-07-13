@@ -28,7 +28,10 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
                 ))}
             </div>
 
-            <Link href={fullURL} className="tui-cursor mt-2 block">
+            <Link
+                href={fullURL}
+                className="before:bg-accent relative mt-2 block before:pointer-events-none before:absolute before:top-[0.82em] before:left-[-1.1em] before:h-[0.42em] before:w-[0.42em] before:-translate-y-1/2 before:opacity-0 before:transition-opacity before:duration-[120ms] before:content-[''] group-focus-within:before:opacity-100 group-hover:before:opacity-100 hover:before:opacity-100 focus-visible:before:opacity-100 motion-reduce:before:transition-none"
+            >
                 <h2 className="font-body-prose text-foreground group-hover:text-accent break-phrase text-[19px] leading-snug font-medium text-pretty transition-colors">
                     {post.meta.title}
                 </h2>
