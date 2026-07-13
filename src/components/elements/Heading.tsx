@@ -30,27 +30,28 @@ export function Heading(props: HeadingProps) {
 
 export function BlogHeading(props: HeadingProps) {
     const level = props.level;
-    const propsWithoutClassName = { ...props, className: undefined };
+    const propsWithoutLevelAndClassName = { ...props, level: undefined, className: undefined };
 
-    const cn = classNames(props.className, "my-6");
+    const cn = classNames("font-display text-foreground break-phrase scroll-mt-24", props.className);
 
     const headingTag =
         level == 1 ? (
-            <Heading {...propsWithoutClassName} className={classNames(cn, "text-4xl", "text-center")} />
+            <h1 {...propsWithoutLevelAndClassName} className={classNames(cn, "my-6 text-2xl font-black tracking-tight")} />
         ) : level == 2 ? (
-            <div className="border-border my-8 border-b-4 pb-2">
-                <Heading {...propsWithoutClassName} className="text-xl font-bold" />
-            </div>
+            <h2
+                {...propsWithoutLevelAndClassName}
+                className={classNames(
+                    cn,
+                    "border-foreground/20 mt-16 mb-8 border-b pb-3 text-xl font-bold tracking-tight md:text-2xl",
+                    "after:bg-accent relative after:absolute after:-bottom-px after:left-0 after:h-[2px] after:w-12",
+                )}
+            />
         ) : level == 3 ? (
-            <div className="border-border/60 my-6 border-l-2 pl-3">
-                <Heading {...propsWithoutClassName} className="text-lg font-bold" />
-            </div>
+            <h3 {...propsWithoutLevelAndClassName} className={classNames(cn, "mt-12 mb-4 text-lg font-bold tracking-tight")} />
         ) : level == 4 ? (
-            <div className="border-border/50 my-4 border-l-2 pl-3">
-                <Heading {...propsWithoutClassName} className="text-base font-bold" />
-            </div>
+            <h4 {...propsWithoutLevelAndClassName} className={classNames(cn, "mt-8 mb-3 text-base font-bold tracking-tight")} />
         ) : level == 5 ? (
-            <Heading {...propsWithoutClassName} className={classNames(cn, "text-sm font-bold")} />
+            <h5 {...propsWithoutLevelAndClassName} className={classNames(cn, "mt-6 mb-2 text-sm font-bold")} />
         ) : (
             <></>
         );

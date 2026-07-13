@@ -23,6 +23,22 @@ export default {
                     "YuGothic",
                     "Yu Gothic",
                 ],
+                display: [
+                    "Noto Serif JP",
+                    "Hiragino Mincho ProN",
+                    "Yu Mincho",
+                    "YuMincho",
+                    "Baskerville",
+                    "Times New Roman",
+                    "serif",
+                ],
+                serifjp: [
+                    "Noto Serif JP",
+                    "Hiragino Mincho ProN",
+                    "Yu Mincho",
+                    "YuMincho",
+                    "serif",
+                ],
             },
             backgroundImage: {
                 hero: "url('/me/gity.jpg')",

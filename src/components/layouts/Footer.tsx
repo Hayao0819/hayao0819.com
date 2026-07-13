@@ -1,53 +1,68 @@
-"use client";
-
-import { usePathname } from "next/navigation";
 import { FaGithub, FaTwitter } from "react-icons/fa6";
 
-import { IconButton } from "@/components/elements/IconButton";
 import { Link } from "@/components/elements/Link";
 
 export default function Footer() {
-    const pathName = usePathname();
-
-    if (pathName === "/") {
-        return null;
-    }
-
     return (
-        <footer className="border-border bg-background border-t-4">
-            <div className="mx-auto max-w-6xl">
-                <div className="grid gap-0 md:grid-cols-[1fr_auto]">
-                    {/* Author Info */}
-                    <div className="border-border border-b-4 p-6 md:border-r-4 md:border-b-0">
-                        <p className="text-lg font-bold">Yamada Hayao</p>
-                        <p className="text-foreground/70 mt-1 text-sm">パソコンをカタカタ触るのが趣味の底辺大学生</p>
+        <footer className="border-foreground/20 bg-background border-t">
+            <div className="max-w-shell mx-auto w-full px-6 pt-14 pb-10 sm:px-10">
+                <div className="flex flex-col justify-between gap-10 md:flex-row md:items-start">
+                    <div>
+                        <p className="font-display text-ink text-2xl leading-tight font-black tracking-tight">Yamada Hayao</p>
+                        <p className="text-foreground/75 mt-3 max-w-[36ch] text-sm leading-relaxed">
+                            パソコンをカタカタ触るのが趣味の底辺大学生
+                        </p>
                     </div>
 
-                    {/* Social Links */}
-                    <nav className="flex items-center justify-center gap-3 p-6" aria-label="Social links">
-                        <IconButton href="https://twitter.com/Hayao0819" icon={<FaTwitter />} label="Twitter" />
-                        <IconButton href="https://github.com/Hayao0819" icon={<FaGithub />} label="GitHub" />
-                    </nav>
+                    <div className="flex flex-col items-start gap-6 md:items-end">
+                        <nav className="flex flex-wrap gap-x-8 gap-y-2 text-sm" aria-label="Footer">
+                            <Link
+                                href="/blog/1"
+                                className="text-foreground/75 hover:text-accent inline-flex min-h-6 items-center transition-colors"
+                            >
+                                Blog
+                            </Link>
+                            <Link
+                                href="/portfolio"
+                                className="text-foreground/75 hover:text-accent inline-flex min-h-6 items-center transition-colors"
+                            >
+                                Portfolio
+                            </Link>
+                            <Link
+                                href="/social"
+                                className="text-foreground/75 hover:text-accent inline-flex min-h-6 items-center transition-colors"
+                            >
+                                Social
+                            </Link>
+                            <Link
+                                href="/contact"
+                                className="text-foreground/75 hover:text-accent inline-flex min-h-6 items-center transition-colors"
+                            >
+                                Contact
+                            </Link>
+                        </nav>
+                        <nav className="flex gap-5" aria-label="Social links">
+                            <Link
+                                href="https://twitter.com/Hayao0819"
+                                className="text-foreground/75 hover:text-accent flex h-11 w-11 items-center justify-center transition-colors md:-mr-3"
+                                aria-label="Twitter"
+                            >
+                                <FaTwitter className="text-base" />
+                            </Link>
+                            <Link
+                                href="https://github.com/Hayao0819"
+                                className="text-foreground/75 hover:text-accent flex h-11 w-11 items-center justify-center transition-colors md:-mr-3"
+                                aria-label="GitHub"
+                            >
+                                <FaGithub className="text-base" />
+                            </Link>
+                        </nav>
+                    </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="border-border flex flex-wrap items-center justify-between gap-4 border-t-4 p-4">
-                    <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-                        <Link href="/blog/1" className="hover:underline">
-                            Blog
-                        </Link>
-                        <Link href="/portfolio" className="hover:underline">
-                            Portfolio
-                        </Link>
-                        <Link href="/social" className="hover:underline">
-                            Social
-                        </Link>
-                        <Link href="/contact" className="hover:underline">
-                            Contact
-                        </Link>
-                    </div>
-                    <p className="text-foreground/60 text-sm">&copy; {new Date().getFullYear()} Yamada Hayao</p>
-                </div>
+                <p className="text-foreground/70 border-foreground/15 mt-12 border-t pt-5 text-xs">
+                    &copy; {new Date().getFullYear()} Yamada Hayao
+                </p>
             </div>
         </footer>
     );

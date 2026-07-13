@@ -18,9 +18,14 @@ export default function Layout(props: React.HTMLAttributes<HTMLDivElement>) {
             <Drawer>
                 <DrawerContent />
             </Drawer>
-            <div {...props} className={classNames(defaultClassName, props.className)}>
+            <div {...props} id="page-shell" className={classNames(defaultClassName, props.className)}>
+                <a href="#main" className="skip-link tracked-caps text-[11px]">
+                    本文へスキップ
+                </a>
                 {headerMemo}
-                <main className="flex h-full grow">{props.children}</main>
+                <main id="main" tabIndex={-1} className="flex h-full grow outline-none">
+                    {props.children}
+                </main>
                 {footerMemo}
             </div>
         </>

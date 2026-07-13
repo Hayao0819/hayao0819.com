@@ -6,6 +6,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Shared layout tiers — every route sets widths from these two values only.
+   shell:   header / footer / page container (Swiss grid)
+   article: long-form prose column */
+@theme {
+    --container-shell: 1180px;
+    --container-article: 820px;
+}
+
 /* Brand colors (replacement for tailwindcss-brand-colors) */
 /* Source: https://github.com/praveenjuge/tailwindcss-brand-colors */
 @theme inline {
@@ -110,39 +118,276 @@
         word-break: auto-phrase;
     }
 
-    /* Long URL links should wrap */
+    /* Long URL links should wrap without splitting words mid-syllable */
     a {
+        overflow-wrap: anywhere;
+    }
+
+    /* Prose can hold long unbreakable tokens as bare text too (pasted titles, paths) */
+    article p,
+    article li {
+        overflow-wrap: anywhere;
+    }
+
+    /* Inline code may hold long unbroken strings (URLs, hashes) — break-all is fine for code */
+    :not(pre) > code {
         overflow-wrap: anywhere;
         word-break: break-all;
     }
 
-    /* Code block styling for rehype-pretty-code */
+    /* =========================================================
+       Editorial Magazine — Display Typography
+       ========================================================= */
+
+    .font-display {
+        font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho",
+                     "Iowan Old Style", "Apple Garamond", "Baskerville", "Times New Roman",
+                     "Droid Serif", "Times", "Source Serif Pro", serif;
+        font-feature-settings: "palt";
+    }
+
+    .font-serif-jp {
+        font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho",
+                     "Times New Roman", serif;
+    }
+
+    /* Pure-black ink for display type — newsprint contrast against the warm paper */
+    .text-ink {
+        color: #0a0a0a;
+    }
+    .bg-ink {
+        background-color: #0a0a0a;
+    }
+
+    .small-caps {
+        font-variant-caps: all-small-caps;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .tracked-caps {
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-weight: 600;
+    }
+
+    .rule-line {
+        background: var(--foreground);
+        height: 1px;
+        width: 100%;
+    }
+
+    .rule-line-thick {
+        background: var(--foreground);
+        height: 2px;
+        width: 100%;
+    }
+
+    /* Pull-quote / blockquote — magazine style, quiet; the bar carries the brand indigo */
+    .editorial-quote {
+        font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+        font-size: 1.125rem;
+        line-height: 1.75;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        padding: 0.25rem 0 0.25rem 1.5rem;
+        margin: 2.25rem 0;
+        border-left: 2px solid var(--accent);
+        color: color-mix(in srgb, var(--foreground) 80%, transparent);
+    }
+
+    /* Short indigo tick overlaying the start of a major-section hairline.
+       Apply next to border-t — not on every hairline, only section openers. */
+    .rule-tick {
+        position: relative;
+    }
+    .rule-tick::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        height: 2px;
+        width: 3rem;
+        background: var(--accent);
+    }
+
+    /* Raw twitter-embed blockquotes stay in the DOM when a tweet is unavailable —
+       give them the editorial-quote treatment instead of dropping bare text into the column */
+    blockquote.twitter-tweet {
+        font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+        font-size: 1rem;
+        line-height: 1.75;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        padding: 0.25rem 0 0.25rem 1.5rem;
+        margin: 2.25rem 0;
+        border-left: 2px solid var(--accent);
+        color: color-mix(in srgb, var(--foreground) 80%, transparent);
+    }
+
+    /* Skip link — parked above the viewport until keyboard focus lands on it */
+    .skip-link {
+        position: fixed;
+        top: 0.75rem;
+        left: 0.75rem;
+        z-index: 50;
+        padding: 0.625rem 1rem;
+        background: var(--background);
+        color: var(--accent);
+        border: 1px solid var(--accent);
+        transform: translateY(calc(-100% - 1.5rem));
+    }
+    .skip-link:focus {
+        transform: none;
+    }
+
+    /* Literal <hr /> in MDX content — hairline, not ink bar */
+    article hr {
+        border: 0;
+        border-top: 1px solid color-mix(in srgb, var(--foreground) 15%, transparent);
+        margin: 2rem 0;
+    }
+
+    /* Paper texture removed in v2 — restraint over decoration */
+
+    /* Sticky vertical edge nav */
+    .edge-nav-rule {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+    }
+
+    /* Hairline for editorial dividers */
+    .hairline {
+        border-color: var(--foreground);
+        border-width: 0;
+        border-top-width: 1px;
+    }
+
+    /* Editorial number — for issue/entry numbers */
+    .editorial-num {
+        font-family: "Noto Serif JP", "Times New Roman", serif;
+        font-style: italic;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+    }
+
+    /* =========================================================
+       Code — set like a technical column
+       ========================================================= */
+
+    /* Filename bar emitted by rehype-code-titles (```lang:filename) */
+    .rehype-code-title {
+        margin-top: 2rem;
+        padding: 0.4rem 1.5rem;
+        font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+        color: var(--accent);
+        background: color-mix(in srgb, var(--accent) 6%, var(--background));
+        border: 1px solid color-mix(in srgb, var(--foreground) 15%, transparent);
+        border-top: 2px solid var(--accent);
+        border-bottom: 0;
+    }
+    .rehype-code-title + figure[data-rehype-pretty-code-figure] {
+        margin-top: 0;
+    }
+
     figure[data-rehype-pretty-code-figure] {
-        @apply my-4 rounded-sm border border-border/30 bg-foreground/5;
+        margin: 2rem 0;
+        border: 1px solid color-mix(in srgb, var(--foreground) 15%, transparent);
+        /* One step off the paper — a lighter sheet, not a dark slab */
+        background: color-mix(in srgb, #ffffff 60%, var(--background));
+
+        /* Header bar — language tag, indigo-accented */
+        &:has(> .code-head) {
+            border-top: 2px solid var(--accent);
+        }
+        .code-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.4rem 1.5rem;
+            font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: color-mix(in srgb, var(--accent) 6%, transparent);
+            border-bottom: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent);
+        }
+        /* Filename bar already carries the accent — drop the doubled rule */
+        .rehype-code-title + &:has(> .code-head) {
+            border-top: 1px solid color-mix(in srgb, var(--foreground) 15%, transparent);
+        }
 
         pre {
-            @apply overflow-auto px-4 py-3;
-            line-height: 1 !important;
+            overflow-x: auto;
+            padding: 1.25rem 1.5rem;
+            font-size: 0.875rem;
+            line-height: 1.7;
+            tab-size: 4;
+            /* Visible scroll affordance for long lines — indigo thumb, shown only when overflowing */
+            scrollbar-width: thin;
+            scrollbar-color: color-mix(in srgb, var(--accent) 60%, transparent)
+                color-mix(in srgb, var(--foreground) 6%, transparent);
         }
 
         code {
             counter-reset: lineNumber;
-            @apply text-sm flex flex-col;
-            line-height: 1.6 !important;
+            display: grid;
+            width: max-content;
+            min-width: 100%;
+            font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+            background-color: inherit !important;
         }
 
         code > span[data-line] {
             @apply border-0;
         }
 
+        /* Line-number gutter, hairline-ruled */
         code > span[data-line]::before {
             content: counter(lineNumber);
             counter-increment: lineNumber;
-            @apply mr-3 inline-block w-4 text-right text-foreground/30 md:mr-6;
+            display: inline-block;
+            width: 2.5ch;
+            margin-right: 1.25rem;
+            padding-right: 0.75rem;
+            box-sizing: content-box;
+            text-align: right;
+            /* 65% keeps the gutter recessed while clearing 4.5:1 on the paper */
+            color: color-mix(in srgb, var(--foreground) 65%, transparent);
+            border-right: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
         }
 
-        code {
-            background-color: inherit !important;
+        /* Terminal transcripts read as prose, not numbered listings */
+        pre:is([data-language="plaintext"], [data-language="txt"], [data-language="text"], [data-language="console"])
+            code
+            > span[data-line]::before {
+            display: none;
+        }
+        pre:is([data-language="plaintext"], [data-language="txt"], [data-language="text"], [data-language="console"])
+            code
+            > span[data-line]:empty::after {
+            content: "\00a0";
+        }
+
+        /* Line highlighting from rehype-pretty-code */
+        code > span[data-line][data-highlighted-line] {
+            background: color-mix(in srgb, var(--accent) 9%, transparent);
+        }
+        code > span[data-line][data-highlighted-line]::before {
+            color: var(--accent);
+            border-right-color: color-mix(in srgb, var(--accent) 40%, transparent);
+        }
+        code [data-highlighted-chars] {
+            background: color-mix(in srgb, var(--accent) 12%, transparent);
+            padding: 0.1em 0.2em;
         }
 
         /* Hide bracket artifacts from rehype-pretty-code */
@@ -152,6 +397,29 @@
         code::after {
             display: none;
         }
+
+        /* The theme's comment gray lands under 4.5:1 on the paper — darken it */
+        code span[style*="#66707B" i] {
+            color: #566069 !important;
+        }
+    }
+
+    @media (max-width: 640px) {
+        figure[data-rehype-pretty-code-figure] pre {
+            padding: 1rem 1.25rem;
+        }
+        figure[data-rehype-pretty-code-figure] .code-head,
+        .rehype-code-title {
+            padding-inline: 1.25rem;
+        }
+    }
+
+    /* Nested lists sit closer to their parent item */
+    .prose-editorial :is(ul, ol) :is(ul, ol) {
+        margin-block: 0.25rem;
+    }
+    .prose-editorial ul ul {
+        list-style-type: circle;
     }
 
     /* Remove extra padding from paragraphs inside blockquote */
@@ -261,6 +529,16 @@
     }
   body {
     @apply bg-background text-foreground;
+    }
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 22%, var(--background));
+    color: var(--foreground);
+    }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    /* transition-colors also tweens outline-color — the ring must appear at full strength */
+    transition: none;
     }
 }
 

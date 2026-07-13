@@ -1,35 +1,47 @@
+import { Metadata } from "next";
+
+import { PageMasthead } from "@/components/elements/PageMasthead";
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
-import { getAllCategories } from "@/lib/blog/categories";
+import { findCategoryInfo, getAllCategories } from "@/lib/blog/categories";
 import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
+import { genMetaData } from "@/lib/meta";
+
+export async function generateMetadata(props: { params: Promise<{ cat: string }> }): Promise<Metadata> {
+    const params = await props.params;
+    const decoded = decodeURIComponent(params.cat);
+    return genMetaData({ title: findCategoryInfo(decoded)?.jp ?? decoded });
+}
 
 export default async function Categories(props: { params: Promise<{ cat: string }> }) {
     const params = await props.params;
     // params.cat may be URL-encoded or raw depending on how accessed
-    const categoryName = decodeURIComponent(params.cat);
-    const postpost = getPostList(decodeURIComponent(params.cat));
+    const info = findCategoryInfo(decodeURIComponent(params.cat));
+    // findCategoryInfo also resolves the ASCII slug aliases (url) to the Japanese name
+    const categoryName = info?.jp ?? decodeURIComponent(params.cat);
+    const postpost = getPostList(categoryName);
 
     return (
-        <div className="border-border flex w-full border-4">
-            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                {categoryName}
-            </h1>
-            <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">{categoryName}</h1>
-            <div className="flex min-w-0 flex-1 flex-col">
-                {/* Post List - 余白で分離 */}
-                <div className="flex flex-col gap-4 p-4">
-                    <PostListElement posts={postpost} />
-                </div>
-            </div>
-        </div>
+        <article>
+            <PageMasthead kicker="Category" title={categoryName} lede={info?.desc} />
+
+            <section>
+                <PostListElement posts={postpost} showFeatured={false} uniform="wide" />
+            </section>
+        </article>
     );
 }
 
 export const generateStaticParams = async () => {
     const categories = getAllCategories();
-    const params = categories.map((c) => {
+    // ASCII slug aliases from CATEGORY_INFO must also be emitted so /blog/category/tech/ etc. exist
+    const slugs = categories.map((c) => findCategoryInfo(c)?.url).filter((u): u is string => u !== undefined);
+    // The dev router matches the percent-encoded segment, while the static export
+    // needs the raw value to emit correctly named directories (Next.js #63975)
+    const isDev = process.env.NODE_ENV === "development";
+    const params = [...categories, ...slugs].map((c) => {
         return {
-            cat: c,
+            cat: isDev ? encodeURIComponent(c) : c,
         };
     });
 

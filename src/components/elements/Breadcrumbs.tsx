@@ -2,6 +2,7 @@
 
 import classNames from "clsx";
 import { usePathname } from "next/navigation";
+import { Fragment } from "react";
 
 import { Link } from "@/components/elements/Link";
 
@@ -13,20 +14,22 @@ export default function Breadcrumbs({ className, start = 0 }: { className?: stri
     const pathNameBase = pathName?.slice(0, start);
 
     return (
-        <div className={classNames("breadcrumbs", className)}>
-            <ul className="">
-                {pathNameToShow?.map((path, index) => {
-                    const link = "/" + pathNameBase?.join("/") + "/" + pathNameToShow?.slice(0, index + 1).join("/");
-                    //console.log(link, index);
-                    return (
-                        <li key={path}>
-                            <Link href={link} className="text-gray-600">
-                                {path}
-                            </Link>
-                        </li>
-                    );
-                })}
-            </ul>
-        </div>
+        <nav className={classNames("flex flex-wrap items-baseline gap-x-2 text-xs", className)} aria-label="Breadcrumb">
+            {pathNameToShow?.map((path, index) => {
+                const link = "/" + pathNameBase?.join("/") + "/" + pathNameToShow?.slice(0, index + 1).join("/");
+                return (
+                    <Fragment key={path}>
+                        {index > 0 && (
+                            <span className="text-foreground/25" aria-hidden>
+                                /
+                            </span>
+                        )}
+                        <Link href={link} className="text-foreground/50 hover:text-foreground transition-colors">
+                            {path}
+                        </Link>
+                    </Fragment>
+                );
+            })}
+        </nav>
     );
 }

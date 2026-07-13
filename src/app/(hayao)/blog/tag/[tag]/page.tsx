@@ -1,44 +1,55 @@
-import { FaArrowLeft } from "react-icons/fa6";
+import { Metadata } from "next";
 
 import { Link } from "@/components/elements/Link";
+import { PageMasthead } from "@/components/elements/PageMasthead";
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
 import { fetchedBlogPostList } from "@/lib/blog/post";
 import { PostData } from "@/lib/markdown/post";
+import { genMetaData } from "@/lib/meta";
+
+export async function generateMetadata(props: { params: Promise<{ tag: string }> }): Promise<Metadata> {
+    const params = await props.params;
+    return genMetaData({ title: `#${decodeURIComponent(params.tag)}` });
+}
 
 export default async function TagPage(props: { params: Promise<{ tag: string }> }) {
     const params = await props.params;
-    // params.tag may be URL-encoded or raw depending on how accessed
     const tagName = decodeURIComponent(params.tag);
     const postpost = getPostList(decodeURIComponent(params.tag));
 
     return (
-        <div className="border-border flex w-full border-4">
-            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                #{tagName}
-            </h1>
-            <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">#{tagName}</h1>
-            <div className="flex min-w-0 flex-1 flex-col">
-                <Link
-                    href="/blog/tag"
-                    className="border-border/60 hover:bg-foreground/5 flex items-center gap-2 border-b-2 p-4 transition-colors"
-                >
-                    <FaArrowLeft />
-                    <span>タグ一覧に戻る</span>
+        <article>
+            <PageMasthead
+                kicker="Tag"
+                title={
+                    <>
+                        <span className="text-foreground/50">#</span>
+                        {tagName}
+                    </>
+                }
+            />
+
+            <p className="-mt-6 mb-10 md:-mt-10">
+                <Link href="/blog/tag" className="text-accent hover:text-foreground text-sm transition-colors">
+                    <span aria-hidden>&larr;</span> タグ一覧に戻る
                 </Link>
-                {/* Post List - 余白で分離 */}
-                <div className="flex flex-col gap-4 p-4">
-                    <PostListElement posts={postpost} />
-                </div>
-            </div>
-        </div>
+            </p>
+
+            <section>
+                <PostListElement posts={postpost} showFeatured={false} uniform="wide" />
+            </section>
+        </article>
     );
 }
 
 export const generateStaticParams = async () => {
     const tags = fetchedBlogPostList.getAllTags();
+    // The dev router matches the percent-encoded segment, while the static export
+    // needs the raw value to emit correctly named directories (Next.js #63975)
+    const isDev = process.env.NODE_ENV === "development";
     const params = tags.map((c) => {
         return {
-            tag: c,
+            tag: isDev ? encodeURIComponent(c) : c,
         };
     });
 

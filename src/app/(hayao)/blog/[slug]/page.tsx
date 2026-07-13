@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 
+import { PageMasthead } from "@/components/elements/PageMasthead";
 import { PostList as PostListElement, PostPageSwitch } from "@/components/layouts/blog/PostPreviewList";
 import { POSTLIST_ONEPAGE } from "@/lib/blog/config";
 import { fetchedBlogPostListWithoutHidden } from "@/lib/blog/post";
@@ -12,26 +13,21 @@ export default async function BlogTop(props: { params: Promise<{ slug: string }>
     const postlist = getPostList(slug);
 
     return (
-        <div className="border-border flex w-full border-4">
-            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                Blog
-            </h1>
-            <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">Blog</h1>
-            <div className="flex min-w-0 flex-1 flex-col">
-                {/* Post List - 余白で分離 */}
-                <div className="flex grow flex-col gap-4 p-4">
-                    <PostListElement posts={postlist.posts} />
-                </div>
-                {/* Pagination - Secondary border */}
-                <div className="border-border/60 border-t-2 p-4">
-                    <PostPageSwitch
-                        allpages={postlist.allpages}
-                        currentPage={postlist.currentPage}
-                        linktemplate={(page) => `/blog/${page}`}
-                    />
-                </div>
-            </div>
-        </div>
+        <article>
+            <PageMasthead title="Blog" />
+
+            {/* The list — only the first page leads with a featured story */}
+            <section>
+                <PostListElement posts={postlist.posts} showFeatured={slug === 1} />
+            </section>
+
+            {/* Pagination */}
+            <PostPageSwitch
+                allpages={postlist.allpages}
+                currentPage={postlist.currentPage}
+                linktemplate={(page) => `/blog/${page}`}
+            />
+        </article>
     );
 }
 
@@ -41,7 +37,6 @@ export const generateMetadata = async (props: { params: Promise<{ slug: string }
 
     const base = {
         title: title,
-        //description: description,
     };
 
     return genMetaData({

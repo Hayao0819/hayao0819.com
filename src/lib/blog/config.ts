@@ -27,4 +27,9 @@ export const CATEGORY_INFO: Category[] = [
         url: "game",
         desc: "ゲームについて",
     },
+    {
+        jp: "料理",
+        url: "cooking",
+        desc: "料理について",
+    },
 ];

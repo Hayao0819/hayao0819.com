@@ -22,7 +22,7 @@ export const rehypePlugins: PluggableList = [
     [
         rehypePrettyCode,
         {
-            theme: "github-light",
+            theme: "github-light-high-contrast",
             keepBackground: false,
             defaultLang: "plaintext",
         },

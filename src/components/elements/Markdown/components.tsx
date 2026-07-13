@@ -4,6 +4,7 @@ import { FaExclamationCircle } from "react-icons/fa";
 
 import { ComponentPropsWithoutRefAndClassName } from "@/lib/type";
 
+import GistEmbed from "../GistEmbed";
 import { BlogHeading as Heading } from "../Heading";
 import { Link } from "../Link";
 import Tweet from "../Tweet";
@@ -55,12 +56,19 @@ export const getComponents = (basepath: string): MDXComponents => {
                 <Link
                     href={href}
                     id={id}
-                    className="text-accent after:bg-accent relative transition-all after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:transition-all hover:after:h-1"
+                    className="text-accent decoration-accent/40 hover:decoration-accent underline decoration-1 underline-offset-4 transition-colors duration-150"
                 >
                     {children}
                 </Link>
             );
         },
+        // No italic JP face exists — emphasise by weight instead of synthesized oblique
+        em: ({ children, id }) => (
+            <em id={id} className="text-foreground font-semibold not-italic">
+                {children}
+            </em>
+        ),
+
         p: ({ children, id }) => (
             <p
                 // // @ts-expect-error word-breakでauto-phraseを使うための型定義がない
@@ -73,6 +81,7 @@ export const getComponents = (basepath: string): MDXComponents => {
         ),
 
         Tweet: Tweet,
+        Gist: GistEmbed,
         img: (props) => {
             let src = props.src;
             if (!src?.startsWith("http")) {
@@ -81,11 +90,13 @@ export const getComponents = (basepath: string): MDXComponents => {
 
             // Use span instead of figure to avoid hydration error when img is inside <p>
             return (
-                <span className="my-4 block">
-                    <span className="border-border/60 mx-auto block w-fit border-2">
+                <span className="my-8 block">
+                    <span className="border-foreground/15 mx-auto block w-fit border">
                         <img src={src} alt={props.alt || ""} className="block max-w-full" />
                     </span>
-                    {props.alt && <span className="text-foreground/70 mt-2 block text-center text-sm">{props.alt}</span>}
+                    {props.alt && (
+                        <span className="font-display text-foreground/75 mt-3 block text-center text-sm">{props.alt}</span>
+                    )}
                 </span>
             );
         },
@@ -96,22 +107,22 @@ export const getComponents = (basepath: string): MDXComponents => {
             if (isCodeBlock) {
                 return <code className={className}>{children}</code>;
             }
-            // Inline code style
+            // Inline code style — break-all is fine here since the content is code, not prose
             return (
-                <code className="border-border/30 bg-foreground/5 text-accent mx-0.5 border px-1.5 py-0.5 font-mono text-[0.9em]">
+                <code className="bg-foreground/5 text-accent mx-0.5 px-1.5 py-0.5 font-mono text-[0.9em] break-all">
                     {children}
                 </code>
             );
         },
 
         ul: ({ children, id }) => (
-            <ul id={id} className="border-border/60 my-2 border-l-2 pl-4">
+            <ul id={id} className="marker:text-foreground/70 my-3 list-disc pl-6">
                 {children}
             </ul>
         ),
 
         ol: ({ children, id }) => (
-            <ol id={id} className="border-border/60 my-2 border-l-2 pl-4">
+            <ol id={id} className="marker:text-foreground/50 my-3 list-decimal pl-6 marker:tabular-nums">
                 {children}
             </ol>
         ),
@@ -122,34 +133,46 @@ export const getComponents = (basepath: string): MDXComponents => {
             </li>
         ),
 
-        blockquote: ({ children }) => (
-            <blockquote className="border-border/60 my-4 border-2">
-                <div className="flex">
-                    <div className="border-border/60 bg-foreground text-background border-r-2 p-2 text-xs font-bold [writing-mode:vertical-lr]">
-                        Quote
-                    </div>
-                    <div className="p-4">{children}</div>
-                </div>
-            </blockquote>
-        ),
+        blockquote: ({ children }) => <blockquote className="editorial-quote font-serif-jp">{children}</blockquote>,
 
-        hr: () => <hr className="border-border my-8 border-t-4" />,
-
-        table: ({ children }) => (
-            <div className="border-border/60 my-4 border-2">
-                <table className="w-full">{children}</table>
+        hr: () => (
+            <div className="my-12 flex items-center justify-center">
+                <span className="font-display text-foreground/70 text-xl tracking-[1em]">&sdot; &sdot; &sdot;</span>
             </div>
         ),
 
-        thead: ({ children }) => <thead className="border-border/60 bg-foreground text-background border-b-2">{children}</thead>,
+        table: ({ children }) => (
+            <div className="border-foreground/60 my-8 overflow-x-auto border-y">
+                <table className="w-full text-sm">{children}</table>
+            </div>
+        ),
 
-        th: ({ children }) => <th className="border-background/30 border-r p-2 text-left last:border-r-0">{children}</th>,
+        thead: ({ children }) => <thead className="border-foreground/60 border-b">{children}</thead>,
 
-        tr: ({ children }) => <tr className="border-border border-b last:border-b-0">{children}</tr>,
+        th: ({ children }) => <th className="text-foreground/75 px-3 py-2.5 text-left text-xs font-semibold">{children}</th>,
 
-        td: ({ children }) => <td className="border-border/30 border-r p-2 last:border-r-0">{children}</td>,
+        tr: ({ children }) => <tr className="border-foreground/10 border-b last:border-b-0">{children}</tr>,
 
-        //pre: ({ children, className }) => <pre className={classNames(className, "p-2")}>{children}</pre>,
+        td: ({ children }) => <td className="px-3 py-2.5 align-top">{children}</td>,
+
+        // Surface the language set by rehype-pretty-code as a header bar on the block
+        pre: ({ children, className, ...rest }) => {
+            const lang = (rest as Record<string, unknown>)["data-language"];
+            const showLang = typeof lang === "string" && lang !== "" && lang !== "plaintext";
+            return (
+                <>
+                    {showLang && (
+                        <div className="code-head">
+                            <span>{lang}</span>
+                        </div>
+                    )}
+                    {/* The block is keyboard-focusable (tabindex from rehype), so it needs a role and name */}
+                    <pre className={className} role="region" aria-label={showLang ? `${lang} code` : "code"} {...rest}>
+                        {children}
+                    </pre>
+                </>
+            );
+        },
 
         Flex: ({ children, id, ...props }: ComponentPropsWithoutRefAndClassName<"div">) => {
             return (
@@ -173,14 +196,12 @@ export const getComponents = (basepath: string): MDXComponents => {
         },
 
         Warn: ({ children, id }) => (
-            <div className="border-border/60 my-8 border-2" id={id}>
-                <div className="flex">
-                    <div className="border-border/60 bg-foreground text-background flex items-center gap-2 border-r-2 p-3 font-bold [writing-mode:vertical-lr]">
-                        <FaExclamationCircle />
-                        <span>Warning</span>
-                    </div>
-                    <div className="p-4">{children}</div>
-                </div>
+            <div className="border-accent my-8 border-l-2 py-1 pl-5" id={id}>
+                <p className="text-accent flex items-center gap-2 text-xs font-semibold">
+                    <FaExclamationCircle className="text-[11px]" />
+                    <span>Warning</span>
+                </p>
+                <div className="mt-1 text-[15px]">{children}</div>
             </div>
         ),
     };

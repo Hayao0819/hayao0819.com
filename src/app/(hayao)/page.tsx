@@ -1,125 +1,121 @@
-import { FaArrowRight, FaBlog, FaGithub, FaInstagram, FaTwitter, FaUser, FaUsers } from "react-icons/fa";
-import { FaBriefcase, FaLink } from "react-icons/fa6";
-
-import { IconButton } from "@/components/elements/IconButton";
 import { Link } from "@/components/elements/Link";
-import { NavItem } from "@/components/elements/NavItem";
-import { Section } from "@/components/elements/Section";
-import { VerticalLabel } from "@/components/elements/VerticalLabel";
-import { fetchedBlogPostList as postlist } from "@/lib/blog/post";
+import { PageContainer } from "@/components/elements/PageContainer";
+import { fetchedBlogPostListWithoutHidden } from "@/lib/blog/post";
+import { dateToString, plainSummary } from "@/lib/utils";
+
+const SECTIONS = [
+    { href: "/me", title: "About Me", description: "自己紹介" },
+    { href: "/blog/1", title: "Blog", description: "技術記事など" },
+    { href: "/portfolio", title: "Portfolio", description: "スキル・制作物" },
+    { href: "/social", title: "Social", description: "SNS・連絡先" },
+];
+
+const QUICK_LINKS = [
+    { href: "/social", text: "Social" },
+    { href: "/history", text: "History" },
+    { href: "/something", text: "Something" },
+    { href: "/events", text: "Events" },
+    { href: "/contact", text: "Contact" },
+];
 
 export default function Home() {
-    const recentPosts = postlist.getPosts().slice(0, 3);
+    const recentPosts = fetchedBlogPostListWithoutHidden.getPosts().slice(0, 3);
 
     return (
-        <div className="m-auto flex min-h-[calc(100vh-120px)] w-full max-w-4xl items-center justify-center p-4">
-            <div className="border-border flex w-full border-4">
-                <VerticalLabel className="self-stretch p-3">
-                    <h1 className="text-lg font-black tracking-tight">Yamada Hayao</h1>
-                </VerticalLabel>
-                <div className="flex min-w-0 flex-1 flex-col">
-                    {/* Hero Section */}
-                    <Section padding="lg" className="md:p-8">
-                        <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12">
-                            <div className="flex-1">
-                                <h2 className="text-3xl font-black tracking-tight md:text-4xl">山田ハヤオ</h2>
-                                <p className="text-foreground/70 mt-2 text-sm md:text-base">
-                                    Web Developer / Security Enthusiast
-                                </p>
-                                <p className="text-foreground/80 mt-4 text-sm leading-relaxed">
-                                    パソコンが好きな大学生。Webやセキュリティに興味があります。
-                                    主にLinuxやWebフロントエンドをメインに活動しています。
-                                </p>
-                            </div>
-                            <div className="flex gap-3">
-                                <IconButton href="https://twitter.com/Hayao0819" icon={<FaTwitter />} label="Twitter" />
-                                <IconButton href="https://github.com/Hayao0819" icon={<FaGithub />} label="GitHub" />
-                                <IconButton href="https://instagram.com/Hayao0819" icon={<FaInstagram />} label="Instagram" />
-                            </div>
-                        </div>
-                    </Section>
+        <PageContainer>
+            {/* Lead: profile set as the front-page lead story */}
+            <section className="mb-16 md:mb-20">
+                <p className="tracked-caps text-accent mb-5 text-[11px]">Web Developer / Security Enthusiast</p>
+                <h1 className="font-display text-ink text-4xl leading-[1.05] font-black tracking-tight md:text-5xl">
+                    山田ハヤオ
+                </h1>
+                <p className="font-serif-jp text-foreground/80 mt-6 max-w-[38em] text-base leading-[2]">
+                    パソコンが好きな大学生。Webやセキュリティに興味があります。
+                    主にLinuxやWebフロントエンドをメインに活動しています。
+                </p>
+                <p className="mt-7 flex flex-wrap gap-x-7 gap-y-2 text-sm">
+                    <Link href="https://twitter.com/Hayao0819" className="text-accent hover:text-foreground transition-colors">
+                        Twitter
+                    </Link>
+                    <Link href="https://github.com/Hayao0819" className="text-accent hover:text-foreground transition-colors">
+                        GitHub
+                    </Link>
+                    <Link href="https://instagram.com/Hayao0819" className="text-accent hover:text-foreground transition-colors">
+                        Instagram
+                    </Link>
+                </p>
+            </section>
 
-                    {/* Navigation Grid */}
-                    <div className="border-border grid border-b-4 md:grid-cols-2">
-                        <NavItem href="/me" icon={<FaUser />} title="About Me" description="自己紹介" />
-                        <NavItem
-                            href="/blog/1"
-                            icon={<FaBlog />}
-                            title="Blog"
-                            description="技術記事など"
-                            className="border-border border-t-4 md:border-t-0 md:border-l-4"
-                        />
-                        <NavItem
-                            href="/portfolio"
-                            icon={<FaBriefcase />}
-                            title="Portfolio"
-                            description="スキル・制作物"
-                            className="border-border border-t-4"
-                        />
-                        <NavItem
-                            href="/social"
-                            icon={<FaUsers />}
-                            title="Social"
-                            description="SNS・連絡先"
-                            className="border-border border-t-4 md:border-l-4"
-                        />
-                    </div>
-
-                    {/* Recent Posts */}
-                    <Section padding="lg">
-                        <div className="mb-4 flex items-center justify-between">
-                            <p className="flex items-center gap-2 font-bold">
-                                <FaBlog className="text-foreground/70" />
-                                <span>Recent Posts</span>
-                            </p>
-                            <Link
-                                href="/blog/1"
-                                className="text-foreground/70 hover:text-foreground flex items-center gap-1 text-sm transition-colors"
-                            >
-                                <span>View All</span>
-                                <FaArrowRight className="text-xs" />
-                            </Link>
-                        </div>
-                        <div className="grid gap-3 md:grid-cols-3">
-                            {recentPosts.map((post) => (
-                                <Link
-                                    key={post.file}
-                                    href={`/blog/posts/${post.url}`}
-                                    className="border-border/30 hover:border-border hover:bg-foreground/5 group block border-2 p-4 transition-all"
-                                >
-                                    <p className="truncate text-sm font-medium group-hover:underline">{post.meta.title}</p>
-                                    <p className="text-foreground/50 mt-1 text-xs">{post.meta.category}</p>
-                                </Link>
-                            ))}
-                        </div>
-                    </Section>
-
-                    {/* Quick Links */}
-                    <Section isLast padding="lg">
-                        <div className="flex flex-wrap items-center gap-4">
-                            <p className="text-foreground/70 flex items-center gap-2 text-sm font-bold">
-                                <FaLink />
-                                <span>Quick Links:</span>
-                            </p>
-                            <Link href="/social" className="text-sm hover:underline">
-                                Social
-                            </Link>
-                            <Link href="/history" className="text-sm hover:underline">
-                                History
-                            </Link>
-                            <Link href="/something" className="text-sm hover:underline">
-                                Something
-                            </Link>
-                            <Link href="/events" className="text-sm hover:underline">
-                                Events
-                            </Link>
-                            <Link href="/contact" className="text-sm hover:underline">
-                                Contact
-                            </Link>
-                        </div>
-                    </Section>
+            {/* Section directory — four columns, hairlines only where columns meet */}
+            <section className="border-foreground/20 border-t pt-8 md:pt-10">
+                <div className="grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
+                    {SECTIONS.map((s, i) => (
+                        <Link
+                            key={s.href}
+                            href={s.href}
+                            className={[
+                                "group block",
+                                i === 0 && "lg:pr-8",
+                                i === 1 && "sm:border-foreground/15 sm:border-l sm:pl-8 lg:px-8",
+                                i === 2 && "lg:border-foreground/15 lg:border-l lg:px-8",
+                                i === 3 && "sm:border-foreground/15 sm:border-l sm:pl-8 lg:px-8",
+                            ]
+                                .filter(Boolean)
+                                .join(" ")}
+                        >
+                            <h2 className="font-display group-hover:text-accent text-xl font-bold tracking-tight transition-colors">
+                                {s.title}
+                            </h2>
+                            <p className="text-foreground/75 mt-2 text-sm">{s.description}</p>
+                        </Link>
+                    ))}
                 </div>
-            </div>
-        </div>
+            </section>
+
+            {/* Recent Posts — three story columns */}
+            <section className="mt-16 md:mt-24">
+                <div className="border-foreground/20 flex items-baseline justify-between border-t pt-6">
+                    <h2 className="font-display text-ink text-xl font-bold tracking-tight md:text-2xl">Recent Posts</h2>
+                    <Link href="/blog/1" className="text-accent hover:text-foreground text-sm transition-colors">
+                        View All <span aria-hidden>&rarr;</span>
+                    </Link>
+                </div>
+                <div className="mt-8 grid grid-cols-1 gap-y-10 md:grid-cols-3">
+                    {recentPosts.map((post, i) => (
+                        <Link
+                            key={post.file}
+                            href={`/blog/posts/${post.url}`}
+                            className={
+                                "group block min-w-0" + (i > 0 ? " md:border-foreground/15 md:border-l md:px-8" : " md:pr-8")
+                            }
+                        >
+                            <p className="text-foreground/70 text-xs tabular-nums">
+                                {dateToString(new Date(post.meta.date ?? 0), ".")}
+                            </p>
+                            <h3 className="font-display group-hover:text-accent break-phrase mt-3 text-lg leading-[1.35] font-bold tracking-tight transition-colors">
+                                {post.meta.title}
+                            </h3>
+                            <p className="font-serif-jp text-foreground/75 mt-3 text-sm leading-[1.8]">
+                                {plainSummary(post.content, 64)}
+                                <span aria-hidden>…</span>
+                            </p>
+                            <p className="text-accent mt-3 text-xs">{post.meta.category}</p>
+                        </Link>
+                    ))}
+                </div>
+            </section>
+
+            {/* Quick Links — folio line */}
+            <section className="border-foreground/20 mt-16 border-t pt-6 md:mt-24">
+                <p className="flex flex-wrap items-baseline gap-x-7 gap-y-2 text-sm">
+                    <span className="tracked-caps text-foreground/70 text-[10px]">Quick Links:</span>
+                    {QUICK_LINKS.map((l) => (
+                        <Link key={l.href} href={l.href} className="text-foreground/80 hover:text-accent transition-colors">
+                            {l.text}
+                        </Link>
+                    ))}
+                </p>
+            </section>
+        </PageContainer>
     );
 }

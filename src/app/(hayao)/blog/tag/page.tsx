@@ -1,25 +1,27 @@
 import { Link } from "@/components/elements/Link";
+import { PageMasthead } from "@/components/elements/PageMasthead";
 import { fetchedBlogPostList } from "@/lib/blog/post";
+import { genMetaData } from "@/lib/meta";
+
+export const metadata = genMetaData({ title: "Tags" });
 
 export default function TagTop() {
     const tags = fetchedBlogPostList.getAllTags();
     return (
-        <div className="border-border flex w-full border-4">
-            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                Tags
-            </h1>
-            <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">Tags</h1>
-            <div className="flex min-w-0 flex-1 flex-wrap gap-2 p-4">
+        <article>
+            <PageMasthead title="Tags" />
+            <section className="max-w-article flex flex-wrap items-baseline gap-x-5 gap-y-3">
                 {tags.map((tag) => (
                     <Link
                         key={tag}
                         href={`/blog/tag/${tag}`}
-                        className="bg-foreground/5 hover:bg-foreground hover:text-background rounded-sm px-3 py-1.5 text-sm transition-colors"
+                        className="font-display hover:text-accent text-foreground/80 text-base transition-colors md:text-lg"
                     >
-                        #{tag}
+                        <span className="text-foreground/50">#</span>
+                        {tag}
                     </Link>
                 ))}
-            </div>
-        </div>
+            </section>
+        </article>
     );
 }

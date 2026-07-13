@@ -13,8 +13,11 @@ export default function DrawerToggle() {
 
     return (
         <button
-            className="border-border hover:bg-foreground/5 flex items-center justify-center border-r-4 px-4 py-3 text-2xl transition-colors"
+            className="hover:text-foreground text-foreground/70 -my-2 -ml-3 flex h-11 w-11 items-center justify-center text-lg transition-colors"
             onClick={toggle}
+            aria-label="Menu"
+            aria-expanded={open}
+            aria-controls="site-drawer"
         >
             <FaBars />
         </button>

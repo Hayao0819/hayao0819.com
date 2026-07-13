@@ -20,8 +20,9 @@ const nextConfig = {
         unoptimized: true,
     },
     ...(shouldDeployToGithubPages ? switchNextConfig : {}),
-    experimental: {
-        reactCompiler: true,
+    reactCompiler: true,
+    turbopack: {
+        root: import.meta.dirname,
     },
     reactStrictMode: true,
     transpilePackages: ["jotai"],

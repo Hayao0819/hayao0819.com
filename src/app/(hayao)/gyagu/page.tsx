@@ -1,56 +1,55 @@
 import { Link } from "@/components/elements/Link";
+import { PageContainer } from "@/components/elements/PageContainer";
+import { PageMasthead } from "@/components/elements/PageMasthead";
 import GyaguList from "@/features/GyaguList";
 import { genMetaData } from "@/lib/meta";
 
 export const metadata = genMetaData({ title: "爆笑ギャグページ" });
 
+const FRIEND_SITES = [
+    { href: "https://sunset0916.net/gyagu/", label: "サンセット" },
+    { href: "https://midra.me/", label: "Midra" },
+    { href: "https://lutica.net/gyagu.html", label: "海老瀬るちか" },
+    { href: "https://lunachi.me/gyagu/index.html", label: "るなち" },
+    { href: "https://l1n4r1.art/gyagu/", label: "L1n4r1Art" },
+    { href: "https://cffn.pw/r/gyagu", label: "かふぇいんぱわぁ" },
+];
+
 export default function Gyagu() {
     return (
-        <div className="border-border m-auto flex w-full max-w-2xl items-start justify-center border-4">
-            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                爆笑ギャグ
-            </h1>
-            <div className="flex min-w-0 flex-1 flex-col">
-                <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">爆笑ギャグ</h1>
-                <div className="border-border border-b-4 p-4">
-                    <p className="mb-2 font-bold">不足しています。助けてください。</p>
-                    <GyaguList />
+        <PageContainer>
+            <PageMasthead title="爆笑ギャグ" />
+
+            <section className="max-w-article pb-14">
+                <p className="font-serif-jp mb-6 text-lg font-bold">不足しています。助けてください。</p>
+                <GyaguList />
+            </section>
+
+            <section className="border-foreground/15 max-w-article border-t py-14">
+                <h2 className="font-display text-xl font-bold tracking-tight">ギャグが足りない人へ</h2>
+                <p className="text-foreground/75 mt-3 text-sm">友達のサイトもうるサイトwww</p>
+                <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+                    {FRIEND_SITES.map((s) => (
+                        <Link key={s.href} href={s.href} className="text-accent hover:text-foreground transition-colors">
+                            {s.label}
+                        </Link>
+                    ))}
                 </div>
-                <div className="border-border border-b-4 p-4">
-                    <p className="mb-2 font-bold">ギャグが足りない人へ</p>
-                    <p className="mb-2 text-sm">友達のサイトもうるサイトwww</p>
-                    <div className="flex flex-wrap gap-2">
-                        <Link href="https://sunset0916.net/gyagu/" className="underline">
-                            サンセット
-                        </Link>
-                        <Link href="https://midra.me/" className="underline">
-                            Midra
-                        </Link>
-                        <Link href="https://lutica.net/gyagu.html" className="underline">
-                            海老瀬るちか
-                        </Link>
-                        <Link href="https://lunachi.me/gyagu/index.html" className="underline">
-                            るなち
-                        </Link>
-                        <Link href="https://l1n4r1.art/gyagu/" className="underline">
-                            L1n4r1Art
-                        </Link>
-                        <Link href="https://cffn.pw/r/gyagu" className="underline">
-                            かふぇいんぱわぁ
-                        </Link>
-                    </div>
-                </div>
-                <div className="border-border border-b-4 p-4">
-                    <p className="mb-2 font-bold">ギャグが足りている方へ</p>
-                    <Link href="https://souhait.me/gyagu" className="underline">
+            </section>
+
+            <section className="border-foreground/15 max-w-article border-t py-14">
+                <h2 className="font-display text-xl font-bold tracking-tight">ギャグが足りている方へ</h2>
+                <p className="mt-5 text-sm">
+                    <Link href="https://souhait.me/gyagu" className="text-accent hover:text-foreground transition-colors">
                         souhait.net
                     </Link>
-                </div>
-                <div className="p-4 text-center text-sm">
-                    <p>連絡してくれれば載せるかもしれません</p>
-                    <p className="mt-2">これより下に内容は無いようです。</p>
-                </div>
-            </div>
-        </div>
+                </p>
+            </section>
+
+            <section className="border-foreground/15 max-w-article border-t pt-10 text-sm">
+                <p>連絡してくれれば載せるかもしれません</p>
+                <p className="mt-2">これより下に内容は無いようです。</p>
+            </section>
+        </PageContainer>
     );
 }

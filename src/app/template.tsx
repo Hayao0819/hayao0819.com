@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const variants = {
     hidden: { opacity: 0 },
@@ -7,6 +7,8 @@ const variants = {
 };
 
 export default function Template({ children }: { children: React.ReactNode }) {
+    const reduceMotion = useReducedMotion();
+
     return (
         <motion.div
             //className="site-wrapper"
@@ -15,7 +17,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
             animate="enter"
             transition={{
                 ease: "linear",
-                duration: 2,
+                duration: reduceMotion ? 0 : 0.2,
             }}
         >
             {children}

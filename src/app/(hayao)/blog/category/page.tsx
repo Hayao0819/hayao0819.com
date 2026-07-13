@@ -1,35 +1,33 @@
 import { Link } from "@/components/elements/Link";
+import { PageMasthead } from "@/components/elements/PageMasthead";
 import { findCategoryInfo, getAllCategories } from "@/lib/blog/categories";
 
 export default function CategoryTop() {
     const categories = getAllCategories().filter((c) => c !== "ブログ");
+
     return (
-        <div className="border-border flex w-full border-4">
-            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                Category
-            </h1>
-            <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">Category</h1>
-            <div className="flex min-w-0 flex-1 flex-col">
-                {categories.map((c, i) => (
-                    <Category key={c} category={c} isLast={i === categories.length - 1} />
-                ))}
-            </div>
-        </div>
+        <article>
+            <PageMasthead title="Category" />
+
+            <section className="max-w-article">
+                {categories.map((c) => {
+                    const info = findCategoryInfo(c);
+                    return (
+                        <Link key={c} href={`/blog/category/${c}`} className="group block">
+                            <div className="border-foreground/10 border-t py-10 first:border-t-0 md:py-12">
+                                <h2 className="font-display group-hover:text-accent break-phrase text-xl leading-[1.2] font-bold tracking-tight transition-colors md:text-2xl">
+                                    {c}
+                                </h2>
+                                {info?.desc && (
+                                    <p className="font-serif-jp text-foreground/75 mt-3 max-w-[46ch] text-base leading-[1.8]">
+                                        {info.desc}
+                                    </p>
+                                )}
+                            </div>
+                        </Link>
+                    );
+                })}
+            </section>
+        </article>
     );
 }
-
-const Category = ({ category, isLast }: { category: string; isLast: boolean }) => {
-    const catInfo = findCategoryInfo(category);
-    const desc = catInfo ? catInfo.desc : "";
-    const link = `/blog/category/${category}`;
-
-    return (
-        <Link
-            href={link}
-            className={`hover:bg-foreground/5 flex flex-col p-4 transition-colors ${isLast ? "" : "border-border/30 border-b"}`}
-        >
-            <div className="font-bold">{category}</div>
-            <div className="text-foreground/60 text-sm">{desc}</div>
-        </Link>
-    );
-};

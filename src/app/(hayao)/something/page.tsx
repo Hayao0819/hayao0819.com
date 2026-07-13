@@ -1,29 +1,30 @@
 import { Link } from "@/components/elements/Link";
+import { PageContainer } from "@/components/elements/PageContainer";
+import { PageMasthead } from "@/components/elements/PageMasthead";
 import { getFetchedProjectPostList } from "@/lib/projects";
 
 export default function Projects() {
-    const postlist = getPJList();
+    const postlist = getFetchedProjectPostList().getPosts();
     return (
-        <div className="border-border m-auto flex w-full max-w-2xl items-start justify-center border-4">
-            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
-                制作物
-            </h1>
-            <div className="flex min-w-0 flex-1 flex-col">
-                <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">制作物</h1>
-                <p className="border-border border-b-4 p-4 text-center">今までにつくった色々な何かへのリンクです。</p>
-                {postlist.map((p, i) => (
-                    <Link
-                        href={`/something/${p.url}`}
-                        key={p.url}
-                        className={`flex flex-col p-4 ${i < postlist.length - 1 ? "border-border border-b-4" : ""}`}
-                    >
-                        <span className="font-bold">{p.meta.title}</span>
-                        <span className="text-sm">{p.meta.description}</span>
+        <PageContainer>
+            <PageMasthead title="制作物" lede="今までにつくった色々な何かへのリンクです。" />
+
+            <section className="max-w-article">
+                {postlist.map((p) => (
+                    <Link key={p.url} href={`/something/${p.url}`} className="group block">
+                        <div className="border-foreground/10 border-t py-8 first:border-t-0">
+                            <p className="font-display group-hover:text-accent text-lg leading-tight font-medium transition-colors md:text-xl">
+                                {p.meta.title}
+                            </p>
+                            {p.meta.description && (
+                                <p className="text-foreground/75 mt-2 max-w-[58ch] text-sm leading-relaxed">
+                                    {p.meta.description}
+                                </p>
+                            )}
+                        </div>
                     </Link>
                 ))}
-            </div>
-        </div>
+            </section>
+        </PageContainer>
     );
 }
-
-const getPJList = () => getFetchedProjectPostList().getPosts();

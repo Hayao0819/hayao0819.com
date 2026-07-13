@@ -1,18 +1,18 @@
 import React from "react";
 
-import { Heading } from "@/components/elements/Heading";
-import CommonSpacer from "@/components/layouts/CommonSpacer";
+import { PageContainer } from "@/components/elements/PageContainer";
+import { PageMasthead } from "@/components/elements/PageMasthead";
 import Layout from "@/components/layouts/Layout";
+import { genMetaData } from "@/lib/meta";
 
-//import { useState } from "react";
+export const metadata = genMetaData({ title: "404 Page Not Found" });
 
 export default function NotFound() {
     return (
         <Layout>
-            <CommonSpacer>
-                <Heading level={2}>404 Page Not Found </Heading>
-                <p>内容が無いようです。</p>
-            </CommonSpacer>
+            <PageContainer>
+                <PageMasthead title="404 Page Not Found" lede="内容が無いようです。" />
+            </PageContainer>
         </Layout>
     );
 }
