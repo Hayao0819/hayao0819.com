@@ -1,5 +1,5 @@
 import { Link } from "@/components/elements/Link";
-import { PostData } from "@/lib/markdown/post";
+import type { PostData } from "@/lib/markdown/post";
 
 import PostPreview from "./PostPreview";
 
@@ -34,12 +34,12 @@ export function PostPageSwitch({ allpages, currentPage, linktemplate }: PostPage
             {hasPrev ? (
                 <Link
                     href={linktemplate(currentPage - 1)}
-                    className="text-foreground/70 hover:text-accent inline-flex min-h-11 items-center px-1 tracking-[0.14em]"
+                    className="inline-flex min-h-11 items-center px-1 text-foreground/70 tracking-[0.14em] hover:text-accent"
                 >
                     &larr; prev
                 </Link>
             ) : (
-                <span className="text-foreground/35 inline-flex min-h-11 items-center px-1 tracking-[0.14em]" aria-hidden="true">
+                <span className="inline-flex min-h-11 items-center px-1 text-foreground/35 tracking-[0.14em]" aria-hidden="true">
                     &larr; prev
                 </span>
             )}
@@ -51,13 +51,13 @@ export function PostPageSwitch({ allpages, currentPage, linktemplate }: PostPage
                     return (
                         <span key={i} aria-current={isCurrent ? "page" : undefined} className="tabular-nums">
                             {isCurrent ? (
-                                <span className="text-accent inline-flex h-11 w-8 items-center justify-center">
+                                <span className="inline-flex h-11 w-8 items-center justify-center text-accent">
                                     <span className="border-accent border-b">{num}</span>
                                 </span>
                             ) : (
                                 <Link
                                     href={linktemplate(i)}
-                                    className="text-foreground/65 hover:text-foreground inline-flex h-11 w-8 items-center justify-center"
+                                    className="inline-flex h-11 w-8 items-center justify-center text-foreground/65 hover:text-foreground"
                                 >
                                     {num}
                                 </Link>
@@ -69,12 +69,12 @@ export function PostPageSwitch({ allpages, currentPage, linktemplate }: PostPage
             {hasNext ? (
                 <Link
                     href={linktemplate(currentPage + 1)}
-                    className="text-foreground/70 hover:text-accent inline-flex min-h-11 items-center px-1 tracking-[0.14em]"
+                    className="inline-flex min-h-11 items-center px-1 text-foreground/70 tracking-[0.14em] hover:text-accent"
                 >
                     next &rarr;
                 </Link>
             ) : (
-                <span className="text-foreground/35 inline-flex min-h-11 items-center px-1 tracking-[0.14em]" aria-hidden="true">
+                <span className="inline-flex min-h-11 items-center px-1 text-foreground/35 tracking-[0.14em]" aria-hidden="true">
                     next &rarr;
                 </span>
             )}

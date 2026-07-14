@@ -48,7 +48,7 @@ export default function Page() {
                     }}
                     value={text}
                 />
-                <button onClick={add} className={buttonClass}>
+                <button type="button" onClick={add} className={buttonClass}>
                     Add
                 </button>
             </div>
@@ -56,13 +56,13 @@ export default function Page() {
             <ul>
                 {todo.map((t, i) => (
                     <li key={i} className="flex gap-2">
-                        <button className={buttonClass} onClick={() => up(i)}>
+                        <button type="button" className={buttonClass} onClick={() => up(i)}>
                             Up
                         </button>
-                        <button className={buttonClass} onClick={() => down(i)}>
+                        <button type="button" className={buttonClass} onClick={() => down(i)}>
                             Down
                         </button>
-                        <button className={buttonClass} onClick={() => remove(i)}>
+                        <button type="button" className={buttonClass} onClick={() => remove(i)}>
                             Remove
                         </button>
 

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { DetailedHTMLProps, HTMLAttributes, PropsWithChildren } from "react";
+import type { DetailedHTMLProps, HTMLAttributes, PropsWithChildren } from "react";
 
 import { Heading } from "./Heading";
 
@@ -10,7 +10,7 @@ export default function PageTitle(
     const propsWithoutChildren = { ...props, children: undefined, className: mergedClassName };
     return (
         <div {...propsWithoutChildren}>
-            <Heading level={2} className="border-accent text-accent inline-block border-b text-3xl">
+            <Heading level={2} className="inline-block border-accent border-b text-3xl text-accent">
                 {props.children}
             </Heading>
         </div>

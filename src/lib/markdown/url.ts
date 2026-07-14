@@ -1,4 +1,4 @@
-import path from "path";
+import path from "node:path";
 
 // URLフォーマットは/blog/posts/以下のURLを返すように設定する
 export type URLFormat = {

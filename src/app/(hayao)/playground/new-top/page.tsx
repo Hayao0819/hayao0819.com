@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 
 const Home = () => (
     <div className="flex grow flex-col">
-        <div className="text-background bg-hero-sp md:bg-hero flex h-auto w-screen grow items-center justify-center bg-[rgba(0,0,0,0.7)] object-center bg-blend-darken md:justify-start">
-            <div className="mx-12 flex flex-col justify-center gap-8 text-center text-xl font-bold md:w-1/2 md:text-left md:text-4xl">
+        <div className="flex h-auto w-screen grow items-center justify-center bg-[rgba(0,0,0,0.7)] bg-hero-sp object-center text-background bg-blend-darken md:justify-start md:bg-hero">
+            <div className="mx-12 flex flex-col justify-center gap-8 text-center font-bold text-xl md:w-1/2 md:text-left md:text-4xl">
                 <Typewriter
                     words={[
                         "山田ハヤオという群馬大学の学生です. \n低レイヤやセキュリティに興味があります.\nセキュリティからレトロPCまで広く深く触れています.",

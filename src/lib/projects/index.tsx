@@ -1,4 +1,4 @@
-import path from "path";
+import path from "node:path";
 
 import Markdown from "@/components/elements/Markdown/server";
 
@@ -24,7 +24,7 @@ export const getProjectFromURL = (url: string) => {
         });
         // TODO: basepathがあってるか確認する
 
-        return <Markdown content={projPost.content} basepath={"/something/" + projPost.url} />;
+        return <Markdown content={projPost.content} basepath={`/something/${projPost.url}`} />;
     } else {
         return undefined;
     }

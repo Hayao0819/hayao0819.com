@@ -8,7 +8,7 @@ export default function TagTop() {
         <div>
             <header className="mb-10">
                 <PromptLine path="~/blog/tag">ls</PromptLine>
-                <h1 className="font-body-prose mt-4 text-3xl leading-tight tracking-tight">Tags</h1>
+                <h1 className="mt-4 font-body-prose text-3xl leading-tight tracking-tight">Tags</h1>
             </header>
             <hr className="hairline mb-10" />
             <ul className="flex flex-wrap gap-x-4 gap-y-2 text-[13px]">

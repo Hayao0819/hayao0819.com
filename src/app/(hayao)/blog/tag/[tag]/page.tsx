@@ -2,7 +2,7 @@ import { Link } from "@/components/elements/Link";
 import PromptLine from "@/components/elements/PromptLine";
 import { PostList as PostListElement } from "@/components/layouts/blog/PostPreviewList";
 import { fetchedBlogPostList } from "@/lib/blog/post";
-import { PostData } from "@/lib/markdown/post";
+import type { PostData } from "@/lib/markdown/post";
 
 export default async function TagPage(props: { params: Promise<{ tag: string }> }) {
     const params = await props.params;
@@ -13,9 +13,9 @@ export default async function TagPage(props: { params: Promise<{ tag: string }> 
         <div>
             <header className="mb-8">
                 <PromptLine path="~/blog/tag">ls {tagName}/</PromptLine>
-                <h1 className="font-body-prose mt-4 text-3xl leading-tight tracking-tight">#{tagName}</h1>
+                <h1 className="mt-4 font-body-prose text-3xl leading-tight tracking-tight">#{tagName}</h1>
             </header>
-            <Link href="/blog/tag" className="text-foreground/70 hover:text-foreground mb-10 inline-block text-[12px]">
+            <Link href="/blog/tag" className="mb-10 inline-block text-[12px] text-foreground/70 hover:text-foreground">
                 &larr; Tags
             </Link>
             <hr className="hairline mb-6" />

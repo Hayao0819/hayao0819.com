@@ -8,12 +8,12 @@ const Page = () => (
     <>
         <title>ニコニコRe:仮 非公式検索</title>
         <meta name="description" content="ニコニコ動画の非公式検索サイトです。" />
-        <div className="border-border m-auto flex w-full max-w-xl items-start justify-center border-4">
+        <div className="m-auto flex w-full max-w-xl items-start justify-center border-4 border-border">
             <div className="grid w-full grid-cols-1 gap-0 md:grid-cols-[auto_1fr]">
-                <h1 className="border-border hidden border-r-4 p-4 text-2xl font-bold [writing-mode:vertical-lr] md:block">
+                <h1 className="hidden border-border border-r-4 p-4 font-bold text-2xl [writing-mode:vertical-lr] md:block">
                     ニコニコ検索
                 </h1>
-                <h1 className="border-border border-b-4 p-4 text-2xl font-bold md:hidden">ニコニコ検索</h1>
+                <h1 className="border-border border-b-4 p-4 font-bold text-2xl md:hidden">ニコニコ検索</h1>
                 <div className="flex flex-col items-center justify-center p-6">
                     <p>APIの提供が終了したため公開を停止しました。</p>
                     <p className="mt-2">

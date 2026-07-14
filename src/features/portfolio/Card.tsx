@@ -1,10 +1,10 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 import { Heading } from "@/components/elements/Heading";
 
 const Container = ({ children, title }: PropsWithChildren<{ title: string }>) => (
     <div className="my-4">
-        <Heading level={3} className="border-accent text-accent my-8 inline-block border-l-2 p-2 font-bold">
+        <Heading level={3} className="my-8 inline-block border-accent border-l-2 p-2 font-bold text-accent">
             {title}
         </Heading>
         {children ? <div className="flex flex-wrap justify-start gap-2">{children}</div> : <div>現在工事中</div>}
@@ -12,11 +12,11 @@ const Container = ({ children, title }: PropsWithChildren<{ title: string }>) =>
 );
 
 const Card = ({ children }: PropsWithChildren) => (
-    <div className="border-muted flex w-1/6 flex-col rounded-xl border p-4">{children}</div>
+    <div className="flex w-1/6 flex-col rounded-xl border border-muted p-4">{children}</div>
 );
 
 const Title = ({ children }: PropsWithChildren) => (
-    <div className="flex items-center justify-center gap-2 text-xl font-bold">{children}</div>
+    <div className="flex items-center justify-center gap-2 font-bold text-xl">{children}</div>
 );
 
 const Icon = ({ children }: PropsWithChildren) => <div className="block">{children}</div>;

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -22,7 +22,7 @@ export default function PromptLine({ path = "~", comment, className, children }:
             <span className="text-foreground/80">{children}</span>
             {comment && <span># {comment}</span>}
             <span
-                className="bg-accent animate-term-caret inline-block h-[1.05em] w-[0.55em] self-center align-text-bottom motion-reduce:animate-none"
+                className="inline-block h-[1.05em] w-[0.55em] animate-term-caret self-center bg-accent align-text-bottom motion-reduce:animate-none"
                 aria-hidden="true"
             />
         </p>

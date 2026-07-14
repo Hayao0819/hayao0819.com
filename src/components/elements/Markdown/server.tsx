@@ -1,6 +1,6 @@
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 
-import { MarkdownProps, rehypePlugins, remarkPlugins } from "./common";
+import { type MarkdownProps, rehypePlugins, remarkPlugins } from "./common";
 import { getComponents } from "./components";
 
 export default async function Markdown({ content, basepath }: MarkdownProps) {

@@ -1,5 +1,4 @@
 import { atom, useAtom } from "jotai";
-import React from "react";
 
 import Alert, { useAlert } from "@/components/tatebou/Alert";
 import TatebouLayout from "@/components/tatebou/Layout";
@@ -38,10 +37,11 @@ function OriginalURLInput() {
     return (
         <div>
             <div className="form-control w-full">
-                <label className="label">
+                <label htmlFor="tatebou-original-url" className="label">
                     <span className="label-text">元URL</span>
                 </label>
                 <input
+                    id="tatebou-original-url"
                     type="text"
                     placeholder="短縮するURLを入力して下さい"
                     className="input input-bordered w-full"
@@ -50,9 +50,9 @@ function OriginalURLInput() {
                     }}
                     value={inputURL}
                 />
-                <label className="label">
+                <label htmlFor="tatebou-original-url" className="label">
                     <span className="label-text-alt">
-                        <code className="text-sm text-pink-600">http</code>から始まるURLを入力して下さい
+                        <code className="text-pink-600 text-sm">http</code>から始まるURLを入力して下さい
                     </span>
                 </label>
             </div>
@@ -73,6 +73,7 @@ function ResetBtn() {
     const [, setInputURL] = useAtom(inputAtom);
     return (
         <button
+            type="button"
             className="btn !btn-error !btn-active btn-sm !text-white"
             onClick={() => {
                 setInputURL("");
@@ -128,7 +129,7 @@ function CreateBtn() {
     };
 
     return (
-        <button className="btn !btn-info !btn-active btn-sm !text-white" onClick={SendPOSTToTatebou}>
+        <button type="button" className="btn !btn-info !btn-active btn-sm !text-white" onClick={SendPOSTToTatebou}>
             作成
         </button>
     );
@@ -138,10 +139,11 @@ function Result() {
     const [fetchedData] = useAtom(fetchedAtom);
     return (
         <div className="form-control w-full">
-            <label className="label">
+            <label htmlFor="tatebou-result" className="label">
                 <span className="label-text">結果</span>
             </label>
             <input
+                id="tatebou-result"
                 type="text"
                 placeholder="結果がここに出力されます"
                 value={fetchedData}
@@ -166,6 +168,7 @@ function TestTools() {
             <p>結果をテスト</p>
             <div className="flex gap-2">
                 <button
+                    type="button"
                     className="btn !btn-primary !btn-active btn-sm !text-white"
                     onClick={() => {
                         if (!fetchedData) {
@@ -179,6 +182,7 @@ function TestTools() {
                     コピー
                 </button>
                 <button
+                    type="button"
                     className="btn !btn-secondary !btn-active btn-sm !text-white"
                     onClick={() => {
                         if (!fetchedData) {

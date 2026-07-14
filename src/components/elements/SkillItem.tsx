@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -15,7 +15,7 @@ export function SkillItem({ icon, name, level, className }: SkillItemProps) {
             <span className={cn("text-xl transition-colors", level === "main" ? "text-foreground" : "text-foreground/70")}>
                 {icon}
             </span>
-            <span className={cn("text-[14px]", level === "main" ? "text-foreground font-medium" : "text-foreground/70")}>
+            <span className={cn("text-[14px]", level === "main" ? "font-medium text-foreground" : "text-foreground/70")}>
                 {name}
             </span>
         </div>

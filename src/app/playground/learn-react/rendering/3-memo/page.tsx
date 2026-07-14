@@ -31,7 +31,9 @@ const MyApp = () => {
                 <h1>Title</h1>
                 <p>高度な機能を備えた素晴らしいカウンタ</p>
                 <p>{count}</p>
-                <button onClick={incrementCount}>Click me!</button>
+                <button type="button" onClick={incrementCount}>
+                    Click me!
+                </button>
             </main>
             <footer>
                 <p>Created by HogeHoge</p>

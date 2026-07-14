@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -54,13 +54,13 @@ export default function GyaguList() {
 function Gyagu({ children, tweet }: { children: ReactNode | string; tweet?: string }) {
     const openTweet = (text: string) => {
         window.open(
-            "https://twitter.com/intent/tweet?text=ハヤオのサイトからギャグ↓" + encodeURIComponent("\n\n" + text),
+            `https://twitter.com/intent/tweet?text=ハヤオのサイトからギャグ↓${encodeURIComponent(`\n\n${text}`)}`,
             "_blank",
         );
     };
 
-    if (tweet == undefined) {
-        if (typeof children == "string") {
+    if (tweet === undefined) {
+        if (typeof children === "string") {
             tweet = children;
         }
     }
@@ -68,7 +68,7 @@ function Gyagu({ children, tweet }: { children: ReactNode | string; tweet?: stri
     let onClickFunc: () => void;
     let gyaguText: string;
 
-    if (tweet == undefined) {
+    if (tweet === undefined) {
         onClickFunc = () => {
             alert("このギャグはツイートできません。ハヤオにエラーを報告してください。");
         };
@@ -78,8 +78,10 @@ function Gyagu({ children, tweet }: { children: ReactNode | string; tweet?: stri
     }
 
     return (
-        <li role="button" onClick={onClickFunc}>
-            {children}
+        <li>
+            <button type="button" onClick={onClickFunc} className="cursor-pointer text-left">
+                {children}
+            </button>
         </li>
     );
 }

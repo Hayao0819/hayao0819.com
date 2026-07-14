@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { Link } from "@/components/elements/Link";
 import { cn } from "@/lib/utils";
@@ -15,14 +15,14 @@ export function NavItem({ href, icon, title, description, className }: NavItemPr
     return (
         <Link
             href={href}
-            className={cn("group border-foreground/15 flex items-baseline gap-4 border-t py-4 transition-colors", className)}
+            className={cn("group flex items-baseline gap-4 border-foreground/15 border-t py-4 transition-colors", className)}
         >
-            <span className="mono-eyebrow text-foreground/65 group-hover:text-accent shrink-0 pt-1 text-[13px]">{icon}</span>
+            <span className="mono-eyebrow shrink-0 pt-1 text-[13px] text-foreground/65 group-hover:text-accent">{icon}</span>
             <div className="min-w-0">
-                <p className="font-body-prose text-foreground group-hover:text-accent text-[16px] font-medium">{title}</p>
-                <p className="text-foreground/70 mt-1 text-[13px]">{description}</p>
+                <p className="font-body-prose font-medium text-[16px] text-foreground group-hover:text-accent">{title}</p>
+                <p className="mt-1 text-[13px] text-foreground/70">{description}</p>
             </div>
-            <span className="text-foreground/30 group-hover:text-accent ml-auto self-center transition-colors" aria-hidden="true">
+            <span className="ml-auto self-center text-foreground/30 transition-colors group-hover:text-accent" aria-hidden="true">
                 &rarr;
             </span>
         </Link>

@@ -16,7 +16,7 @@ export default function Breadcrumbs({ className, start = 0 }: { className?: stri
         <div className={classNames("breadcrumbs", className)}>
             <ul className="flex flex-wrap items-baseline gap-y-0.5">
                 {pathNameToShow?.map((path, index) => {
-                    const link = "/" + pathNameBase?.join("/") + "/" + pathNameToShow?.slice(0, index + 1).join("/");
+                    const link = `/${pathNameBase?.join("/")}/${pathNameToShow?.slice(0, index + 1).join("/")}`;
                     return (
                         <li key={path} className="inline-flex items-baseline">
                             <span className="text-foreground/30" aria-hidden="true">

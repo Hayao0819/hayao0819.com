@@ -17,7 +17,7 @@ export default function Head(props: HeadProps) {
     props = { ...defaults, ...props };
 
     // titleを加工
-    props.title = props.title + " | " + Metadata.title;
+    props.title = `${props.title} | ${Metadata.title}`;
 
     return (
         <NextHead>

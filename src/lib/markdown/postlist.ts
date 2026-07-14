@@ -1,8 +1,8 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 
 import { PostData } from "./post";
-import { URLFormat } from "./url";
+import type { URLFormat } from "./url";
 
 const getMdFilesInDir = (dir: string): string[] => {
     return fs
@@ -38,8 +38,8 @@ export class PostList {
         const posts = files
             .map((file) => PostData.getFromFile(file, format))
             .filter((p) => {
-                if (p.meta.publish == undefined) return true;
-                if (p.meta.publish == true) return true;
+                if (p.meta.publish === undefined) return true;
+                if (p.meta.publish === true) return true;
                 return false;
             })
             .filter((p) => {
@@ -87,8 +87,8 @@ export class PostList {
         const posts = this.getPosts();
         return PostList.fromPostDatas(
             posts.filter((p) => {
-                if (p.meta.draft == undefined) return true;
-                if (p.meta.draft == false) return true;
+                if (p.meta.draft === undefined) return true;
+                if (p.meta.draft === false) return true;
                 return false;
             }),
         );
@@ -99,8 +99,8 @@ export class PostList {
         //console.log(posts.length);
         return PostList.fromPostDatas(
             posts.filter((p) => {
-                if (p.meta.hidden == undefined) return true;
-                if (p.meta.hidden == false) return true;
+                if (p.meta.hidden === undefined) return true;
+                if (p.meta.hidden === false) return true;
                 return false;
             }),
         );
@@ -178,7 +178,7 @@ export class PostList {
                 }
             })
             .filter((category) => category)
-            .filter((cat) => cat != "ブログ");
+            .filter((cat) => cat !== "ブログ");
 
         return [...new Set(categories)];
     }

@@ -53,12 +53,12 @@ export default function Alert(): React.ReactNode {
         }
     }, [alertInfo.isHidden, alertInfo.type]);
     return (
-        <div className={"m-2 flex items-center rounded-md p-2 " + alertClass}>
+        <div className={`m-2 flex items-center rounded-md p-2 ${alertClass}`}>
             <div className="grow">{alertInfo.text}</div>
 
-            <div onClick={closeAlert} role="button" className="mx-2">
+            <button type="button" onClick={closeAlert} aria-label="閉じる" className="mx-2">
                 <FaCircleXmark className="text-xl" />
-            </div>
+            </button>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import { Metadata as NextMetadata } from "next";
+import type { Metadata as NextMetadata } from "next";
 
 import Metadata from "@/const/meta";
 

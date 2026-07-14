@@ -1,8 +1,8 @@
 import "@/style/global.css";
 
 import { ViewTransitions } from "@hayao/next-view-transitions";
-import { Metadata as NextMetadata } from "next";
-import React, { ReactNode, Suspense } from "react";
+import type { Metadata as NextMetadata } from "next";
+import { type ReactNode, Suspense } from "react";
 
 import GoogleAnalytics from "@/components/elements/GoogleAnalytics";
 import { genMetaData } from "@/lib/meta";
@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <a
                     href="#main"
                     data-skip-link
-                    className="font-mono-chrome focus:border-foreground/25 focus:bg-background sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:border focus:px-4 focus:py-2 focus:text-[12px] focus:tracking-[0.14em]"
+                    className="sr-only font-mono-chrome focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:border focus:border-foreground/25 focus:bg-background focus:px-4 focus:py-2 focus:text-[12px] focus:tracking-[0.14em]"
                 >
                     skip to content
                 </a>

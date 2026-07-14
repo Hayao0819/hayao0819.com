@@ -124,24 +124,24 @@ function EventList({ items, eyebrow, caption }: { items: Ev[]; eyebrow: string; 
     return (
         <section>
             <p className="mono-eyebrow">{eyebrow}</p>
-            <p className="text-foreground/70 mt-1 text-[11.5px]">{caption}</p>
+            <p className="mt-1 text-[11.5px] text-foreground/70">{caption}</p>
             <ul className="mt-5 flex flex-col gap-1 text-[13px]">
                 {items.map((e, i) => (
                     <li key={e.title + i}>
                         <Link
                             href={e.href}
-                            className="group text-foreground/85 hover:text-foreground flex flex-col gap-0.5 py-2.5"
+                            className="group flex flex-col gap-0.5 py-2.5 text-foreground/85 hover:text-foreground"
                         >
-                            <span className="font-body-prose group-hover:text-accent text-[15px] leading-snug">{e.title}</span>
-                            <span className="text-foreground/70 text-[11.5px]">
+                            <span className="font-body-prose text-[15px] leading-snug group-hover:text-accent">{e.title}</span>
+                            <span className="text-[11.5px] text-foreground/70">
                                 {e.event}
-                                <span className="text-foreground/25 mx-2" aria-hidden="true">
+                                <span className="mx-2 text-foreground/25" aria-hidden="true">
                                     /
                                 </span>
                                 <span className="tabular-nums">{e.date}</span>
                                 {e.location && (
                                     <>
-                                        <span className="text-foreground/25 mx-2" aria-hidden="true">
+                                        <span className="mx-2 text-foreground/25" aria-hidden="true">
                                             /
                                         </span>
                                         {e.location}
@@ -161,8 +161,8 @@ export default function Events() {
         <div>
             <header>
                 <PromptLine>cat events.md</PromptLine>
-                <h1 className="font-body-prose mt-4 text-3xl leading-tight tracking-tight md:text-4xl">Events</h1>
-                <p className="font-body-prose text-foreground/90 mt-6 max-w-[46rem] text-[17px] leading-[1.9]">
+                <h1 className="mt-4 font-body-prose text-3xl leading-tight tracking-tight md:text-4xl">Events</h1>
+                <p className="mt-6 max-w-[46rem] font-body-prose text-[17px] text-foreground/90 leading-[1.9]">
                     参加したイベントの記録です。学会・CTF・インターン・同人即売会など様々なイベントに参加しています。
                 </p>
             </header>

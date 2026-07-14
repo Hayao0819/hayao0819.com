@@ -23,7 +23,7 @@ export default function Header() {
     };
 
     return (
-        <header className="bg-background border-foreground/25 relative z-10 border-b">
+        <header className="relative z-10 border-foreground/25 border-b bg-background">
             <div className="mx-auto flex h-14 max-w-[60rem] items-center justify-between px-6 md:px-8">
                 {/* Sitemark — text only, mono */}
                 <Link href="/" className="inline-flex items-baseline gap-1.5 text-[14px] leading-none tracking-tight">
@@ -35,7 +35,7 @@ export default function Header() {
                 </Link>
 
                 {/* Nav — plain mono links */}
-                <nav className="hidden items-baseline gap-6 text-[12px] tracking-[0.14em] lowercase md:flex">
+                <nav className="hidden items-baseline gap-6 text-[12px] lowercase tracking-[0.14em] md:flex">
                     {NAV.map((item) => {
                         const active = isActive(item.href);
                         return (

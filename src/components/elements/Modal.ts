@@ -1,4 +1,4 @@
-import { PrimitiveAtom, useAtom } from "jotai";
+import { type PrimitiveAtom, useAtom } from "jotai";
 
 export type DetailModal<T> = [data: T, setData: (data: T) => void];
 

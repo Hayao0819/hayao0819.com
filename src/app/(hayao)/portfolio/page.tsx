@@ -41,9 +41,7 @@ function ChipRow({ items }: { items: Skill[] }) {
             {items.map((s) => (
                 <li
                     key={s.name}
-                    className={
-                        "inline-flex items-baseline gap-2 " + (s.main ? "text-foreground font-medium" : "text-foreground/65")
-                    }
+                    className={`inline-flex items-baseline gap-2 ${s.main ? "text-foreground font-medium" : "text-foreground/65"}`}
                 >
                     <span className="text-foreground/30" aria-hidden="true">
                         *

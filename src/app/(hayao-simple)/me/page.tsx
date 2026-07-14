@@ -3,16 +3,16 @@ import Image from "next/image";
 import { Heading } from "@/components/elements/Heading";
 import { Link } from "@/components/elements/Link";
 import { fetchedBlogPostList } from "@/lib/blog/post";
-import { PostData } from "@/lib/markdown/post";
+import type { PostData } from "@/lib/markdown/post";
 import { getFetchedProjectPostList } from "@/lib/projects";
 
-const Separator = () => <hr className="my-3 border-t border-[#9a9a9a]" />;
+const Separator = () => <hr className="my-3 border-[#9a9a9a] border-t" />;
 
 export default function Me() {
     return (
         <div className="w-fit">
             <div className="text-center *:mx-auto">
-                <Heading level={1} className="my-12 block text-3xl font-bold">
+                <Heading level={1} className="my-12 block font-bold text-3xl">
                     山田ハヤオのホームページ
                 </Heading>
                 <div className="md:flex">
@@ -36,7 +36,7 @@ export default function Me() {
                         <Separator />
                         <News />
                         <Separator />
-                        <div className="text-left font-bold text-balance *:leading-tight">
+                        <div className="text-balance text-left font-bold *:leading-tight">
                             <p>当サイトの内容、テキスト、画像等はMITライセンスの基で自由に再利用できます。</p>
                             <p>
                                 ソースコードは

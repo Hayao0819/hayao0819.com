@@ -1,4 +1,4 @@
-import { PrimitiveAtom, useAtom } from "jotai";
+import { type PrimitiveAtom, useAtom } from "jotai";
 import { useCallback } from "react";
 
 //-- Detail Modal

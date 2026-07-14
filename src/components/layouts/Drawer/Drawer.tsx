@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, MotionConfig, Variants } from "framer-motion";
+import { MotionConfig, motion, type Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 import useDrawerAtom from "@/hooks/useDrawerAtom";
@@ -28,7 +28,7 @@ export default function Drawer(props: DrawerProps) {
 
     useEffect(() => {
         // controlled-from-outside reserved
-    }, [props.open]);
+    }, []);
 
     // Modal semantics: while open, the page behind is inert and scroll-locked,
     // focus moves into the dialog, Escape closes, and focus returns on close.
@@ -95,7 +95,7 @@ export default function Drawer(props: DrawerProps) {
     return (
         <MotionConfig reducedMotion="user">
             <motion.div
-                className="bg-foreground/30 fixed inset-0 z-40 h-svh w-screen"
+                className="fixed inset-0 z-40 h-svh w-screen bg-foreground/30"
                 style={{ pointerEvents: open ? "auto" : "none" }}
                 onClick={toggle}
                 animate={open ? "open" : "closed"}
@@ -106,7 +106,7 @@ export default function Drawer(props: DrawerProps) {
 
             <motion.aside
                 ref={asideRef}
-                className="bg-background text-foreground border-foreground/15 invisible fixed top-0 left-0 z-50 h-svh w-[88%] max-w-[360px] border-r shadow-[8px_0_24px_-12px_rgba(0,0,0,0.18)]"
+                className="invisible fixed top-0 left-0 z-50 h-svh w-[88%] max-w-[360px] border-foreground/15 border-r bg-background text-foreground shadow-[8px_0_24px_-12px_rgba(0,0,0,0.18)]"
                 // Synchronous so the aside is focusable the moment `open` renders;
                 // the closed variant's transitionEnd still hides it after exit.
                 style={{ visibility: open ? "visible" : undefined }}

@@ -9,7 +9,7 @@ export default function CategoryTop() {
         <div>
             <header className="mb-10">
                 <PromptLine path="~/blog/category">ls</PromptLine>
-                <h1 className="font-body-prose mt-4 text-3xl leading-tight tracking-tight">Category</h1>
+                <h1 className="mt-4 font-body-prose text-3xl leading-tight tracking-tight">Category</h1>
             </header>
             <hr className="hairline mb-2" />
             <ul className="flex flex-col">
@@ -22,14 +22,14 @@ export default function CategoryTop() {
                             {i > 0 && <hr className="hairline" />}
                             <Link href={`/blog/category/${c}`} className="group block py-5">
                                 <div className="flex items-baseline justify-between gap-4">
-                                    <span className="font-body-prose text-foreground group-hover:text-accent text-[18px] font-medium">
+                                    <span className="font-body-prose font-medium text-[18px] text-foreground group-hover:text-accent">
                                         {c}
                                     </span>
-                                    <span className="text-foreground/65 text-[11px] tracking-[0.14em] tabular-nums">
+                                    <span className="text-[11px] text-foreground/65 tabular-nums tracking-[0.14em]">
                                         {String(count).padStart(2, "0")} posts
                                     </span>
                                 </div>
-                                {desc && <p className="font-body-prose text-foreground/70 mt-1 text-[16px]">{desc}</p>}
+                                {desc && <p className="mt-1 font-body-prose text-[16px] text-foreground/70">{desc}</p>}
                             </Link>
                         </li>
                     );

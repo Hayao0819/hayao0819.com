@@ -1,7 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { FaBars } from "react-icons/fa";
 
 import { Button } from "@/components/ui/button";
@@ -30,7 +30,7 @@ export default function TatebouLayout({ children }: { children: ReactNode }) {
 
 function NavBar({ children }: { children: ReactNode }) {
     return (
-        <nav className="bg-muted flex w-full items-center px-4 py-2">
+        <nav className="flex w-full items-center bg-muted px-4 py-2">
             <div className="md:hidden">
                 <Sheet>
                     <SheetTrigger asChild>
@@ -38,7 +38,7 @@ function NavBar({ children }: { children: ReactNode }) {
                             <FaBars />
                         </Button>
                     </SheetTrigger>
-                    <SheetContent side="left" className="bg-muted w-80 p-4">
+                    <SheetContent side="left" className="w-80 bg-muted p-4">
                         <nav className="mt-8 flex flex-col space-y-2">
                             <MenuContents />
                         </nav>
@@ -70,7 +70,7 @@ function MenuContents() {
 
 function MenuItem({ name, link }: { name: string; link: string }) {
     return (
-        <NextLink href={link} className="text-muted-foreground hover:text-foreground transition-colors">
+        <NextLink href={link} className="text-muted-foreground transition-colors hover:text-foreground">
             {name}
         </NextLink>
     );

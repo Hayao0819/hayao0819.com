@@ -36,7 +36,7 @@ export default function Social() {
         <div>
             <header>
                 <PromptLine>cat social.md</PromptLine>
-                <h1 className="font-body-prose mt-4 text-3xl leading-tight tracking-tight md:text-4xl">Social</h1>
+                <h1 className="mt-4 font-body-prose text-3xl leading-tight tracking-tight md:text-4xl">Social</h1>
             </header>
 
             <hr className="hairline my-12" />
@@ -47,13 +47,13 @@ export default function Social() {
                         {i > 0 && <hr className="hairline opacity-15" />}
                         <Link
                             href={s.href}
-                            className="group text-foreground/85 hover:text-foreground grid grid-cols-[1.5rem_7.5rem_1fr] items-baseline gap-3 py-3"
+                            className="group grid grid-cols-[1.5rem_7.5rem_1fr] items-baseline gap-3 py-3 text-foreground/85 hover:text-foreground"
                         >
-                            <span className="text-foreground/70 group-hover:text-foreground translate-y-[2px] text-[14px]">
+                            <span className="translate-y-[2px] text-[14px] text-foreground/70 group-hover:text-foreground">
                                 {s.icon}
                             </span>
-                            <span className="font-body-prose group-hover:text-accent text-[15px] leading-snug">{s.name}</span>
-                            <span className="text-foreground/65 text-[11.5px] tracking-tight">{s.handle}</span>
+                            <span className="font-body-prose text-[15px] leading-snug group-hover:text-accent">{s.name}</span>
+                            <span className="text-[11.5px] text-foreground/65 tracking-tight">{s.handle}</span>
                         </Link>
                     </li>
                 ))}

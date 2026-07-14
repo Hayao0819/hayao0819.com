@@ -1,5 +1,5 @@
-import { Metadata } from "next";
-import path from "path";
+import path from "node:path";
+import type { Metadata } from "next";
 import { use } from "react";
 
 import Breadcrumbs from "@/components/elements/Breadcrumbs";
@@ -14,7 +14,7 @@ import useNoColonId from "@/hooks/useNoColonId";
 import { BLOG_URL_FORMAT } from "@/lib/blog/config";
 import { findPostFromUrl } from "@/lib/blog/fromurl";
 import { fetchedBlogPostList } from "@/lib/blog/post";
-import { PostData } from "@/lib/markdown/post";
+import type { PostData } from "@/lib/markdown/post";
 import { PostList } from "@/lib/markdown/postlist";
 import { dateToString, recursivePath } from "@/lib/utils";
 

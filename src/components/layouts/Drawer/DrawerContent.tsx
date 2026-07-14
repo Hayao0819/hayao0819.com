@@ -43,8 +43,8 @@ export default function DrawerContent() {
     };
 
     return (
-        <div className="font-mono-chrome flex h-full flex-col">
-            <header className="border-foreground/15 flex items-center justify-between border-b px-6 py-3">
+        <div className="flex h-full flex-col font-mono-chrome">
+            <header className="flex items-center justify-between border-foreground/15 border-b px-6 py-3">
                 <p className="text-[13px]">
                     <span className="text-foreground/40" aria-hidden="true">
                         ~
@@ -53,7 +53,8 @@ export default function DrawerContent() {
                     <span className="text-foreground/65">.com</span>
                 </p>
                 <button
-                    className="text-foreground/70 hover:text-foreground -mx-2 inline-flex min-h-11 items-center gap-1 px-2 text-[11px] tracking-[0.14em]"
+                    type="button"
+                    className="-mx-2 inline-flex min-h-11 items-center gap-1 px-2 text-[11px] text-foreground/70 tracking-[0.14em] hover:text-foreground"
                     onClick={toggleDrawer}
                     aria-label="close menu"
                 >
@@ -74,7 +75,7 @@ export default function DrawerContent() {
                                     onClick={toggleDrawer}
                                     aria-current={active ? "page" : undefined}
                                     className={classNames(
-                                        "flex min-h-11 items-center py-2 text-[14px] tracking-[0.14em] lowercase before:inline-block before:w-[1.15ch] before:opacity-0 before:transition-opacity before:duration-150 before:ease-[ease] before:content-['>'_/_''] hover:before:opacity-100 focus-visible:before:opacity-100 motion-reduce:before:transition-none [&[aria-current]]:before:opacity-100",
+                                        "flex min-h-11 items-center py-2 text-[14px] lowercase tracking-[0.14em] before:inline-block before:w-[1.15ch] before:opacity-0 before:transition-opacity before:duration-150 before:ease-[ease] before:content-['>'_/_''] hover:before:opacity-100 focus-visible:before:opacity-100 motion-reduce:before:transition-none [&[aria-current]]:before:opacity-100",
                                         active ? "text-accent" : "text-foreground/85 hover:text-accent",
                                     )}
                                 >
@@ -94,7 +95,7 @@ export default function DrawerContent() {
                             <Link
                                 href={item.href}
                                 onClick={toggleDrawer}
-                                className="text-foreground/70 hover:text-foreground inline-flex min-h-9 items-center py-1"
+                                className="inline-flex min-h-9 items-center py-1 text-foreground/70 hover:text-foreground"
                             >
                                 {item.label}
                             </Link>
@@ -106,19 +107,19 @@ export default function DrawerContent() {
             <div className="flex-1" />
 
             <div className="border-foreground/15 border-t px-6 py-5">
-                <div className="text-foreground/70 flex items-center gap-5 text-[14px]">
+                <div className="flex items-center gap-5 text-[14px] text-foreground/70">
                     {EXTERNAL.map(({ href, label, Icon }) => (
                         <Link
                             key={href}
                             href={href}
                             aria-label={label}
-                            className="hover:text-foreground -m-2.5 inline-flex p-2.5"
+                            className="-m-2.5 inline-flex p-2.5 hover:text-foreground"
                         >
                             <Icon />
                         </Link>
                     ))}
                 </div>
-                <p className="text-foreground/65 mt-4 text-[10.5px] tracking-[0.14em]">
+                <p className="mt-4 text-[10.5px] text-foreground/65 tracking-[0.14em]">
                     &copy; {new Date().getFullYear()} Yamada Hayao
                 </p>
             </div>

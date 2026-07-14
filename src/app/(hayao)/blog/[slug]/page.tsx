@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { Link } from "@/components/elements/Link";
@@ -6,7 +6,7 @@ import PromptLine from "@/components/elements/PromptLine";
 import { PostList as PostListElement, PostPageSwitch } from "@/components/layouts/blog/PostPreviewList";
 import { POSTLIST_ONEPAGE } from "@/lib/blog/config";
 import { fetchedBlogPostListWithoutHidden } from "@/lib/blog/post";
-import { PostData } from "@/lib/markdown/post";
+import type { PostData } from "@/lib/markdown/post";
 import { genMetaData } from "@/lib/meta";
 
 // out-of-range page numbers 404 instead of erroring in dev
@@ -14,9 +14,9 @@ export const dynamicParams = false;
 
 export default async function BlogTop(props: { params: Promise<{ slug: string }> }) {
     const params = await props.params;
-    const slug = parseInt(params.slug);
+    const slug = parseInt(params.slug, 10);
     const allpages = Math.ceil(fetchedBlogPostListWithoutHidden.getPosts().length / POSTLIST_ONEPAGE);
-    if (isNaN(slug) || slug < 1 || slug > allpages) notFound();
+    if (Number.isNaN(slug) || slug < 1 || slug > allpages) notFound();
     const postlist = getPostList(slug);
     const categories = fetchedBlogPostListWithoutHidden.getAllCategories().filter((c) => c !== "ブログ");
     const totalPosts = fetchedBlogPostListWithoutHidden.getPosts().length;
@@ -27,8 +27,8 @@ export default async function BlogTop(props: { params: Promise<{ slug: string }>
                 <PromptLine path="~/blog" comment={`page ${String(slug).padStart(2, "0")}`}>
                     ls -t
                 </PromptLine>
-                <h1 className="font-body-prose mt-4 text-3xl leading-tight tracking-tight">Blog</h1>
-                <div className="text-foreground/70 mt-6 flex flex-wrap items-baseline gap-x-5 gap-y-2 text-[12px] tracking-[0.14em]">
+                <h1 className="mt-4 font-body-prose text-3xl leading-tight tracking-tight">Blog</h1>
+                <div className="mt-6 flex flex-wrap items-baseline gap-x-5 gap-y-2 text-[12px] text-foreground/70 tracking-[0.14em]">
                     {categories.map((c) => (
                         <Link key={c} href={`/blog/category/${c}`} className="hover:text-accent">
                             <span aria-hidden="true">/</span>

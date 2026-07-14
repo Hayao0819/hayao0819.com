@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { default as NextLink } from "next/link";
-import { ComponentPropsWithoutRef, memo, useEffect, useState } from "react";
+import { type ComponentPropsWithoutRef, memo, useEffect, useState } from "react";
 
 interface TocProps extends ComponentPropsWithoutRef<"div"> {
     contentSelector: string;
@@ -40,7 +40,6 @@ const genHeadingTree = (list: HeadingList) => {
         // 深い階層の場合
         if (current.level < item.level) {
             current.children.push({ ...item, children: [] });
-            continue;
         }
     }
 
@@ -51,7 +50,7 @@ const elementsToHeadingList = (elements: Element[]): HeadingList =>
     elements.map((e) => ({
         id: e.id,
         text: e.innerHTML,
-        level: parseInt(e.tagName.slice(1)),
+        level: parseInt(e.tagName.slice(1), 10),
     }));
 
 const elementsToHeadingTree = (elements: Element[]): HeadingTree[] => genHeadingTree(elementsToHeadingList(elements));
@@ -63,7 +62,7 @@ const RenderHeadingTree = ({ tree, indent }: { tree: HeadingTree[]; indent: numb
         <ul
             className={clsx("list-none", {
                 "space-y-2": isTopLevel,
-                "border-foreground/15 mt-2 space-y-1 border-l pl-4": !isTopLevel,
+                "mt-2 space-y-1 border-foreground/15 border-l pl-4": !isTopLevel,
             })}
         >
             {tree.map((e, index) => (
@@ -74,13 +73,13 @@ const RenderHeadingTree = ({ tree, indent }: { tree: HeadingTree[]; indent: numb
                         className={clsx(
                             "group flex items-start gap-3 transition-colors",
                             isTopLevel
-                                ? "hover:border-accent hover:text-accent border-l border-transparent py-1 pl-3"
-                                : "hover:text-accent py-0.5 text-sm",
+                                ? "border-transparent border-l py-1 pl-3 hover:border-accent hover:text-accent"
+                                : "py-0.5 text-sm hover:text-accent",
                         )}
                     >
                         <span
                             className={clsx(
-                                "group-hover:text-accent shrink-0 font-mono transition-colors",
+                                "shrink-0 font-mono transition-colors group-hover:text-accent",
                                 isTopLevel ? "text-foreground/65 text-sm" : "text-foreground/30 text-xs",
                             )}
                         >
@@ -111,7 +110,7 @@ export const useHeadingTree = (contentSelector: string) => {
             ),
         );
         setTree(headingTree);
-    }, []);
+    }, [contentSelector]);
 
     return tree;
 };

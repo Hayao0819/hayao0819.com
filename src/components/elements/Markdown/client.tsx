@@ -1,10 +1,10 @@
 "use client";
 
 import { MDXClient } from "next-mdx-remote-client/csr";
-import { serialize, SerializeResult } from "next-mdx-remote-client/serialize";
+import { type SerializeResult, serialize } from "next-mdx-remote-client/serialize";
 import { memo, useEffect, useState } from "react";
 
-import { MarkdownProps, remarkPlugins, remarkPluginsOnlyText } from "./common";
+import { type MarkdownProps, remarkPlugins, remarkPluginsOnlyText } from "./common";
 import { useComponents } from "./components";
 
 type SerializedResult = SerializeResult<Record<string, unknown>, Record<string, unknown>>;
@@ -32,7 +32,7 @@ const Markdown = ({ content, basepath }: MarkdownProps) => {
                 console.error(err);
             },
         );
-    }, []);
+    }, [content]);
 
     const components = useComponents(basepath);
 

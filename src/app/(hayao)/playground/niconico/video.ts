@@ -1,5 +1,5 @@
 import { atom, useAtomValue } from "jotai";
-import { Dispatch, SetStateAction, useState } from "react";
+import { type Dispatch, type SetStateAction, useState } from "react";
 
 const apiUrl =
     process.env.NODE_ENV === "development" ? "http://localhost:3000/api/niconico" : "https://nicorekari.nanasi-rasi.net/DB.json";

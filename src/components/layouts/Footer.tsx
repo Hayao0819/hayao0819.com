@@ -11,17 +11,17 @@ export default function Footer() {
     const year = new Date().getFullYear();
 
     return (
-        <footer className="border-foreground/25 bg-background border-t">
+        <footer className="border-foreground/25 border-t bg-background">
             <div className="mx-auto max-w-[60rem] px-6 py-8 md:px-8">
-                <p className="text-[13px] font-semibold">Yamada Hayao</p>
-                <p className="text-foreground/70 mt-1 text-[12px]">パソコンをカタカタ触るのが趣味の底辺大学生</p>
+                <p className="font-semibold text-[13px]">Yamada Hayao</p>
+                <p className="mt-1 text-[12px] text-foreground/70">パソコンをカタカタ触るのが趣味の底辺大学生</p>
                 <div className="mt-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 text-[11px] tracking-[0.14em]">
-                    <nav className="text-foreground/70 flex flex-wrap gap-x-5 gap-y-2 lowercase">
+                    <nav className="flex flex-wrap gap-x-5 gap-y-2 text-foreground/70 lowercase">
                         {LINKS.map((l) => (
                             <Link
                                 key={l.href}
                                 href={l.href}
-                                className="hover:text-foreground -my-1.5 inline-flex items-center py-1.5"
+                                className="-my-1.5 inline-flex items-center py-1.5 hover:text-foreground"
                             >
                                 <span className="text-foreground/45" aria-hidden="true">
                                     ./

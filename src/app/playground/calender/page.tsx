@@ -123,8 +123,12 @@ export default function Calendar() {
             <text>
                 {selectedDate.year}. {selectedDate.month}
             </text>
-            <button onClick={() => nextMonth()}>Next month</button>
-            <button onClick={() => previousMonth()}>Previous month</button>
+            <button type="button" onClick={() => nextMonth()}>
+                Next month
+            </button>
+            <button type="button" onClick={() => previousMonth()}>
+                Previous month
+            </button>
             <div className="grid grid-flow-row grid-cols-7 grid-rows-7">
                 {calendarDays.map((day) =>
                     day.month === selectedDate.month ? (

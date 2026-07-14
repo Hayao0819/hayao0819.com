@@ -1,7 +1,7 @@
-import { MDXComponents } from "mdx/types";
-import { ComponentPropsWithoutRef, useMemo } from "react";
+import type { MDXComponents } from "mdx/types";
+import { type ComponentPropsWithoutRef, useMemo } from "react";
 
-import { ComponentPropsWithoutRefAndClassName } from "@/lib/type";
+import type { ComponentPropsWithoutRefAndClassName } from "@/lib/type";
 
 import { BlogHeading as Heading } from "../Heading";
 import { Link } from "../Link";
@@ -52,7 +52,7 @@ export const getComponents = (basepath: string): MDXComponents => {
             let src = props.src;
             if (!src?.startsWith("http")) {
                 // basepath ends with a slash — collapse duplicates for canonical URLs
-                src = (basepath + "/" + src).replaceAll(/\/{2,}/g, "/");
+                src = `${basepath}/${src}`.replaceAll(/\/{2,}/g, "/");
             }
 
             // Use span instead of figure to avoid hydration error when img is inside <p>
@@ -103,11 +103,11 @@ export const getComponents = (basepath: string): MDXComponents => {
         hr: () => <hr className="border-foreground/25 my-10 border-t" />,
 
         table: ({ children }) => (
-            // Same treatment as <pre>: a focusable, named scroll region so
-            // keyboard users can scroll wide tables
-            <div className="my-7 overflow-x-auto" tabIndex={0} role="region" aria-label="table">
+            // Named scroll region for wide tables; modern browsers make overflow
+            // regions keyboard-scrollable without an explicit tabindex.
+            <section className="my-7 overflow-x-auto" aria-label="table">
                 <table className="w-full border-collapse text-[14px]">{children}</table>
-            </div>
+            </section>
         ),
         thead: ({ children }) => <thead className="border-foreground/30 border-b">{children}</thead>,
         th: ({ children }) => <th className="mono-eyebrow px-3 py-2 text-left text-[11px]">{children}</th>,

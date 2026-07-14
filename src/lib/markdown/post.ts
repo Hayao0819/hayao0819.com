@@ -1,10 +1,10 @@
-import fs from "fs";
+import fs from "node:fs";
 import matter from "gray-matter";
 
-import { PostMeta } from "@/lib/markdown/type";
+import type { PostMeta } from "@/lib/markdown/type";
 
 import { BLOG_URL_FORMAT } from "../blog/config";
-import { formatURL, mdPathToURL, URLFormat } from "./url";
+import { formatURL, mdPathToURL, type URLFormat } from "./url";
 
 export interface StaticPostData {
     file: string;
@@ -34,7 +34,7 @@ export class PostData {
     }
 
     get summary() {
-        return this.#content.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, "").slice(0, 100) + "...";
+        return `${this.#content.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, "").slice(0, 100)}...`;
     }
 
     get categories() {

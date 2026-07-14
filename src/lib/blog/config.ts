@@ -1,7 +1,7 @@
-import path from "path";
+import path from "node:path";
 
-import { URLFormat } from "../markdown/url";
-import { Category } from "./categories";
+import type { URLFormat } from "../markdown/url";
+import type { Category } from "./categories";
 
 export const POSTLIST_ONEPAGE = 9;
 export const MDFILE_DIR = path.join(process.cwd(), "posts");

@@ -4,7 +4,7 @@ import { Link as ViewTransitionLink } from "@hayao/next-view-transitions";
 import classNames from "clsx";
 import { motion } from "framer-motion";
 import { default as NextLink } from "next/link";
-import { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 
 //type LinkProps = ComponentPropsWithoutRefAndClassName<"a">;
 type NextLinkProps = ComponentPropsWithoutRef<typeof NextLink>;

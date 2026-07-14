@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import StatusLine from "@/components/elements/StatusLine";
 import Layout from "@/components/layouts/Layout";

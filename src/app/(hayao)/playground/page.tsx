@@ -2,12 +2,12 @@ import { AnimatedLink } from "@/components/elements/Link";
 
 export default function Playground() {
     return (
-        <div className="border-border m-auto flex w-full max-w-2xl items-start justify-center border-4">
-            <h1 className="border-border hidden self-stretch border-r-4 p-4 text-3xl font-bold [writing-mode:vertical-lr] md:block">
+        <div className="m-auto flex w-full max-w-2xl items-start justify-center border-4 border-border">
+            <h1 className="hidden self-stretch border-border border-r-4 p-4 font-bold text-3xl [writing-mode:vertical-lr] md:block">
                 Playground
             </h1>
             <div className="flex min-w-0 flex-1 flex-col">
-                <h1 className="border-border border-b-4 p-4 text-3xl font-bold md:hidden">Playground</h1>
+                <h1 className="border-border border-b-4 p-4 font-bold text-3xl md:hidden">Playground</h1>
                 <div className="border-border border-b-4 p-4">
                     <p className="mb-2 font-bold">Colors</p>
                     <ColorList />
@@ -29,8 +29,8 @@ function ColorList() {
     return (
         <div className="flex flex-wrap gap-2">
             {["bg-primary", "bg-secondary", "bg-accent", "bg-neutral"].map((c) => (
-                <div className={"flex h-10 w-24 items-center justify-center " + c} key={c}>
-                    <p className="text-background text-center text-xs">{c}</p>
+                <div className={`flex h-10 w-24 items-center justify-center${c}`} key={c}>
+                    <p className="text-center text-background text-xs">{c}</p>
                 </div>
             ))}
         </div>

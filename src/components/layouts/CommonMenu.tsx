@@ -1,7 +1,7 @@
 "use client";
 
 import classNames from "clsx";
-import { RefObject, useRef, useState } from "react";
+import { type RefObject, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { useOnClickOutside } from "usehooks-ts";
 
@@ -61,23 +61,22 @@ function MenuItemWithDropdown({
     return (
         <details
             className="group relative"
-            onClick={(e) => {
-                e.preventDefault();
-                setIsOpened(!isOpened);
+            onToggle={(e) => {
+                setIsOpened((e.currentTarget as HTMLDetailsElement).open);
             }}
             open={isOpened}
             ref={detailsRef}
         >
             <summary
                 className={classNames(
-                    "relative flex cursor-pointer list-none items-center gap-1 text-sm font-bold tracking-wide uppercase transition-colors [&::-webkit-details-marker]:hidden",
+                    "relative flex cursor-pointer list-none items-center gap-1 font-bold text-sm uppercase tracking-wide transition-colors [&::-webkit-details-marker]:hidden",
                     horizontal
                         ? [
                               "px-6 py-4",
-                              "after:bg-foreground after:absolute after:bottom-2 after:left-1/2 after:h-1 after:w-0 after:transition-all after:duration-300",
+                              "after:absolute after:bottom-2 after:left-1/2 after:h-1 after:w-0 after:bg-foreground after:transition-all after:duration-300",
                               "hover:after:left-0 hover:after:w-full",
                           ]
-                        : "hover:border-border hover:bg-foreground/5 border-l-4 border-transparent px-6 py-3",
+                        : "border-transparent border-l-4 px-6 py-3 hover:border-border hover:bg-foreground/5",
                 )}
             >
                 {label}
@@ -87,9 +86,9 @@ function MenuItemWithDropdown({
             </summary>
             <nav
                 className={classNames(
-                    "bg-background z-50 min-w-[180px]",
+                    "z-50 min-w-[180px] bg-background",
                     horizontal
-                        ? "border-border absolute top-full left-0 border-4 shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
+                        ? "absolute top-full left-0 border-4 border-border shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
                         : "mt-1 ml-4",
                 )}
             >
@@ -159,7 +158,7 @@ function MenuItem({
                 href={href}
                 onClick={onClick}
                 className={classNames(
-                    "after:bg-foreground relative flex items-center py-4 text-sm font-bold tracking-wide uppercase transition-colors after:absolute after:bottom-2 after:h-1 after:w-0 after:transition-all after:duration-300",
+                    "relative flex items-center py-4 font-bold text-sm uppercase tracking-wide transition-colors after:absolute after:bottom-2 after:h-1 after:w-0 after:bg-foreground after:transition-all after:duration-300",
                     first ? "px-8" : "px-6",
                     first
                         ? "after:left-[60%] hover:after:left-[12%] hover:after:w-[88%]"
@@ -176,7 +175,7 @@ function MenuItem({
         <Link
             href={href}
             onClick={onClick}
-            className="hover:border-border hover:bg-foreground/5 flex items-center border-l-4 border-transparent px-6 py-3 text-sm font-bold tracking-wide uppercase transition-colors"
+            className="flex items-center border-transparent border-l-4 px-6 py-3 font-bold text-sm uppercase tracking-wide transition-colors hover:border-border hover:bg-foreground/5"
         >
             {text}
         </Link>
@@ -199,10 +198,10 @@ function SubMenuItem({
             href={href}
             onClick={onClick}
             className={classNames(
-                "block text-sm font-medium transition-colors",
+                "block font-medium text-sm transition-colors",
                 horizontal
-                    ? "border-border/20 hover:bg-foreground hover:text-background border-b-2 px-5 py-4 last:border-b-0"
-                    : "hover:border-border hover:bg-foreground/5 border-l-2 border-transparent py-2 pl-4",
+                    ? "border-border/20 border-b-2 px-5 py-4 last:border-b-0 hover:bg-foreground hover:text-background"
+                    : "border-transparent border-l-2 py-2 pl-4 hover:border-border hover:bg-foreground/5",
             )}
         >
             {text}

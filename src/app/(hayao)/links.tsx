@@ -27,7 +27,7 @@ export function TwitterLink() {
 export function GitHubLink() {
     return (
         <Link href="https://github.com/Hayao0819" className="flex items-center justify-center">
-            <FaGithub className="text-github text-5xl" />
+            <FaGithub className="text-5xl text-github" />
             {/* <div className="">
                 <p>@Hayao0819</p>
             </div> */}

@@ -5,7 +5,7 @@ import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkStrip from "strip-markdown";
-import { PluggableList } from "unified";
+import type { PluggableList } from "unified";
 
 export const remarkPlugins: PluggableList = [remarkGfm, remarkMath];
 export const remarkPluginsOnlyText: PluggableList = [remarkGfm, remarkStrip];

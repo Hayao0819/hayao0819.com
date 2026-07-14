@@ -19,14 +19,14 @@ export default function Gyagu() {
         <div>
             <header>
                 <PromptLine>cat gyagu.md</PromptLine>
-                <h1 className="font-body-prose mt-4 text-3xl leading-tight tracking-tight md:text-4xl">爆笑ギャグ</h1>
-                <p className="font-body-prose text-foreground/70 mt-4 text-[13px]">不足しています。助けてください。</p>
+                <h1 className="mt-4 font-body-prose text-3xl leading-tight tracking-tight md:text-4xl">爆笑ギャグ</h1>
+                <p className="mt-4 font-body-prose text-[13px] text-foreground/70">不足しています。助けてください。</p>
             </header>
 
             <hr className="hairline my-12" />
 
             <section>
-                <div className="font-body-prose text-foreground/90 text-[16px] leading-[1.9]">
+                <div className="font-body-prose text-[16px] text-foreground/90 leading-[1.9]">
                     <GyaguList />
                 </div>
             </section>
@@ -34,8 +34,8 @@ export default function Gyagu() {
             <hr className="hairline my-12" />
 
             <section>
-                <p className="text-foreground font-medium">ギャグが足りない人へ</p>
-                <p className="text-foreground/70 mt-1 text-[11.5px]">友達のサイトもうるサイトwww</p>
+                <p className="font-medium text-foreground">ギャグが足りない人へ</p>
+                <p className="mt-1 text-[11.5px] text-foreground/70">友達のサイトもうるサイトwww</p>
                 <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[13px]">
                     {FRIENDS.map((f) => (
                         <li key={f.href}>
@@ -50,7 +50,7 @@ export default function Gyagu() {
             <hr className="hairline my-12" />
 
             <section>
-                <p className="text-foreground font-medium">ギャグが足りている方へ</p>
+                <p className="font-medium text-foreground">ギャグが足りている方へ</p>
                 <p className="mt-5 text-[13px]">
                     <Link href="https://souhait.me/gyagu" className="link-ai">
                         souhait.net &rarr;
@@ -58,7 +58,7 @@ export default function Gyagu() {
                 </p>
             </section>
 
-            <div className="text-foreground/65 mt-16 text-center text-[12px]">
+            <div className="mt-16 text-center text-[12px] text-foreground/65">
                 <p>連絡してくれれば載せるかもしれません</p>
                 <p className="mt-2">これより下に内容は無いようです。</p>
             </div>

@@ -2,16 +2,16 @@
 
 import { Link } from "@/components/elements/Link";
 import { SUMMARY_LENGTH } from "@/lib/blog/config";
-import { StaticPostData } from "@/lib/markdown/post";
+import type { StaticPostData } from "@/lib/markdown/post";
 import * as utils from "@/lib/utils";
 
 const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
     if (!post.meta.title || !post.meta.date) {
-        return <></>;
+        return null;
     }
 
     const postDate = new Date(post.meta.date);
-    const fullURL = "/blog/posts/" + post.url;
+    const fullURL = `/blog/posts/${post.url}`;
 
     return (
         <article className="group">
@@ -21,7 +21,7 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
                     <Link
                         key={s}
                         href={`/blog/category/${s}`}
-                        className="text-foreground/70 hover:text-accent -my-2 inline-flex py-2"
+                        className="-my-2 inline-flex py-2 text-foreground/70 hover:text-accent"
                     >
                         /{s}
                     </Link>
@@ -30,14 +30,14 @@ const PostPreview = ({ posts: post }: { posts: StaticPostData }) => {
 
             <Link
                 href={fullURL}
-                className="before:bg-accent relative mt-2 block before:pointer-events-none before:absolute before:top-[0.82em] before:left-[-1.1em] before:h-[0.42em] before:w-[0.42em] before:-translate-y-1/2 before:opacity-0 before:transition-opacity before:duration-[120ms] before:content-[''] group-focus-within:before:opacity-100 group-hover:before:opacity-100 hover:before:opacity-100 focus-visible:before:opacity-100 motion-reduce:before:transition-none"
+                className="relative mt-2 block before:pointer-events-none before:absolute before:top-[0.82em] before:left-[-1.1em] before:h-[0.42em] before:w-[0.42em] before:-translate-y-1/2 before:bg-accent before:opacity-0 before:transition-opacity before:duration-[120ms] before:content-[''] hover:before:opacity-100 focus-visible:before:opacity-100 group-focus-within:before:opacity-100 group-hover:before:opacity-100 motion-reduce:before:transition-none"
             >
-                <h2 className="font-body-prose text-foreground group-hover:text-accent break-phrase text-[19px] leading-snug font-medium text-pretty transition-colors">
+                <h2 className="break-phrase text-pretty font-body-prose font-medium text-[19px] text-foreground leading-snug transition-colors group-hover:text-accent">
                     {post.meta.title}
                 </h2>
             </Link>
 
-            <p className="font-body-prose text-foreground/70 mt-2 line-clamp-2 text-[16px] leading-[1.8]">
+            <p className="mt-2 line-clamp-2 font-body-prose text-[16px] text-foreground/70 leading-[1.8]">
                 {utils.markdownToPlainText(post.content).slice(0, SUMMARY_LENGTH)}
             </p>
         </article>

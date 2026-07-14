@@ -1,16 +1,14 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 @config "../../tailwind.config.mjs";
 @plugin "@tailwindcss/typography";
 
-@import "tw-animate-css";
-
 :root {
-    --font-mono: "JetBrains Mono", "Noto Sans Mono CJK JP", "Source Code Pro",
-        ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace;
-    --font-body: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho",
-        "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
-    --font-sans-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui,
-        sans-serif;
+    --font-mono:
+        "JetBrains Mono", "Noto Sans Mono CJK JP", "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Consolas,
+        "Courier New", monospace;
+    --font-body: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    --font-sans-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -142,7 +140,6 @@
         overflow-wrap: anywhere;
     }
 
-
     /* Remove extra padding from paragraphs inside blockquote */
     blockquote p {
         @apply py-0;
@@ -166,33 +163,33 @@
     --radius: 0rem;
 
     /* Two-tone palette — paper + ink, with one 藍色 ai-iro accent */
-    --background: #F4F1E8;            /* warm off-white paper */
-    --foreground: #1A1A1A;            /* 墨 ink */
+    --background: #f4f1e8; /* warm off-white paper */
+    --foreground: #1a1a1a; /* 墨 ink */
 
-    --card: #F2EFE4;
+    --card: #f2efe4;
     --card-foreground: #131313;
 
-    --popover: #F2EFE4;
+    --popover: #f2efe4;
     --popover-foreground: #131313;
 
     --primary: #131313;
-    --primary-foreground: #FCFCFC;
+    --primary-foreground: #fcfcfc;
 
     --secondary: #1f1f1f;
-    --secondary-foreground: #FCFCFC;
+    --secondary-foreground: #fcfcfc;
 
-    --muted: #E8E4D5;                /* warm muted surface */
-    --muted-foreground: #6b6657;     /* warm gray */
+    --muted: #e8e4d5; /* warm muted surface */
+    --muted-foreground: #6b6657; /* warm gray */
 
-    --accent: #1F4E8C;               /* 藍色 ai-iro — Edo indigo */
-    --accent-foreground: #FCFCFC;
+    --accent: #1f4e8c; /* 藍色 ai-iro — Edo indigo */
+    --accent-foreground: #fcfcfc;
 
-    --destructive: #8A2A24;          /* muted brick */
-    --destructive-foreground: #FCFCFC;
+    --destructive: #8a2a24; /* muted brick */
+    --destructive-foreground: #fcfcfc;
 
     --border: #131313;
     --input: #131313;
-    --ring: #1F4E8C;                 /* accent color */
+    --ring: #1f4e8c; /* accent color */
 
     --chart-1: oklch(0.646 0.222 41.116);
     --chart-2: oklch(0.6 0.118 184.704);
@@ -200,45 +197,45 @@
     --chart-4: oklch(0.828 0.189 84.429);
     --chart-5: oklch(0.769 0.188 70.08);
 
-    --sidebar: #F2EFE4;
+    --sidebar: #f2efe4;
     --sidebar-foreground: #131313;
     --sidebar-primary: #131313;
-    --sidebar-primary-foreground: #FCFCFC;
-    --sidebar-accent: #E8E4D5;
+    --sidebar-primary-foreground: #fcfcfc;
+    --sidebar-accent: #e8e4d5;
     --sidebar-accent-foreground: #131313;
     --sidebar-border: #131313;
-    --sidebar-ring: #1F4E8C;
+    --sidebar-ring: #1f4e8c;
 }
 
 .dark {
     /* Dark mode - inverted Frame Design */
     --background: #131313;
-    --foreground: #FCFCFC;
+    --foreground: #fcfcfc;
 
     --card: #1a1a1a;
-    --card-foreground: #FCFCFC;
+    --card-foreground: #fcfcfc;
 
     --popover: #1a1a1a;
-    --popover-foreground: #FCFCFC;
+    --popover-foreground: #fcfcfc;
 
-    --primary: #FCFCFC;
+    --primary: #fcfcfc;
     --primary-foreground: #131313;
 
     --secondary: #2b2b2b;
-    --secondary-foreground: #FCFCFC;
+    --secondary-foreground: #fcfcfc;
 
     --muted: #2b2b2b;
     --muted-foreground: #999999;
 
-    --accent: #1F4E8C;
-    --accent-foreground: #FCFCFC;
+    --accent: #1f4e8c;
+    --accent-foreground: #fcfcfc;
 
-    --destructive: #8A2A24;
-    --destructive-foreground: #FCFCFC;
+    --destructive: #8a2a24;
+    --destructive-foreground: #fcfcfc;
 
-    --border: #FCFCFC;
-    --input: #FCFCFC;
-    --ring: #1F4E8C;
+    --border: #fcfcfc;
+    --input: #fcfcfc;
+    --ring: #1f4e8c;
 
     --chart-1: oklch(0.488 0.243 264.376);
     --chart-2: oklch(0.696 0.17 162.48);
@@ -247,36 +244,41 @@
     --chart-5: oklch(0.645 0.246 16.439);
 
     --sidebar: #1a1a1a;
-    --sidebar-foreground: #FCFCFC;
-    --sidebar-primary: #FCFCFC;
+    --sidebar-foreground: #fcfcfc;
+    --sidebar-primary: #fcfcfc;
     --sidebar-primary-foreground: #131313;
     --sidebar-accent: #2b2b2b;
-    --sidebar-accent-foreground: #FCFCFC;
-    --sidebar-border: #FCFCFC;
-    --sidebar-ring: #1F4E8C;
+    --sidebar-accent-foreground: #fcfcfc;
+    --sidebar-border: #fcfcfc;
+    --sidebar-ring: #1f4e8c;
 }
 
 @layer base {
-  * {
-    @apply border-foreground outline-ring;
+    * {
+        @apply border-foreground outline-ring;
     }
-  body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-mono);
-    font-feature-settings: "ss01", "ss02", "calt";
-    letter-spacing: 0.01em;
-    }
-
-  /* Prose content (post bodies) gets the readable body face */
-  .prose,
-  article.prose,
-  [data-prose="body"] {
-    font-family: var(--font-body);
-    letter-spacing: 0.005em;
+    body {
+        @apply bg-background text-foreground;
+        font-family: var(--font-mono);
+        font-feature-settings: "ss01", "ss02", "calt";
+        letter-spacing: 0.01em;
     }
 
-  /* Inline code & code blocks remain mono */
-  code, pre, kbd, samp { font-family: var(--font-mono); }
+    /* Prose content (post bodies) gets the readable body face */
+    .prose,
+    article.prose,
+    [data-prose="body"] {
+        font-family: var(--font-body);
+        letter-spacing: 0.005em;
+    }
+
+    /* Inline code & code blocks remain mono */
+    code,
+    pre,
+    kbd,
+    samp {
+        font-family: var(--font-mono);
+    }
 }
 
 /* =========================================================
@@ -304,7 +306,9 @@ body {
     padding-bottom: 36px;
 }
 @media (max-width: 768px) {
-    body { padding-bottom: 28px; }
+    body {
+        padding-bottom: 28px;
+    }
 }
 .status-line {
     position: fixed;
@@ -373,23 +377,39 @@ body {
     animation: status-blink 1.6s ease-in-out infinite;
 }
 @keyframes status-blink {
-    0%, 60% { opacity: 1; }
-    61%, 100% { opacity: 0.3; }
+    0%,
+    60% {
+        opacity: 1;
+    }
+    61%,
+    100% {
+        opacity: 0.3;
+    }
 }
 @media (max-width: 1679px) {
-    .status-line__cell--path { display: none; }
+    .status-line__cell--path {
+        display: none;
+    }
 }
 @media (max-width: 1439px) {
-    .status-line__cell--secondary { display: none; }
+    .status-line__cell--secondary {
+        display: none;
+    }
 }
 @media (max-width: 640px) {
     /* keep the 10.5px type — drop cells instead of shrinking below legibility */
     .status-line__cell--secondary,
-    .status-line__cell--clock { display: none; }
+    .status-line__cell--clock {
+        display: none;
+    }
 }
 @media (prefers-reduced-motion: reduce) {
-    .status-line { animation: none; }
-    .status-line__dot { animation: none; }
+    .status-line {
+        animation: none;
+    }
+    .status-line__dot {
+        animation: none;
+    }
 }
 
 /* =========================================================
@@ -405,7 +425,7 @@ body {
    the chip treatment replaces them. Unlayered so it wins over utilities. */
 .prose code::before,
 .prose code::after {
-    content: none !important;
+    content: none;
 }
 
 /* One type system: prose inherits the ink token instead of the
@@ -542,7 +562,7 @@ a {
 figure[data-rehype-pretty-code-figure] {
     /* One step deeper on the same paper — stays in the #F4F1E8 family.
        Token colors (ink + 藍 + brick) live in the shiki theme (common.tsx). */
-    --code-paper: #ECE8D9;
+    --code-paper: #ece8d9;
     position: relative;
     margin: 1.75rem 0;
     border-top: 1px solid color-mix(in oklab, var(--foreground) 35%, transparent);
@@ -565,31 +585,31 @@ figure[data-rehype-pretty-code-figure] {
         line-height: 1;
         letter-spacing: 0.15em;
         color: color-mix(in oklab, var(--foreground) 72%, transparent);
-        background: #E4DFCD;
+        background: #e4dfcd;
         border-bottom: 1px solid color-mix(in oklab, var(--foreground) 14%, transparent);
         pointer-events: none;
     }
 
     /* Honest prompt marker for shell blocks */
     pre:is(
-            [data-language="bash"],
-            [data-language="sh"],
-            [data-language="shell"],
-            [data-language="zsh"],
-            [data-language="fish"],
-            [data-language="console"]
-        )::before {
+        [data-language="bash"],
+        [data-language="sh"],
+        [data-language="shell"],
+        [data-language="zsh"],
+        [data-language="fish"],
+        [data-language="console"]
+    )::before {
         content: "$ " attr(data-language) / "";
     }
 
     pre {
-        margin: 0 !important;
+        margin: 0;
         padding: calc(2rem + 1.25rem) 1.25rem 1.25rem;
         overflow-x: auto;
         container-type: scroll-state;
-        background: transparent !important;
-        color: var(--foreground) !important;
-        border-radius: 0 !important;
+        background: transparent;
+        color: var(--foreground);
+        border-radius: 0;
         font-size: 13.5px;
         line-height: 1.7;
         tab-size: 4;
@@ -649,7 +669,7 @@ figure[data-rehype-pretty-code-figure] {
         flex-direction: column;
         min-width: 100%;
         width: max-content;
-        background: transparent !important;
+        background: transparent;
         font-size: inherit;
         line-height: inherit;
     }

@@ -35,7 +35,7 @@ function fmtPath(p: string) {
     if (trimmed.length <= 18) return trimmed;
     // keep the tail (slug) so the chip never grows into the reading column
     const last = trimmed.split("/").pop() ?? "";
-    return ("…/" + last).slice(0, 22);
+    return `…/${last}`.slice(0, 22);
 }
 
 export function StatusLine() {

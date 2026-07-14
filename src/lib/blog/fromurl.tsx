@@ -1,5 +1,5 @@
-import path from "path";
-import { ReactNode } from "react";
+import path from "node:path";
+import type { ReactNode } from "react";
 
 import Markdown from "@/components/elements/Markdown/server";
 
@@ -57,7 +57,7 @@ export function findPostFromUrl(url: string): FoundPost {
         return {
             post: post,
             isDir: false,
-            parsed: <Markdown content={content} basepath={"/posts/" + post.url} />,
+            parsed: <Markdown content={content} basepath={`/posts/${post.url}`} />,
         };
     } else {
         return {

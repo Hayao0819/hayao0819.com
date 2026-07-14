@@ -1,6 +1,6 @@
+import type { Url } from "node:url";
 import NextLink from "next/link";
-import { JSX, ReactNode } from "react";
-import { Url } from "url";
+import type { JSX, ReactNode } from "react";
 
 interface LinkProps {
     href: string | Url;

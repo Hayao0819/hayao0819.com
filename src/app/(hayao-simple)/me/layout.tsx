@@ -1,13 +1,13 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { FaCircle } from "react-icons/fa6";
 
 import { Link } from "@/components/elements/Link";
 
 export default function MeLayout(props: { children: ReactNode }) {
     return (
-        <div className="font-gothic flex h-full w-svw !text-black">
+        <div className="!text-black flex h-full w-svw font-gothic">
             <MeSideBar />
-            <main id="main" className="grow border-l border-black pl-2">
+            <main id="main" className="grow border-black border-l pl-2">
                 <div className="*:mx-auto">{props.children}</div>
             </main>
         </div>
@@ -16,18 +16,20 @@ export default function MeLayout(props: { children: ReactNode }) {
 
 const MeSideBar = () => {
     const Circle = ({ className }: { className?: string }) => {
-        return <FaCircle className={className + " w-[10px]"} />;
+        return <FaCircle className={`${className}w-[10px]`} />;
     };
 
     return (
-        <div className="border-r-[5px] border-[#aaaaaa] bg-[#F0F0FF]">
+        <div className="border-[#aaaaaa] border-r-[5px] bg-[#F0F0FF]">
             <input type="checkbox" className="peer hidden" id="menu-open-btn" />
             <label
                 htmlFor="menu-open-btn"
                 className="block h-full w-8 peer-checked:h-6 peer-checked:w-full peer-checked:after:content-['✕'] md:hidden"
-            />
+            >
+                <span className="sr-only">メニューを開く</span>
+            </label>
 
-            <div className="hidden h-svh w-1/5 min-w-48 peer-checked:!block md:block">
+            <div className="peer-checked:!block hidden h-svh w-1/5 min-w-48 md:block">
                 <ul className="ml-6 flex h-full flex-col text-blue-600 underline *:my-4 *:*:flex *:*:items-center *:*:gap-2">
                     <span></span>
                     <li>

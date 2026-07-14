@@ -2,8 +2,8 @@
 
 import "nextjs-simple-typewriter/dist/index.css";
 
-import { Cursor, CursorProps, TypewriterProps, useTypewriter } from "nextjs-simple-typewriter";
-import { JSX, useCallback } from "react";
+import { Cursor, type CursorProps, type TypewriterProps, useTypewriter } from "nextjs-simple-typewriter";
+import { type JSX, useCallback } from "react";
 
 type ComponentProps = {
     /** Show / Hide the cursor */
@@ -41,7 +41,7 @@ export const Typewriter = ({
     });
 
     const CursorElement = useCallback(
-        () => (cursor ? <Cursor cursorStyle={cursorStyle} cursorColor={cursorColor} cursorBlinking={cursorBlinking} /> : <></>),
+        () => (cursor ? <Cursor cursorStyle={cursorStyle} cursorColor={cursorColor} cursorBlinking={cursorBlinking} /> : null),
         [cursor, cursorStyle, cursorColor, cursorBlinking],
     );
 

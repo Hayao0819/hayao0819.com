@@ -7,8 +7,8 @@ export function cn(...inputs: ClassValue[]) {
 
 export const dateToString = (date: Date, delimiter: string = "/") => {
     const year = date.getFullYear();
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const day = ("0" + date.getDate()).slice(-2);
+    const month = `0${date.getMonth() + 1}`.slice(-2);
+    const day = `0${date.getDate()}`.slice(-2);
 
     return `${year}${delimiter}${month}${delimiter}${day}`;
 };
@@ -16,7 +16,7 @@ export const dateToString = (date: Date, delimiter: string = "/") => {
 export const recursivePath = (pathName: string) => {
     const splited = pathName.split("/").filter((s) => s !== "");
 
-    return splited.map((d, i) => {
+    return splited.map((_d, i) => {
         //return path.join(...splited.slice(undefined, i), d);
         // path.joinを使わない
         return splited.slice(undefined, i + 1).join("/");

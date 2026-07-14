@@ -1,6 +1,6 @@
 "use client";
-import { ComponentPropsWithoutRef } from "react";
-import { Tweet as TweetWidget, TweetProps as LibTweetProps } from "react-twitter-widgets";
+import type { ComponentPropsWithoutRef } from "react";
+import { type TweetProps as LibTweetProps, Tweet as TweetWidget } from "react-twitter-widgets";
 
 import { cn } from "@/lib/utils";
 

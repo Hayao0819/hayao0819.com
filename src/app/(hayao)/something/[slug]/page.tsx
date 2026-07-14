@@ -18,7 +18,7 @@ export default async function Projects(hoge: { params: Promise<{ slug: string }>
 
     return postElement ? (
         <div
-            className={`prose font-body-prose text-foreground/90 w-full ${PROSE_TIER} text-[17px] leading-[1.9]`}
+            className={`prose w-full font-body-prose text-foreground/90 ${PROSE_TIER} text-[17px] leading-[1.9]`}
             data-prose="body"
         >
             {postElement}
