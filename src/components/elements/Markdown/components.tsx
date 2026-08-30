@@ -71,7 +71,7 @@ export const getComponents = (basepath: string): MDXComponents => {
             }
             // Inline code — mono, quiet paper-shifted chip, ink text
             return (
-                <code className="bg-foreground/[0.07] text-foreground/90 mx-0.5 px-[0.4em] py-[0.15em] font-mono text-[0.9em]">
+                <code className="mx-0.5 bg-foreground/[0.07] px-[0.4em] py-[0.15em] font-mono text-[0.9em] text-foreground/90">
                     {children}
                 </code>
             );
@@ -83,24 +83,24 @@ export const getComponents = (basepath: string): MDXComponents => {
             </ul>
         ),
         ol: ({ children, id }) => (
-            <ol id={id} className="marker:text-foreground/65 my-3 list-decimal pl-6 marker:font-mono marker:text-[0.85em]">
+            <ol id={id} className="my-3 list-decimal pl-6 marker:font-mono marker:text-[0.85em] marker:text-foreground/65">
                 {children}
             </ol>
         ),
         li: ({ children, id }) => (
             <li
                 id={id}
-                className="before:text-foreground/40 my-1 pl-5 -indent-5 before:mr-3 before:font-mono before:content-['—'] [&>ol]:mt-1 [&>ul]:mt-1"
+                className="my-1 pl-5 -indent-5 before:mr-3 before:font-mono before:text-foreground/40 before:content-['—'] [&>ol]:mt-1 [&>ul]:mt-1"
             >
                 {children}
             </li>
         ),
 
         blockquote: ({ children }) => (
-            <blockquote className="border-foreground/25 text-foreground/70 my-7 border-l pl-5 not-italic">{children}</blockquote>
+            <blockquote className="my-7 border-foreground/25 border-l pl-5 text-foreground/70 not-italic">{children}</blockquote>
         ),
 
-        hr: () => <hr className="border-foreground/25 my-10 border-t" />,
+        hr: () => <hr className="my-10 border-foreground/25 border-t" />,
 
         table: ({ children }) => (
             // Named scroll region for wide tables; modern browsers make overflow
@@ -131,7 +131,7 @@ export const getComponents = (basepath: string): MDXComponents => {
         ),
 
         Warn: ({ children, id }) => (
-            <div className="border-foreground/50 bg-foreground/[0.04] my-7 border-l-2 py-4 pr-5 pl-5" id={id}>
+            <div className="my-7 border-foreground/50 border-l-2 bg-foreground/[0.04] py-4 pr-5 pl-5" id={id}>
                 <p className="mono-eyebrow mb-2 text-[11px]">// warning</p>
                 <div className="text-foreground/85">{children}</div>
             </div>

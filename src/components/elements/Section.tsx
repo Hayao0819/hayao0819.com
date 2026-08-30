@@ -23,7 +23,7 @@ export function Section({ title, description, children, isLast: _isLast, classNa
             {title && (
                 <div className="mb-5">
                     <p className="mono-eyebrow text-[11px]">// {title.toLowerCase()}</p>
-                    {description && <p className="text-foreground/70 mt-2 text-[13px]">{description}</p>}
+                    {description && <p className="mt-2 text-[13px] text-foreground/70">{description}</p>}
                 </div>
             )}
             {children}

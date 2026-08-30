@@ -64,7 +64,7 @@ const MostRecentPostPreview = ({ post, type }: { post: PostData | null; type: "b
     const placeholder = "ハヤオの次回作にご期待ください";
     if (!post) {
         return (
-            <span className="font-body-prose text-foreground/65 block text-[14px]">
+            <span className="block font-body-prose text-[14px] text-foreground/65">
                 {type === "before" ? "← " : ""}
                 {placeholder}
                 {type === "after" ? " →" : ""}
@@ -74,7 +74,7 @@ const MostRecentPostPreview = ({ post, type }: { post: PostData | null; type: "b
     return (
         <Link
             href={`/blog/posts/${post.url}`}
-            className="font-body-prose text-foreground/80 hover:text-accent break-phrase block text-[15px] text-pretty"
+            className="break-phrase block text-pretty font-body-prose text-[15px] text-foreground/80 hover:text-accent"
         >
             {type === "before" ? "← " : ""}
             {post.meta.title}
@@ -129,7 +129,7 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
                     <Breadcrumbs start={2} />
                 </span>
                 <span
-                    className="bg-accent animate-term-caret inline-block h-[1.05em] w-[0.55em] self-center align-text-bottom motion-reduce:animate-none"
+                    className="inline-block h-[1.05em] w-[0.55em] animate-term-caret self-center bg-accent align-text-bottom motion-reduce:animate-none"
                     aria-hidden="true"
                 />
             </div>
@@ -149,7 +149,7 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
             <div className="mt-6 mb-10">
                 <BlogHeading
                     level={1}
-                    className="font-body-prose break-phrase text-3xl leading-[1.3] font-medium tracking-tight text-pretty md:text-4xl"
+                    className="break-phrase text-pretty font-body-prose font-medium text-3xl leading-[1.3] tracking-tight md:text-4xl"
                 >
                     {postData.post?.meta.title}
                 </BlogHeading>
@@ -162,7 +162,7 @@ export default function PostPage(props: { params: Promise<{ slug: string[] }> })
 
             {/* Content — body face for prose */}
             <div
-                className="prose font-body-prose text-foreground/90 prose-headings:font-body-prose prose-a:text-accent prose-strong:text-foreground prose-code:font-mono max-w-none py-6 text-[17px] leading-[1.9] md:text-[18px]"
+                className="prose max-w-none py-6 font-body-prose prose-code:font-mono prose-headings:font-body-prose prose-a:text-accent prose-strong:text-foreground text-[17px] text-foreground/90 leading-[1.9] md:text-[18px]"
                 id={contentId}
                 data-prose="body"
             >

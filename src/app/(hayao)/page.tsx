@@ -28,11 +28,11 @@ export default function Home() {
             {/* Intro */}
             <section>
                 <PromptLine>whoami</PromptLine>
-                <h1 className="font-body-prose text-foreground mt-4 text-3xl leading-tight tracking-tight md:text-4xl">
+                <h1 className="mt-4 font-body-prose text-3xl text-foreground leading-tight tracking-tight md:text-4xl">
                     山田ハヤオ
                 </h1>
-                <p className="text-foreground/70 mt-3 text-[12px] tracking-[0.14em]">Web Developer / Security Enthusiast</p>
-                <p className="font-body-prose text-foreground/90 mt-7 max-w-[46rem] text-[17px] leading-[1.9]">
+                <p className="mt-3 text-[12px] text-foreground/70 tracking-[0.14em]">Web Developer / Security Enthusiast</p>
+                <p className="mt-7 max-w-[46rem] font-body-prose text-[17px] text-foreground/90 leading-[1.9]">
                     パソコンが好きな大学生。Webやセキュリティに興味があります。
                     主にLinuxやWebフロントエンドをメインに活動しています。
                 </p>
@@ -40,21 +40,21 @@ export default function Home() {
                     <Link
                         href="https://twitter.com/Hayao0819"
                         aria-label="Twitter"
-                        className="text-foreground/70 hover:text-foreground -m-2.5 inline-flex p-2.5"
+                        className="-m-2.5 inline-flex p-2.5 text-foreground/70 hover:text-foreground"
                     >
                         <FaTwitter />
                     </Link>
                     <Link
                         href="https://github.com/Hayao0819"
                         aria-label="GitHub"
-                        className="text-foreground/70 hover:text-foreground -m-2.5 inline-flex p-2.5"
+                        className="-m-2.5 inline-flex p-2.5 text-foreground/70 hover:text-foreground"
                     >
                         <FaGithub />
                     </Link>
                     <Link
                         href="https://instagram.com/Hayao0819"
                         aria-label="Instagram"
-                        className="text-foreground/70 hover:text-foreground -m-2.5 inline-flex p-2.5"
+                        className="-m-2.5 inline-flex p-2.5 text-foreground/70 hover:text-foreground"
                     >
                         <FaInstagram />
                     </Link>
@@ -69,11 +69,11 @@ export default function Home() {
                     {SECTIONS.map((s) => (
                         <li key={s.href}>
                             <Link href={s.href} className="group flex items-baseline gap-3 py-1">
-                                <span className="font-body-prose text-foreground group-hover:text-accent text-[16px] font-medium">
+                                <span className="font-body-prose font-medium text-[16px] text-foreground group-hover:text-accent">
                                     {s.title}
                                 </span>
-                                <span className="text-foreground/70 text-[12px]">{s.description}</span>
-                                <span className="text-foreground/30 group-hover:text-foreground/70 ml-auto" aria-hidden="true">
+                                <span className="text-[12px] text-foreground/70">{s.description}</span>
+                                <span className="ml-auto text-foreground/30 group-hover:text-foreground/70" aria-hidden="true">
                                     &rarr;
                                 </span>
                             </Link>
@@ -96,10 +96,10 @@ export default function Home() {
                                     href={`/blog/posts/${p.url}`}
                                     className="group grid grid-cols-[6.5rem_1fr] items-baseline gap-4 py-1"
                                 >
-                                    <span className="text-foreground/65 text-[12px] tabular-nums">
+                                    <span className="text-[12px] text-foreground/65 tabular-nums">
                                         {utils.dateToString(d, "-")}
                                     </span>
-                                    <span className="font-body-prose text-foreground/90 group-hover:text-accent break-phrase text-[15px] leading-snug text-pretty">
+                                    <span className="break-phrase text-pretty font-body-prose text-[15px] text-foreground/90 leading-snug group-hover:text-accent">
                                         {p.meta.title}
                                     </span>
                                 </Link>
@@ -110,7 +110,7 @@ export default function Home() {
                 <p className="mt-7 text-[12px]">
                     <Link
                         href="/blog/1"
-                        className="text-foreground/70 hover:text-accent -my-2 inline-flex items-center py-2 tracking-[0.14em]"
+                        className="-my-2 inline-flex items-center py-2 text-foreground/70 tracking-[0.14em] hover:text-accent"
                     >
                         View All&nbsp;
                         <span aria-hidden="true">&rarr;</span>
@@ -123,12 +123,12 @@ export default function Home() {
             {/* Quiet links row */}
             <section>
                 <h2 className="mono-eyebrow">// Quick Links</h2>
-                <div className="text-foreground/65 mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[12px] tracking-[0.14em]">
+                <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-foreground/65 tracking-[0.14em]">
                     {QUICK_LINKS.map((l) => (
                         <Link
                             key={l.href}
                             href={l.href}
-                            className="hover:text-foreground -my-1.5 inline-flex items-center py-1.5"
+                            className="-my-1.5 inline-flex items-center py-1.5 hover:text-foreground"
                         >
                             <span className="text-foreground/45" aria-hidden="true">
                                 ./

@@ -49,9 +49,9 @@ export const SideToc = ({ contentSelector }: { contentSelector: string }) => {
                         <NextLink
                             href={`#${h.id}`}
                             scroll={true}
-                            className="text-foreground/70 hover:text-accent group flex items-start gap-2 leading-[1.6] transition-colors"
+                            className="group flex items-start gap-2 text-foreground/70 leading-[1.6] transition-colors hover:text-accent"
                         >
-                            <span className="text-foreground/65 group-hover:text-accent shrink-0 tabular-nums">
+                            <span className="shrink-0 text-foreground/65 tabular-nums group-hover:text-accent">
                                 {String(i + 1).padStart(2, "0")}
                             </span>
                             <span className="group-hover:underline" dangerouslySetInnerHTML={{ __html: h.text }} />
@@ -65,13 +65,13 @@ export const SideToc = ({ contentSelector }: { contentSelector: string }) => {
 };
 
 const SideTocChildren = ({ items }: { items: HeadingTree[number]["children"] }) => (
-    <ul className="border-foreground/15 mt-2 ml-[3px] space-y-1.5 border-l pl-4">
+    <ul className="mt-2 ml-[3px] space-y-1.5 border-foreground/15 border-l pl-4">
         {items.map((h) => (
             <li key={h.id}>
                 <NextLink
                     href={`#${h.id}`}
                     scroll={true}
-                    className="text-foreground/65 hover:text-accent block leading-[1.6] transition-colors hover:underline"
+                    className="block text-foreground/65 leading-[1.6] transition-colors hover:text-accent hover:underline"
                 >
                     <span dangerouslySetInnerHTML={{ __html: h.text }} />
                 </NextLink>

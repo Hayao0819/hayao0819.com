@@ -41,7 +41,7 @@ function ChipRow({ items }: { items: Skill[] }) {
             {items.map((s) => (
                 <li
                     key={s.name}
-                    className={`inline-flex items-baseline gap-2 ${s.main ? "text-foreground font-medium" : "text-foreground/65"}`}
+                    className={`inline-flex items-baseline gap-2 ${s.main ? "font-medium text-foreground" : "text-foreground/65"}`}
                 >
                     <span className="text-foreground/30" aria-hidden="true">
                         *
@@ -58,8 +58,8 @@ export default function Portfolio() {
         <div>
             <header>
                 <PromptLine>cat portfolio.md</PromptLine>
-                <h1 className="font-body-prose mt-4 text-3xl leading-tight tracking-tight md:text-4xl">Portfolio</h1>
-                <p className="font-body-prose text-foreground/90 mt-6 max-w-[46rem] text-[17px] leading-[1.9]">
+                <h1 className="mt-4 font-body-prose text-3xl leading-tight tracking-tight md:text-4xl">Portfolio</h1>
+                <p className="mt-6 max-w-[46rem] font-body-prose text-[17px] text-foreground/90 leading-[1.9]">
                     小学生の頃からLinuxが好きで、それに関連する制作物が多くあります。
                     大学生になってからはGolang、Rust、C++等も書き始め、プロダクション規模のウェブ開発も行っています。
                 </p>
@@ -77,7 +77,7 @@ export default function Portfolio() {
 
             <section>
                 <h2 className="mono-eyebrow">// Skills</h2>
-                <p className="text-foreground/70 mt-1 text-[11.5px]">得意な技術スタック</p>
+                <p className="mt-1 text-[11.5px] text-foreground/70">得意な技術スタック</p>
                 <ChipRow items={SKILLS_PRIMARY} />
             </section>
 
@@ -85,16 +85,16 @@ export default function Portfolio() {
 
             <section>
                 <h2 className="mono-eyebrow">// Languages</h2>
-                <p className="text-foreground/70 mt-1 text-[11.5px]">使用言語と制作物</p>
+                <p className="mt-1 text-[11.5px] text-foreground/70">使用言語と制作物</p>
                 <ul className="mt-5 flex flex-col gap-4 text-[13px]">
                     {LANGUAGES.map((l) => (
                         <li key={l.name} className="grid grid-cols-[7.5rem_1fr] items-baseline gap-4">
                             <span className="text-foreground/80">{l.name}</span>
-                            <span className="text-foreground/70 flex flex-wrap gap-x-3 gap-y-1">
+                            <span className="flex flex-wrap gap-x-3 gap-y-1 text-foreground/70">
                                 {l.projects.map((p, i) => (
                                     <span key={p}>
                                         {i > 0 && (
-                                            <span className="text-foreground/25 mr-3" aria-hidden="true">
+                                            <span className="mr-3 text-foreground/25" aria-hidden="true">
                                                 /
                                             </span>
                                         )}
@@ -111,7 +111,7 @@ export default function Portfolio() {
 
             <section>
                 <h2 className="mono-eyebrow">// Frameworks</h2>
-                <p className="text-foreground/70 mt-1 text-[11.5px]">使用フレームワーク</p>
+                <p className="mt-1 text-[11.5px] text-foreground/70">使用フレームワーク</p>
                 <ChipRow items={FRAMEWORKS} />
             </section>
 
@@ -119,7 +119,7 @@ export default function Portfolio() {
 
             <section>
                 <h2 className="mono-eyebrow">// Environment</h2>
-                <p className="text-foreground/70 mt-1 text-[11.5px]">開発環境</p>
+                <p className="mt-1 text-[11.5px] text-foreground/70">開発環境</p>
                 <ChipRow items={ENV} />
             </section>
         </div>
